@@ -1,0 +1,19 @@
+[project]
+name = "deepmoat-be"
+version = "0.1.0"
+description = "知价值之本，行投资之真"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "akshare>=1.17.26",
+    "pandas>=2.3.1",
+    "tushare>=1.4.21",
+    "pyyaml>=6.0.2",
+    "mysql-connector-python>=9.4.0",
+    "flask>=3.1.1",
+    "flask-cors>=6.0.1",
+    "sqlalchemy>=2.0.45",
+    "psycopg2-binary>=2.9.11",
+    "load-dotenv>=0.1.0",
+    "pydantic-settings>=2.12.0",
+]
