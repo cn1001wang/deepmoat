@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String, Float, Integer
-from .database import Base
+from app.db.session import Base
 
 class SwIndustry(Base):
     __tablename__ = "sw_industry"

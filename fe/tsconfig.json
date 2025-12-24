@@ -1,0 +1,39 @@
+{
+  "include": ["src"],
+  "compilerOptions": {
+    "target": "ESNext",                      // 支持最新语法（如 optional chaining）
+    "useDefineForClassFields": true,         // 与Vue3的reactivity保持一致
+    "module": "ESNext",                      // Vite使用原生ES模块
+    "moduleResolution": "Bundler",           // 推荐用于Vite（vite4+支持）
+    "lib": ["ESNext", "DOM"],                // 支持最新浏览器和DOM
+    "skipLibCheck": true,                    // 跳过依赖库类型检查（提升速度）
+    "strict": true,                          // 启用严格模式（推荐）
+    "esModuleInterop": true,                 // 兼容CommonJS模块
+    "allowSyntheticDefaultImports": true,    // 允许默认导入
+    "resolveJsonModule": true,               // 支持引入JSON文件
+    "isolatedModules": true,                 // 为Vite/HMR优化
+    "noEmit": true,                          // 不生成输出文件（由Vite接管）
+    "jsx": "preserve",                       // JSX配置（如果用到 JSX 或 TSX）
+    "jsxImportSource": "vue",            // Vue 3 JSX支持
+    "types": ["vite/client"],                // 引入vite相关类型
+    "baseUrl": ".",                          // 为path别名做准备
+    // "noImplicitAny": false,                   // 允许隐式any类型（可选）
+    "paths": {
+      "@/*": ["src/*"],
+      "~/*": ["src/*"],
+      "~#/*": ["src/common/enums/*"],
+    },
+
+    
+    "composite": false,
+    "declaration": true,
+    "declarationMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "inlineSources": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "preserveWatchOutput": true,
+    "sourceMap": true,
+    "noImplicitReturns": true
+  }
+}
