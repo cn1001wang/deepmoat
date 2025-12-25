@@ -1,5 +1,5 @@
-from common.database import SessionLocal
-from common.models import Income, BalanceSheet, CashFlow, FinanceSyncLog
+from app.db.session import SessionLocal
+from app.models.models import Income, BalanceSheet, CashFlow, FinanceSyncLog
 from sqlalchemy import func
 
 TABLE_MODEL = {

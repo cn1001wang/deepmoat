@@ -2,11 +2,14 @@ import os
 import sys
 from datetime import datetime
 from typing import List, Dict, Any
-
 import pandas as pd
-from fastapi import FastAPI, Query, HTTPException, Depends
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from fastapi import APIRouter, Query, HTTPException
+
+# 创建路由，替代 Flask 的 Blueprint
+router = APIRouter(
+    prefix="/raw_data",
+    tags=["raw_data"]
+)
 
 # ------------------------
 # 路径兼容处理
@@ -17,33 +20,16 @@ if ROOT not in sys.path:
 
 # 导入原有业务逻辑
 from app.crud.stock import get_stock_basic_all
-from app.crud.crud_company import get_stock_company
+from app.crud.crud_company import get_stock_companies
 from app.crud.crud_industry import get_sw_industry, get_index_member
-from service.tushare_service import (
+from app.service.tushare_service import (
     get_balancesheet_all,
     get_cashflow_all,
     get_income_all,
 )
-from utils.date_utils import generate_periods
-from utils.df_utils import dedup_finance_df
+from app.utils.date_utils import generate_periods
+from app.utils.df_utils import dedup_finance_df
 
-# ------------------------
-# FastAPI 应用配置
-# ------------------------
-app = FastAPI(
-    title="DeepMoat Finance API",
-    description="基于 FastAPI 的基本面分析系统",
-    version="1.0.0"
-)
-
-# 跨域配置
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 # ------------------------
 # 配置常量
@@ -156,7 +142,7 @@ def build_metrics_table(ts_code: str, years: int = 6) -> Dict[str, Any]:
 # API 路由接口
 # ------------------------
 
-@app.get("/api/finance/table")
+@router.get("/api/finance/table")
 def get_finance_table_api(
     ts_code: str = Query(..., description="股票代码，如 000001.SZ"),
     years: int = Query(6, ge=1, le=20, description="分析年限")
@@ -171,30 +157,22 @@ def get_finance_table_api(
 
     return {"code": 200, "message": "success", "data": payload}
 
-@app.get("/api/sw_industry")
+@router.get("/api/sw_industry")
 def get_sw_industry_api():
     industries = get_sw_industry()
     return {"code": 200, "message": "success", "data": [i.to_dict() for i in industries]}
 
-@app.get("/api/stock_basic_all")
+@router.get("/api/stock_basic_all")
 def get_stock_basic_all_api():
     stocks = get_stock_basic_all()
     return {"code": 200, "message": "success", "data": [i.to_dict() for i in stocks]}
 
-@app.get("/api/index_member")
+@router.get("/api/index_member")
 def get_index_member_api():
     members = get_index_member()
     return {"code": 200, "message": "success", "data": [i.to_dict() for i in members]}
 
-@app.get("/api/company")
+@router.get("/api/company")
 def get_company_api():
-    companies = get_stock_company()
+    companies = get_stock_companies()
     return {"code": 200, "message": "success", "data": [i.to_dict() for i in companies]}
-
-# ------------------------
-# 启动配置
-# ------------------------
-if __name__ == "__main__":
-    import uvicorn
-    # 使用 uv run python main.py 启动或直接用 uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=5005)

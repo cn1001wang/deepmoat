@@ -1,7 +1,7 @@
 # crud.py
 from sqlalchemy.orm import Session
 from sqlalchemy import desc
-from .models import Income, BalanceSheet, CashFlow, StockBasic
+from app.models.models import Income, BalanceSheet, CashFlow, StockBasic
 
 def get_stock_basic(db: Session, ts_code: str):
     """获取股票基本信息"""

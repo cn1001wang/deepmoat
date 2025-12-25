@@ -1,7 +1,7 @@
-from common.database import SessionLocal
-from common.models import SwIndustry
+from app.db.session import SessionLocal
+from app.models.models import SwIndustry
 import pandas as pd
-from common.models import IndexMember
+from app.models.models import IndexMember
 
 
 def save_sw_industry(df: pd.DataFrame):

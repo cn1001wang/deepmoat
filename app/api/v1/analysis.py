@@ -4,12 +4,13 @@ from typing import Dict, Any
 
 # 假设你的项目结构中 database 提供了 SessionLocal
 from app.db.session import get_db
-from . import trend_service, crud
+from app.service import trend_service
+from app.crud.crud_trend import get_stock_basic
 
 # 创建路由，替代 Flask 的 Blueprint
 router = APIRouter(
-    prefix="/finance",
-    tags=["finance"]
+    prefix="/analysis",
+    tags=["analysis"]
 )
 
 @router.get("/trends/{ts_code}")
@@ -17,7 +18,7 @@ async def get_trends(ts_code: str, db: Session = Depends(get_db)):
     """
     接口1：趋势数据
     """
-    stock = crud.get_stock_basic(db, ts_code)
+    stock = get_stock_basic(db, ts_code)
     if not stock:
         raise HTTPException(status_code=404, detail="Stock not found")
         

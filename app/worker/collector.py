@@ -1,13 +1,13 @@
 # Tushare 抓取逻辑
 
 from common.service.tushare_service import get_sw_industry, get_stock_list, get_stock_company, get_index_member
-from common.crud.crud_industry import save_sw_industry, save_index_member
-from common.crud.crud_stock import save_stock_basic
-from common.database import Base, engine
-from common.crud.crud_company import save_stock_company
-from common.crud.crud_company import get_all_listed_companies
+from app.crud.crud_industry import save_sw_industry, save_index_member
+from app.crud.crud_stock import save_stock_basic
+from app.db.session import Base, engine
+from app.crud.crud_company import save_stock_company
+from app.crud.crud_company import get_all_listed_companies
 from common.service.finance_service import fetch_finance_for_stock,fetch_finance_for_stock_2
-from common.utils.date_utils import generate_periods
+from app.utils.date_utils import generate_periods
 
 def get_save_sw_industry():
     # print("获取申万行业分类数据 L1 ...")

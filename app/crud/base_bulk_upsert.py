@@ -1,5 +1,5 @@
 from sqlalchemy.dialects.postgresql import insert
-from common.database import engine
+from db.session import engine
 import pandas as pd
 
 

@@ -3,11 +3,11 @@ from common.service.tushare_service import (
     get_balancesheet_all,
     get_cashflow_all,
 )
-from common.crud.crud_income import save_income_bulk
-from common.crud.crud_balancesheet import save_balancesheet_bulk
-from common.crud.crud_cashflow import save_cashflow_bulk
-from common.crud.crud_sync_log import get_db_max_end_date, update_sync_log
-from common.utils.df_utils import dedup_finance_df
+from app.crud.crud_income import save_income_bulk
+from app.crud.crud_balancesheet import save_balancesheet_bulk
+from app.crud.crud_cashflow import save_cashflow_bulk
+from app.crud.crud_sync_log import get_db_max_end_date, update_sync_log
+from app.utils.df_utils import dedup_finance_df
 import time
 
 
@@ -93,8 +93,8 @@ def get_latest_available_end_date(today: date | None = None) -> str:
         return f"{year}-03-31"
 
 from sqlalchemy import func
-from common.database import SessionLocal
-from common.models import Income, BalanceSheet, CashFlow
+from app.db.session import SessionLocal
+from app.models.models import Income, BalanceSheet, CashFlow
 
 TABLE_MODEL_MAP = {
     "income": Income,

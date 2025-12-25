@@ -1,8 +1,7 @@
 import tushare as ts
-import pandas as pd
-from utils.config_loader import read_token_from_yaml
+from app.config import settings
 
-token = read_token_from_yaml()
+token = settings.TUSHARE_TOKEN
 ts.set_token(token)
 
 pro = ts.pro_api()

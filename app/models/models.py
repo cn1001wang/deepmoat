@@ -146,9 +146,6 @@ class FinanceSyncLog(Base):
     table_name = Column(String(20), primary_key=True)  # income / balancesheet / cashflow
     last_sync_end_date = Column(String(20))  # 最近一次同步到的报告期
 
-from sqlalchemy import Column, String, Float
-from .database import Base
-
 # 利润表
 class Income(Base):
     __tablename__ = "income"

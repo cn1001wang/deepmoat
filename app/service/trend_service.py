@@ -1,6 +1,6 @@
 # trend_service.py
 from sqlalchemy.orm import Session
-from common.crud.crud_trend import get_financial_history,get_comparable_period_data
+from app.crud.crud_trend import get_financial_history,get_comparable_period_data
 from typing import List, Dict, Any
 
 def calculate_yoy(current: float, previous: float) -> float:
