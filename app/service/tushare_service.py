@@ -77,5 +77,11 @@ def get_balancesheet_all(ts_code: str):
 def get_cashflow_all(ts_code: str):
     return pro.cashflow(ts_code=ts_code)
 
-def get_index_member():
-    return pro.index_member_all(offset=3000)
+def get_index_member(offset: int = 0, limit: int = 2000):
+    """
+    分页获取指数成分股
+    :param offset: 偏移量，从第几条开始
+    :param limit: 每页条数
+    :return: DataFrame
+    """
+    return pro.index_member_all(offset=offset, limit=limit)

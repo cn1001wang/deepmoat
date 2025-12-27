@@ -35,8 +35,8 @@ dependencies:
     specifier: ^3.5.24
     version: 3.5.24(typescript@5.9.3)
   vue-router:
-    specifier: '4'
-    version: 4.0.0(vue@3.5.24)
+    specifier: ^4.6.4
+    version: 4.6.4(vue@3.5.24)
 
 devDependencies:
   '@antfu/eslint-config':
@@ -1955,6 +1955,10 @@ packages:
       '@vue/compiler-dom': 3.5.26
       '@vue/shared': 3.5.26
     dev: true
+
+  /@vue/devtools-api@6.6.4:
+    resolution: {integrity: sha512-sGhTPMuXqZ1rVOk32RylztWkfXTRhuS7vgAKv0zjqk8gbsHkJ7xfFf+jbySxt7tWObEJwyKaHMikV/WGDiQm8g==}
+    dev: false
 
   /@vue/devtools-api@7.7.9:
     resolution: {integrity: sha512-kIE8wvwlcZ6TJTbNeU2HQNtaxLx3a84aotTITUuL/4bzfPxzajGBOoqjMhwZJ8L9qFYDU/lAYMEEm11dnZOD6g==}
@@ -4855,11 +4859,12 @@ packages:
     resolution: {integrity: sha512-zKgsWWkXq0xrus7H4Mc+uFs1ESrmdTXlO0YNbR6wMdPaFvosL3fMB8N7uTV308UhGy9UvTrGhIY7mVz9eN+L0Q==}
     dev: false
 
-  /vue-router@4.0.0(vue@3.5.24):
-    resolution: {integrity: sha512-RiAsDsSV73TBqppgpAKghb5exHHKsFuTii7hbhj9QHjWJNDE4lBDTr7bVALG9DH9vVcFI+7PUTBGYbytBFsWsQ==}
+  /vue-router@4.6.4(vue@3.5.24):
+    resolution: {integrity: sha512-Hz9q5sa33Yhduglwz6g9skT8OBPii+4bFn88w6J+J4MfEo4KRRpmiNG/hHHkdbRFlLBOqxN8y8gf2Fb0MTUgVg==}
     peerDependencies:
-      vue: ^3.0.0
+      vue: ^3.5.0
     dependencies:
+      '@vue/devtools-api': 6.6.4
       vue: 3.5.24(typescript@5.9.3)
     dev: false
 

@@ -1,14 +1,10 @@
-from app.db.session import SessionLocal
+from sqlalchemy.orm import Session
 from app.models.models import SwIndustry
 import pandas as pd
 from app.models.models import IndexMember
 
-
-def save_sw_industry(df: pd.DataFrame):
+def save_sw_industry(db: Session, df: pd.DataFrame):
     """将 Tushare 返回的 DataFrame 存入 PostgreSQL"""
-
-    session = SessionLocal()
-
     try:
         for _, row in df.iterrows():
             obj = SwIndustry(
@@ -20,27 +16,22 @@ def save_sw_industry(df: pd.DataFrame):
                 is_pub=row["is_pub"],
                 src=row["src"],
             )
-
-            session.merge(obj)  # merge 支持更新/插入
-        session.commit()
-    except Exception as e:
-        session.rollback()
-        print("写入错误：", e)
+            db.merge(obj)
+        db.commit()
+    except Exception:
+        db.rollback()
         raise
-    finally:
-        session.close()
 
-def save_index_member(df: pd.DataFrame):
-    """将 Tushare 返回的 DataFrame 存入 PostgreSQL"""
-
-    session = SessionLocal()
-
+def save_index_member(db: Session, df: pd.DataFrame):
     try:
         for _, row in df.iterrows():
-            # 先查询是否存在同 ts_code 的记录
-            existing = session.query(IndexMember).filter_by(ts_code=row["ts_code"]).first()
+            existing = (
+                db.query(IndexMember)
+                .filter(IndexMember.ts_code == row["ts_code"])
+                .first()
+            )
+
             if existing:
-                # 存在则更新
                 existing.l1_code = row["l1_code"]
                 existing.l1_name = row["l1_name"]
                 existing.l2_code = row["l2_code"]
@@ -52,7 +43,6 @@ def save_index_member(df: pd.DataFrame):
                 existing.out_date = row["out_date"]
                 existing.is_new = row["is_new"]
             else:
-                # 不存在则新增
                 obj = IndexMember(
                     l1_code=row["l1_code"],
                     l1_name=row["l1_name"],
@@ -66,35 +56,15 @@ def save_index_member(df: pd.DataFrame):
                     out_date=row["out_date"],
                     is_new=row["is_new"],
                 )
-                session.add(obj)
-        session.commit()
-    except Exception as e:
-        session.rollback()
-        print("写入错误：", e)
-        raise
-    finally:
-        session.close()
+                db.add(obj)
 
-def get_index_member():
-    session = SessionLocal()
-    try:
-        data = session.query(IndexMember).all()
-    except Exception as e:
-        print("查询错误：", e)
+        db.commit()
+    except Exception:
+        db.rollback()
         raise
-    finally:
-        session.close()
-    return data
 
+def get_index_member(db: Session):
+    return db.query(IndexMember).all()
 
-def get_sw_industry():
-    
-    session = SessionLocal()
-    try:
-        industry = session.query(SwIndustry).all()
-    except Exception as e:
-        print("查询错误：", e)
-        raise
-    finally:
-        session.close()
-    return industry
+def get_sw_industry(db: Session):
+    return db.query(SwIndustry).all()

@@ -1,4 +1,4 @@
-from common.service.tushare_service import (
+from app.service.tushare_service import (
     get_income_all,
     get_balancesheet_all,
     get_cashflow_all,
