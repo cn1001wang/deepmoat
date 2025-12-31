@@ -11,11 +11,13 @@ import quarterOfYear from 'dayjs/plugin/quarterOfYear'
 import { computed, ref, watch } from 'vue'
 import { getFinanceTable } from '@/api/finance'
 
+const props = defineProps<{tscode: string}>()
+
 dayjs.extend(quarterOfYear)
 
 // --- 2. 状态变量 -----------------------------------------------------------------
 
-const tsCode = ref('603259.SH')
+const tsCode = ref('')
 const years = ref(6)
 const status = ref('')
 const loading = ref(false)
@@ -246,7 +248,12 @@ async function load() {
 }
 
 // 组件加载后自动加载数据
-load()
+watch(()=>props.tscode,()=>{
+  tsCode.value = props.tscode
+  load()
+},{
+  immediate: true
+})
 watch(years, load) // years 变化时重新加载
 </script>
 

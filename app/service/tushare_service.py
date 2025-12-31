@@ -1,5 +1,7 @@
+import pandas as pd
 import tushare as ts
 from app.config import settings
+from datetime import datetime
 
 token = settings.TUSHARE_TOKEN
 ts.set_token(token)
@@ -29,16 +31,8 @@ def get_stock_list():
     return df
 
 #上市公司基本信息
-def get_stock_company():
-    fields = (
-        "ts_code,com_name,com_id,exchange,chairman,manager,secretary,"
-        "reg_capital,setup_date,province,city,website,email,employees"
-    )
-
-    df = pro.stock_company(
-        fields=fields
-    )
-    return df
+def get_stock_company(offset: int = 0, limit: int = 2000):
+    return pro.stock_company(offset=offset, limit=limit)
 
 def get_income_vip(period: str):
     """
@@ -85,3 +79,30 @@ def get_index_member(offset: int = 0, limit: int = 2000):
     :return: DataFrame
     """
     return pro.index_member_all(offset=offset, limit=limit)
+
+def get_daily_basic(
+    trade_date=None,
+    ts_code=None,
+    start_date=None,
+    end_date=None
+):
+    if trade_date and (start_date or end_date):
+        raise ValueError("trade_date 不能与 start_date/end_date 同时使用")
+
+    return pro.daily_basic(
+        trade_date=trade_date,
+        ts_code=ts_code,
+        start_date=start_date,
+        end_date=end_date
+    )
+
+
+def fetch_today_daily_basic(trade_date: str | None = None) -> pd.DataFrame:
+    """
+    从 tushare 获取当天 daily_basic 数据
+    """
+    if trade_date is None:
+        trade_date = datetime.now().strftime("%Y%m%d")
+
+    df = pro.daily_basic(trade_date=trade_date)
+    return df

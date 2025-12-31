@@ -10,9 +10,10 @@ const routes: RouteRecordRaw[] = [
     redirect: '/StockList',
   },
   {
-    path: '/stock-detail',
+    path: '/stock/:tscode',
     name: 'FinanceStock',
     component: FinanceStock,
+    props: true
   },
   {
     path: '/StockList',

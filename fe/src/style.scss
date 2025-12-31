@@ -37,3 +37,20 @@ img {
   vertical-align: middle;
   border-style: none
 }
+.text-ellipsis {
+  white-space: nowrap;       /* 不换行 */
+  overflow: hidden;          /* 超出隐藏 */
+  text-overflow: ellipsis;   /* 显示省略号 */
+} 
+.ag-cell-value {
+    /* 强制单行显示 */
+    white-space: nowrap; 
+    /* 隐藏超出部分 */
+    overflow: hidden; 
+    /* 显示省略号 */
+    text-overflow: ellipsis;
+    width: 100%;
+}
+.ag-cell-wrapper{
+  width: 100%;
+}

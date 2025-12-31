@@ -2,6 +2,9 @@
 import type { ColDef } from 'ag-grid-community'
 import type { Stock } from '@/api/finance'
 import { AgGridVue } from 'ag-grid-vue3'
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 const props = defineProps<{
   data: Stock[]
@@ -86,6 +89,19 @@ const columnDefs: ColDef[] = [
       closeOnApply: true,
     },
     // flex: 1,
+    cellRenderer: (params:any) => {
+      const div = document.createElement('div');
+      div.style.cursor = 'pointer'; // 鼠标样式
+      div.style.color = '#1890ff';  // 可选：蓝色表示可点击
+      div.textContent = params.value;
+
+      div.addEventListener('click', () => {
+        // 跳转到详情页，比如用 Vue Router
+        router.push(`/stock/${encodeURIComponent(params.data.tsCode)}`);
+      });
+
+      return div;
+    }
   },
   {
     headerName: '股票代码',
@@ -106,6 +122,28 @@ const columnDefs: ColDef[] = [
       buttons: ['reset', 'apply'],
       closeOnApply: true,
     },
+  },
+  {
+    headerName: '公司介绍',
+    field: 'introduction',
+    width: 300,
+    filter: 'agTextColumnFilter',
+    filterParams: {
+      buttons: ['reset', 'apply'],
+      closeOnApply: true,
+    },
+    tooltipValueGetter: params => params.value,
+  },
+  {
+    headerName: '主要业务及产品',
+    field: 'mainBusiness',
+    width: 260,
+    filter: 'agTextColumnFilter',
+    filterParams: {
+      buttons: ['reset', 'apply'],
+      closeOnApply: true,
+    },
+    tooltipValueGetter: params => params.value,
   },
   {
     headerName: '统一社会信用代码',
@@ -198,17 +236,6 @@ const columnDefs: ColDef[] = [
     },
   },
   {
-    headerName: '公司介绍',
-    field: 'introduction',
-    width: 300,
-    filter: 'agTextColumnFilter',
-    filterParams: {
-      buttons: ['reset', 'apply'],
-      closeOnApply: true,
-    },
-    tooltipValueGetter: params => params.value,
-  },
-  {
     headerName: '公司主页',
     field: 'website',
     width: 160,
@@ -271,6 +298,7 @@ const columnDefs: ColDef[] = [
       closeOnApply: true,
     },
     tooltipValueGetter: params => params.value,
+    cellClass: 'text-ellipsis', // 添加类名
   },
 ]
 </script>

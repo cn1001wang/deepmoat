@@ -62,6 +62,10 @@ class StockCompanyRead(BaseSchema):
     website: Optional[str] = None
     email: Optional[str] = None
     employees: Optional[int] = None
+    introduction: Optional[str] = None
+    office: Optional[str] = None
+    main_business: Optional[str] = Field(None, alias="mainBusiness")
+    business_scope: Optional[str] = Field(None, alias="businessScope")
 
 
 class TableRow(BaseModel):
