@@ -106,3 +106,19 @@ def fetch_today_daily_basic(trade_date: str | None = None) -> pd.DataFrame:
 
     df = pro.daily_basic(trade_date=trade_date)
     return df
+
+from sqlalchemy.inspection import inspect
+from app.models.models import FinaIndicator
+from app.utils.tushare_utils import RateLimiter
+# 200 次 / 60 秒
+tushare_limiter = RateLimiter(max_calls=200, period=60)
+def fetch_fina_indicator(ts_code: str) -> pd.DataFrame:
+    # ⭐ 限速
+    tushare_limiter.acquire()
+    cols = [c.key for c in inspect(FinaIndicator).mapper.column_attrs]
+    fields = ",".join(cols)
+    """
+    从 tushare 获取财务指标数据
+    """
+    df = pro.fina_indicator(ts_code=ts_code, fields=fields)
+    return df

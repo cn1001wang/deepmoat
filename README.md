@@ -34,3 +34,23 @@ app/
 ├── schemas/      # Pydantic 响应模型
 ├── services/     # Moat Engine (核心计算逻辑)
 └── crud/         # 数据库增删改查
+
+## 启动
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate.bat
+uv sync
+```
+
+```bash
+uvicorn app.api.main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+
+```bash
+python app.worker.sync.py --xxx
+```
+
+
+

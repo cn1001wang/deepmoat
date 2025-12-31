@@ -56,3 +56,33 @@ def fetch_paginated(
 
         page_no += 1
     logging.info("数据抓取完成！")
+
+import threading
+import time
+from collections import deque
+
+class RateLimiter:
+    def __init__(self, max_calls: int, period: float):
+        """
+        max_calls: 最大调用次数
+        period: 时间窗口（秒）
+        """
+        self.max_calls = max_calls
+        self.period = period
+        self.calls = deque()
+        self.lock = threading.Lock()
+
+    def acquire(self):
+        with self.lock:
+            now = time.time()
+
+            # 移除窗口外的时间戳
+            while self.calls and now - self.calls[0] > self.period:
+                self.calls.popleft()
+
+            if len(self.calls) >= self.max_calls:
+                sleep_time = self.period - (now - self.calls[0])
+                if sleep_time > 0:
+                    time.sleep(sleep_time)
+
+            self.calls.append(time.time())

@@ -23,6 +23,7 @@ def bulk_upsert(table, df: pd.DataFrame, conflict_cols: list[str]):
 
     # 2️⃣ 将 DataFrame 中的 NaN 转为 None
     # PostgreSQL 不认识 NaN，只接受 NULL
+    df = df.astype(object)
     records = df.where(pd.notnull(df), None).to_dict("records")
 
     if not records:

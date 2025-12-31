@@ -380,6 +380,7 @@ requires-dist = [
     { name = "mysql-connector-python", specifier = ">=9.4.0" },
     { name = "pandas", specifier = ">=2.3.1" },
     { name = "psycopg2-binary", specifier = ">=2.9.11" },
+    { name = "pydantic-settings" },
     { name = "pydantic-settings", specifier = ">=2.12.0" },
     { name = "pyyaml", specifier = ">=6.0.2" },
     { name = "sqlalchemy", specifier = ">=2.0.45" },

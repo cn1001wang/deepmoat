@@ -28,12 +28,12 @@ class {class_name}(Base):
 
 '''
     
-    for name, ftype, _, desc in fields:
+    for name, ftype, desc in fields:
         sa_type = get_sa_type(ftype)
         if name in primary_keys:
-            code += f'    {name} = Column({sa_type}, primary_key=True, index=True)  # {desc}\n'
+            code += f'    {name} = Column({sa_type}, primary_key=True, index=True, comment="{desc}")  # {desc}\n'
         else:
-            code += f'    {name} = Column({sa_type})  # {desc}\n'
+            code += f'    {name} = Column({sa_type}, comment="{desc}")  # {desc}\n'
     
     return code
 
@@ -50,7 +50,7 @@ class BaseSchema(BaseModel):
 class {class_name}Read(BaseSchema):
 '''
     
-    for name, ftype, _, desc in fields:
+    for name, ftype, desc in fields:
         py_type = get_py_type(ftype)
         camel = snake_to_camel(name)
         
