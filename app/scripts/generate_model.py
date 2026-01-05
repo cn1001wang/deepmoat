@@ -67,6 +67,37 @@ class {class_name}Read(BaseSchema):
     
     return code
 
+def get_ts_type(type_str: str) -> str:
+    """获取 TypeScript 类型"""
+    types = {
+        'str': 'string',
+        'int': 'number',
+        'float': 'number',
+        'bool': 'boolean'
+    }
+    return types.get(type_str.lower(), 'string')
+
+def generate_ts_interface(table_name: str, fields: List[List], primary_keys: List[str]) -> str:
+    """生成 TypeScript interface（基于 Schema 返回值）"""
+    interface_name = ''.join(w.capitalize() for w in table_name.split('_'))
+
+    code = f'export interface {interface_name} {{\n'
+
+    for name, ftype, desc in fields:
+        ts_type = get_ts_type(ftype)
+        camel = snake_to_camel(name)
+
+        comment = f'  /** {desc} */\n'
+
+        if name in primary_keys:
+            code += f'{comment}  {camel}: {ts_type}\n'
+        else:
+            code += f'{comment}  {camel}?: {ts_type}\n'
+
+    code += '}\n'
+    return code
+
+
 def main():
     print("=" * 50)
     print("Model & Schema 生成器")
@@ -96,11 +127,18 @@ def main():
     with open(f"{table_name}_schema.py", 'w', encoding='utf-8') as f:
         f.write(schema_code)
     
+    ts_code = generate_ts_interface(table_name, fields, primary_keys)
+
+    with open(f"{table_name}.ts", 'w', encoding='utf-8') as f:
+        f.write(ts_code)
+
     print(f"\n✓ 已生成: {table_name}_model.py 和 {table_name}_schema.py")
     print("\n" + "=" * 50)
     print(model_code)
     print("=" * 50)
     print(schema_code)
+    print("=" * 50)
+    print(ts_code)
 
 if __name__ == "__main__":
     main()

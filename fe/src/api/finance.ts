@@ -98,3 +98,18 @@ export function getIndexMember() {
 export function getStockCompany() {
   return request<StockCompany[]>(`/api/company`)
 }
+
+export function getDailyBasic(){
+  return request(`/api/daily_basic`)
+}
+
+export function getFinaIndicator(annDate?: string, tsCode?: string) {
+  const params = new URLSearchParams()
+  if (annDate) {
+    params.append('ann_date', annDate)
+  }
+  if (tsCode) {
+    params.append('ts_code', tsCode)
+  }
+  return request<Stock[]>('/api/fina_indicator?' + params.toString())
+}

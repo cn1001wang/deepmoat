@@ -11,6 +11,7 @@ from app.crud.crud_stock import get_stock_basic_all
 from app.crud.crud_company import get_stock_companies
 from app.crud.crud_industry import get_sw_industry, get_index_member
 from app.utils.api_utils import ok, ResponseOk
+from app.crud.crud_fina_indicator import get_fina_indicator
 
 router = APIRouter(
     tags=["raw_data"]
@@ -52,3 +53,7 @@ def get_index_member_api(db: Session = Depends(get_db)):
 @router.get("/company",  response_model=ResponseOk[list[StockCompanyRead]])
 def get_company_api(db: Session = Depends(get_db)):
     return ok(get_stock_companies(db))
+
+@router.get("/fina_indicator",  response_model=ResponseOk[list[StockCompanyRead]])
+def get_fina_indicator_api(ann_date: str = Query(None, description="公告日期，如 20230101"), ts_code: str = Query(None, description="股票代码，如 000001.SZ"), db: Session = Depends(get_db)):
+    return ok(get_fina_indicator(ann_date, ts_code, db))

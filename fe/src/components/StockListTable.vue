@@ -114,6 +114,16 @@ const columnDefs: ColDef[] = [
     },
   },
   {
+    headerName: 'ROE(%)',
+    field: 'roe',
+    width: 120,
+    filter: 'agNumberColumnFilter', // 显式指定数字过滤
+    filterParams: {
+      buttons: ['reset', 'apply'], // 增加重置和应用按钮
+      closeOnApply: true,
+    },
+  },
+  {
     headerName: '公司全称',
     field: 'comName',
     width: 260,
