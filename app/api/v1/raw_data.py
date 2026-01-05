@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 
 from app.db.session import get_db
 from app.schemas.stock_shcemes import SwIndustryRead, StockBasicRead, IndexMemberRead, StockCompanyRead, MetricsTable
+from app.schemas.finance_schemes import FinaIndicatorRead
 from app.service.finance_metrics import build_metrics_table
 from app.crud.crud_stock import get_stock_basic_all
 from app.crud.crud_company import get_stock_companies
@@ -54,6 +55,6 @@ def get_index_member_api(db: Session = Depends(get_db)):
 def get_company_api(db: Session = Depends(get_db)):
     return ok(get_stock_companies(db))
 
-@router.get("/fina_indicator",  response_model=ResponseOk[list[StockCompanyRead]])
-def get_fina_indicator_api(ann_date: str = Query(None, description="公告日期，如 20230101"), ts_code: str = Query(None, description="股票代码，如 000001.SZ"), db: Session = Depends(get_db)):
-    return ok(get_fina_indicator(ann_date, ts_code, db))
+@router.get("/fina_indicator",  response_model=ResponseOk[list[FinaIndicatorRead]])
+def get_fina_indicator_api(ann_date: str = Query(None, description="公告日期，如 20230101"), end_date: str = Query(None, description="报告期，如 20231231"), ts_code: str = Query(None, description="股票代码，如 000001.SZ"), db: Session = Depends(get_db)):
+    return ok(get_fina_indicator(ann_date, end_date, ts_code, db))

@@ -11,7 +11,7 @@ from app.crud.crud_company import save_stock_company, get_all_listed_companies_i
 from app.crud.crud_fina_indicator import save_fina_indicator
 from app.service.finance_service import fetch_finance_for_stock_2
 from app.utils.tushare_utils import fetch_paginated
-from ..service.tushare_service import fetch_today_daily_basic, get_sw_industry, get_stock_list, get_stock_company, get_index_member, fetch_fina_indicator
+from app.service.tushare_service import fetch_today_daily_basic, get_sw_industry, get_stock_list, get_stock_company, get_index_member, fetch_fina_indicator
 
 
 # 配置日志

@@ -10,7 +10,7 @@ def save_fina_indicator( df: pd.DataFrame):
         conflict_cols=["ts_code", "ann_date", "end_date"]
     )
 
-def get_fina_indicator(ann_date: str, ts_code: str, db: Session):
+def get_fina_indicator(ann_date: str, end_date: str, ts_code: str, db: Session):
     """
     获取所有财务指标对象
     """
@@ -19,4 +19,6 @@ def get_fina_indicator(ann_date: str, ts_code: str, db: Session):
         query = query.filter(FinaIndicator.ann_date == ann_date)
     if ts_code:
         query = query.filter(FinaIndicator.ts_code == ts_code)
+    if end_date:
+        query = query.filter(FinaIndicator.end_date == end_date)
     return query.all()

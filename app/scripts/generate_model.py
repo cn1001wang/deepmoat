@@ -28,7 +28,7 @@ class {class_name}(Base):
 
 '''
     
-    for name, ftype, desc in fields:
+    for name, ftype, _, desc in fields:
         sa_type = get_sa_type(ftype)
         if name in primary_keys:
             code += f'    {name} = Column({sa_type}, primary_key=True, index=True, comment="{desc}")  # {desc}\n'
@@ -50,7 +50,7 @@ class BaseSchema(BaseModel):
 class {class_name}Read(BaseSchema):
 '''
     
-    for name, ftype, desc in fields:
+    for name, ftype, _, desc in fields:
         py_type = get_py_type(ftype)
         camel = snake_to_camel(name)
         
@@ -83,7 +83,7 @@ def generate_ts_interface(table_name: str, fields: List[List], primary_keys: Lis
 
     code = f'export interface {interface_name} {{\n'
 
-    for name, ftype, desc in fields:
+    for name, ftype, _, desc in fields:
         ts_type = get_ts_type(ftype)
         camel = snake_to_camel(name)
 
