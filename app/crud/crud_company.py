@@ -51,7 +51,7 @@ def get_all_listed_companies_info(db: Session):
     rows = db.query(
         StockCompany.ts_code,
         StockCompany.setup_date
-    ).filter(StockCompany.exchange != "SZSE").all()
+    ).filter(StockCompany.exchange == "SZSE").all()
 
     # 显式转成 tuple[str, str]
     return [(r.ts_code, r.setup_date) for r in rows]

@@ -98,9 +98,13 @@ def sync_fina_indicator(max_workers=5):
             try:
                 df = fetch_fina_indicator(ts_code)
                 save_fina_indicator(df)
-                # logging.info(f"{ts_code} 财务指标数据抓取成功")
+                logging.info(f"{ts_code} 财务指标数据抓取成功")
             except Exception as e:
-                logging.error(f"{ts_code} 财务指标数据抓取失败: {e}")
+                logging.error(
+                    "%s 财务指标写入失败: %s",
+                    ts_code,
+                    type(e).__name__
+                )
 
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             for ts_code, _ in companies:
