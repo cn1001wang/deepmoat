@@ -1,13 +1,14 @@
 <!--  -->
 <script setup lang="ts">
-import type { FinaIndicator, Stock } from '@/api/finance'
+import type { FinaIndicator, Stock, IndustryTreeNode } from '@/api/finance'
 import dayjs from 'dayjs'
 import { onMounted, ref } from 'vue'
-import { getIndexMember, getStockBasicAll, getStockCompany, getSWIndustry, getFinaIndicator } from '@/api/finance'
+import { getIndexMember, getStockBasicAll, getStockCompany, getSWIndustry, getFinaIndicator, buildIndustryTree } from '@/api/finance'
 import StockListTable from '@/components/StockListTable.vue'
+import IndustryTree from '@/components/IndustryTree.vue'
 
 const stockList = ref<Stock[]>([])
-
+const industryTree = ref<IndustryTreeNode[]>([])
 /**
  * 对股票列表进行多级排序：
  * 1. l1Code (升序)
@@ -57,7 +58,7 @@ const pick = <T, K extends keyof T>(o: T, k: K[]) => k.reduce((r, c) => (r[c] = 
 function loadData() {
   Promise.all([getSWIndustry(), getStockBasicAll(), getIndexMember(), getStockCompany(),getFinaIndicator({endDate} )]).then((res) => {
     const [{ data: industry }, { data: stock }, { data: member }, { data: company }, { data: finaIndicator }] = res
-    console.log(finaIndicator)
+    industryTree.value = buildIndustryTree(industry)
     const _stockList: Stock[] = []
     stock.forEach((item) => {
       const indexMember = member.find(o => o.tsCode === item.tsCode)
@@ -83,8 +84,12 @@ onMounted(() => {
 
 <template>
   <div class="p-28px h-full">
-    <!-- <router-link to="/stock-detail">股票详情</router-link> -->
-    <StockListTable :data="stockList" />
+    <div class="h-120px overflow-auto mb-14px">
+    <IndustryTree :data="industryTree"/>
+    </div>
+    <div class="h-[calc(100%-134px)]">
+      <StockListTable :data="stockList" />
+    </div>
   </div>
 </template>
 

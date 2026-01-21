@@ -19,10 +19,12 @@ def dedup_finance_df(df):
     if df is None or df.empty:
         return df
 
-    return (
-        df.sort_values("update_flag")
-          .drop_duplicates(
-              subset=["ts_code", "end_date", "report_type"],
-              keep="last"
-          )
-    )
+    # 兼容无 report_type 的数据集（如 fina_indicator）
+    subset_cols = ["ts_code", "end_date"]
+    if "report_type" in df.columns:
+        subset_cols.append("report_type")
+
+    if "update_flag" in df.columns:
+        df = df.sort_values("update_flag")
+
+    return df.drop_duplicates(subset=subset_cols, keep="last")

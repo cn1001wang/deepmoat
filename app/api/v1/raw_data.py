@@ -10,7 +10,7 @@ from app.schemas.finance_schemes import FinaIndicatorRead
 from app.service.finance_metrics import build_metrics_table
 from app.crud.crud_stock import get_stock_basic_all
 from app.crud.crud_company import get_stock_companies
-from app.crud.crud_industry import get_sw_industry, get_index_member
+from app.crud.crud_industry import get_sw_industry, get_index_member, get_index_member_by_ts_code
 from app.utils.api_utils import ok, ResponseOk
 from app.crud.crud_fina_indicator import get_fina_indicator
 
@@ -50,6 +50,9 @@ def get_stock_basic_all_api(db: Session = Depends(get_db)):
 def get_index_member_api(db: Session = Depends(get_db)):
     return ok(get_index_member(db))
 
+@router.get("/index_member_by_ts_code",  response_model=ResponseOk[IndexMemberRead])
+def get_index_member_by_ts_code_api(ts_code: str = Query(..., description="指数代码，如 000001.SH"), db: Session = Depends(get_db)):
+    return ok(get_index_member_by_ts_code(db, ts_code))
 
 @router.get("/company",  response_model=ResponseOk[list[StockCompanyRead]])
 def get_company_api(db: Session = Depends(get_db)):

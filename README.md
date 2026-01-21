@@ -50,6 +50,7 @@ uvicorn app.api.main:app --host 0.0.0.0 --port 8000 --reload
 
 ```bash
 python app.worker.sync.py --xxx
+uv run python -m app.worker.sync --daily
 ```
 
 

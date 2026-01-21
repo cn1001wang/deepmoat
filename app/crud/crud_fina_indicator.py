@@ -22,3 +22,6 @@ def get_fina_indicator(ann_date: str, end_date: str, ts_code: str, db: Session):
     if end_date:
         query = query.filter(FinaIndicator.end_date == end_date)
     return query.all()
+
+def check_fina_indicator_exists(db: Session, ts_code: str) -> bool:
+    return db.query(FinaIndicator).filter(FinaIndicator.ts_code == ts_code).first() is not None

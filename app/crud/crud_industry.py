@@ -65,6 +65,9 @@ def save_index_member(db: Session, df: pd.DataFrame):
 
 def get_index_member(db: Session):
     return db.query(IndexMember).all()
+def get_index_member_by_ts_code(db: Session, ts_code: str):
+    """根据 ts_code 查询 IndexMember，返回列表（兼容接口校验）"""
+    return db.query(IndexMember).filter(IndexMember.ts_code == ts_code).one_or_none()
 
 def get_sw_industry(db: Session):
     return db.query(SwIndustry).all()

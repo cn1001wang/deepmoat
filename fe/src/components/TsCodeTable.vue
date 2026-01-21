@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import type {
   ColDef,
+  ColGroupDef,
   GridReadyEvent,
   ICellRendererParams,
 } from 'ag-grid-community'
-import type { FinanceTableResponse, FinanceTableRow } from '@/api/finance'
+import type { IndexMember, FinanceTableRow } from '@/api/finance'
 import { AgGridVue } from 'ag-grid-vue3'
 import dayjs from 'dayjs'
 import quarterOfYear from 'dayjs/plugin/quarterOfYear'
 import { computed, ref, watch } from 'vue'
-import { getFinanceTable } from '@/api/finance'
+import { getFinanceTable, getIndexMemberByTsCode } from '@/api/finance'
 
-const props = defineProps<{tscode: string}>()
+const props = defineProps<{ tscode: string }>()
 
 dayjs.extend(quarterOfYear)
 
@@ -21,9 +22,44 @@ const tsCode = ref('')
 const years = ref(6)
 const status = ref('')
 const loading = ref(false)
-
-const periods = ref<string[]>([])
-const rowData = ref<FinanceTableRow[]>([])
+const company = ref<IndexMember>()
+const allPeriods = ref<string[]>([])
+const allRows = ref<FinanceTableRow[]>([])
+const filterLatestQAndQ4 = ref(true)
+const viewPeriods = computed(() => {
+  if (!filterLatestQAndQ4.value) {
+    return allPeriods.value
+  }
+  const byYear = new Map<number, string[]>()
+  allPeriods.value.forEach((p) => {
+    const d = dayjs(p)
+    const arr = byYear.get(d.year()) ?? []
+    arr.push(p)
+    byYear.set(d.year(), arr)
+  })
+  const years = Array.from(byYear.keys()).sort((a, b) => b - a)
+  const latestYear = years[0]
+  const result: string[] = []
+  years.forEach((y) => {
+    const ps = byYear.get(y) ?? []
+    const qSorted = ps.sort((a, b) => dayjs(a).quarter() - dayjs(b).quarter())
+    if (y === latestYear) {
+      result.push(qSorted[qSorted.length - 1])
+    }
+    else {
+      const q4 = qSorted.find(p => dayjs(p).quarter() === 4)
+      if (q4) result.push(q4)
+    }
+  })
+  return result
+})
+const viewRows = computed<FinanceTableRow[]>(() => {
+  const idxs = viewPeriods.value.map((p) => allPeriods.value.indexOf(p))
+  return allRows.value.map((r) => ({
+    ...r,
+    values: idxs.map((i) => r.values[i]),
+  }))
+})
 // --- 3. 辅助函数和样式逻辑 -------------------------------------------------------
 
 /**
@@ -118,12 +154,12 @@ const defaultColDef: ColDef = {
   sortable: false, // 禁用排序
   filter: false, // 禁用过滤
   resizable: true, // 允许调整列宽
-  flex: 1, // 灵活调整宽度
-  minWidth: 110,
+  // flex: 1, // 灵活调整宽度
+  width: 110,
 }
 
 // 动态计算列定义
-const columnDefs = computed<ColDef[]>(() => {
+const columnDefs = computed<(ColDef | ColGroupDef)[]>(() => {
   // 1. 评价列 (现在移动到第一列)
   const categoryCol: ColDef = {
     headerName: '评价',
@@ -133,7 +169,7 @@ const columnDefs = computed<ColDef[]>(() => {
     cellClass: 'category-cell',
     // --- 核心：单元格合并逻辑 ---
     rowSpan: (params) => {
-      const data = rowData.value
+      const data = viewRows.value
       const index = params.node?.rowIndex ?? 0
       const currentVal = data[index]?.category
 
@@ -173,19 +209,33 @@ const columnDefs = computed<ColDef[]>(() => {
     field: 'label',
     pinned: 'left',
     cellClass: 'metric',
-    minWidth: 180,
+    width: 120,
   }
 
-  // 3. 期间列
-  const periodCols: ColDef[] = periods.value.map((p, i) => ({
-    headerName: p,
-    field: `${p}_${i}`,
-    cellRenderer: metricValueRenderer,
-    cellStyle: { textAlign: 'right' },
-  }))
+  // 3. 期间列（按年份分组，组内为季度）
+  const periodGroups: ColGroupDef[] = []
+  const groupMap = new Map<string, ColDef[]>()
+  viewPeriods.value.forEach((p, i) => {
+    const d = dayjs(p)
+    const year = String(d.year())
+    const quarterLabel = `Q${d.quarter()}`
+    const child: ColDef = {
+      headerName: quarterLabel,
+      field: `${p}_${i}`,
+      cellRenderer: metricValueRenderer,
+      cellStyle: { textAlign: 'right' },
+      width: 110,
+    }
+    const children = groupMap.get(year) ?? []
+    children.push(child)
+    groupMap.set(year, children)
+  })
+  groupMap.forEach((children, year) => {
+    periodGroups.push({ headerName: year, children })
+  })
 
-  // 返回新顺序：评价 -> 指标 -> 期间
-  return [categoryCol, metricCol, ...periodCols]
+  // 返回新顺序：评价 -> 指标 -> 期间分组
+  return [categoryCol, metricCol, ...periodGroups]
 })
 
 // Grid Ready 事件（可选，用于 API 访问）
@@ -207,36 +257,17 @@ async function load() {
 
   loading.value = true
   status.value = '加载中…'
-  periods.value = []
-  rowData.value = []
+  allPeriods.value = []
+  allRows.value = []
 
+  getIndexMemberByTsCode(tsCode.value).then((res) => {
+    company.value = res.data
+  })
   try {
     const res = await getFinanceTable(tsCode.value, years.value)
-    const data: FinanceTableResponse = { periods: [], rows: [] }
-    res.data.rows.forEach((row) => {
-      data.rows.push({
-        ...row,
-        values: [],
-      })
-    })
-
-    const q = dayjs().quarter() - 1
-    const y = dayjs().year()
-    res.data.periods.forEach((p, i) => {
-      const d = dayjs(p)
-
-      if ((d.year() === y && d.quarter() >= q) || (d.year() !== y && d.quarter() === 4)) {
-        data.periods.push(p)
-
-        res.data.rows.forEach((row, j) => {
-          data.rows[j].values.push(row.values[i])
-        })
-      }
-    })
-
     status.value = ''
-    periods.value = data.periods || []
-    rowData.value = data.rows || [] // 更新 rowData
+    allPeriods.value = res.data.periods || []
+    allRows.value = res.data.rows || []
   }
   catch (e) {
     status.value = '网络或服务错误'
@@ -248,31 +279,39 @@ async function load() {
 }
 
 // 组件加载后自动加载数据
-watch(()=>props.tscode,()=>{
+watch(() => props.tscode, () => {
   tsCode.value = props.tscode
   load()
-},{
-  immediate: true
+}, {
+  immediate: true,
 })
 watch(years, load) // years 变化时重新加载
 </script>
 
 <template>
-  <div class="container">
+  <div class="detail-container">
     <div class="toolbar">
       <input v-model="tsCode" placeholder="输入 ts_code，如 603259.SH">
       <input v-model.number="years" type="number" min="3" max="10">
       <button :disabled="loading" @click="load">查询</button>
+      <button :disabled="loading" @click="filterLatestQAndQ4 = !filterLatestQAndQ4">
+        {{ filterLatestQAndQ4 ? '显示全部季度' : '仅最新季度+历年Q4' }}
+      </button>
       <span>{{ status }}</span>
+      <div>
+        <b class="mr-2">{{ company?.name || '无' }}</b>
+        <span>{{ `${company?.l1Name}/${company?.l2Name }/${company?.l3Name}` }}</span>
+      </div>
     </div>
 
     <div class="table-wrap">
       <AgGridVue
         style="width: 100%; height: 100%;"
         :column-defs="columnDefs"
-        :row-data="rowData"
+        :row-data="viewRows"
+        :row-height="32"
+        :header-height="28"
         :default-col-def="defaultColDef"
-        :row-selection="{ mode: 'multiRow' }"
         :suppress-row-transform="true"
         :animate-rows="true"
         @grid-ready="onGridReady"
@@ -283,8 +322,8 @@ watch(years, load) // years 变化时重新加载
 
 <style scoped>
 /* 保持原有的全局样式，但去除与 AG Grid 冲突的表格样式 */
-.container {
-  margin: 32px auto;
+.detail-container {
+  margin: 10px auto;
   padding: 0 16px;
   width: 100%;
 }
@@ -293,7 +332,7 @@ watch(years, load) // years 变化时重新加载
   display: flex;
   gap: 12px;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 input,

@@ -97,14 +97,14 @@ def get_daily_basic(
     )
 
 
-def fetch_today_daily_basic(trade_date: str | None = None) -> pd.DataFrame:
+def fetch_today_daily_basic(trade_date: str | None = None, offset: int = 0, limit: int = 6000) -> pd.DataFrame:
     """
     从 tushare 获取当天 daily_basic 数据
     """
     if trade_date is None:
         trade_date = datetime.now().strftime("%Y%m%d")
 
-    df = pro.daily_basic(trade_date=trade_date)
+    df = pro.daily_basic(trade_date=trade_date, offset=offset, limit=limit)
     return df
 
 from sqlalchemy.inspection import inspect

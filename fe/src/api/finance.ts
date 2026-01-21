@@ -21,6 +21,38 @@ export interface SwIndustry {
   src: string
 }
 
+export interface IndustryTreeNode extends SwIndustry {
+  children?: IndustryTreeNode[]
+}
+export function buildIndustryTree(
+  list: SwIndustry[],
+  rootParentCode = '0'
+): IndustryTreeNode[] {
+  const map = new Map<string, IndustryTreeNode>()
+  const tree: IndustryTreeNode[] = []
+
+  // 1️⃣ 先把所有节点放进 map
+  for (const item of list) {
+    map.set(item.industryCode, { ...item, children: [] })
+  }
+
+  // 2️⃣ 建立父子关系
+  for (const item of list) {
+    const node = map.get(item.industryCode)!
+    if (item.parentCode === rootParentCode) {
+      tree.push(node)
+    } else {
+      const parent = map.get(item.parentCode)
+      if (parent) {
+        parent.children!.push(node)
+      }
+    }
+  }
+
+  return tree
+}
+
+
 export interface StockBasic {
   tsCode: string
   symbol: string
@@ -432,6 +464,10 @@ export function getStockBasicAll() {
 
 export function getIndexMember() {
   return request<IndexMember[]>(`/api/index_member`)
+}
+
+export function getIndexMemberByTsCode(tsCode: string) {
+  return request<IndexMember>(`/api/index_member_by_ts_code?ts_code=${tsCode}`)
 }
 
 export function getStockCompany() {

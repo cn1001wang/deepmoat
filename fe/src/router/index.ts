@@ -20,6 +20,11 @@ const routes: RouteRecordRaw[] = [
     name: 'StockList',
     component: StockList,
   },
+  {
+    path: '/Industry',
+    name: 'Industry',
+    component: () => import('@/views/Industry.vue'),
+  },
 ]
 
 const router = createRouter({

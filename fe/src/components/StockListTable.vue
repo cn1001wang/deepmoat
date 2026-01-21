@@ -314,10 +314,10 @@ const columnDefs: ColDef[] = [
 </script>
 
 <template>
-  <div class="industry-grid-wrapper">
+  <div class="industry-grid-wrapper h-full">
     <AgGridVue
       class="ag-theme-alpine"
-      style="width: 100%; height: 800px"
+      style="width: 100%; height: 100%"
       :column-defs="columnDefs"
       :row-data="data"
       :default-col-def="defaultColDef"
