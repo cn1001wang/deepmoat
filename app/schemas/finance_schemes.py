@@ -232,3 +232,22 @@ class FinaMainbzRead(BaseSchema):
     bz_cost: Optional[float] = Field(None, alias="bzCost")  # 主营业务成本(元)
     curr_type: Optional[str] = Field(None, alias="currType")  # 货币代码
     update_flag: Optional[str] = Field(None, alias="updateFlag")  # 是否更新
+
+class DailyBasicRead(BaseSchema):
+    ts_code: str = Field(..., alias="tsCode")  # TS股票代码
+    trade_date: str = Field(..., alias="tradeDate")  # 交易日期
+    close: Optional[float] = None  # 当日收盘价
+    turnover_rate: Optional[float] = Field(None, alias="turnoverRate")  # 换手率（%）
+    volume_ratio: Optional[float] = Field(None, alias="volumeRatio")  # 量比
+    pe: Optional[float] = None  # 市盈率（静态）
+    pe_ttm: Optional[float] = Field(None, alias="peTtm")  # 市盈率（动态）
+    pb: Optional[float] = None  # 市净率
+    ps: Optional[float] = None  # 市销率
+    ps_ttm: Optional[float] = Field(None, alias="psTtm")  # 市销率（动态）
+    dv_ratio: Optional[float] = Field(None, alias="dvRatio")  # 股息率（%）
+    dv_ttm: Optional[float] = Field(None, alias="dvTtm")  # 股息率（动态）（%）
+    total_share: Optional[float] = Field(None, alias="totalShare")  # 总股本（万股）
+    float_share: Optional[float] = Field(None, alias="floatShare")  # 流通股本（万股）
+    free_share: Optional[float] = Field(None, alias="freeShare")  # 自由流通股本（万股）
+    total_mv: Optional[float] = Field(None, alias="totalMv")  # 总市值（万元）
+    circ_mv: Optional[float] = Field(None, alias="circMv")  # 流通市值（万元）

@@ -443,8 +443,47 @@ export interface FinaIndicator {
   updateFlag?: string
 }
 
+export interface DailyBasic {
+  /** TS股票代码 */
+  tsCode: string
+  /** 交易日期 */
+  tradeDate: string
+  /** 当日收盘价 */
+  close?: number
+  /** 换手率（%） */
+  turnoverRate?: number
+  /** 换手率（自由流通股） */
+  turnoverRateF?: number
+  /** 量比 */
+  volumeRatio?: number
+  /** 市盈率（总市值/净利润，亏损的PE为空） */
+  pe?: number
+  /** 市盈率（TTM，亏损的PE为空） */
+  peTtm?: number
+  /** 市净率（总市值/净资产） */
+  pb?: number
+  /** 市销率 */
+  ps?: number
+  /** 市销率（TTM） */
+  psTtm?: number
+  /** 股息率（%） */
+  dvRatio?: number
+  /** 股息率（TTM）（%） */
+  dvTtm?: number
+  /** 总股本（万股） */
+  totalShare?: number
+  /** 流通股本（万股） */
+  floatShare?: number
+  /** 自由流通股本（万） */
+  freeShare?: number
+  /** 总市值（万元） */
+  totalMv?: number
+  /** 流通市值（万元） */
+  circMv?: number
+}
+
 // export type Stock = StockBasic & Partial<IndexMember>
-export interface Stock extends StockBasic, Partial<Omit<IndexMember, 'tsCode' | 'name'>>, Partial<Omit<StockCompany, 'tsCode' | 'exchange'>> {
+export interface Stock extends StockBasic, Partial<Omit<IndexMember, 'tsCode' | 'name'>>, Partial<Omit<StockCompany, 'tsCode' | 'exchange'>>, Partial<Omit<DailyBasic, 'tsCode' | 'tradeDate'>>, Partial<Omit<FinaIndicator, 'tsCode' | 'annDate' | 'endDate'>> {
   // 这样既保留了 StockBasic 的必选 name，又引入了 IndexMember 的其他可选行业字段
 }
 
@@ -474,8 +513,15 @@ export function getStockCompany() {
   return request<StockCompany[]>(`/api/company`)
 }
 
-export function getDailyBasic(){
-  return request(`/api/daily_basic`)
+export function getDailyBasic({tradeDate, tsCode} : { tradeDate?: string; tsCode?: string }) {
+  const params = new URLSearchParams()
+  if (tradeDate) {
+    params.append('trade_date', tradeDate)
+  }
+  if (tsCode) {
+    params.append('ts_code', tsCode)
+  }
+  return request<DailyBasic[]>(`/api/daily_basic?` + params.toString())
 }
 
 export function getFinaIndicator({ annDate, tsCode, endDate } : { annDate?: string; tsCode?: string; endDate?: string }) {
