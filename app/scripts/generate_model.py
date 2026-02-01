@@ -153,3 +153,9 @@ if __name__ == "__main__":
 
 # 主键（逗号分隔，默认第一个字段）:
 # ts_code,end_date
+
+# const tableData = Array.from(document.querySelectorAll('table#t tbody tr'))
+#     .map(tr => Array.from(tr.querySelectorAll('td')).map(td => td.innerText.trim()));
+
+# console.table(tableData); // 表格化展示
+# console.log(JSON.stringify(tableData)); // JSON 字符串

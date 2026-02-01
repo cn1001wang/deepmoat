@@ -1,3 +1,49 @@
+<script setup lang="ts">
+import type { IndustryTreeNode } from '@/api/finance'
+import { computed, ref, watch } from 'vue'
+
+const props = defineProps<{
+  node: IndustryTreeNode
+  selectedCode: string | null
+}>()
+
+const emit = defineEmits<{
+  (e: 'select', node: IndustryTreeNode): void
+}>()
+
+const expanded = ref(true)
+
+const hasChildren = computed(
+  () => props.node.children && props.node.children.length > 0,
+)
+
+const isSelected = computed(
+  () => props.selectedCode === props.node.industryCode,
+)
+
+// 选中子节点时，自动展开父节点
+watch(
+  () => props.selectedCode,
+  (code) => {
+    if (
+      hasChildren.value
+      && props.node.children!.some(c => c.industryCode === code)
+    ) {
+      expanded.value = true
+    }
+  },
+)
+
+function toggle() {
+  expanded.value = !expanded.value
+}
+
+function selectNode() {
+  expanded.value = true
+  emit('select', props.node)
+}
+</script>
+
 <template>
   <li>
     <div
@@ -30,52 +76,6 @@
     </ul>
   </li>
 </template>
-
-<script setup lang="ts">
-import { ref, computed, watch } from 'vue'
-import type { IndustryTreeNode } from '@/api/finance'
-
-const props = defineProps<{
-  node: IndustryTreeNode
-  selectedCode: string | null
-}>()
-
-const emit = defineEmits<{
-  (e: 'select', node: IndustryTreeNode): void
-}>()
-
-const expanded = ref(true)
-
-const hasChildren = computed(
-  () => props.node.children && props.node.children.length > 0
-)
-
-const isSelected = computed(
-  () => props.selectedCode === props.node.industryCode
-)
-
-// 选中子节点时，自动展开父节点
-watch(
-  () => props.selectedCode,
-  (code) => {
-    if (
-      hasChildren.value &&
-      props.node.children!.some(c => c.industryCode === code)
-    ) {
-      expanded.value = true
-    }
-  }
-)
-
-function toggle() {
-  expanded.value = !expanded.value
-}
-
-function selectNode() {
-  expanded.value = true
-  emit('select', props.node)
-}
-</script>
 
 <style scoped>
 .node-row {

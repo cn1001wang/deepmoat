@@ -53,15 +53,28 @@ def safe_div(a, b):
     return float(a) / float(b)
 
 
-def yoy(data: Dict[str, float], md: str) -> Dict[str, float]:
+def yoy(data: Dict[str, float]) -> Dict[str, float]:
+    """
+    改进后的同比计算：自动匹配去年同期
+    """
     result = {}
     for k, v in data.items():
         if not k or len(k) != 8:
             result[k] = pd.NA
             continue
+
         year = int(k[:4])
-        prev = data.get(f"{year - 1}{md}")
-        result[k] = (v - prev) / prev if prev not in (None, 0) else pd.NA
+        # 如果提供了 md，则强制使用 md (如年报对比)
+        # 如果没提供，截取当前日期的月日部分 (如 0930) 寻找去年同期
+        current_md = k[4:]
+
+        prev_key = f"{year - 1}{current_md}"
+        prev = data.get(prev_key)
+
+        if prev is not None and not pd.isna(prev) and prev != 0:
+            result[k] = (float(v) - float(prev)) / abs(float(prev))
+        else:
+            result[k] = pd.NA
     return result
 
 

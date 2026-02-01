@@ -2,6 +2,9 @@ import pandas as pd
 import tushare as ts
 from app.config import settings
 from datetime import datetime
+from sqlalchemy.inspection import inspect
+from app.models.models import FinaIndicator, Dividend
+from app.utils.tushare_utils import RateLimiter
 
 token = settings.TUSHARE_TOKEN
 ts.set_token(token)
@@ -107,9 +110,6 @@ def fetch_today_daily_basic(trade_date: str | None = None, offset: int = 0, limi
     df = pro.daily_basic(trade_date=trade_date, offset=offset, limit=limit)
     return df
 
-from sqlalchemy.inspection import inspect
-from app.models.models import FinaIndicator
-from app.utils.tushare_utils import RateLimiter
 # 200 次 / 60 秒
 tushare_limiter = RateLimiter(max_calls=200, period=60)
 def fetch_fina_indicator(ts_code: str) -> pd.DataFrame:
@@ -121,4 +121,16 @@ def fetch_fina_indicator(ts_code: str) -> pd.DataFrame:
     从 tushare 获取财务指标数据
     """
     df = pro.fina_indicator(ts_code=ts_code, fields=fields)
+    return df
+
+tushare_limiter_300 = RateLimiter(max_calls=300, period=60)
+def fetch_dividend(ts_code: str | None = None, limit: int | None = None, offset: int | None = None) -> pd.DataFrame:
+    # ⭐ 限速
+    tushare_limiter_300.acquire()
+    cols = [c.key for c in inspect(Dividend).mapper.column_attrs]
+    fields = ",".join(cols)
+    """
+    从 tushare 获取送股分红数据
+    """
+    df = pro.dividend(ts_code=ts_code, fields=fields, limit=limit, offset=offset)
     return df

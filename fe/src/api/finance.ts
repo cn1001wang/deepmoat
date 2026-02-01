@@ -26,7 +26,7 @@ export interface IndustryTreeNode extends SwIndustry {
 }
 export function buildIndustryTree(
   list: SwIndustry[],
-  rootParentCode = '0'
+  rootParentCode = '0',
 ): IndustryTreeNode[] {
   const map = new Map<string, IndustryTreeNode>()
   const tree: IndustryTreeNode[] = []
@@ -41,7 +41,8 @@ export function buildIndustryTree(
     const node = map.get(item.industryCode)!
     if (item.parentCode === rootParentCode) {
       tree.push(node)
-    } else {
+    }
+    else {
       const parent = map.get(item.parentCode)
       if (parent) {
         parent.children!.push(node)
@@ -51,7 +52,6 @@ export function buildIndustryTree(
 
   return tree
 }
-
 
 export interface StockBasic {
   tsCode: string
@@ -443,6 +443,41 @@ export interface FinaIndicator {
   updateFlag?: string
 }
 
+export interface Dividend {
+  /** TS代码 */
+  tsCode: string
+  /** 分红年度 */
+  endDate: string
+  /** 预案公告日 */
+  annDate: string
+  /** 实施进度 */
+  divProc?: string
+  /** 每股送转 */
+  stkDiv?: number
+  /** 每股送股比例 */
+  stkBoRate?: number
+  /** 每股转增比例 */
+  stkCoRate?: number
+  /** 每股分红（税后） */
+  cashDiv?: number
+  /** 每股分红（税前） */
+  cashDivTax?: number
+  /** 股权登记日 */
+  recordDate?: string
+  /** 除权除息日 */
+  exDate?: string
+  /** 派息日 */
+  payDate?: string
+  /** 红股上市日 */
+  divListdate?: string
+  /** 实施公告日 */
+  impAnnDate?: string
+  /** 基准日 */
+  baseDate?: string
+  /** 基准股本（万） */
+  baseShare?: number
+}
+
 export interface DailyBasic {
   /** TS股票代码 */
   tsCode: string
@@ -513,7 +548,7 @@ export function getStockCompany() {
   return request<StockCompany[]>(`/api/company`)
 }
 
-export function getDailyBasic({tradeDate, tsCode} : { tradeDate?: string; tsCode?: string }) {
+export function getDailyBasic({ tradeDate, tsCode}: { tradeDate?: string, tsCode?: string }) {
   const params = new URLSearchParams()
   if (tradeDate) {
     params.append('trade_date', tradeDate)
@@ -521,10 +556,10 @@ export function getDailyBasic({tradeDate, tsCode} : { tradeDate?: string; tsCode
   if (tsCode) {
     params.append('ts_code', tsCode)
   }
-  return request<DailyBasic[]>(`/api/daily_basic?` + params.toString())
+  return request<DailyBasic[]>(`/api/daily_basic?${params.toString()}`)
 }
 
-export function getFinaIndicator({ annDate, tsCode, endDate } : { annDate?: string; tsCode?: string; endDate?: string }) {
+export function getFinaIndicator({ annDate, tsCode, endDate }: { annDate?: string, tsCode?: string, endDate?: string }) {
   const params = new URLSearchParams()
   if (annDate) {
     params.append('ann_date', annDate)
@@ -535,5 +570,5 @@ export function getFinaIndicator({ annDate, tsCode, endDate } : { annDate?: stri
   if (endDate) {
     params.append('end_date', endDate)
   }
-  return request<FinaIndicator[]>('/api/fina_indicator?' + params.toString())
+  return request<FinaIndicator[]>(`/api/fina_indicator?${params.toString()}`)
 }

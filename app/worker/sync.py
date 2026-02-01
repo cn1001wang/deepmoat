@@ -14,6 +14,10 @@ from app.crud.crud_fina_indicator import (
     save_fina_indicator,
     check_fina_indicator_exists,
 )
+from app.crud.crud_dividend import (
+    save_dividend,
+    check_dividend_exists,
+)
 from app.service.finance_service import fetch_finance_for_stock_2
 from app.utils.tushare_utils import fetch_paginated
 from app.service.tushare_service import (
@@ -23,6 +27,7 @@ from app.service.tushare_service import (
     get_stock_company,
     get_index_member,
     fetch_fina_indicator,
+    fetch_dividend,
 )
 
 
@@ -61,6 +66,44 @@ def fetch_industry():
         with get_db_session() as db:
             save_sw_industry(db, df)
     logging.info("申万行业抓取完成！")
+
+def sync_dividend():
+    """
+    抓取送股分红数据
+    由于 Tushare 接口限制必须指定 ts_code 或 ann_date，且 ann_date 不支持范围查询效率低，
+    因此回退到按股票代码循环抓取。
+    """
+    logging.info("开始抓取送股分红数据 (按股票代码)...")
+    # fetch_paginated(
+    #     fetch_func=fetch_dividend,
+    #     save_func=lambda db, df: save_dividend(df),
+    #     page_size=2000
+    # )
+
+    with get_db_session() as db:
+        companies = get_all_listed_companies_info(db)
+        logging.info(f"共 {len(companies)} 支股票")
+
+        def fetch_one(ts_code):
+            try:
+                # fetch_dividend 内部已经处理了 limit/offset，但这里我们只需要全量，
+                # 对于单只股票，数据量很小，不需要分页。
+                df = fetch_dividend(ts_code=ts_code)
+                
+                if not df.empty:
+                    save_dividend(df)
+                logging.info(f"{ts_code} 送股分红数据抓取成功 ({len(df)}条)")
+            except Exception as e:
+                logging.error("%s 送股分红数据写入失败: %s", ts_code, e)
+        # fetch_one('600132.SH')
+        # 使用线程池并发抓取
+        with ThreadPoolExecutor(max_workers=5) as executor:
+            for ts_code, _ in companies:
+                if not check_dividend_exists(db, ts_code):
+                    executor.submit(fetch_one, ts_code)
+
+    logging.info("送股分红数据抓取完成！")
+
 
 
 def fetch_stock_basic():
@@ -169,6 +212,8 @@ def run(args):
         sync_today_daily_basic()
     if args.fina_indicator:
         sync_fina_indicator(max_workers=args.workers)
+    if args.dividend:
+        sync_dividend()
 
 
 if __name__ == "__main__":
@@ -180,9 +225,8 @@ if __name__ == "__main__":
     parser.add_argument("--finance", action="store_true", help="抓取财务数据")
     parser.add_argument("--daily", action="store_true", help="抓取今日指标")
     parser.add_argument("--workers", type=int, default=1, help="抓取财务数据线程数")
-    parser.add_argument(
-        "--fina_indicator", action="store_true", help="抓取财务指标数据"
-    )
+    parser.add_argument("--fina_indicator", action="store_true", help="抓取财务指标数据")
+    parser.add_argument("--dividend", action="store_true", help="抓取送股分红")
     args = parser.parse_args()
 
     run(args)

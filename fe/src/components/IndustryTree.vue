@@ -1,19 +1,7 @@
-<template>
-  <ul class="industry-tree">
-    <IndustryTreeNodeItem
-      v-for="node in data"
-      :key="node.industryCode"
-      :node="node"
-      :selected-code="selectedCode"
-      @select="handleSelect"
-    />
-  </ul>
-</template>
-
 <script setup lang="ts">
+import type { IndustryTreeNode } from '@/api/finance'
 import { ref } from 'vue'
 import IndustryTreeNodeItem from './IndustryTreeNodeItem.vue'
-import type { IndustryTreeNode } from '@/api/finance'
 
 defineProps<{
   data: IndustryTreeNode[]
@@ -30,6 +18,18 @@ function handleSelect(node: IndustryTreeNode) {
   emit('update:selected', node)
 }
 </script>
+
+<template>
+  <ul class="industry-tree">
+    <IndustryTreeNodeItem
+      v-for="node in data"
+      :key="node.industryCode"
+      :node="node"
+      :selected-code="selectedCode"
+      @select="handleSelect"
+    />
+  </ul>
+</template>
 
 <style scoped>
 .industry-tree {

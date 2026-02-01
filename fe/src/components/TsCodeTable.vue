@@ -5,7 +5,7 @@ import type {
   GridReadyEvent,
   ICellRendererParams,
 } from 'ag-grid-community'
-import type { IndexMember, FinanceTableRow } from '@/api/finance'
+import type { FinanceTableRow, IndexMember } from '@/api/finance'
 import { AgGridVue } from 'ag-grid-vue3'
 import dayjs from 'dayjs'
 import quarterOfYear from 'dayjs/plugin/quarterOfYear'
@@ -48,16 +48,17 @@ const viewPeriods = computed(() => {
     }
     else {
       const q4 = qSorted.find(p => dayjs(p).quarter() === 4)
-      if (q4) result.push(q4)
+      if (q4)
+        result.push(q4)
     }
   })
   return result
 })
 const viewRows = computed<FinanceTableRow[]>(() => {
-  const idxs = viewPeriods.value.map((p) => allPeriods.value.indexOf(p))
-  return allRows.value.map((r) => ({
+  const idxs = viewPeriods.value.map(p => allPeriods.value.indexOf(p))
+  return allRows.value.map(r => ({
     ...r,
-    values: idxs.map((i) => r.values[i]),
+    values: idxs.map(i => r.values[i]),
   }))
 })
 // --- 3. 辅助函数和样式逻辑 -------------------------------------------------------
@@ -109,7 +110,15 @@ function getCellClass(key: string, raw: any): string {
  * @returns 格式化后的字符串（含 HTML span 标签）
  */
 function formatValue(v: any, unit: string): string {
-  if (v === null || v === undefined || Number.isNaN(v)) {
+  if (v === null || v === undefined) {
+    return '<span class="empty">--</span>'
+  }
+
+  if (typeof v === 'string') {
+    return v
+  }
+
+  if (Number.isNaN(v)) {
     return '<span class="empty">--</span>'
   }
   const n = Number(v)
@@ -300,7 +309,7 @@ watch(years, load) // years 变化时重新加载
       <span>{{ status }}</span>
       <div>
         <b class="mr-2">{{ company?.name || '无' }}</b>
-        <span>{{ `${company?.l1Name}/${company?.l2Name }/${company?.l3Name}` }}</span>
+        <span>{{ `${company?.l1Name}/${company?.l2Name}/${company?.l3Name}` }}</span>
       </div>
     </div>
 
@@ -316,6 +325,9 @@ watch(years, load) // years 变化时重新加载
         :animate-rows="true"
         @grid-ready="onGridReady"
       />
+      <!-- <div style="width:600px">
+        <img src="@/assets/600132.png" alt="" style="width:100%">
+      </div> -->
     </div>
   </div>
 </template>
@@ -358,5 +370,6 @@ button:disabled {
 .table-wrap{
     height: 800px;
     width: 100%;
+    display: flex;
 }
 </style>

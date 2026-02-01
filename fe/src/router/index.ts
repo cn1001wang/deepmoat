@@ -13,7 +13,7 @@ const routes: RouteRecordRaw[] = [
     path: '/stock/:tscode',
     name: 'FinanceStock',
     component: FinanceStock,
-    props: true
+    props: true,
   },
   {
     path: '/StockList',
