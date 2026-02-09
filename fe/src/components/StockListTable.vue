@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type { ColDef } from 'ag-grid-community'
+import type { ColDef, FilterChangedEvent, GridReadyEvent } from 'ag-grid-community'
 import type { Stock } from '@/api/finance'
 import { AgGridVue } from 'ag-grid-vue3'
-import { useRouter } from 'vue-router'
 import { ref } from 'vue'
-import type { GridReadyEvent, FilterChangedEvent } from 'ag-grid-community'
+import { useRouter } from 'vue-router'
 
 const props = defineProps<{
   data: Stock[]
@@ -17,22 +16,23 @@ const STORAGE_KEY = 'stock-list-filter-state'
 const gridApi = ref<any>(null)
 
 // 2. 筛选变化时保存状态
-const onFilterChanged = (event: FilterChangedEvent) => {
+function onFilterChanged(event: FilterChangedEvent) {
   const filterModel = event.api.getFilterModel()
   localStorage.setItem(STORAGE_KEY, JSON.stringify(filterModel))
 }
 
 // 3. 表格就绪时恢复状态
-const onGridReady = (params: GridReadyEvent) => {
+function onGridReady(params: GridReadyEvent) {
   gridApi.value = params.api
-  
+
   const savedFilterModel = localStorage.getItem(STORAGE_KEY)
   if (savedFilterModel) {
     try {
       const model = JSON.parse(savedFilterModel)
       // 应用保存的筛选模型
       params.api.setFilterModel(model)
-    } catch (e) {
+    }
+    catch (e) {
       console.error('解析缓存的筛选项失败', e)
     }
   }
@@ -99,6 +99,15 @@ const defaultColDef: ColDef = {
 }
 
 const columnDefs: ColDef[] = [
+  {
+    headerName: '序号',
+    field: 'index',
+    width: 60,
+    valueGetter: 'node.rowIndex + 1',
+    filter: false,
+    sortable: false,
+    resizable: false,
+  },
   {
     headerName: '一级行业',
     field: 'l1Name',
