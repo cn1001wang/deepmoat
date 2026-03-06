@@ -233,6 +233,15 @@ class FinaMainbzRead(BaseSchema):
     curr_type: Optional[str] = Field(None, alias="currType")  # 货币代码
     update_flag: Optional[str] = Field(None, alias="updateFlag")  # 是否更新
 
+class FinaAuditRead(BaseSchema):
+    ts_code: str = Field(..., alias="tsCode")
+    end_date: str = Field(..., alias="endDate")
+    ann_date: Optional[str] = Field(None, alias="annDate")
+    audit_result: Optional[str] = Field(None, alias="auditResult")
+    audit_fees: Optional[float] = Field(None, alias="auditFees")
+    audit_agency: Optional[str] = Field(None, alias="auditAgency")
+    audit_sign: Optional[str] = Field(None, alias="auditSign")
+
 class DailyBasicRead(BaseSchema):
     ts_code: str = Field(..., alias="tsCode")  # TS股票代码
     trade_date: str = Field(..., alias="tradeDate")  # 交易日期

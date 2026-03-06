@@ -45,6 +45,7 @@ uv sync
 
 ```bash
 uvicorn app.api.main:app --host 0.0.0.0 --port 8000 --reload
+uv run python -m app.main
 ```
 
 

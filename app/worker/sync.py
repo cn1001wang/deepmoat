@@ -1,6 +1,7 @@
 # sync.py
 import argparse
 import logging
+import time
 from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import contextmanager
@@ -13,6 +14,10 @@ from app.crud.crud_company import save_stock_company, get_all_listed_companies_i
 from app.crud.crud_fina_indicator import (
     save_fina_indicator,
     check_fina_indicator_exists,
+)
+from app.crud.crud_fina_audit import (
+    save_fina_audit,
+    check_fina_audit_exists,
 )
 from app.crud.crud_dividend import (
     save_dividend,
@@ -27,6 +32,7 @@ from app.service.tushare_service import (
     get_stock_company,
     get_index_member,
     fetch_fina_indicator,
+    fetch_fina_audit,
     fetch_dividend,
 )
 
@@ -104,6 +110,25 @@ def sync_dividend():
 
     logging.info("送股分红数据抓取完成！")
 
+
+def sync_fina_audit_data(**_):
+    logging.info("开始抓取财报审计意见数据...")
+    with get_db_session() as db:
+        companies = get_all_listed_companies_info(db)
+        logging.info(f"共 {len(companies)} 支股票")
+
+        for ts_code, _ in companies:
+            if check_fina_audit_exists(db, ts_code):
+                continue
+            try:
+                df = fetch_fina_audit(ts_code)
+                if not df.empty:
+                    save_fina_audit(df)
+                logging.info(f"{ts_code} 审计意见数据抓取成功 ({len(df)}条)")
+            except Exception as e:
+                logging.error("%s 审计意见数据写入失败: %s", ts_code, e)
+
+    logging.info("财报审计意见数据抓取完成！")
 
 
 def fetch_stock_basic():
@@ -214,6 +239,8 @@ def run(args):
         sync_fina_indicator(max_workers=args.workers)
     if args.dividend:
         sync_dividend()
+    if args.fina_audit:
+        sync_fina_audit_data(max_workers=args.workers)
 
 
 if __name__ == "__main__":
@@ -227,6 +254,7 @@ if __name__ == "__main__":
     parser.add_argument("--workers", type=int, default=1, help="抓取财务数据线程数")
     parser.add_argument("--fina_indicator", action="store_true", help="抓取财务指标数据")
     parser.add_argument("--dividend", action="store_true", help="抓取送股分红")
+    parser.add_argument("--fina_audit", action="store_true", help="抓取财报审计意见")
     args = parser.parse_args()
 
     run(args)
