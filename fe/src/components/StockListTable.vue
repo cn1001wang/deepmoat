@@ -250,6 +250,15 @@ const defaultColDef: ColDef = {
 
 const columnDefs: ColDef[] = [
   {
+    headerName: '序号',
+    field: 'index',
+    width: 60,
+    valueGetter: 'node.rowIndex + 1',
+    filter: false,
+    sortable: false,
+    resizable: false,
+  },
+  {
     headerName: '一级行业',
     field: 'l1Name',
     width: 180,

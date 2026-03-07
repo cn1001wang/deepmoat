@@ -3,7 +3,7 @@ import tushare as ts
 from app.config import settings
 from datetime import datetime
 from sqlalchemy.inspection import inspect
-from app.models.models import FinaIndicator, Dividend
+from app.models.models import FinaIndicator, Dividend, FinaAudit
 from app.utils.tushare_utils import RateLimiter
 
 token = settings.TUSHARE_TOKEN
@@ -121,6 +121,13 @@ def fetch_fina_indicator(ts_code: str) -> pd.DataFrame:
     从 tushare 获取财务指标数据
     """
     df = pro.fina_indicator(ts_code=ts_code, fields=fields)
+    return df
+
+# 60 次 / 60 秒
+tushare_limiter_60 = RateLimiter(max_calls=60, period=60)
+def fetch_fina_audit(ts_code: str) -> pd.DataFrame:
+    tushare_limiter_60.acquire()
+    df = pro.fina_audit(ts_code=ts_code, fields="ts_code,ann_date,end_date,audit_result,audit_fees,audit_agency,audit_sign")
     return df
 
 tushare_limiter_300 = RateLimiter(max_calls=300, period=60)

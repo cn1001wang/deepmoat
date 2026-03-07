@@ -25,38 +25,30 @@ def save_sw_industry(db: Session, df: pd.DataFrame):
 def save_index_member(db: Session, df: pd.DataFrame):
     try:
         for _, row in df.iterrows():
-            existing = (
-                db.query(IndexMember)
-                .filter(IndexMember.ts_code == row["ts_code"])
-                .first()
-            )
+            ts_code = row["ts_code"]
+            l1_code = row["l1_code"]
 
-            if existing:
-                existing.l1_code = row["l1_code"]
-                existing.l1_name = row["l1_name"]
-                existing.l2_code = row["l2_code"]
-                existing.l2_name = row["l2_name"]
-                existing.l3_code = row["l3_code"]
-                existing.l3_name = row["l3_name"]
-                existing.name = row["name"]
-                existing.in_date = row["in_date"]
-                existing.out_date = row["out_date"]
-                existing.is_new = row["is_new"]
-            else:
-                obj = IndexMember(
-                    l1_code=row["l1_code"],
-                    l1_name=row["l1_name"],
-                    l2_code=row["l2_code"],
-                    l2_name=row["l2_name"],
-                    l3_code=row["l3_code"],
-                    l3_name=row["l3_name"],
-                    ts_code=row["ts_code"],
-                    name=row["name"],
-                    in_date=row["in_date"],
-                    out_date=row["out_date"],
-                    is_new=row["is_new"],
-                )
-                db.add(obj)
+            # 1. 删除该股票下，非当前 l1_code 的旧数据 (避免多条记录导致 API 报错，也避免 update 时的唯一性冲突)
+            db.query(IndexMember).filter(
+                IndexMember.ts_code == ts_code,
+                IndexMember.l1_code != l1_code,
+            ).delete(synchronize_session=False)
+
+            # 2. 使用 merge 自动处理 Insert/Update (基于联合主键 l1_code + ts_code)
+            obj = IndexMember(
+                l1_code=l1_code,
+                l1_name=row["l1_name"],
+                l2_code=row["l2_code"],
+                l2_name=row["l2_name"],
+                l3_code=row["l3_code"],
+                l3_name=row["l3_name"],
+                ts_code=ts_code,
+                name=row["name"],
+                in_date=row["in_date"],
+                out_date=row["out_date"],
+                is_new=row["is_new"],
+            )
+            db.merge(obj)
 
         db.commit()
     except Exception:

@@ -602,6 +602,17 @@ class FinaMainbz(Base):
     curr_type = Column(String(100), comment="货币代码")  # 货币代码
     update_flag = Column(String(100), comment="是否更新")  # 是否更新
 
+class FinaAudit(Base):
+    __tablename__ = "fina_audit"
+
+    ts_code = Column(String(20), primary_key=True, index=True, comment="TS股票代码")
+    end_date = Column(String(20), primary_key=True, index=True, comment="报告期")
+    ann_date = Column(String(20), comment="公告日期")
+    audit_result = Column(String(100), comment="审计结果")
+    audit_fees = Column(Float, comment="审计总费用（元）")
+    audit_agency = Column(String(200), comment="会计事务所")
+    audit_sign = Column(String(200), comment="签字会计师")
+
 class Dividend(Base):
     __tablename__ = "dividend"
 
