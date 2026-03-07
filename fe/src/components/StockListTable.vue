@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type { ColDef } from 'ag-grid-community'
-import type { Stock } from '@/api/finance'
 import { AgGridVue } from 'ag-grid-vue3'
-import { useRouter } from 'vue-router'
 import { ref } from 'vue'
-import type { GridReadyEvent, FilterChangedEvent } from 'ag-grid-community'
+import { useRouter } from 'vue-router'
+import type { ColDef, FilterChangedEvent, GridReadyEvent } from 'ag-grid-community'
+import type { Stock } from '@/api/finance'
 
 const props = defineProps<{
   data: Stock[]
@@ -17,22 +16,23 @@ const STORAGE_KEY = 'stock-list-filter-state'
 const gridApi = ref<any>(null)
 
 // 2. 筛选变化时保存状态
-const onFilterChanged = (event: FilterChangedEvent) => {
+function onFilterChanged(event: FilterChangedEvent) {
   const filterModel = event.api.getFilterModel()
   localStorage.setItem(STORAGE_KEY, JSON.stringify(filterModel))
 }
 
 // 3. 表格就绪时恢复状态
-const onGridReady = (params: GridReadyEvent) => {
+function onGridReady(params: GridReadyEvent) {
   gridApi.value = params.api
-  
+
   const savedFilterModel = localStorage.getItem(STORAGE_KEY)
   if (savedFilterModel) {
     try {
       const model = JSON.parse(savedFilterModel)
       // 应用保存的筛选模型
       params.api.setFilterModel(model)
-    } catch (e) {
+    }
+    catch (e) {
       console.error('解析缓存的筛选项失败', e)
     }
   }
@@ -77,10 +77,160 @@ const finaIndicatorColumns = [
   { headerName: '销售毛利率', field: 'grossprofitMargin' },
   { headerName: '经营活动产生的现金流量净额/营业收入', field: 'ocfToOr' },
   { headerName: '资产负债率', field: 'debtToAssets' },
-  // { headerName: "每股营业收入", field: "revenuePs" },
-  // { headerName: "存货周转天数", field: "invturnDays" },
-  // { headerName: "企业自由现金流量", field: "fcff" },
-  // { headerName: "每股净资产", field: "bps" },
+  // 新增重点关注字段
+  { headerName: '基本每股收益', field: 'eps' },
+  { headerName: '稀释每股收益', field: 'dtEps' },
+  { headerName: '每股营业总收入', field: 'totalRevenuePs' },
+  { headerName: '每股营业收入', field: 'revenuePs' },
+  { headerName: '每股资本公积', field: 'capitalResePs' },
+  { headerName: '每股盈余公积', field: 'surplusResePs' },
+  { headerName: '每股未分配利润', field: 'undistProfitPs' },
+  { headerName: '非经常性损益', field: 'extraItem' },
+  { headerName: '毛利', field: 'grossMargin' },
+  { headerName: '流动比率', field: 'currentRatio' },
+  { headerName: '速动比率', field: 'quickRatio' },
+  { headerName: '保守速动比率', field: 'cashRatio' },
+  { headerName: '存货周转天数', field: 'invturnDays' },
+  { headerName: '应收账款周转天数', field: 'arturnDays' },
+  { headerName: '存货周转率', field: 'invTurn' },
+  { headerName: '应收账款周转率', field: 'arTurn' },
+  { headerName: '流动资产周转率', field: 'caTurn' },
+  { headerName: '固定资产周转率', field: 'faTurn' },
+  { headerName: '总资产周转率', field: 'assetsTurn' },
+  { headerName: '经营活动净收益', field: 'opIncome' },
+  { headerName: '价值变动净收益', field: 'valuechangeIncome' },
+  { headerName: '利息费用', field: 'interstIncome' },
+  { headerName: '折旧与摊销', field: 'daa' },
+  { headerName: '息税前利润', field: 'ebit' },
+  { headerName: '息税折旧摊销前利润', field: 'ebitda' },
+  { headerName: '企业自由现金流量', field: 'fcff' },
+  { headerName: '股权自由现金流量', field: 'fcfe' },
+  { headerName: '无息流动负债', field: 'currentExint' },
+  { headerName: '无息非流动负债', field: 'noncurrentExint' },
+  { headerName: '带息债务', field: 'interestdebt' },
+  { headerName: '净债务', field: 'netdebt' },
+  { headerName: '有形资产', field: 'tangibleAsset' },
+  { headerName: '营运资金', field: 'workingCapital' },
+  { headerName: '营运流动资本', field: 'networkingCapital' },
+  { headerName: '全部投入资本', field: 'investCapital' },
+  { headerName: '留存收益', field: 'retainedEarnings' },
+  { headerName: '期末摊薄每股收益', field: 'diluted2Eps' },
+  { headerName: '每股净资产', field: 'bps' },
+  { headerName: '每股经营活动产生的现金流量净额', field: 'ocfps' },
+  { headerName: '每股留存收益', field: 'retainedps' },
+  { headerName: '每股现金流量净额', field: 'cfps' },
+  { headerName: '每股息税前利润', field: 'ebitPs' },
+  { headerName: '每股企业自由现金流量', field: 'fcffPs' },
+  { headerName: '每股股东自由现金流量', field: 'fcfePs' },
+  { headerName: '销售成本率', field: 'cogsOfSales' },
+  { headerName: '销售期间费用率', field: 'expenseOfSales' },
+  { headerName: '净利润/营业总收入', field: 'profitToGr' },
+  { headerName: '销售费用/营业总收入', field: 'saleexpToGr' },
+  { headerName: '管理费用/营业总收入', field: 'adminexpOfGr' },
+  { headerName: '财务费用/营业总收入', field: 'finaexpOfGr' },
+  { headerName: '资产减值损失/营业总收入', field: 'impaiTtm' },
+  { headerName: '营业总成本/营业总收入', field: 'gcOfGr' },
+  { headerName: '营业利润/营业总收入', field: 'opOfGr' },
+  { headerName: '息税前利润/营业总收入', field: 'ebitOfGr' },
+  { headerName: '加权平均净资产收益率', field: 'roeWaa' },
+  { headerName: '总资产报酬率', field: 'roa' },
+  { headerName: '总资产净利润', field: 'npta' },
+  { headerName: '经营活动净收益/利润总额', field: 'opincomeOfEbt' },
+  { headerName: '价值变动净收益/利润总额', field: 'investincomeOfEbt' },
+  { headerName: '营业外收支净额/利润总额', field: 'nOpProfitOfEbt' },
+  { headerName: '所得税/利润总额', field: 'taxToEbt' },
+  { headerName: '扣除非经常损益后的净利润/净利润', field: 'dtprofitToProfit' },
+  { headerName: '销售商品提供劳务收到的现金/营业收入', field: 'salescashToOr' },
+  { headerName: '经营活动产生的现金流量净额/经营活动净收益', field: 'ocfToOpincome' },
+  { headerName: '资本支出/折旧和摊销', field: 'capitalizedToDa' },
+  { headerName: '权益乘数', field: 'assetsToEqt' },
+  { headerName: '权益乘数(杜邦分析)', field: 'dpAssetsToEqt' },
+  { headerName: '流动资产/总资产', field: 'caToAssets' },
+  { headerName: '非流动资产/总资产', field: 'ncaToAssets' },
+  { headerName: '有形资产/总资产', field: 'tbassetsToTotalassets' },
+  { headerName: '带息债务/全部投入资本', field: 'intToTalcap' },
+  { headerName: '归属于母公司的股东权益/全部投入资本', field: 'eqtToTalcapital' },
+  { headerName: '流动负债/负债合计', field: 'currentdebtToDebt' },
+  { headerName: '非流动负债/负债合计', field: 'longdebToDebt' },
+  { headerName: '经营活动产生的现金流量净额/流动负债', field: 'ocfToShortdebt' },
+  { headerName: '产权比率', field: 'debtToEqt' },
+  { headerName: '归属于母公司的股东权益/负债合计', field: 'eqtToDebt' },
+  { headerName: '归属于母公司的股东权益/带息债务', field: 'eqtToInterestdebt' },
+  { headerName: '有形资产/负债合计', field: 'tangibleassetToDebt' },
+  { headerName: '有形资产/带息债务', field: 'tangassetToIntdebt' },
+  { headerName: '有形资产/净债务', field: 'tangibleassetToNetdebt' },
+  { headerName: '经营活动产生的现金流量净额/负债合计', field: 'ocfToDebt' },
+  { headerName: '经营活动产生的现金流量净额/带息债务', field: 'ocfToInterestdebt' },
+  { headerName: '经营活动产生的现金流量净额/净债务', field: 'ocfToNetdebt' },
+  { headerName: '已获利息倍数', field: 'ebitToInterest' },
+  { headerName: '长期债务与营运资金比率', field: 'longdebtToWorkingcapital' },
+  { headerName: '息税折旧摊销前利润/负债合计', field: 'ebitdaToDebt' },
+  { headerName: '营业周期', field: 'turnDays' },
+  { headerName: '年化总资产净利率', field: 'roaYearly' },
+  { headerName: '总资产净利率(杜邦分析)', field: 'roaDp' },
+  { headerName: '固定资产合计', field: 'fixedAssets' },
+  { headerName: '扣除财务费用前营业利润', field: 'profitPrefinExp' },
+  { headerName: '非营业利润', field: 'nonOpProfit' },
+  { headerName: '营业利润／利润总额', field: 'opToEbt' },
+  { headerName: '非营业利润／利润总额', field: 'nopToEbt' },
+  { headerName: '经营活动产生的现金流量净额／营业利润', field: 'ocfToProfit' },
+  { headerName: '货币资金／流动负债', field: 'cashToLiqdebt' },
+  { headerName: '货币资金／带息流动负债', field: 'cashToLiqdebtWithinterest' },
+  { headerName: '营业利润／流动负债', field: 'opToLiqdebt' },
+  { headerName: '营业利润／负债合计', field: 'opToDebt' },
+  { headerName: '年化投入资本回报率', field: 'roicYearly' },
+  { headerName: '固定资产合计周转率', field: 'totalFaTrun' },
+  { headerName: '利润总额／营业收入', field: 'profitToOp' },
+  { headerName: '经营活动单季度净收益', field: 'qOpincome' },
+  { headerName: '价值变动单季度净收益', field: 'qInvestincome' },
+  { headerName: '扣除非经常损益后的单季度净利润', field: 'qDtprofit' },
+  { headerName: '每股收益(单季度)', field: 'qEps' },
+  { headerName: '销售净利率(单季度)', field: 'qNetprofitMargin' },
+  { headerName: '销售毛利率(单季度)', field: 'qGsprofitMargin' },
+  { headerName: '销售期间费用率(单季度)', field: 'qExpToSales' },
+  { headerName: '净利润／营业总收入(单季度)', field: 'qProfitToGr' },
+  { headerName: '销售费用／营业总收入 (单季度)', field: 'qSaleexpToGr' },
+  { headerName: '管理费用／营业总收入 (单季度)', field: 'qAdminexpToGr' },
+  { headerName: '财务费用／营业总收入 (单季度)', field: 'qFinaexpToGr' },
+  { headerName: '资产减值损失／营业总收入(单季度)', field: 'qImpairToGrTtm' },
+  { headerName: '营业总成本／营业总收入 (单季度)', field: 'qGcToGr' },
+  { headerName: '营业利润／营业总收入(单季度)', field: 'qOpToGr' },
+  { headerName: '净资产收益率(单季度)', field: 'qRoe' },
+  { headerName: '净资产单季度收益率(扣除非经常损益)', field: 'qDtRoe' },
+  { headerName: '总资产净利润(单季度)', field: 'qNpta' },
+  { headerName: '经营活动净收益／利润总额(单季度)', field: 'qOpincomeToEbt' },
+  { headerName: '价值变动净收益／利润总额(单季度)', field: 'qInvestincomeToEbt' },
+  { headerName: '扣除非经常损益后的净利润／净利润(单季度)', field: 'qDtprofitToProfit' },
+  { headerName: '销售商品提供劳务收到的现金／营业收入(单季度)', field: 'qSalescashToOr' },
+  { headerName: '经营活动产生的现金流量净额／营业收入(单季度)', field: 'qOcfToSales' },
+  { headerName: '经营活动产生的现金流量净额／经营活动净收益(单季度)', field: 'qOcfToOr' },
+  { headerName: '基本每股收益同比增长率(%)', field: 'basicEpsYoy' },
+  { headerName: '稀释每股收益同比增长率(%)', field: 'dtEpsYoy' },
+  { headerName: '每股经营活动产生的现金流量净额同比增长率(%)', field: 'cfpsYoy' },
+  { headerName: '营业利润同比增长率(%)', field: 'opYoy' },
+  { headerName: '利润总额同比增长率(%)', field: 'ebtYoy' },
+  { headerName: '归属母公司股东的净利润同比增长率(%)', field: 'netprofitYoy' },
+  { headerName: '归属母公司股东的净利润-扣除非经常损益同比增长率(%)', field: 'dtNetprofitYoy' },
+  { headerName: '经营活动产生的现金流量净额同比增长率(%)', field: 'ocfYoy' },
+  { headerName: '净资产收益率(摊薄)同比增长率(%)', field: 'roeYoy' },
+  { headerName: '每股净资产相对年初增长率(%)', field: 'bpsYoy' },
+  { headerName: '资产总计相对年初增长率(%)', field: 'assetsYoy' },
+  { headerName: '归属母公司的股东权益相对年初增长率(%)', field: 'eqtYoy' },
+  { headerName: '营业总收入同比增长率(%)', field: 'trYoy' },
+  { headerName: '营业收入同比增长率(%)', field: 'orYoy' },
+  { headerName: '营业总收入同比增长率(%)(单季度)', field: 'qGrYoy' },
+  { headerName: '营业总收入环比增长率(%)(单季度)', field: 'qGrQoq' },
+  { headerName: '营业收入同比增长率(%)(单季度)', field: 'qSalesYoy' },
+  { headerName: '营业收入环比增长率(%)(单季度)', field: 'qSalesQoq' },
+  { headerName: '营业利润同比增长率(%)(单季度)', field: 'qOpYoy' },
+  { headerName: '营业利润环比增长率(%)(单季度)', field: 'qOpQoq' },
+  { headerName: '净利润同比增长率(%)(单季度)', field: 'qProfitYoy' },
+  { headerName: '净利润环比增长率(%)(单季度)', field: 'qProfitQoq' },
+  { headerName: '归属母公司股东的净利润同比增长率(%)(单季度)', field: 'qNetprofitYoy' },
+  { headerName: '归属母公司股东的净利润环比增长率(%)(单季度)', field: 'qNetprofitQoq' },
+  { headerName: '净资产同比增长率', field: 'equityYoy' },
+  { headerName: '研发费用', field: 'rdExp' },
+
 ].map(o => ({
   ...o,
   width: 120,
