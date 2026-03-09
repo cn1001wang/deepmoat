@@ -342,6 +342,32 @@ const columnDefs: ColDef[] = [
       closeOnApply: true,
     },
   },
+  {
+    headerName: '备注',
+    field: 'remark',
+    width: 200,
+    filter: 'agTextColumnFilter',
+    filterParams: {
+      buttons: ['reset', 'apply'],
+      closeOnApply: true,
+    },
+  },
+  {
+    headerName: '标签',
+    field: 'tags',
+    width: 150,
+    filter: 'agTextColumnFilter',
+    filterParams: {
+      buttons: ['reset', 'apply'],
+      closeOnApply: true,
+    },
+    valueFormatter: (params: any) => {
+      if (Array.isArray(params.value)) {
+        return params.value.join(', ')
+      }
+      return ''
+    },
+  },
   ...finaIndicatorColumns,
   {
     headerName: '公司全称',

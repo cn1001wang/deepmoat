@@ -633,3 +633,17 @@ class Dividend(Base):
     imp_ann_date = Column(String(100), comment="实施公告日")  # 实施公告日
     base_date = Column(String(100), comment="基准日")  # 基准日
     base_share = Column(Float, comment="基准股本（万）")  # 基准股本（万）
+
+class UserStockData(Base):
+    __tablename__ = "user_stock_data"
+
+    ts_code = Column(String(20), primary_key=True, index=True)
+    remark = Column(String(500), comment="备注")
+    tags = Column(String(500), comment="标签，逗号分隔")
+    
+    def to_dict(self):
+        return {
+            "tsCode": self.ts_code,
+            "remark": self.remark,
+            "tags": self.tags.split(",") if self.tags else []
+        }
