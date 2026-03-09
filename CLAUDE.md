@@ -46,3 +46,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - When interfacing with `http://localhost:5100/stock/000592.SZ`, store the fetched JSON/text in `./outputs/stock-000592-SZ.json` (or similar) and notify the user of the saved file path in your response.
 - Always consult the README for domain context rather than inventing new background sections.
 - 最后生成的报告使用中文输出
+
+# 生成报告
+uv run python scripts/quality_check_report.py 000513.SZ
