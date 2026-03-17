@@ -3,7 +3,7 @@
 import type { DailyBasic, FinaIndicator, IndustryTreeNode, Stock } from '@/api/finance'
 import dayjs from 'dayjs'
 import { onMounted, ref } from 'vue'
-import { buildIndustryTree, getDailyBasic, getFinaIndicator, getIndexMember, getStockBasicAll, getStockCompany, getSWIndustry } from '@/api/finance'
+import { buildIndustryTree, getAllUserStockData, getDailyBasic, getFinaIndicator, getIndexMember, getStockBasicAll, getStockCompany, getSWIndustry } from '@/api/finance'
 import StockListTable from '@/components/StockListTable.vue'
 import { toFixed } from '@/utils'
 
@@ -95,14 +95,15 @@ function getLatestTradingDay(): Date {
 const tradingDay = dayjs(getLatestTradingDay()).format('YYYYMMDD')
 const pick = <T, K extends keyof T>(o: T, k: K[]) => k.reduce((r, c) => (r[c] = o[c], r), {} as Pick<T, K>)
 function loadData() {
-  Promise.all([getSWIndustry(), getStockBasicAll(), getIndexMember(), getStockCompany(), getFinaIndicator({ endDate }), getDailyBasic({ tradeDate: tradingDay })]).then((res) => {
-    const [{ data: industry }, { data: stock }, { data: member }, { data: company }, { data: finaIndicator }, { data: dailyBasic }] = res
+  Promise.all([getSWIndustry(), getStockBasicAll(), getIndexMember(), getStockCompany(), getFinaIndicator({ endDate }), getDailyBasic({ tradeDate: tradingDay }), getAllUserStockData()]).then((res) => {
+    const [{ data: industry }, { data: stock }, { data: member }, { data: company }, { data: finaIndicator }, { data: dailyBasic }, { data: userData }] = res
     industryTree.value = buildIndustryTree(industry)
     const _stockList: Stock[] = []
     stock.forEach((item) => {
       const indexMember = member.find(o => o.tsCode === item.tsCode)
       const finaIndicatorItem: FinaIndicator = finaIndicator.find(o => o.tsCode === item.tsCode) || {} as FinaIndicator
       const dailyBasicItem: DailyBasic = dailyBasic.find(o => o.tsCode === item.tsCode) || {} as DailyBasic
+      const userDataItem = userData.find(o => o.tsCode === item.tsCode) || { tsCode: item.tsCode, remark: '', tags: [] }
       // pick(finaIndicatorItem, ['roe'])
       dailyBasicItem.totalMv = dailyBasicItem.totalMv ? toFixed(dailyBasicItem.totalMv / 10000, 2) : 0 // 转换为亿元单位
       _stockList.push({
@@ -111,6 +112,7 @@ function loadData() {
         ...indexMember,
         ...finaIndicatorItem,
         ...dailyBasicItem,
+        ...userDataItem,
       })
     })
 

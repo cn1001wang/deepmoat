@@ -78,3 +78,25 @@ class TableRow(BaseModel):
 class MetricsTable(BaseModel):
     periods: List[str]
     rows: List[TableRow]
+
+class UserStockDataRead(BaseSchema):
+    ts_code: str = Field(..., alias="tsCode")
+    remark: Optional[str] = None
+    tags: Optional[List[str]] = []
+
+    # Custom validator to split tags string into list if needed, 
+    # but SQLAlchemy model might return string while Pydantic expects list.
+    # However, to_dict in model already handles this? 
+    # Let's check model. 
+    # The model has to_dict, but Pydantic uses from_attributes (ORM mode).
+    # If we use ORM mode, we need a property on the model that returns list, or a validator here.
+    # Let's stick to manual conversion in the route for now as in the original code, 
+    # or add a property to the model.
+    # Actually, the original code did manual conversion. 
+    # To keep it consistent with raw_data.py style which uses ORM objects directly,
+    # we should probably add a property to the model or use a validator.
+    # But for now, let's just define the schema matching the JSON output.
+
+class UserStockDataUpdate(BaseModel):
+    remark: Optional[str] = None
+    tags: Optional[List[str]] = []

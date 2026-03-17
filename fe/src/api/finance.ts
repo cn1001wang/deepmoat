@@ -517,9 +517,17 @@ export interface DailyBasic {
   circMv?: number
 }
 
+export interface UserStockData {
+  tsCode: string
+  remark: string
+  tags: string[]
+}
+
 // export type Stock = StockBasic & Partial<IndexMember>
 export interface Stock extends StockBasic, Partial<Omit<IndexMember, 'tsCode' | 'name'>>, Partial<Omit<StockCompany, 'tsCode' | 'exchange'>>, Partial<Omit<DailyBasic, 'tsCode' | 'tradeDate'>>, Partial<Omit<FinaIndicator, 'tsCode' | 'annDate' | 'endDate'>> {
   // 这样既保留了 StockBasic 的必选 name，又引入了 IndexMember 的其他可选行业字段
+  remark?: string
+  tags?: string[]
 }
 
 export function getFinanceTable(tsCode: string, years: string | number) {
@@ -571,4 +579,24 @@ export function getFinaIndicator({ annDate, tsCode, endDate }: { annDate?: strin
     params.append('end_date', endDate)
   }
   return request<FinaIndicator[]>(`/api/fina_indicator?${params.toString()}`)
+}
+
+export function getUserStockData(tsCode: string) {
+  return request<UserStockData>(`/api/user_data/${tsCode}`)
+}
+
+export function updateUserStockData(tsCode: string, data: Partial<UserStockData>) {
+  return request<UserStockData>({
+    url: `/api/user_data/${tsCode}`,
+    method: 'POST',
+    data,
+  })
+}
+
+export function getTagsHistory() {
+  return request<string[]>(`/api/tags/history`)
+}
+
+export function getAllUserStockData() {
+  return request<UserStockData[]>(`/api/user_data_all`)
 }

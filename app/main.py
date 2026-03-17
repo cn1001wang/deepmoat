@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api.v1 import analysis_router, raw_data_router # 汇总后的路由
+from app.api.v1 import analysis_router, raw_data_router, user_data_router # 汇总后的路由
 from app.config import settings
 from fastapi.middleware.cors import CORSMiddleware
 import os
@@ -19,6 +19,7 @@ app.add_middleware(
 # 注册路由
 app.include_router(analysis_router, prefix="/api")
 app.include_router(raw_data_router, prefix="/api")
+app.include_router(user_data_router, prefix="/api")
 
 @app.get("/")
 def root():

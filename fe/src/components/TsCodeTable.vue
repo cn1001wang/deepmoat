@@ -10,7 +10,8 @@ import { AgGridVue } from 'ag-grid-vue3'
 import dayjs from 'dayjs'
 import quarterOfYear from 'dayjs/plugin/quarterOfYear'
 import { computed, ref, watch } from 'vue'
-import { getFinanceTable, getIndexMemberByTsCode } from '@/api/finance'
+import { getFinanceTable, getIndexMemberByTsCode, getUserStockData, updateUserStockData, getTagsHistory } from '@/api/finance'
+import { ElMessage } from 'element-plus'
 
 const props = defineProps<{ tscode: string }>()
 
@@ -23,6 +24,10 @@ const years = ref(6)
 const status = ref('')
 const loading = ref(false)
 const company = ref<IndexMember>()
+const remark = ref('')
+const tags = ref<string[]>([])
+const allTags = ref<string[]>([])
+const isEditing = ref(false)
 const allPeriods = ref<string[]>([])
 const allRows = ref<FinanceTableRow[]>([])
 const filterLatestQAndQ4 = ref(true)
@@ -258,6 +263,34 @@ function onGridReady(params: GridReadyEvent) {
 
 // --- 5. 数据加载逻辑 -------------------------------------------------------------
 
+async function loadUserData() {
+  if (!tsCode.value) return
+  try {
+    const res = await getUserStockData(tsCode.value)
+    remark.value = res.data.remark || ''
+    tags.value = res.data.tags || []
+    
+    const tagsRes = await getTagsHistory()
+    allTags.value = tagsRes.data
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+async function saveUserData() {
+  try {
+    await updateUserStockData(tsCode.value, { remark: remark.value, tags: tags.value })
+    ElMessage.success('保存成功')
+    isEditing.value = false
+    // Refresh history
+    const tagsRes = await getTagsHistory()
+    allTags.value = tagsRes.data
+  } catch (e) {
+    ElMessage.error('保存失败')
+    console.error(e)
+  }
+}
+
 async function load() {
   if (!tsCode.value) {
     status.value = '请输入 ts_code'
@@ -268,6 +301,8 @@ async function load() {
   status.value = '加载中…'
   allPeriods.value = []
   allRows.value = []
+
+  loadUserData()
 
   getIndexMemberByTsCode(tsCode.value).then((res) => {
     company.value = res.data
@@ -310,6 +345,26 @@ watch(years, load) // years 变化时重新加载
       <div>
         <b class="mr-2">{{ company?.name || '无' }}</b>
         <span>{{ `${company?.l1Name}/${company?.l2Name}/${company?.l3Name}` }}</span>
+      </div>
+      <div class="ml-4 flex items-center gap-2">
+        <el-input v-model="remark" placeholder="备注" style="width: 200px" @change="saveUserData" />
+        <el-select
+          v-model="tags"
+          multiple
+          filterable
+          allow-create
+          default-first-option
+          placeholder="标签"
+          style="width: 240px"
+          @change="saveUserData"
+        >
+          <el-option
+            v-for="item in allTags"
+            :key="item"
+            :label="item"
+            :value="item"
+          />
+        </el-select>
       </div>
     </div>
 
