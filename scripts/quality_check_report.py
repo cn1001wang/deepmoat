@@ -54,7 +54,7 @@ def load_audit_opinions(ts_code: str) -> pd.DataFrame:
     query = text(
         "SELECT end_date, audit_result, audit_agency "
         "FROM fina_audit WHERE ts_code = :ts_code "
-        "ORDER BY end_date DESC LIMIT 10"
+        "ORDER BY end_date DESC LIMIT 20"
     )
     try:
         return pd.read_sql(query, engine, params={"ts_code": ts_code})
@@ -66,7 +66,7 @@ def load_net_cash_ratio(ts_code: str) -> pd.DataFrame:
     query = text(
         "SELECT end_date, ocf_to_profit "
         "FROM fina_indicator WHERE ts_code = :ts_code "
-        "ORDER BY end_date DESC LIMIT 10"
+        "ORDER BY end_date DESC LIMIT 20"
     )
     try:
         return pd.read_sql(query, engine, params={"ts_code": ts_code})
@@ -78,7 +78,7 @@ def load_recent_indicators(ts_code: str) -> pd.DataFrame:
     query = text(
         "SELECT end_date, roe, grossprofit_margin AS gross_margin, current_ratio, debt_to_assets "
         "FROM fina_indicator WHERE ts_code = :ts_code "
-        "ORDER BY end_date DESC LIMIT 20"
+        "ORDER BY end_date DESC LIMIT 40"
     )
     try:
         return pd.read_sql(query, engine, params={"ts_code": ts_code})
@@ -86,11 +86,11 @@ def load_recent_indicators(ts_code: str) -> pd.DataFrame:
         raise RuntimeError(f"读取财务指标失败：{exc}")
 
 
-def select_five_years(df: pd.DataFrame) -> pd.DataFrame:
+def select_ten_years(df: pd.DataFrame) -> pd.DataFrame:
     df_yearly = df[df["end_date"].str.endswith("1231")].copy()
     df_yearly["year"] = df_yearly["end_date"].str[:4]
     df_yearly = df_yearly.drop_duplicates(subset=["year"]).sort_values("end_date", ascending=False)
-    return df_yearly.head(5)
+    return df_yearly.head(10)
 
 
 def select_latest_quarter(df: pd.DataFrame) -> pd.Series:
@@ -170,18 +170,18 @@ def check_one_vote(records: List[IndicatorRecord]) -> (bool, List[str]):
 def check_core_conditions(records: List[IndicatorRecord]) -> bool:
     if len(records) < 5:
         return False
-    top5 = records[:5]
+    top10 = records[:10]
     return all(
         (rec.roe or 0) > 15
         and (rec.gross_margin or 0) > 20
         and (rec.current_ratio or 0) > 1.5
-        for rec in top5
+        for rec in top10
     )
 
 
 def format_trend(records: List[IndicatorRecord], attr: str) -> str:
     trend = []
-    for rec in records[:5]:
+    for rec in records[:10]:
         val = getattr(rec, attr)
         if val is None:
             trend.append(f"{rec.end_date}: N/A")
@@ -208,14 +208,14 @@ def main():
         return
 
     latest_quarter = select_latest_quarter(df_recent)
-    df_five_years = select_five_years(df_recent)
-    if df_five_years.empty:
-        print("未查到五年年报数据，无法分析。")
+    df_ten_years = select_ten_years(df_recent)
+    if df_ten_years.empty:
+        print("未查到十年年报数据，无法分析。")
         return
 
     df_cash = load_net_cash_ratio(ts_code)
     df_audit = load_audit_opinions(ts_code)
-    records = aggregate_records(df_five_years, df_cash, df_audit)
+    records = aggregate_records(df_ten_years, df_cash, df_audit)
 
     abnormal, abnormal_reasons = check_one_vote(records)
     core_met = check_core_conditions(records)
@@ -243,7 +243,7 @@ def main():
         f"资产负债率：{latest_quarter['debt_to_assets']:.2f}%" if pd.notna(latest_quarter['debt_to_assets']) else "资产负债率：N/A"
     )
 
-    print("\n最近五年趋势：")
+    print("\n最近十年趋势：")
     print("ROE：" + format_trend(records, "roe"))
     print("毛利率：" + format_trend(records, "gross_margin"))
     print("资产负债率：" + format_trend(records, "debt_to_assets"))
