@@ -1,4 +1,0 @@
-interface:
-  display_name: "Value Report"
-  short_description: "Generate Buffett-Munger style A-share fundamental reports."
-  default_prompt: "Use $value-report to analyze 600519.SH with moat, capital allocation, risk, valuation, and a 100-point score."
