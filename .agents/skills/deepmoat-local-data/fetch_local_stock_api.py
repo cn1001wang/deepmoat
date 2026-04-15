@@ -8,7 +8,8 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 
-OUTPUTS_DIR = Path(__file__).resolve().parent.parent / "outputs"
+ROOT = Path(__file__).resolve().parents[3]
+OUTPUTS_DIR = ROOT / "outputs"
 DEFAULT_BASE_URL = "http://localhost:5100"
 DEFAULT_ROUTE_TEMPLATE = "/stock/{ts_code}"
 

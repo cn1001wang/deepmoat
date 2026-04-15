@@ -33,7 +33,7 @@ description: 读取 DeepMoat 的本地数据库和本地 HTTP 接口，并在需
 ```
 
 - 对 `stock/000592.SZ` 这类接口，结果默认保存到 `outputs/stock-000592-SZ.json`。
-- 通用抓取脚本：`scripts/fetch_local_stock_api.py`
+- 通用抓取脚本：`.agents/skills/deepmoat-local-data/fetch_local_stock_api.py`
 
 ## 与外部 tushare-data 的边界
 

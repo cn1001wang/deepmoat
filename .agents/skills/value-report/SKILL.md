@@ -64,7 +64,7 @@ uv run python .agents/skills/value-report/render_value_report_charts.py <草稿m
 2. 草稿生成（推荐）  
 - 运行：
   ```bash
-  uv run python scripts/value_report_scaffold.py <股票代码或名称>
+  uv run python .agents/skills/value-report/value_report_scaffold.py <股票代码或名称>
   ```
 - 草稿命名：`outputs/value_{symbol}_{name}_{YYMMDDHHmm}_draft.md`
 
@@ -202,7 +202,7 @@ uv run python .agents/skills/value-report/render_value_report_charts.py <草稿m
 
 ```bash
 # 1) 生成草稿
-uv run python scripts/value_report_scaffold.py 300232.SZ
+uv run python .agents/skills/value-report/value_report_scaffold.py 300232.SZ
 
 # 2) 生成图表
 uv run python .agents/skills/value-report/render_value_report_charts.py outputs/value_300232_洲明科技_2604151509_draft.md

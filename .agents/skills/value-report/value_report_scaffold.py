@@ -11,7 +11,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.exc import SQLAlchemyError
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 OUTPUT_DIR = ROOT / "outputs"
 
 
@@ -816,7 +816,7 @@ def render_report(stock_row: pd.Series, bundle: dict, annual_df: pd.DataFrame, l
         "\n".join(
             [
                 f"- 生成时间：{pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')}",
-                "- 自动化脚本：`scripts/value_report_scaffold.py`",
+                "- 自动化脚本：`.agents/skills/value-report/value_report_scaffold.py`",
                 "- 数据口径：数据库字段定义以 `app/models/models.py` 为准",
                 f"- 公司信息：行业 {stock_row['industry']}｜地区 {stock_row['area']}｜上市日期 {stock_row['list_date']}",
                 f"- 管理层：董事长 {stock_row.get('chairman') or 'N/A'}｜总经理 {stock_row.get('manager') or 'N/A'}｜员工 {stock_row.get('employees') or 'N/A'}",
