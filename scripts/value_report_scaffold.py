@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import re
 from pathlib import Path
 from typing import Optional
 
@@ -12,6 +13,18 @@ from sqlalchemy.exc import SQLAlchemyError
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT / "outputs"
+
+
+def slugify_symbol(ts_code: str) -> str:
+    return ts_code.strip().upper().split(".", 1)[0]
+
+
+def slugify_name(name: str) -> str:
+    return re.sub(r"[\s/_-]+", "", str(name)).strip()
+
+
+def short_timestamp() -> str:
+    return pd.Timestamp.now().strftime("%y%m%d%H%M")
 
 
 def load_engine():
@@ -1011,10 +1024,10 @@ def main():
 
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
-    code_slug = ts_code.replace(".", "-")
-    name_slug = str(stock_row["name"]).replace("/", "-").replace(" ", "")
-    timestamp = pd.Timestamp.now().strftime("%Y%m%d-%H%M")
-    output_path = output_dir / f"skill-value-report--{code_slug}--{name_slug}--{timestamp}--draft.md"
+    code_slug = slugify_symbol(ts_code)
+    name_slug = slugify_name(stock_row["name"])
+    timestamp = short_timestamp()
+    output_path = output_dir / f"value_{code_slug}_{name_slug}_{timestamp}_draft.md"
     output_path.write_text(report, encoding="utf-8")
 
     print(f"报告草稿已生成: {output_path}")

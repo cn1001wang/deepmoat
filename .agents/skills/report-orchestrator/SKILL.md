@@ -1,6 +1,6 @@
 ---
 name: report-orchestrator
-description: DeepMoat 报告总控技能。用于在 analysis、12-report、value-report 之间做路由分流、执行顺序编排与统一输出命名，确保 outputs 文件名可直接识别来源 skill。
+description: DeepMoat 报告总控技能。用于在 analysis、12-report、value-report 之间做路由分流、执行顺序编排与统一输出短文件名。
 ---
 
 # report-orchestrator
@@ -8,7 +8,7 @@ description: DeepMoat 报告总控技能。用于在 analysis、12-report、valu
 ## 目标
 
 - 在 `analysis`、`12-report`、`value-report` 之间统一分流。
-- 统一输出命名，确保文件名可直接识别来源 skill。
+- 统一输出短命名，确保文件名简洁且可读。
 - 多 skill 串联时，补一个索引文件记录本次产物清单。
 
 ## 路由规则（固定）
@@ -37,27 +37,28 @@ description: DeepMoat 报告总控技能。用于在 analysis、12-report、valu
 
 `outputs/` 下统一格式：
 
-`skill-{skill_name}--{ts_code}--{name}--{YYYYMMDD-HHmm}--{artifact}.md`
+`{prefix}_{symbol}_{name}_{YYMMDDHHmm}[_{artifact}].md`
 
 artifact 约定：
 
-- `analysis` -> `dialogue`
-- `12-report` -> `report`
+- `analysis` -> 无
+- `12-report` -> 无
 - `value-report` -> `draft` 或 `report`
-- `report-orchestrator` -> `index`
+- `report-orchestrator` -> 无
 
 示例：
 
-- `skill-analysis--000513-SZ--丽珠集团--20260415-2130--dialogue.md`
-- `skill-12-report--000513-SZ--丽珠集团--20260415-2130--report.md`
-- `skill-value-report--000513-SZ--丽珠集团--20260415-2130--report.md`
-- `skill-report-orchestrator--000513-SZ--丽珠集团--20260415-2130--index.md`
+- `analysis_000513_丽珠集团_2604152130.md`
+- `r12_000513_丽珠集团_2604152130.md`
+- `value_000513_丽珠集团_2604152130.md`
+- `value_000513_丽珠集团_2604152130_draft.md`
+- `index_000513_丽珠集团_2604152130.md`
 
 ## 多技能串联时的索引文件
 
 若一次任务触发多个子 skill，额外生成：
 
-`skill-report-orchestrator--{ts_code}--{name}--{YYYYMMDD-HHmm}--index.md`
+`index_{symbol}_{name}_{YYMMDDHHmm}.md`
 
 索引文件最少包含：
 

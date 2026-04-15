@@ -21,13 +21,20 @@
 
 ## 输出命名统一规范
 
-`outputs/` 下所有报告文件统一为：
+`outputs/` 下所有报告文件统一为短命名：
 
-`skill-{skill_name}--{ts_code}--{name}--{YYYYMMDD-HHmm}--{artifact}.md`
+`{prefix}_{symbol}_{name}_{YYMMDDHHmm}[_{artifact}].md`
+
+约定：
+
+- `symbol` 仅保留 6 位股票代码，不带 `.SH/.SZ`
+- 统一使用下划线 `_` 分隔，不使用 `skill-` 和长连字符
+- `artifact` 只在需要区分草稿/索引时追加
 
 示例：
 
-- `skill-analysis--000513-SZ--丽珠集团--20260415-2130--dialogue.md`
-- `skill-12-report--000513-SZ--丽珠集团--20260415-2130--report.md`
-- `skill-value-report--000513-SZ--丽珠集团--20260415-2130--report.md`
-- `skill-report-orchestrator--000513-SZ--丽珠集团--20260415-2130--index.md`
+- `analysis_000513_丽珠集团_2604152130.md`
+- `r12_000513_丽珠集团_2604152130.md`
+- `value_000513_丽珠集团_2604152130.md`
+- `value_000513_丽珠集团_2604152130_draft.md`
+- `index_000513_丽珠集团_2604152130.md`

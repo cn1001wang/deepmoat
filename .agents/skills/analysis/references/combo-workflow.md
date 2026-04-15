@@ -34,9 +34,9 @@
 
 统一放在 `outputs/`，建议：
 
-- `12-report`：`{ts_code}-{name}-{datetime}-12-report.md`
-- `analysis`：`{ts_code}-{name}-{datetime}-analysis.md`
-- `value-report`：`{ts_code}-{name}-{datetime}-value-report.md`
+- `12-report`：`r12_{symbol}_{name}_{YYMMDDHHmm}.md`
+- `analysis`：`analysis_{symbol}_{name}_{YYMMDDHHmm}.md`
+- `value-report`：`value_{symbol}_{name}_{YYMMDDHHmm}.md`
 
 ## 数据冲突处理
 

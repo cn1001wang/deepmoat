@@ -1,5 +1,6 @@
 import math
 import os
+import re
 import sys
 from dataclasses import dataclass
 from datetime import datetime
@@ -13,6 +14,18 @@ from sqlalchemy.exc import SQLAlchemyError
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT / "outputs"
+
+
+def slugify_symbol(ts_code: str) -> str:
+    return ts_code.strip().upper().split(".", 1)[0]
+
+
+def slugify_name(name: str) -> str:
+    return re.sub(r"[\s/_-]+", "", str(name)).strip()
+
+
+def short_timestamp() -> str:
+    return datetime.now().strftime("%y%m%d%H%M")
 
 PUBLIC_CONTEXT = {
     "600887.SH": [
@@ -1208,10 +1221,10 @@ def main():
     report = render_report(ts_code, bundle, quarter, annual, market, valuations, valuation_summary, peer_df)
 
     OUTPUT_DIR.mkdir(exist_ok=True)
-    code_slug = ts_code.replace(".", "-")
-    name_slug = str(bundle["stock"]["name"]).replace("/", "-").replace(" ", "")
-    timestamp = datetime.now().strftime("%Y%m%d-%H%M")
-    output_path = OUTPUT_DIR / f"skill-analysis--{code_slug}--{name_slug}--{timestamp}--dialogue.md"
+    code_slug = slugify_symbol(ts_code)
+    name_slug = slugify_name(bundle["stock"]["name"])
+    timestamp = short_timestamp()
+    output_path = OUTPUT_DIR / f"analysis_{code_slug}_{name_slug}_{timestamp}.md"
     output_path.write_text(report, encoding="utf-8")
 
     print(f"报告已生成: {output_path}")
