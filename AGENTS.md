@@ -2,7 +2,6 @@
 
 ## Goals
 - Prioritize the minimum number of tokens that still capture intent; favor concise responses and code, generating outputs as fast as possible.
-- When creating Python code, always place it under `./scripts/`, run it locally, and confirm execution succeeded.
 - If a task asks for a particular stock endpoint (e.g., `http://localhost:5100/stock/000592.SZ`), save the response payload into `./outputs/` and tell the user where that file lives.
 - The README (`README.md` and `fe/README.md`) contains the high-level domain narrative (FastAPI + Vue stack, Morningstar-style moat evaluations); reference it for background instead of repeating details unnecessarily.
 

@@ -11,7 +11,7 @@ from pathlib import Path
 from typing import Any
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 SVG_W = 1200
 SVG_H = 720
 COLORS = [
