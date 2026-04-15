@@ -13,6 +13,7 @@ from sqlalchemy.exc import SQLAlchemyError
 
 ROOT = Path(__file__).resolve().parents[3]
 OUTPUT_DIR = ROOT / "outputs"
+REPORT_ROOT_DIR = OUTPUT_DIR / "value-reports"
 
 
 def slugify_symbol(ts_code: str) -> str:
@@ -1003,8 +1004,8 @@ def main():
     parser.add_argument("query", help="股票代码（如 600519.SH / 600519）或公司名称（如 贵州茅台）")
     parser.add_argument(
         "--output-dir",
-        default=str(OUTPUT_DIR),
-        help="输出目录，默认 outputs",
+        default=str(REPORT_ROOT_DIR),
+        help="报告根目录，默认 outputs/value-reports",
     )
     args = parser.parse_args()
 
@@ -1022,12 +1023,14 @@ def main():
     latest = build_latest_snapshot(bundle)
     report = render_report(stock_row, bundle, annual_df, latest)
 
-    output_dir = Path(args.output_dir)
-    output_dir.mkdir(parents=True, exist_ok=True)
+    report_root_dir = Path(args.output_dir)
+    report_root_dir.mkdir(parents=True, exist_ok=True)
     code_slug = slugify_symbol(ts_code)
     name_slug = slugify_name(stock_row["name"])
+    stock_dir = report_root_dir / f"{code_slug}_{name_slug}"
+    stock_dir.mkdir(parents=True, exist_ok=True)
     timestamp = short_timestamp()
-    output_path = output_dir / f"value_{code_slug}_{name_slug}_{timestamp}_draft.md"
+    output_path = stock_dir / f"value_{code_slug}_{name_slug}_{timestamp}_draft.md"
     output_path.write_text(report, encoding="utf-8")
 
     print(f"报告草稿已生成: {output_path}")

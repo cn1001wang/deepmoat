@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import os
 import re
 from dataclasses import dataclass
 from html import escape
@@ -39,7 +40,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output-dir",
         default="",
-        help="图表输出目录（默认 outputs/charts/<草稿文件名去掉_draft>）",
+        help="图表输出目录（默认 <草稿目录>/charts）",
     )
     parser.add_argument(
         "--inject-report",
@@ -265,11 +266,14 @@ def render_chart(block: ChartBlock, output_path: Path) -> None:
     render_bar_line(block.option, block.heading, output_path)
 
 
-def build_snippet(blocks: list[ChartBlock], chart_paths: list[Path]) -> str:
+def build_snippet(blocks: list[ChartBlock], chart_paths: list[Path], link_base_dir: Path) -> str:
     lines = ["## 图表图片（自动生成）", ""]
     for block, path in zip(blocks, chart_paths):
+        rel = Path(os.path.relpath(path, start=link_base_dir)).as_posix()
+        if not rel.startswith("."):
+            rel = f"./{rel}"
         lines.append(f"### {block.index}. {block.heading}")
-        lines.append(f"![{block.heading}]({path.resolve()})")
+        lines.append(f"![{block.heading}]({rel})")
         lines.append("")
     return "\n".join(lines).strip() + "\n"
 
@@ -302,8 +306,7 @@ def main() -> None:
         if not out_dir.is_absolute():
             out_dir = ROOT / out_dir
     else:
-        stem = draft_path.stem.replace("_draft", "")
-        out_dir = ROOT / "outputs" / "charts" / stem
+        out_dir = draft_path.parent / "charts"
     out_dir.mkdir(parents=True, exist_ok=True)
 
     chart_paths: list[Path] = []
@@ -312,7 +315,14 @@ def main() -> None:
         render_chart(block, path)
         chart_paths.append(path)
 
-    snippet = build_snippet(blocks, chart_paths)
+    link_base_dir = draft_path.parent
+    if args.inject_report:
+        target = Path(args.inject_report)
+        if not target.is_absolute():
+            target = ROOT / target
+        link_base_dir = target.parent
+
+    snippet = build_snippet(blocks, chart_paths, link_base_dir)
     snippet_path = out_dir / "charts_snippet.md"
     snippet_path.write_text(snippet, encoding="utf-8")
 
@@ -322,9 +332,6 @@ def main() -> None:
     print(f"片段文件: {snippet_path}")
 
     if args.inject_report:
-        target = Path(args.inject_report)
-        if not target.is_absolute():
-            target = ROOT / target
         inject_snippet(target, snippet)
         print(f"已插入图表片段到: {target}")
 
