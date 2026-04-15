@@ -11,7 +11,7 @@ from sqlalchemy.exc import SQLAlchemyError
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT_DIR = ROOT / "outputs" / "value-reports"
+OUTPUT_DIR = ROOT / "outputs"
 
 
 def load_engine():
@@ -991,7 +991,7 @@ def main():
     parser.add_argument(
         "--output-dir",
         default=str(OUTPUT_DIR),
-        help="输出目录，默认 outputs/value-reports",
+        help="输出目录，默认 outputs",
     )
     args = parser.parse_args()
 
@@ -1011,7 +1011,10 @@ def main():
 
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
-    output_path = output_dir / f"{ts_code.replace('.', '-')}-value-report-draft-{pd.Timestamp.now().strftime('%Y%m%d')}.md"
+    code_slug = ts_code.replace(".", "-")
+    name_slug = str(stock_row["name"]).replace("/", "-").replace(" ", "")
+    timestamp = pd.Timestamp.now().strftime("%Y%m%d-%H%M")
+    output_path = output_dir / f"skill-value-report--{code_slug}--{name_slug}--{timestamp}--draft.md"
     output_path.write_text(report, encoding="utf-8")
 
     print(f"报告草稿已生成: {output_path}")

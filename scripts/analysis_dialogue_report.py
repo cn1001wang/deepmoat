@@ -1208,8 +1208,10 @@ def main():
     report = render_report(ts_code, bundle, quarter, annual, market, valuations, valuation_summary, peer_df)
 
     OUTPUT_DIR.mkdir(exist_ok=True)
-    name = str(bundle["stock"]["name"]).replace("/", "-")
-    output_path = OUTPUT_DIR / f"{ts_code.replace('.', '-')}-{name}-{datetime.now().strftime('%Y%m%d')}.md"
+    code_slug = ts_code.replace(".", "-")
+    name_slug = str(bundle["stock"]["name"]).replace("/", "-").replace(" ", "")
+    timestamp = datetime.now().strftime("%Y%m%d-%H%M")
+    output_path = OUTPUT_DIR / f"skill-analysis--{code_slug}--{name_slug}--{timestamp}--dialogue.md"
     output_path.write_text(report, encoding="utf-8")
 
     print(f"报告已生成: {output_path}")
