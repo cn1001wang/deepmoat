@@ -14,6 +14,7 @@ from sqlalchemy.exc import SQLAlchemyError
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT / "outputs"
+REPORT_ROOT_DIR = OUTPUT_DIR / "reports"
 
 
 def slugify_symbol(ts_code: str) -> str:
@@ -1220,11 +1221,13 @@ def main():
     peer_df = build_peer_comparison(engine, ts_code, profile.get("peers", [])) if profile.get("peers") else None
     report = render_report(ts_code, bundle, quarter, annual, market, valuations, valuation_summary, peer_df)
 
-    OUTPUT_DIR.mkdir(exist_ok=True)
+    REPORT_ROOT_DIR.mkdir(parents=True, exist_ok=True)
     code_slug = slugify_symbol(ts_code)
     name_slug = slugify_name(bundle["stock"]["name"])
+    stock_dir = REPORT_ROOT_DIR / f"{code_slug}_{name_slug}"
+    stock_dir.mkdir(parents=True, exist_ok=True)
     timestamp = short_timestamp()
-    output_path = OUTPUT_DIR / f"analysis_{code_slug}_{name_slug}_{timestamp}.md"
+    output_path = stock_dir / f"analysis_{code_slug}_{name_slug}_{timestamp}.md"
     output_path.write_text(report, encoding="utf-8")
 
     print(f"报告已生成: {output_path}")

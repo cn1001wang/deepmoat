@@ -1,0 +1,1009 @@
+{
+  "stock": [
+    {
+      "ts_code": "300232.SZ",
+      "symbol": "300232",
+      "name": "洲明科技",
+      "industry": "元器件",
+      "area": "深圳",
+      "list_date": "20110622",
+      "main_business": "主要产品:LED全彩高清显示屏,LED专业照明和城市景观照明三大板块业务.主营业务:LED显示屏,LED灯饰,LED照明灯的生产和销售;电子产品,LED光电应用产品的软硬件开发和销售.",
+      "website": "www.unilumin.cn",
+      "chairman": "林洺锋",
+      "manager": "林洺锋",
+      "employees": 5638
+    }
+  ],
+  "latest_daily": [
+    {
+      "trade_date": "20260415",
+      "close": 6.91,
+      "pe_ttm": 76.4061,
+      "pb": 1.6157,
+      "ps_ttm": 0.942,
+      "dv_ttm": 3.4689,
+      "total_mv": 751425.9813,
+      "circ_mv": 610406.4678
+    }
+  ],
+  "annual_5y": [
+    {
+      "end_date": "20241231",
+      "total_revenue": 7773643616.16,
+      "n_income_attr_p": 99886342.81,
+      "report_type": "1",
+      "total_assets": 10568547388.34,
+      "total_liab": 5854619669.75,
+      "money_cap": 1748748617.87,
+      "total_cur_assets": 6408265283.53,
+      "total_cur_liab": 5456555885.99,
+      "st_borr": 391174176.3,
+      "lt_borr": 242677542.78,
+      "bond_payable": NaN,
+      "accounts_receiv": 2102638175.16,
+      "inventories": 1807807401.62,
+      "n_cashflow_act": 835509598.15,
+      "free_cashflow": 254918753.2649,
+      "n_incr_cash_cash_equ": -357018881.3,
+      "ann_date": "20250422",
+      "roe": 2.1025,
+      "roic": 1.5027,
+      "roa": 1.2834,
+      "grossprofit_margin": 29.1135,
+      "netprofit_margin": 1.0721,
+      "debt_to_assets": 55.3966,
+      "current_ratio": 1.1744,
+      "quick_ratio": 0.8431,
+      "ocf_to_profit": 631.2149,
+      "eps": 0.0915,
+      "bps": 4.3737,
+      "ar_turn": 3.7291,
+      "inv_turn": 2.7849,
+      "arturn_days": 96.538,
+      "invturn_days": 129.2686,
+      "interest_debt": 633851719.08,
+      "net_cash": 1114896898.79,
+      "cfo_np": 8.36460295417237
+    },
+    {
+      "end_date": "20231231",
+      "total_revenue": 7410313783.87,
+      "n_income_attr_p": 144471001.89,
+      "report_type": "1",
+      "total_assets": 10308985070.37,
+      "total_liab": 5619436323.26,
+      "money_cap": 2189850324.02,
+      "total_cur_assets": 6667162956.55,
+      "total_cur_liab": 5153245644.47,
+      "st_borr": 553640953.81,
+      "lt_borr": 235270238.28,
+      "bond_payable": NaN,
+      "accounts_receiv": 2066579247.42,
+      "inventories": 1574426427.62,
+      "n_cashflow_act": 817271907.65,
+      "free_cashflow": 581348833.6965,
+      "n_incr_cash_cash_equ": 369028764.12,
+      "ann_date": "20240422",
+      "roe": 3.0885,
+      "roic": 2.3501,
+      "roa": 1.78,
+      "grossprofit_margin": 28.8006,
+      "netprofit_margin": 1.7295,
+      "debt_to_assets": 54.5101,
+      "current_ratio": 1.2938,
+      "quick_ratio": 0.9883,
+      "ocf_to_profit": 468.6081,
+      "eps": 0.1327,
+      "bps": 4.3227,
+      "ar_turn": 3.9642,
+      "inv_turn": 2.4034,
+      "arturn_days": 90.8128,
+      "invturn_days": 149.7878,
+      "interest_debt": 788911192.0899999,
+      "net_cash": 1400939131.93,
+      "cfo_np": 5.656996192718797
+    },
+    {
+      "end_date": "20221231",
+      "total_revenue": 7075945357.61,
+      "n_income_attr_p": 63627409.94,
+      "report_type": "1",
+      "total_assets": 9857043568.21,
+      "total_liab": 5259368199.65,
+      "money_cap": 1727948810.73,
+      "total_cur_assets": 6450772263.08,
+      "total_cur_liab": 4813868715.66,
+      "st_borr": 496495305.45,
+      "lt_borr": 174631180.0,
+      "bond_payable": NaN,
+      "accounts_receiv": 1672016045.38,
+      "inventories": 1876446082.23,
+      "n_cashflow_act": 703167444.47,
+      "free_cashflow": 122023906.4026,
+      "n_incr_cash_cash_equ": 252459604.73,
+      "ann_date": "20230417",
+      "roe": 1.3741,
+      "roic": 1.0751,
+      "roa": 0.6999,
+      "grossprofit_margin": 26.8042,
+      "netprofit_margin": 0.7335,
+      "debt_to_assets": 53.3564,
+      "current_ratio": 1.34,
+      "quick_ratio": 0.9502,
+      "ocf_to_profit": 1060.4858,
+      "eps": 0.06,
+      "bps": 4.2282,
+      "ar_turn": 3.934,
+      "inv_turn": 1.8795,
+      "arturn_days": 91.5099,
+      "invturn_days": 191.5403,
+      "interest_debt": 671126485.45,
+      "net_cash": 1056822325.28,
+      "cfo_np": 11.051329059804255
+    },
+    {
+      "end_date": "20211231",
+      "total_revenue": 7229094198.97,
+      "n_income_attr_p": 182267144.39,
+      "report_type": "1",
+      "total_assets": 10777330391.94,
+      "total_liab": 6156381026.93,
+      "money_cap": 1591885942.0,
+      "total_cur_assets": 7300503144.41,
+      "total_cur_liab": 5645207785.99,
+      "st_borr": 345316112.12,
+      "lt_borr": 316381074.09,
+      "bond_payable": NaN,
+      "accounts_receiv": 1925345032.01,
+      "inventories": 2487795654.74,
+      "n_cashflow_act": 14857942.78,
+      "free_cashflow": -196965913.9242,
+      "n_incr_cash_cash_equ": 113316203.58,
+      "ann_date": "20220428",
+      "roe": 4.462,
+      "roic": 3.5767,
+      "roa": 2.4274,
+      "grossprofit_margin": 24.2717,
+      "netprofit_margin": 2.3253,
+      "debt_to_assets": 57.1234,
+      "current_ratio": 1.2932,
+      "quick_ratio": 0.8525,
+      "ocf_to_profit": 6.9633,
+      "eps": 0.17,
+      "bps": 4.2365,
+      "ar_turn": 4.3084,
+      "inv_turn": 2.1417,
+      "arturn_days": 83.5577,
+      "invturn_days": 168.0908,
+      "interest_debt": 661697186.21,
+      "net_cash": 930188755.79,
+      "cfo_np": 0.08151739486414632
+    },
+    {
+      "end_date": "20201231",
+      "total_revenue": 4961806228.18,
+      "n_income_attr_p": 117780571.0,
+      "report_type": "1",
+      "total_assets": 8163480442.26,
+      "total_liab": 4632745337.16,
+      "money_cap": 1290517577.95,
+      "total_cur_assets": 5224787428.39,
+      "total_cur_liab": 4172456573.59,
+      "st_borr": 575683310.01,
+      "lt_borr": 346407262.93,
+      "bond_payable": NaN,
+      "accounts_receiv": 1430437696.47,
+      "inventories": 1398078988.76,
+      "n_cashflow_act": 536361230.76,
+      "free_cashflow": 101537535.1141,
+      "n_incr_cash_cash_equ": 208015567.33,
+      "ann_date": "20210428",
+      "roe": 3.6233,
+      "roic": 2.8446,
+      "roa": 1.8697,
+      "grossprofit_margin": 26.1759,
+      "netprofit_margin": 2.1313,
+      "debt_to_assets": 56.7496,
+      "current_ratio": 1.2522,
+      "quick_ratio": 0.9171,
+      "ocf_to_profit": 418.9087,
+      "eps": 0.12,
+      "bps": 3.5985,
+      "ar_turn": 3.3045,
+      "inv_turn": 1.8529,
+      "arturn_days": 108.9424,
+      "invturn_days": 194.29,
+      "interest_debt": 922090572.94,
+      "net_cash": 368427005.01,
+      "cfo_np": 4.553902449326723
+    }
+  ],
+  "quarter_8": [
+    {
+      "end_date": "20250930",
+      "total_revenue": 5623378175.53,
+      "n_income_attr_p": 126149174.7,
+      "n_cashflow_act": 95427569.07,
+      "free_cashflow": -227941191.306,
+      "grossprofit_margin": 27.7383,
+      "netprofit_margin": 2.0721,
+      "roe": 2.6775,
+      "roic": 2.1898
+    },
+    {
+      "end_date": "20250630",
+      "total_revenue": 3657522154.03,
+      "n_income_attr_p": 121148634.75,
+      "n_cashflow_act": -47432272.16,
+      "free_cashflow": -220537153.1269,
+      "grossprofit_margin": 28.3187,
+      "netprofit_margin": 3.1418,
+      "roe": 2.5747,
+      "roic": 2.1037
+    },
+    {
+      "end_date": "20250331",
+      "total_revenue": 1576300513.78,
+      "n_income_attr_p": 54576710.39,
+      "n_cashflow_act": -242222366.43,
+      "free_cashflow": -445145100.2147,
+      "grossprofit_margin": 29.9493,
+      "netprofit_margin": 3.3273,
+      "roe": 1.1367,
+      "roic": 0.9182
+    },
+    {
+      "end_date": "20241231",
+      "total_revenue": 7773643616.16,
+      "n_income_attr_p": 99886342.81,
+      "n_cashflow_act": 835509598.15,
+      "free_cashflow": 254918753.2649,
+      "grossprofit_margin": 29.1135,
+      "netprofit_margin": 1.0721,
+      "roe": 2.1025,
+      "roic": 1.5027
+    },
+    {
+      "end_date": "20240930",
+      "total_revenue": 5420492614.69,
+      "n_income_attr_p": 127689185.33,
+      "n_cashflow_act": 296118269.07,
+      "free_cashflow": -251536761.3453,
+      "grossprofit_margin": 30.5702,
+      "netprofit_margin": 2.1318,
+      "roe": 2.6837,
+      "roic": 2.133
+    },
+    {
+      "end_date": "20240630",
+      "total_revenue": 3406188152.35,
+      "n_income_attr_p": 100450425.76,
+      "n_cashflow_act": 42413339.23,
+      "free_cashflow": -368365394.6792,
+      "grossprofit_margin": 32.0818,
+      "netprofit_margin": 2.6485,
+      "roe": 2.1178,
+      "roic": 1.6796
+    },
+    {
+      "end_date": "20240331",
+      "total_revenue": 1492251546.4,
+      "n_income_attr_p": 19426695.48,
+      "n_cashflow_act": -53321179.12,
+      "free_cashflow": -334202185.5498,
+      "grossprofit_margin": 32.307,
+      "netprofit_margin": 0.8207,
+      "roe": 0.4097,
+      "roic": 0.2334
+    },
+    {
+      "end_date": "20231231",
+      "total_revenue": 7410313783.87,
+      "n_income_attr_p": 144471001.89,
+      "n_cashflow_act": 817271907.65,
+      "free_cashflow": 581348833.6965,
+      "grossprofit_margin": 28.8006,
+      "netprofit_margin": 1.7295,
+      "roe": 3.0885,
+      "roic": 2.3501
+    }
+  ],
+  "audit": [
+    {
+      "end_date": "20241231",
+      "audit_result": "标准无保留意见",
+      "audit_agency": "天健会计师事务所"
+    },
+    {
+      "end_date": "20231231",
+      "audit_result": "标准无保留意见",
+      "audit_agency": "天健会计师事务所"
+    },
+    {
+      "end_date": "20221231",
+      "audit_result": "标准无保留意见",
+      "audit_agency": "天健会计师事务所"
+    },
+    {
+      "end_date": "20211231",
+      "audit_result": "标准无保留意见",
+      "audit_agency": "天健会计师事务所"
+    },
+    {
+      "end_date": "20201231",
+      "audit_result": "标准无保留意见",
+      "audit_agency": "天健会计师事务所"
+    },
+    {
+      "end_date": "20191231",
+      "audit_result": "标准无保留意见",
+      "audit_agency": "天健会计师事务所"
+    },
+    {
+      "end_date": "20181231",
+      "audit_result": "标准无保留意见",
+      "audit_agency": "天健会计师事务所"
+    },
+    {
+      "end_date": "20171231",
+      "audit_result": "标准无保留意见",
+      "audit_agency": "天健会计师事务所"
+    }
+  ],
+  "dividend": [
+    {
+      "end_date": "20250630",
+      "ann_date": "20250819",
+      "ex_date": null,
+      "cash_div_tax": 0.0
+    },
+    {
+      "end_date": "20241231",
+      "ann_date": null,
+      "ex_date": null,
+      "cash_div_tax": 0.24
+    },
+    {
+      "end_date": "20241231",
+      "ann_date": "20250422",
+      "ex_date": null,
+      "cash_div_tax": 0.24
+    },
+    {
+      "end_date": "20241231",
+      "ann_date": "20250422",
+      "ex_date": null,
+      "cash_div_tax": 0.24
+    },
+    {
+      "end_date": "20241231",
+      "ann_date": "20250422",
+      "ex_date": "20250522",
+      "cash_div_tax": 0.24
+    },
+    {
+      "end_date": "20240630",
+      "ann_date": "20240826",
+      "ex_date": null,
+      "cash_div_tax": 0.0
+    },
+    {
+      "end_date": "20231231",
+      "ann_date": "20240422",
+      "ex_date": null,
+      "cash_div_tax": 0.05
+    },
+    {
+      "end_date": "20231231",
+      "ann_date": "20240422",
+      "ex_date": null,
+      "cash_div_tax": 0.05
+    },
+    {
+      "end_date": "20231231",
+      "ann_date": "20240422",
+      "ex_date": "20240522",
+      "cash_div_tax": 0.050069
+    },
+    {
+      "end_date": "20230630",
+      "ann_date": "20230811",
+      "ex_date": null,
+      "cash_div_tax": 0.0
+    },
+    {
+      "end_date": "20221231",
+      "ann_date": "20230417",
+      "ex_date": null,
+      "cash_div_tax": 0.015
+    },
+    {
+      "end_date": "20221231",
+      "ann_date": "20230417",
+      "ex_date": null,
+      "cash_div_tax": 0.015
+    },
+    {
+      "end_date": "20221231",
+      "ann_date": "20230417",
+      "ex_date": "20230614",
+      "cash_div_tax": 0.015
+    },
+    {
+      "end_date": "20220630",
+      "ann_date": "20220826",
+      "ex_date": null,
+      "cash_div_tax": 0.0
+    },
+    {
+      "end_date": "20211231",
+      "ann_date": "20220428",
+      "ex_date": null,
+      "cash_div_tax": 0.025
+    },
+    {
+      "end_date": "20211231",
+      "ann_date": "20220428",
+      "ex_date": null,
+      "cash_div_tax": 0.025
+    },
+    {
+      "end_date": "20211231",
+      "ann_date": "20220428",
+      "ex_date": "20220601",
+      "cash_div_tax": 0.025
+    },
+    {
+      "end_date": "20210630",
+      "ann_date": "20210809",
+      "ex_date": null,
+      "cash_div_tax": 0.0
+    },
+    {
+      "end_date": "20201231",
+      "ann_date": "20210428",
+      "ex_date": null,
+      "cash_div_tax": 0.02
+    },
+    {
+      "end_date": "20201231",
+      "ann_date": "20210428",
+      "ex_date": null,
+      "cash_div_tax": 0.02
+    },
+    {
+      "end_date": "20201231",
+      "ann_date": "20210428",
+      "ex_date": "20210608",
+      "cash_div_tax": 0.02
+    },
+    {
+      "end_date": "20200630",
+      "ann_date": "20200828",
+      "ex_date": null,
+      "cash_div_tax": 0.0
+    },
+    {
+      "end_date": "20191231",
+      "ann_date": "20200425",
+      "ex_date": null,
+      "cash_div_tax": 0.015
+    },
+    {
+      "end_date": "20191231",
+      "ann_date": "20200425",
+      "ex_date": null,
+      "cash_div_tax": 0.015
+    },
+    {
+      "end_date": "20191231",
+      "ann_date": "20200425",
+      "ex_date": "20200615",
+      "cash_div_tax": 0.015
+    },
+    {
+      "end_date": "20190630",
+      "ann_date": "20190829",
+      "ex_date": null,
+      "cash_div_tax": 0.0
+    },
+    {
+      "end_date": "20181231",
+      "ann_date": "20190426",
+      "ex_date": null,
+      "cash_div_tax": 0.06
+    },
+    {
+      "end_date": "20181231",
+      "ann_date": "20190426",
+      "ex_date": null,
+      "cash_div_tax": 0.06
+    },
+    {
+      "end_date": "20181231",
+      "ann_date": "20190426",
+      "ex_date": "20190618",
+      "cash_div_tax": 0.0600239
+    },
+    {
+      "end_date": "20180630",
+      "ann_date": "20180824",
+      "ex_date": null,
+      "cash_div_tax": 0.0
+    }
+  ],
+  "valuation_hist_5y": [
+    {
+      "trade_date": "20251229",
+      "pe_ttm": 77.1801,
+      "pb": 1.6321,
+      "ps_ttm": 0.9516
+    },
+    {
+      "trade_date": "20251230",
+      "pe_ttm": 77.733,
+      "pb": 1.6438,
+      "ps_ttm": 0.9584
+    },
+    {
+      "trade_date": "20260115",
+      "pe_ttm": 86.9106,
+      "pb": 1.8378,
+      "ps_ttm": 1.0716
+    },
+    {
+      "trade_date": "20260116",
+      "pe_ttm": 86.6894,
+      "pb": 1.8332,
+      "ps_ttm": 1.0688
+    },
+    {
+      "trade_date": "20260119",
+      "pe_ttm": 86.8,
+      "pb": 1.8355,
+      "ps_ttm": 1.0702
+    },
+    {
+      "trade_date": "20260120",
+      "pe_ttm": 85.8048,
+      "pb": 1.8145,
+      "ps_ttm": 1.0579
+    },
+    {
+      "trade_date": "20260121",
+      "pe_ttm": 85.1414,
+      "pb": 1.8004,
+      "ps_ttm": 1.0497
+    },
+    {
+      "trade_date": "20260122",
+      "pe_ttm": 85.1414,
+      "pb": 1.8004,
+      "ps_ttm": 1.0497
+    },
+    {
+      "trade_date": "20260123",
+      "pe_ttm": 87.0211,
+      "pb": 1.8402,
+      "ps_ttm": 1.0729
+    },
+    {
+      "trade_date": "20260126",
+      "pe_ttm": 85.1414,
+      "pb": 1.8004,
+      "ps_ttm": 1.0497
+    },
+    {
+      "trade_date": "20260127",
+      "pe_ttm": 85.8048,
+      "pb": 1.8145,
+      "ps_ttm": 1.0579
+    },
+    {
+      "trade_date": "20260128",
+      "pe_ttm": 84.6991,
+      "pb": 1.7911,
+      "ps_ttm": 1.0443
+    },
+    {
+      "trade_date": "20260129",
+      "pe_ttm": 90.8912,
+      "pb": 1.922,
+      "ps_ttm": 1.1206
+    },
+    {
+      "trade_date": "20260130",
+      "pe_ttm": 86.5788,
+      "pb": 1.8308,
+      "ps_ttm": 1.0675
+    },
+    {
+      "trade_date": "20260203",
+      "pe_ttm": 86.4683,
+      "pb": 1.8285,
+      "ps_ttm": 1.0661
+    },
+    {
+      "trade_date": "20260204",
+      "pe_ttm": 86.2471,
+      "pb": 1.8238,
+      "ps_ttm": 1.0634
+    },
+    {
+      "trade_date": "20260205",
+      "pe_ttm": 84.5885,
+      "pb": 1.7887,
+      "ps_ttm": 1.0429
+    },
+    {
+      "trade_date": "20260206",
+      "pe_ttm": 82.4876,
+      "pb": 1.7443,
+      "ps_ttm": 1.017
+    },
+    {
+      "trade_date": "20260209",
+      "pe_ttm": 85.252,
+      "pb": 1.8028,
+      "ps_ttm": 1.0511
+    },
+    {
+      "trade_date": "20260210",
+      "pe_ttm": 87.4634,
+      "pb": 1.8495,
+      "ps_ttm": 1.0784
+    },
+    {
+      "trade_date": "20260211",
+      "pe_ttm": 86.9106,
+      "pb": 1.8378,
+      "ps_ttm": 1.0716
+    },
+    {
+      "trade_date": "20260302",
+      "pe_ttm": 89.0114,
+      "pb": 1.8823,
+      "ps_ttm": 1.0975
+    },
+    {
+      "trade_date": "20260303",
+      "pe_ttm": 83.2616,
+      "pb": 1.7607,
+      "ps_ttm": 1.0266
+    },
+    {
+      "trade_date": "20260304",
+      "pe_ttm": 81.3819,
+      "pb": 1.7209,
+      "ps_ttm": 1.0034
+    },
+    {
+      "trade_date": "20260305",
+      "pe_ttm": 91.3335,
+      "pb": 1.9314,
+      "ps_ttm": 1.1261
+    },
+    {
+      "trade_date": "20260306",
+      "pe_ttm": 87.6846,
+      "pb": 1.8542,
+      "ps_ttm": 1.0811
+    },
+    {
+      "trade_date": "20260309",
+      "pe_ttm": 86.6894,
+      "pb": 1.8332,
+      "ps_ttm": 1.0688
+    },
+    {
+      "trade_date": "20260310",
+      "pe_ttm": 87.574,
+      "pb": 1.8519,
+      "ps_ttm": 1.0797
+    },
+    {
+      "trade_date": "20260311",
+      "pe_ttm": 88.2374,
+      "pb": 1.8659,
+      "ps_ttm": 1.0879
+    },
+    {
+      "trade_date": "20260312",
+      "pe_ttm": 90.0066,
+      "pb": 1.9033,
+      "ps_ttm": 1.1097
+    },
+    {
+      "trade_date": "20260313",
+      "pe_ttm": 91.7758,
+      "pb": 1.9407,
+      "ps_ttm": 1.1315
+    },
+    {
+      "trade_date": "20260316",
+      "pe_ttm": 90.2278,
+      "pb": 1.908,
+      "ps_ttm": 1.1125
+    },
+    {
+      "trade_date": "20260317",
+      "pe_ttm": 85.3625,
+      "pb": 1.8051,
+      "ps_ttm": 1.0525
+    },
+    {
+      "trade_date": "20260331",
+      "pe_ttm": 75.3004,
+      "pb": 1.5923,
+      "ps_ttm": 0.9284
+    },
+    {
+      "trade_date": "20260401",
+      "pe_ttm": 76.6272,
+      "pb": 1.6204,
+      "ps_ttm": 0.9448
+    },
+    {
+      "trade_date": "20260402",
+      "pe_ttm": 74.5264,
+      "pb": 1.576,
+      "ps_ttm": 0.9189
+    },
+    {
+      "trade_date": "20260403",
+      "pe_ttm": 72.9783,
+      "pb": 1.5432,
+      "ps_ttm": 0.8998
+    },
+    {
+      "trade_date": "20260407",
+      "pe_ttm": 73.8629,
+      "pb": 1.5619,
+      "ps_ttm": 0.9107
+    },
+    {
+      "trade_date": "20260408",
+      "pe_ttm": 77.6224,
+      "pb": 1.6414,
+      "ps_ttm": 0.957
+    },
+    {
+      "trade_date": "20260409",
+      "pe_ttm": 76.6272,
+      "pb": 1.6204,
+      "ps_ttm": 0.9448
+    },
+    {
+      "trade_date": "20260410",
+      "pe_ttm": 77.4013,
+      "pb": 1.6368,
+      "ps_ttm": 0.9543
+    },
+    {
+      "trade_date": "20260413",
+      "pe_ttm": 76.6272,
+      "pb": 1.6204,
+      "ps_ttm": 0.9448
+    },
+    {
+      "trade_date": "20260414",
+      "pe_ttm": 76.959,
+      "pb": 1.6274,
+      "ps_ttm": 0.9489
+    },
+    {
+      "trade_date": "20260415",
+      "pe_ttm": 76.4061,
+      "pb": 1.6157,
+      "ps_ttm": 0.942
+    }
+  ],
+  "peers_same_industry": [
+    {
+      "ts_code": "002475.SZ",
+      "name": "立讯精密",
+      "industry": "元器件",
+      "trade_date": "20260415",
+      "pe_ttm": 25.7998,
+      "pb": 5.1457,
+      "ps_ttm": 1.2886,
+      "total_mv": 42827019.0306
+    },
+    {
+      "ts_code": "002384.SZ",
+      "name": "东山精密",
+      "industry": "元器件",
+      "trade_date": "20260415",
+      "pe_ttm": 200.9197,
+      "pb": 12.5797,
+      "ps_ttm": 6.6554,
+      "total_mv": 26704837.8166
+    },
+    {
+      "ts_code": "300476.SZ",
+      "name": "胜宏科技",
+      "industry": "元器件",
+      "trade_date": "20260415",
+      "pe_ttm": 59.7841,
+      "pb": 17.2986,
+      "ps_ttm": 13.3622,
+      "total_mv": 25778833.2553
+    },
+    {
+      "ts_code": "002916.SZ",
+      "name": "深南电路",
+      "industry": "元器件",
+      "trade_date": "20260415",
+      "pe_ttm": 56.338,
+      "pb": 9.8141,
+      "ps_ttm": 7.8043,
+      "total_mv": 18454846.5583
+    },
+    {
+      "ts_code": "002463.SZ",
+      "name": "沪电股份",
+      "industry": "元器件",
+      "trade_date": "20260415",
+      "pe_ttm": 46.7107,
+      "pb": 11.8141,
+      "ps_ttm": 9.4241,
+      "total_mv": 17854244.8963
+    },
+    {
+      "ts_code": "600183.SH",
+      "name": "生益科技",
+      "industry": "元器件",
+      "trade_date": "20260415",
+      "pe_ttm": 48.7428,
+      "pb": 9.7173,
+      "ps_ttm": 5.7158,
+      "total_mv": 16250807.6487
+    },
+    {
+      "ts_code": "300433.SZ",
+      "name": "蓝思科技",
+      "industry": "元器件",
+      "trade_date": "20260415",
+      "pe_ttm": 38.8762,
+      "pb": 2.8648,
+      "ps_ttm": 2.0992,
+      "total_mv": 15619794.2343
+    },
+    {
+      "ts_code": "000725.SZ",
+      "name": "京东方Ａ",
+      "industry": "元器件",
+      "trade_date": "20260415",
+      "pe_ttm": 25.2993,
+      "pb": 1.1143,
+      "ps_ttm": 0.7243,
+      "total_mv": 14817731.2256
+    },
+    {
+      "ts_code": "002938.SZ",
+      "name": "鹏鼎控股",
+      "industry": "元器件",
+      "trade_date": "20260415",
+      "pe_ttm": 36.8497,
+      "pb": 4.0349,
+      "ps_ttm": 3.5185,
+      "total_mv": 13773859.1371
+    },
+    {
+      "ts_code": "300408.SZ",
+      "name": "三环集团",
+      "industry": "元器件",
+      "trade_date": "20260415",
+      "pe_ttm": 47.8103,
+      "pb": 5.7799,
+      "ps_ttm": 13.8985,
+      "total_mv": 12518560.8274
+    },
+    {
+      "ts_code": "603296.SH",
+      "name": "华勤技术",
+      "industry": "元器件",
+      "trade_date": "20260415",
+      "pe_ttm": 24.7727,
+      "pb": 3.8933,
+      "ps_ttm": 0.5858,
+      "total_mv": 10043561.4175
+    },
+    {
+      "ts_code": "002600.SZ",
+      "name": "领益智造",
+      "industry": "元器件",
+      "trade_date": "20260415",
+      "pe_ttm": 43.3807,
+      "pb": 4.1282,
+      "ps_ttm": 1.9297,
+      "total_mv": 9924304.9844
+    },
+    {
+      "ts_code": "000100.SZ",
+      "name": "TCL科技",
+      "industry": "元器件",
+      "trade_date": "20260415",
+      "pe_ttm": 20.0328,
+      "pb": 1.4729,
+      "ps_ttm": 0.4916,
+      "total_mv": 9048375.1644
+    },
+    {
+      "ts_code": "601231.SH",
+      "name": "环旭电子",
+      "industry": "元器件",
+      "trade_date": "20260415",
+      "pe_ttm": 47.2036,
+      "pb": 3.879,
+      "ps_ttm": 1.4855,
+      "total_mv": 8748902.7956
+    },
+    {
+      "ts_code": "688183.SH",
+      "name": "生益电子",
+      "industry": "元器件",
+      "trade_date": "20260415",
+      "pe_ttm": 58.9726,
+      "pb": 15.1206,
+      "ps_ttm": 9.1508,
+      "total_mv": 8687540.3517
+    },
+    {
+      "ts_code": "002241.SZ",
+      "name": "歌尔股份",
+      "industry": "元器件",
+      "trade_date": "20260415",
+      "pe_ttm": 29.3916,
+      "pb": 2.4287,
+      "ps_ttm": 0.8595,
+      "total_mv": 8545004.2861
+    },
+    {
+      "ts_code": "002179.SZ",
+      "name": "中航光电",
+      "industry": "元器件",
+      "trade_date": "20260415",
+      "pe_ttm": 35.1383,
+      "pb": 3.1324,
+      "ps_ttm": 3.5515,
+      "total_mv": 7595212.6613
+    },
+    {
+      "ts_code": "688375.SH",
+      "name": "国博电子",
+      "industry": "元器件",
+      "trade_date": "20260415",
+      "pe_ttm": 143.8582,
+      "pb": 11.2925,
+      "ps_ttm": 30.6001,
+      "total_mv": 7301182.525
+    },
+    {
+      "ts_code": "300475.SZ",
+      "name": "香农芯创",
+      "industry": "元器件",
+      "trade_date": "20260415",
+      "pe_ttm": 131.5142,
+      "pb": 20.0209,
+      "ps_ttm": 2.0301,
+      "total_mv": 7156451.4972
+    },
+    {
+      "ts_code": "300136.SZ",
+      "name": "信维通信",
+      "industry": "元器件",
+      "trade_date": "20260415",
+      "pe_ttm": 107.7952,
+      "pb": 8.6315,
+      "ps_ttm": 7.5216,
+      "total_mv": 6627845.1703
+    }
+  ],
+  "mainbz_latest": [],
+  "valuation_percentile_5y": {
+    "pe_ttm": 0.11363636363636363,
+    "pb": 0.11363636363636363,
+    "ps_ttm": 0.11363636363636363
+  }
+}

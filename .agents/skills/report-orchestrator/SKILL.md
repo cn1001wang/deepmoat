@@ -35,7 +35,11 @@ description: DeepMoat 报告总控技能。用于在 analysis、12-report、valu
 
 ## 统一命名规则（硬规则）
 
-`outputs/` 下统一格式：
+统一根目录：`outputs/reports/{symbol}_{name}/`
+
+同一只股票的所有产物（`analysis` / `r12` / `value` / `index` / 图表）必须落在同一股票目录中。
+
+目录内文件格式：
 
 `{prefix}_{symbol}_{name}_{YYMMDDHHmm}[_{artifact}].md`
 
@@ -48,17 +52,17 @@ artifact 约定：
 
 示例：
 
-- `analysis_000513_丽珠集团_2604152130.md`
-- `r12_000513_丽珠集团_2604152130.md`
-- `value_000513_丽珠集团_2604152130.md`
-- `value_000513_丽珠集团_2604152130_draft.md`
-- `index_000513_丽珠集团_2604152130.md`
+- `outputs/reports/000513_丽珠集团/analysis_000513_丽珠集团_2604152130.md`
+- `outputs/reports/000513_丽珠集团/r12_000513_丽珠集团_2604152130.md`
+- `outputs/reports/000513_丽珠集团/value_000513_丽珠集团_2604152130.md`
+- `outputs/reports/000513_丽珠集团/value_000513_丽珠集团_2604152130_draft.md`
+- `outputs/reports/000513_丽珠集团/index_000513_丽珠集团_2604152130.md`
 
 ## 多技能串联时的索引文件
 
 若一次任务触发多个子 skill，额外生成：
 
-`index_{symbol}_{name}_{YYMMDDHHmm}.md`
+`outputs/reports/{symbol}_{name}/index_{symbol}_{name}_{YYMMDDHHmm}.md`
 
 索引文件最少包含：
 

@@ -32,11 +32,11 @@
 
 ## 产物命名建议
 
-统一放在 `outputs/`，建议：
+统一放在 `outputs/reports/{symbol}_{name}/`，建议：
 
-- `12-report`：`r12_{symbol}_{name}_{YYMMDDHHmm}.md`
-- `analysis`：`analysis_{symbol}_{name}_{YYMMDDHHmm}.md`
-- `value-report`：`value_{symbol}_{name}_{YYMMDDHHmm}.md`
+- `12-report`：`outputs/reports/{symbol}_{name}/r12_{symbol}_{name}_{YYMMDDHHmm}.md`
+- `analysis`：`outputs/reports/{symbol}_{name}/analysis_{symbol}_{name}_{YYMMDDHHmm}.md`
+- `value-report`：`outputs/reports/{symbol}_{name}/value_{symbol}_{name}_{YYMMDDHHmm}.md`
 
 ## 数据冲突处理
 

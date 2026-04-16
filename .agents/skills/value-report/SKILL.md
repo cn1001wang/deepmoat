@@ -57,38 +57,44 @@ uv run python .agents/skills/value-report/render_value_report_charts.py <草稿m
 
 ## 执行流程（标准）
 
-1. 标的识别  
+1. 标的识别
+
 - 优先用用户给的 `ts_code`；若只有名称，先映射 `stock_basic -> ts_code`。
 
-2. 草稿生成（推荐）  
+2. 草稿生成（推荐）
+
 - 运行：
   ```bash
   uv run python .agents/skills/value-report/value_report_scaffold.py <股票代码或名称>
   ```
 - 目录规则（强制）：一个股票一个目录，所有中间产物都放在同一目录。
-- 根目录：`outputs/value-reports/`
-- 股票目录：`outputs/value-reports/{symbol}_{name}/`
+- 根目录：`outputs/reports/`
+- 股票目录：`outputs/reports/{symbol}_{name}/`
 - 草稿命名：`value_{symbol}_{name}_{YYMMDDHHmm}_draft.md`
 - 正式报告命名：`value_{symbol}_{name}_{YYMMDDHHmm}.md`
 
-3. 图表生成（强制）  
+3. 图表生成（强制）
+
 - 运行固定脚本生成图表：
   ```bash
   uv run python .agents/skills/value-report/render_value_report_charts.py <草稿md路径>
   ```
 
-4. 外部增量验证  
-- 补充公司公告、交易所披露、公司官网、权威行业数据。  
+4. 外部增量验证
+
+- 补充公司公告、交易所披露、公司官网、权威行业数据。
 - 外部资料只做“增量验证”，不替代本地财务主口径。
 
-5. 正式报告写作  
+5. 正式报告写作
+
 - 每节末尾必须有“结论”。
 - 结论必须区分“事实”与“推断”。
 - 输出多头逻辑、空头逻辑、跟踪指标。
 - 输出 100 分评分与分项权重。
 - 回答终极三问。
 
-6. 图表回插（强制）  
+6. 图表回插（强制）
+
 - 把图表片段插回正式报告（优先自动注入）：
   ```bash
   uv run python .agents/skills/value-report/render_value_report_charts.py <草稿md路径> --inject-report <正式报告md路径>
@@ -100,6 +106,7 @@ uv run python .agents/skills/value-report/render_value_report_charts.py <草稿m
 > `结论：`、`事实：`、`推断：`
 
 ### 1. 公司概况（商业模式优先）
+
 - 公司如何赚钱（业务模式）
 - 收入结构（核心业务占比）
 - 客户类型（ToB / ToC / 政府）
@@ -107,6 +114,7 @@ uv run python .agents/skills/value-report/render_value_report_charts.py <草稿m
 - 客户与区域集中度
 
 ### 2. 行业与竞争格局
+
 - 行业空间与天花板
 - 行业阶段（成长/成熟/衰退）
 - 未来 3-5 年增速判断
@@ -114,6 +122,7 @@ uv run python .agents/skills/value-report/render_value_report_charts.py <草稿m
 - 公司在产业链位置与议价能力
 
 ### 3. 护城河分析（含真伪辨别）
+
 - 护城河类型：品牌、成本、技术、渠道、转换成本、网络效应
 - 真伪辨别问题：
 - 提价 5% 是否流失客户
@@ -124,6 +133,7 @@ uv run python .agents/skills/value-report/render_value_report_charts.py <草稿m
 - 护城河强度结论：强 / 中 / 弱 / 伪护城河
 
 ### 4. 管理层与资本配置
+
 - 管理层背景、稳定性、诚信记录
 - 分红连续性与分红率
 - 回购用途（注销 / 激励）
@@ -133,25 +143,35 @@ uv run python .agents/skills/value-report/render_value_report_charts.py <草稿m
 - 管理层结论：价值创造者 / 中性 / 价值毁灭者
 
 ### 5. 财务分析（成长/盈利/健康/现金流）
+
 #### 5.1 成长性
+
 - 近 3-5 年营收与净利增速
 - 增长稳定性（是否大幅波动）
+
 #### 5.2 盈利能力
+
 - 毛利率、净利率、ROE、ROIC
 - 与历史与同业的对比
+
 #### 5.3 财务健康
+
 - 资产负债率、有息负债、现金储备、流动比率
+
 #### 5.4 现金流质量
+
 - 经营现金流、自由现金流
 - 经营现金流/净利润匹配度
 - 利润真实性判断
 
 ### 6. 成长驱动
+
 - 未来 3-5 年增长来源拆解
 - 增长来自提价/放量/新品/扩产/并购哪一项
 - 增长逻辑是否可验证、可持续
 
 ### 7. 风险分析（含幸存者偏差）
+
 - 政策/监管风险
 - 行业竞争风险
 - 技术替代风险
@@ -163,23 +183,27 @@ uv run python .agents/skills/value-report/render_value_report_charts.py <草稿m
 - 抗风险能力结论：强 / 中 / 弱
 
 ### 8. 估值分析
+
 - PE / PB / PS / PEG / EV/EBITDA（可得项必须给）
 - 当前估值 vs 历史分位
 - 当前估值 vs 同业
 - 安全边际判断：高估 / 合理 / 低估
 
 ### 9. 投资判断（多头/空头/跟踪指标）
+
 - 多头逻辑（3-5 条）
 - 空头逻辑（3-5 条）
 - 核心跟踪指标（季度可跟踪）
 
 ### 10. 最终结论
+
 - 这是否是一家好公司
 - 是否具备长期投资价值
 - 当前价格是否值得买入
 - 投资建议：买入 / 观察 / 回避（必须明确）
 
 ### 11. 总评分（100分）
+
 - 商业模式（权重+得分）
 - 护城河（权重+得分）
 - 管理层与资本配置（权重+得分）
@@ -189,18 +213,19 @@ uv run python .agents/skills/value-report/render_value_report_charts.py <草稿m
 - 最终总分（100）
 
 ### 12. 三个终极问题（必须回答）
+
 - 如果提价 5%，客户会不会流失？
 - 公司赚的钱有没有被管理层浪费？
 - 在行业最差年份，公司是怎么活下来的？
 
 ## 输出命名（统一）
 
-- 输出根目录：`outputs/value-reports/`
-- 每股单独目录：`outputs/value-reports/{symbol}_{name}/`
-- 草稿文件：`outputs/value-reports/{symbol}_{name}/value_{symbol}_{name}_{YYMMDDHHmm}_draft.md`
-- 正式报告：`outputs/value-reports/{symbol}_{name}/value_{symbol}_{name}_{YYMMDDHHmm}.md`
-- 图表目录：`outputs/value-reports/{symbol}_{name}/charts/`
-- 图表片段：`outputs/value-reports/{symbol}_{name}/charts/charts_snippet.md`
+- 输出根目录：`outputs/reports/`
+- 每股单独目录：`outputs/reports/{symbol}_{name}/`
+- 草稿文件：`outputs/reports/{symbol}_{name}/value_{symbol}_{name}_{YYMMDDHHmm}_draft.md`
+- 正式报告：`outputs/reports/{symbol}_{name}/value_{symbol}_{name}_{YYMMDDHHmm}.md`
+- 图表目录：`outputs/reports/{symbol}_{name}/charts/`
+- 图表片段：`outputs/reports/{symbol}_{name}/charts/charts_snippet.md`
 - 代码仅保留 6 位数字，不带 `.SH/.SZ`
 - 示例：`value_000513_丽珠集团_2604152130.md`
 
@@ -212,15 +237,15 @@ uv run python .agents/skills/value-report/value_report_scaffold.py 300232.SZ
 
 # 2) 生成图表（默认输出到草稿同目录/charts）
 uv run python .agents/skills/value-report/render_value_report_charts.py \
-  outputs/value-reports/300232_洲明科技/value_300232_洲明科技_2604151509_draft.md
+  outputs/reports/300232_洲明科技/value_300232_洲明科技_2604151509_draft.md
 
 # 3) 写正式报告（AI写入同目录）
-# outputs/value-reports/300232_洲明科技/value_300232_洲明科技_2604151509.md
+# outputs/reports/300232_洲明科技/value_300232_洲明科技_2604151509.md
 
 # 4) 回插图表
 uv run python .agents/skills/value-report/render_value_report_charts.py \
-  outputs/value-reports/300232_洲明科技/value_300232_洲明科技_2604151509_draft.md \
-  --inject-report outputs/value-reports/300232_洲明科技/value_300232_洲明科技_2604151509.md
+  outputs/reports/300232_洲明科技/value_300232_洲明科技_2604151509_draft.md \
+  --inject-report outputs/reports/300232_洲明科技/value_300232_洲明科技_2604151509.md
 ```
 
 ## 失败兜底

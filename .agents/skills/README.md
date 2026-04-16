@@ -21,7 +21,9 @@
 
 ## 输出命名统一规范
 
-`outputs/` 下所有报告文件统一为短命名：
+统一目录：`outputs/reports/{symbol}_{name}/`
+
+目录内文件命名：
 
 `{prefix}_{symbol}_{name}_{YYMMDDHHmm}[_{artifact}].md`
 
@@ -33,8 +35,8 @@
 
 示例：
 
-- `analysis_000513_丽珠集团_2604152130.md`
-- `r12_000513_丽珠集团_2604152130.md`
-- `value_000513_丽珠集团_2604152130.md`
-- `value_000513_丽珠集团_2604152130_draft.md`
-- `index_000513_丽珠集团_2604152130.md`
+- `outputs/reports/000513_丽珠集团/analysis_000513_丽珠集团_2604152130.md`
+- `outputs/reports/000513_丽珠集团/r12_000513_丽珠集团_2604152130.md`
+- `outputs/reports/000513_丽珠集团/value_000513_丽珠集团_2604152130.md`
+- `outputs/reports/000513_丽珠集团/value_000513_丽珠集团_2604152130_draft.md`
+- `outputs/reports/000513_丽珠集团/index_000513_丽珠集团_2604152130.md`

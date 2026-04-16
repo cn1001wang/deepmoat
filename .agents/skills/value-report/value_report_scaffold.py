@@ -13,7 +13,7 @@ from sqlalchemy.exc import SQLAlchemyError
 
 ROOT = Path(__file__).resolve().parents[3]
 OUTPUT_DIR = ROOT / "outputs"
-REPORT_ROOT_DIR = OUTPUT_DIR / "value-reports"
+REPORT_ROOT_DIR = OUTPUT_DIR / "reports"
 
 
 def slugify_symbol(ts_code: str) -> str:
@@ -1005,7 +1005,7 @@ def main():
     parser.add_argument(
         "--output-dir",
         default=str(REPORT_ROOT_DIR),
-        help="报告根目录，默认 outputs/value-reports",
+        help="报告根目录，默认 outputs/reports",
     )
     args = parser.parse_args()
 
