@@ -47,6 +47,11 @@ def parse_args() -> argparse.Namespace:
         default="",
         help="将图片片段插入到目标报告 markdown（会写入标记区间）",
     )
+    parser.add_argument(
+        "--cleanup-intermediate",
+        action="store_true",
+        help="Delete intermediate files after generation (draft markdown and charts_snippet.md).",
+    )
     return parser.parse_args()
 
 
@@ -334,7 +339,22 @@ def main() -> None:
     if args.inject_report:
         inject_snippet(target, snippet)
         print(f"已插入图表片段到: {target}")
+    if args.cleanup_intermediate:
+        removed: list[str] = []
+        if draft_path.exists():
+            draft_path.unlink()
+            removed.append(str(draft_path))
+        if snippet_path.exists():
+            snippet_path.unlink()
+            removed.append(str(snippet_path))
+        if removed:
+            print("已清理中间产物:")
+            for item in removed:
+                print(f"- {item}")
+        else:
+            print("未发现可清理的中间产物。")
 
 
 if __name__ == "__main__":
     main()
+

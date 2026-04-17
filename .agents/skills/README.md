@@ -2,20 +2,33 @@
 
 仓库内技能统一放在 `.agents/skills/`。
 
+## Cross-Platform Local-Only Setup
+
+为保证 Mac/Windows 一致并强制使用仓库本地 skill（不走全局 `~/.codex/skills`），在仓库根目录执行：
+
+```bash
+python scripts/ensure_repo_skills.py --purge-global
+```
+
+该命令会：
+
+- 生成/更新 `.claude/skills`、`.trae/skills`、`.codex/skills` 到 `.agents/skills` 的本地映射。
+- 清理全局目录 `~/.codex/skills` 中与本仓库同名的 skill，避免路径漂移。
+
 ## 总控与子技能
 
 - `report-orchestrator/`：总控 skill，只做路由编排与输出命名规范。
 - `analysis/`：角色化对话分析（巴菲特/芒格/本杰明），不产出 12 模块报告。
 - `12-report/`：12 模式结构化报告，不产出角色对话。
 - `value-report/`：深度价值研究模板（含评分卡与终极三问）。
-- `deepmoat-local-data/`：读取本地数据库与本地 HTTP 接口，补充外部 `tushare-data`。
+- `deepmoat-local-data/`：读取本地数据库与本地 HTTP 接口，作为 `tushare-data` 的缓存加速层（仅在特定场景启用）。
 
 ## 标准流程
 
-- 只要对话：`report-orchestrator -> tushare-data -> deepmoat-local-data -> analysis`
-- 只要结构化：`report-orchestrator -> tushare-data -> deepmoat-local-data -> 12-report`
-- 深度价值：`report-orchestrator -> tushare-data -> deepmoat-local-data -> value-report`
-- 结构化 + 对话：`report-orchestrator -> tushare-data -> deepmoat-local-data -> 12-report -> analysis`
+- 默认（常规单票/少量标的）：`report-orchestrator -> tushare-data -> analysis|12-report|value-report`
+- 大规模横向比较（例如 20+ 标的）或用户明确要求极致速度：`report-orchestrator -> deepmoat-local-data -> analysis|12-report|value-report`
+- 若使用本地缓存链路，必要时再用 `tushare-data` 对关键结论做“最新日期回补/抽样校验”。
+- 结构化 + 对话：默认 `report-orchestrator -> tushare-data -> 12-report -> analysis`；极速场景可替换数据层为 `deepmoat-local-data`。
 
 默认不要并行触发 `analysis + 12-report + value-report`，避免重复输出。
 

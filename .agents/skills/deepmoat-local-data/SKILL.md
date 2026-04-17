@@ -8,6 +8,15 @@ description: 读取 DeepMoat 的本地数据库和本地 HTTP 接口，并在需
 当用户要查项目本地数据库、本地 HTTP 接口、仓库内财务整合逻辑，或明确要求把结果保存到 `outputs/` 时使用本 skill。
 这个 skill 不负责替代外部 `tushare-data`。
 
+## 触发条件（硬规则）
+
+- 不作为默认数据链路，默认优先外部 `tushare-data`。
+- 仅在以下场景优先触发本 skill：
+  - 横向比较标的非常多（例如 20+，或用户要大范围批量筛选/排序）。
+  - 用户明确提出“速度优先/尽快返回”，可接受基于本地缓存的数据。
+  - 用户明确要求读取本地数据库或本地 HTTP 接口。
+- 本地缓存来源于 `tushare-data`；若任务要求“最新/当前/今日”口径，关键结论需再用 `tushare-data` 回补日期或抽样校验。
+
 ## 数据源顺序
 
 1. 先看 `app/models/models.py`，确认字段与表名。
@@ -16,7 +25,7 @@ description: 读取 DeepMoat 的本地数据库和本地 HTTP 接口，并在需
    - `app/service/finance_service.py`
    - `app/service/finance_metrics.py`
    - `app/service/trend_service.py`
-3. 若用户需要 Tushare、宏观、行业、公告等通用外部数据，切换到外部 `tushare-data` skill。
+3. 若用户需要 Tushare、宏观、行业、公告等通用外部数据，优先切换到外部 `tushare-data` skill。
 4. 用户提供本地 HTTP 接口时，优先读取本地接口并保存结果。
 
 ## 本地接口规则

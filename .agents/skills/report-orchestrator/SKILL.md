@@ -13,17 +13,28 @@ description: DeepMoat 报告总控技能。用于在 analysis、12-report、valu
 
 ## 路由规则（固定）
 
+0. 数据层选择（先判定，后路由）
+- 默认优先：`tushare-data`（官方实时数据链路）。
+- 仅在以下场景启用 `deepmoat-local-data`：
+  - 横向比较标的非常多（例如 20+ 只，或用户要全市场批量筛选/排序）。
+  - 用户明确提出“速度优先/尽快返回”，可接受基于本地缓存的结果。
+- 使用 `deepmoat-local-data` 时，如涉及“最新/当前/今日”，对关键结论需用 `tushare-data` 做日期回补或抽样校验。
+
 1. 用户要“对话式聊透公司/像股东会问答”  
-- 路由：`tushare-data -> deepmoat-local-data -> analysis`
+- 默认路由：`tushare-data -> analysis`
+- 极速/大批量路由：`deepmoat-local-data -> analysis`（必要时补 `tushare-data` 校验）
 
 2. 用户要“12模块/标准化/模板化研报”  
-- 路由：`tushare-data -> deepmoat-local-data -> 12-report`
+- 默认路由：`tushare-data -> 12-report`
+- 极速/大批量路由：`deepmoat-local-data -> 12-report`（必要时补 `tushare-data` 校验）
 
 3. 用户要“终极三问/评分100分/护城河深度研究”  
-- 路由：`tushare-data -> deepmoat-local-data -> value-report`
+- 默认路由：`tushare-data -> value-report`
+- 极速/大批量路由：`deepmoat-local-data -> value-report`（必要时补 `tushare-data` 校验）
 
 4. 用户同时要“结构化 + 对话”  
-- 路由：`tushare-data -> deepmoat-local-data -> 12-report -> analysis`
+- 默认路由：`tushare-data -> 12-report -> analysis`
+- 极速/大批量路由：`deepmoat-local-data -> 12-report -> analysis`（必要时补 `tushare-data` 校验）
 
 默认不要并行触发 `analysis + 12-report + value-report`。
 

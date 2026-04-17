@@ -24,4 +24,4 @@
 
 - 外部 `tushare-data`：负责 Tushare 官方数据、宏观、行业、公告等通用取数。
 - 本仓库 `deepmoat-local-data`：负责 `app/models/models.py` 对应的本地数据库、本地 HTTP 接口和 `outputs/` 落盘。
-- 做公司分析时，优先把两者结合，而不是让本仓库 skill 冒充外部 `tushare-data`。
+- 做公司分析时，默认优先 `tushare-data`；仅在大批量横向比较或用户明确要求极致速度时再启用 `deepmoat-local-data`。

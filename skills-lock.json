@@ -2,7 +2,7 @@
   "version": 1,
   "skills": {
     "tushare-data": {
-      "source": "/Users/raywang/codes/github/tushare-skills",
+      "source": ".agents/skills/tushare-data",
       "sourceType": "local",
       "computedHash": "69f7c0b0b9fae62e2cb2525496f42fbb025a1ea5c5940ed1252061eb5897a77a"
     }

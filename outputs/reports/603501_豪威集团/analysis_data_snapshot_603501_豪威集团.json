@@ -1,0 +1,155 @@
+{
+  "stock": {
+    "ts_code": "603501.SH",
+    "symbol": "603501",
+    "name": "豪威集团",
+    "fullname": "豪威集成电路(集团)股份有限公司",
+    "industry": "半导体",
+    "list_date": "20170504"
+  },
+  "company": {
+    "chairman": "高文宝",
+    "manager": "高文宝",
+    "main_business": "主营业务:半导体分立器件和电源管理IC等半导体产品的研发设计,以及被动件(包括电阻,电容,电感等),结构器件,分立器件和IC等半导体产品的分销业务.,公司研发设计的半导体产品主要有分立器件(包括TVS,MOSFET,肖特基二极管等),电源管理IC(包括LDO,DC-DC,LED背光驱动,开关等),直播芯片和射频芯片等,公司代理分销的半导体产品主要有被动件(包括电阻,电容,电感等),结构器件,分立器件和IC等.",
+    "employees": 6160,
+    "website": "www.omnivision-group.com"
+  },
+  "latest_dates": {
+    "external": {
+      "price_date": "20260416",
+      "income_end_date": "20251231",
+      "balancesheet_end_date": "20251231",
+      "cashflow_end_date": "20251231"
+    },
+    "local": {
+      "price_date": "20260416",
+      "income_end_date": "20251231",
+      "balancesheet_end_date": "20251231",
+      "cashflow_end_date": "20251231"
+    }
+  },
+  "date_source_selected": {
+    "price_date": "external",
+    "income_end_date": "external",
+    "balancesheet_end_date": "external",
+    "cashflow_end_date": "external"
+  },
+  "latest_price": {
+    "trade_date": "20260416",
+    "close": 93.71,
+    "pe_ttm": 29.2138,
+    "pb": 3.6159,
+    "ps_ttm": 4.0958,
+    "total_mv_yi": 1181.82
+  },
+  "valuation_percentile_5y": {
+    "window_start": "20210101",
+    "window_end": "20260417",
+    "pe_ttm_pct": 6.04,
+    "pb_pct": 0.39
+  },
+  "trend_annual_5y": [
+    {
+      "end_date": "20211231",
+      "revenue_yi": 241.04,
+      "net_profit_attr_p_yi": 44.76,
+      "operate_profit_yi": 50.0,
+      "gross_margin_pct": 34.49,
+      "roe_pct": 32.63
+    },
+    {
+      "end_date": "20221231",
+      "revenue_yi": 200.78,
+      "net_profit_attr_p_yi": 9.9,
+      "operate_profit_yi": 12.98,
+      "gross_margin_pct": 30.75,
+      "roe_pct": 5.79
+    },
+    {
+      "end_date": "20231231",
+      "revenue_yi": 210.21,
+      "net_profit_attr_p_yi": 5.56,
+      "operate_profit_yi": 6.67,
+      "gross_margin_pct": 21.76,
+      "roe_pct": 2.82
+    },
+    {
+      "end_date": "20241231",
+      "revenue_yi": 257.31,
+      "net_profit_attr_p_yi": 33.23,
+      "operate_profit_yi": 32.71,
+      "gross_margin_pct": 29.44,
+      "roe_pct": 14.56
+    },
+    {
+      "end_date": "20251231",
+      "revenue_yi": 288.55,
+      "net_profit_attr_p_yi": 40.45,
+      "operate_profit_yi": 46.06,
+      "gross_margin_pct": 30.63,
+      "roe_pct": 15.45
+    }
+  ],
+  "cagr": {
+    "revenue_cagr": 0.046,
+    "net_profit_cagr": -0.025
+  },
+  "latest_financial_safety": {
+    "report_end_date": "20251231",
+    "ann_date": "20260331",
+    "revenue_yi": 288.55,
+    "net_profit_attr_p_yi": 40.45,
+    "n_cashflow_act_yi": 41.2,
+    "free_cashflow_yi": null,
+    "total_assets_yi": 436.01,
+    "total_liab_yi": 154.47,
+    "debt_ratio_pct": 35.43,
+    "money_cap_yi": 128.21,
+    "interest_debt_yi": null
+  },
+  "mainbiz": {
+    "end_date": "20251231",
+    "top_items": [
+      {
+        "item": "半导体设计及销售(行业)",
+        "sales_yi": 238.0,
+        "share_pct": 20.62
+      },
+      {
+        "item": "国外",
+        "sales_yi": 230.62,
+        "share_pct": 19.98
+      },
+      {
+        "item": "CMOS图像传感器",
+        "sales_yi": 212.46,
+        "share_pct": 18.41
+      },
+      {
+        "item": "半导体设计销售—代销",
+        "sales_yi": 137.01,
+        "share_pct": 11.87
+      },
+      {
+        "item": "半导体设计销售—直销",
+        "sales_yi": 100.99,
+        "share_pct": 8.75
+      },
+      {
+        "item": "中国大陆",
+        "sales_yi": 57.53,
+        "share_pct": 4.98
+      },
+      {
+        "item": "半导体代理销售(销售模式)",
+        "sales_yi": 49.05,
+        "share_pct": 4.25
+      },
+      {
+        "item": "代理销售",
+        "sales_yi": 49.05,
+        "share_pct": 4.25
+      }
+    ]
+  }
+}

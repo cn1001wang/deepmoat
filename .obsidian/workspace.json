@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "outputs/skill-analysis--605499-SH--东鹏饮料--20260415-1730--dialogue.md",
+                "file": "outputs/reports/603501_豪威集团/analysis_603501_豪威集团_2604171053.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "skill-analysis--605499-SH--东鹏饮料--20260415-1730--dialogue"
+              "title": "analysis_603501_豪威集团_2604171053"
             }
           }
         ]
@@ -185,7 +185,51 @@
   },
   "active": "1667449525210769",
   "lastOpenFiles": [
-    "outputs/skill-value-report--605499-SH--东鹏饮料--20260415-1714--report.md",
-    "outputs/skill-analysis--605499-SH--东鹏饮料--20260415-1730--dialogue.md"
+    "outputs/reports/300274_阳光电源/analysis_300274_阳光电源_2604170022.md",
+    "outputs/reports/300274_阳光电源/r12_300274_阳光电源_2604170021.md",
+    "outputs/reports/300274_阳光电源/analysis_300274_阳光电源_2604171029.md",
+    "outputs/reports/peer_mainbz_2025Q4/peer_mainbz_20251231_all.csv",
+    "outputs/reports/peer_mainbz_2025Q4/status.csv",
+    "outputs/reports/peer_mainbz_2025Q4/raw_002335_SZ.csv",
+    "outputs/reports/peer_mainbz_2025Q4/raw_300827_SZ.csv",
+    "outputs/reports/peer_mainbz_2025Q4/raw_688390_SH.csv",
+    "outputs/reports/peer_mainbz_2025Q4/raw_300763_SZ.csv",
+    "outputs/reports/peer_mainbz_2025Q4/mainbz_20251231_605117_SH.csv",
+    "outputs/reports/peer_mainbz_2025Q4/raw_605117_SH.csv",
+    "outputs/reports/peer_mainbz_2025Q4",
+    "outputs/reports/300274_阳光电源/value_300274_阳光电源_2604170018.md",
+    "outputs/reports/300274_阳光电源/upstream_battery_q4_vs_q3.csv",
+    "outputs/reports/300274_阳光电源/value_300274_阳光电源_2604170018_draft.md",
+    "outputs/skill-analysis--605499-SH--东鹏饮料--20260415-1730--dialogue.md",
+    "outputs_old/value_605117_德业股份_2604160027.md",
+    "outputs_old/value_605117_德业股份_2604160024_draft.md",
+    "outputs_old/value_603379_三美股份_2604152338.md",
+    "outputs_old/value_603379_三美股份_2604152335_draft.md",
+    "outputs_old/value_002847_盐津铺子_2604152312.md",
+    "outputs_old/value_002847_盐津铺子_2604152259_draft.md",
+    "outputs_old/value_002001_新和成_2604152346.md",
+    "outputs_old/value_002001_新和成_2604152344_draft.md",
+    "outputs_old/value_000513_丽珠集团_2604152243_draft.md",
+    "outputs_old/skill-value-report--605499-SH--东鹏饮料--20260415-1714--report.md",
+    "outputs_old/skill-value-report--605499-SH--东鹏饮料--20260415-1709--draft.md",
+    "outputs_old/skill-analysis--605499-SH--东鹏饮料--20260415-1730--dialogue.md",
+    "outputs_old/skill-analysis--300274-SZ--阳光电源--20260415-1534--dialogue.md",
+    "outputs_old/skill-analysis--300274-SZ--阳光电源--20260415-1531--dialogue.md",
+    "outputs_old/skill-12-report--605499-SH--东鹏饮料--20260415-1721--report.md",
+    "outputs_old/peer_605117_德业股份_2604160024.md",
+    "outputs_old/peer_603379_三美股份_2604152337.md",
+    "outputs_old/peer_002847_盐津铺子_2604152305.md",
+    "outputs_old/peer_002001_新和成_2604152344.md",
+    "outputs_old/charts/value_605117_德业股份_2604160024/chart_11.svg",
+    "outputs_old/charts/value_605117_德业股份_2604160024/chart_12.svg",
+    "outputs_old/charts/value_605117_德业股份_2604160024/chart_10.svg",
+    "outputs_old/charts/value_605117_德业股份_2604160024/chart_09.svg",
+    "outputs_old/charts/value_605117_德业股份_2604160024/chart_08.svg",
+    "outputs_old/charts/value_605117_德业股份_2604160024/chart_07.svg",
+    "outputs_old/charts/value_605117_德业股份_2604160024/chart_06.svg",
+    "outputs_old/charts/value_605117_德业股份_2604160024/chart_05.svg",
+    "outputs_old/charts/value_605117_德业股份_2604160024/chart_04.svg",
+    "outputs_old/charts/value_605117_德业股份_2604160024/chart_03.svg",
+    "outputs_old/charts/value_605117_德业股份_2604160024/charts_snippet.md"
   ]
 }
