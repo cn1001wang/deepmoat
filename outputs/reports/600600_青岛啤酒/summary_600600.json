@@ -1,0 +1,64 @@
+{
+  "company": {
+    "ts_code": "600600.SH",
+    "symbol": "600600",
+    "name": "青岛啤酒",
+    "industry": "啤酒",
+    "area": "山东",
+    "list_date": "19930827",
+    "main_business": "主要产品:啤酒.",
+    "chairman": "姜宗祥",
+    "manager": "姜宗祥",
+    "employees": 29870,
+    "website": "www.tsingtao.com.cn"
+  },
+  "latest_valuation": {
+    "trade_date": "20260417",
+    "close": 61.95,
+    "pe_ttm": 18.4198,
+    "pb": 2.7574,
+    "ps_ttm": 2.6025,
+    "dv_ttm": 3.5513,
+    "total_mv": 8451188.7746,
+    "circ_mv": 4393035.2169
+  },
+  "pe_ttm_1y_pct": 52.17391304347826,
+  "pb_1y_pct": 69.56521739130434,
+  "ps_ttm_1y_pct": 39.130434782608695,
+  "latest_fin_end_date": "20251231",
+  "latest_financials": {
+    "revenue": 32473493664.0,
+    "net_profit": 4588101137.0,
+    "ocf": 4592509302.0,
+    "fcf": 2362339819.7394,
+    "total_assets": 52131585698.0,
+    "total_liab": 20619389821.0,
+    "money_cap": 12859566861.0,
+    "interest_debt": NaN,
+    "net_cash": NaN
+  },
+  "latest_indicator": {
+    "ts_code": "600600.SH",
+    "ann_date": "20251028",
+    "end_date": "20250930",
+    "roe": 17.4666,
+    "roic": 16.5718,
+    "roa": 13.3309,
+    "grossprofit_margin": 43.656,
+    "netprofit_margin": 18.3958,
+    "current_ratio": 1.5867,
+    "quick_ratio": 1.4652,
+    "debt_to_assets": 37.3458,
+    "ocf_to_profit": 81.4642,
+    "eps": 3.867,
+    "bps": 22.9682,
+    "arturn_days": 1.1126,
+    "invturn_days": 44.2101
+  },
+  "cagr_5y": {
+    "revenue": 0.01859120823834859,
+    "net_profit": 0.09810209477150922
+  },
+  "ext_price_date": "20260417",
+  "ext_close": 61.95
+}

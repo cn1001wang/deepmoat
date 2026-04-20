@@ -1,0 +1,290 @@
+{
+  "asof": "2026-04-17 21:51:47",
+  "basic": [
+    {
+      "ts_code": "300760.SZ",
+      "symbol": "300760",
+      "name": "迈瑞医疗",
+      "area": "深圳",
+      "industry": "医疗保健",
+      "market": "创业板",
+      "list_date": "20181016"
+    }
+  ],
+  "company": [
+    {
+      "ts_code": "300760.SZ",
+      "exchange": "SZSE",
+      "chairman": "李西廷",
+      "manager": "吴昊",
+      "secretary": "李文楣",
+      "reg_capital": 121244.1394,
+      "setup_date": "19990125",
+      "province": "广东",
+      "city": "深圳市",
+      "introduction": "公司主要从事医疗器械的研发、制造、营销及服务。我们始终以客户需求为导向，致力于为全球医疗机构提供优质产品和服务；融合创新，紧贴临床需求，支持医疗机构提供优质的医疗服务，从而帮助世界各地改善医疗条件、降低医疗成本。公司主要产品覆盖三大领域：生命信息与支持(PMLS)、体外诊断(IVD)以及医学影像(MIS)，拥有国内同行业中最全的产品线，以安全、高效、易用的“一站式”产品和IT解决方案满足临床需求。着眼于广阔的市场空间以及增长新机遇，我们还布局了动物医疗、微创外科、及自动体外除颤器等高潜力业务，并逐年增加投入，以期种子业务逐步成为公司未来发展的力量。",
+      "website": "www.mindray.com",
+      "email": "ir@mindray.com",
+      "office": "广东省深圳市南山区高新技术产业园区科技南十二路迈瑞大厦1-4层",
+      "employees": 21288,
+      "main_business": "主营业务:公司主要从事医疗器械的研发,制造,营销及服务,主要产品涵盖三大领域:生命信息与支持,体外诊断以及医学影像,目前已拥有丰富的产品品类.",
+      "business_scope": "生产经营医疗电子仪器及其配套试剂及产品的软件开发(不含国家限制项目);自产产品售后服务,自有房屋租赁."
+    }
+  ],
+  "price_latest": [
+    {
+      "ts_code": "300760.SZ",
+      "trade_date": "20260417",
+      "open": 159.92,
+      "high": 159.92,
+      "low": 156.71,
+      "close": 156.75,
+      "vol": 89170.87,
+      "amount": 1404800.005,
+      "pct_chg": -2.3121
+    }
+  ],
+  "valuation_latest": [
+    {
+      "ts_code": "300760.SZ",
+      "trade_date": "20260417",
+      "close": 156.75,
+      "pe_ttm": 23.3598,
+      "pb": 4.9891,
+      "ps_ttm": 5.7103,
+      "dv_ttm": 2.9537,
+      "total_mv": 19005018.851,
+      "circ_mv": 18988683.761
+    }
+  ],
+  "valuation_percentile_5y": {
+    "pe_ttm_pct": 0.04375,
+    "pb_pct": 0.0015625,
+    "start": "20210101",
+    "count": 1280
+  },
+  "annual_metrics": [
+    {
+      "end_date": "20251231",
+      "ann_date": "20260331",
+      "total_revenue": 33282159404.0,
+      "revenue": 33282159404.0,
+      "n_income_attr_p": 8135775409.0,
+      "oper_cost": 13207838172.0,
+      "operate_profit": 9794893991.0,
+      "total_assets": 59266767707.0,
+      "total_liab": 16255447654.0,
+      "money_cap": 17690372308.0,
+      "total_hldr_eqy_exc_min_int": 38093330471.0,
+      "n_cashflow_act": 10144968535.0,
+      "free_cashflow": 8643552524.3138,
+      "c_cash_equ_end_period": 17624904267.0,
+      "roe": 22.0035,
+      "roe_dt": 21.8217,
+      "roa": 15.9055,
+      "grossprofit_margin": 60.3156,
+      "netprofit_margin": 25.3934,
+      "debt_to_assets": 27.4276,
+      "ocf_to_or": 0.3048
+    },
+    {
+      "end_date": "20241231",
+      "ann_date": "20250429",
+      "total_revenue": 36725749548.0,
+      "revenue": 36725749548.0,
+      "n_income_attr_p": 11668487164.0,
+      "oper_cost": 13547519384.0,
+      "operate_profit": 13111824390.0,
+      "total_assets": 56643545143.0,
+      "total_liab": 15885367579.0,
+      "money_cap": 16644066286.0,
+      "total_hldr_eqy_exc_min_int": 35856358850.0,
+      "n_cashflow_act": 12432041281.0,
+      "free_cashflow": 10244050159.827,
+      "c_cash_equ_end_period": 14907725807.0,
+      "roe": 33.8503,
+      "roe_dt": 33.1933,
+      "roa": 23.8692,
+      "grossprofit_margin": 63.1117,
+      "netprofit_margin": 31.9666,
+      "debt_to_assets": 28.0444,
+      "ocf_to_or": 0.3385
+    },
+    {
+      "end_date": "20231231",
+      "ann_date": "20240427",
+      "total_revenue": 34931900884.0,
+      "revenue": 34931900884.0,
+      "n_income_attr_p": 11582226085.0,
+      "oper_cost": 11820708329.0,
+      "operate_profit": 13069857833.0,
+      "total_assets": 47940003061.0,
+      "total_liab": 14593963297.0,
+      "money_cap": 18787180188.0,
+      "total_hldr_eqy_exc_min_int": 33085389686.0,
+      "n_cashflow_act": 11062025295.0,
+      "free_cashflow": 7057884970.2355,
+      "c_cash_equ_end_period": 18668419278.0,
+      "roe": 35.6014,
+      "roe_dt": 35.1449,
+      "roa": 25.7744,
+      "grossprofit_margin": 66.1607,
+      "netprofit_margin": 33.1457,
+      "debt_to_assets": 30.4421,
+      "ocf_to_or": 0.3167
+    },
+    {
+      "end_date": "20221231",
+      "ann_date": "20230428",
+      "total_revenue": 30365643811.0,
+      "revenue": 30365643811.0,
+      "n_income_attr_p": 9607174094.0,
+      "oper_cost": 10885289458.0,
+      "operate_profit": 10990515031.0,
+      "total_assets": 46745236809.0,
+      "total_liab": 14746124646.0,
+      "money_cap": 23185663305.0,
+      "total_hldr_eqy_exc_min_int": 31980825123.0,
+      "n_cashflow_act": 12141147876.0,
+      "free_cashflow": 9946252800.3378,
+      "c_cash_equ_end_period": 18973643833.0,
+      "roe": 32.6034,
+      "roe_dt": 32.3249,
+      "roa": 25.0007,
+      "grossprofit_margin": 64.1526,
+      "netprofit_margin": 31.65,
+      "debt_to_assets": 31.5457,
+      "ocf_to_or": 0.3998
+    },
+    {
+      "end_date": "20211231",
+      "ann_date": "20220420",
+      "total_revenue": 25269580818.0,
+      "revenue": 25269580818.0,
+      "n_income_attr_p": 8001553606.0,
+      "oper_cost": 8842715216.0,
+      "operate_profit": 9065716982.0,
+      "total_assets": 38103022990.0,
+      "total_liab": 11134976999.0,
+      "money_cap": 15361062758.0,
+      "total_hldr_eqy_exc_min_int": 26952803219.0,
+      "n_cashflow_act": 8998649175.0,
+      "free_cashflow": 7464790120.7432,
+      "c_cash_equ_end_period": 15132728506.0,
+      "roe": 31.8594,
+      "roe_dt": 31.2576,
+      "roa": 24.138,
+      "grossprofit_margin": 65.0065,
+      "netprofit_margin": 31.6746,
+      "debt_to_assets": 29.2233,
+      "ocf_to_or": 0.3561
+    },
+    {
+      "end_date": "20201231",
+      "ann_date": "20210429",
+      "total_revenue": 21025846389.0,
+      "revenue": 21025846389.0,
+      "n_income_attr_p": 6657676062.0,
+      "oper_cost": 7366094227.0,
+      "operate_profit": 7455160122.0,
+      "total_assets": 33306388963.0,
+      "total_liab": 10016007455.0,
+      "money_cap": 15864751347.0,
+      "total_hldr_eqy_exc_min_int": 23277631000.0,
+      "n_cashflow_act": 8870109849.0,
+      "free_cashflow": 7818696192.3273,
+      "c_cash_equ_end_period": 15722513481.0,
+      "roe": 31.8011,
+      "roe_dt": 31.2374,
+      "roa": 23.9317,
+      "grossprofit_margin": 64.9665,
+      "netprofit_margin": 31.6734,
+      "debt_to_assets": 30.0723,
+      "ocf_to_or": 0.4219
+    },
+    {
+      "end_date": "20191231",
+      "ann_date": "20200402",
+      "total_revenue": 16555991314.0,
+      "revenue": 16555991314.0,
+      "n_income_attr_p": 4680646750.0,
+      "oper_cost": 5755057286.0,
+      "operate_profit": 5378792252.0,
+      "total_assets": 25634149109.0,
+      "total_liab": 7017098819.0,
+      "money_cap": 14272968133.0,
+      "total_hldr_eqy_exc_min_int": 18593110199.0,
+      "n_cashflow_act": 4721794915.0,
+      "free_cashflow": 3714575821.2593,
+      "c_cash_equ_end_period": 14094133527.0,
+      "roe": 27.736,
+      "roe_dt": 27.3469,
+      "roa": 21.3153,
+      "grossprofit_margin": 65.2388,
+      "netprofit_margin": 28.2968,
+      "debt_to_assets": 27.374,
+      "ocf_to_or": 0.2852
+    }
+  ],
+  "rev_cagr_2020_2024": 0.09620455368420955,
+  "np_cagr_2020_2024": 0.040914979086151604,
+  "revenue_structure_latest": [
+    {
+      "item": "体外诊断类产品",
+      "sales": 13764979775.0,
+      "share": 37.48045974394445
+    },
+    {
+      "item": "生命信息与支持类产品",
+      "sales": 13557440254.0,
+      "share": 36.915353453251186
+    },
+    {
+      "item": "医学影像类产品",
+      "sales": 7497547094.0,
+      "share": 20.414960038326296
+    },
+    {
+      "item": "电生理与血管介入类产品",
+      "sales": 1438668010.0,
+      "share": 3.9173278359361534
+    },
+    {
+      "item": "其他主营业务",
+      "sales": 365435994.0,
+      "share": 0.9950402605735267
+    },
+    {
+      "item": "其他业务",
+      "sales": 101678421.0,
+      "share": 0.2768586679683905
+    }
+  ],
+  "peer_basic": [
+    {
+      "ts_code": "300206.SZ",
+      "symbol": "300206",
+      "name": "理邦仪器",
+      "industry": "医疗保健"
+    },
+    {
+      "ts_code": "300463.SZ",
+      "symbol": "300463",
+      "name": "迈克生物",
+      "industry": "医疗保健"
+    },
+    {
+      "ts_code": "300832.SZ",
+      "symbol": "300832",
+      "name": "新产业",
+      "industry": "医疗保健"
+    },
+    {
+      "ts_code": "688271.SH",
+      "symbol": "688271",
+      "name": "联影医疗",
+      "industry": "医疗保健"
+    }
+  ],
+  "peer_valuation_latest": []
+}
