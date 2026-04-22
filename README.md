@@ -53,5 +53,10 @@ python app.worker.sync.py --xxx
 uv run python -m app.worker.sync --daily
 ```
 
-
+低积分推荐（先按关注股票跑）
+uv run python -m app.worker.sync --fina_mainbz --mainbz_ts_codes 600600.SH,000001.SZ --mainbz_types P,D --workers 1
+全市场增量（跳过已存在）
+uv run python -m app.worker.sync --fina_mainbz --mainbz_types P,D --workers 1
+全市场强制重刷（最耗积分，不建议频繁）
+uv run python -m app.worker.sync --fina_mainbz --mainbz_types P,D --workers 1 --fina_mainbz_force
 

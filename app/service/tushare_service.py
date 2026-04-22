@@ -3,7 +3,7 @@ import tushare as ts
 from app.config import settings
 from datetime import datetime
 from sqlalchemy.inspection import inspect
-from app.models.models import FinaIndicator, Dividend, FinaAudit
+from app.models.models import FinaIndicator, Dividend, FinaAudit, FinaMainbz
 from app.utils.tushare_utils import RateLimiter
 
 token = settings.TUSHARE_TOKEN
@@ -141,3 +141,59 @@ def fetch_dividend(ts_code: str | None = None, limit: int | None = None, offset:
     """
     df = pro.dividend(ts_code=ts_code, fields=fields, limit=limit, offset=offset)
     return df
+
+
+# 文档要求 2000 积分可用，单次最多 100 行；为稳妥控制在 60 次/分钟。
+tushare_limiter_mainbz = RateLimiter(max_calls=60, period=60)
+
+
+def fetch_fina_mainbz(
+    ts_code: str,
+    bz_type: str = "P",
+    period: str | None = None,
+    start_date: str | None = None,
+    end_date: str | None = None,
+    limit: int = 100,
+    offset: int = 0,
+) -> pd.DataFrame:
+    """
+    获取主营业务构成（fina_mainbz）。
+
+    说明：
+    - 2000 积分可用（按 Tushare 文档）
+    - 默认按单股 + type(P/D) 拉取
+    - 单次建议 limit=100（接口上限）
+    """
+    tushare_limiter_mainbz.acquire()
+
+    params: dict[str, str | int] = {
+        "ts_code": ts_code,
+        "type": bz_type,
+        "limit": limit,
+        "offset": offset,
+    }
+    if period:
+        params["period"] = period
+    if start_date:
+        params["start_date"] = start_date
+    if end_date:
+        params["end_date"] = end_date
+
+    # 显式字段优先，失败后降级为接口默认字段。
+    fields = "ts_code,end_date,type,bz_item,bz_sales,bz_profit,bz_cost,curr_type,update_flag"
+    try:
+        df = pro.fina_mainbz(fields=fields, **params)
+    except Exception:
+        df = pro.fina_mainbz(**params)
+
+    if df is None or df.empty:
+        return pd.DataFrame()
+
+    # 若接口没返回 type 字段，使用请求参数补齐，保证入库主键完整。
+    if "type" not in df.columns:
+        df["type"] = bz_type
+
+    # 对齐模型真实字段，避免接口字段漂移。
+    cols = [c.key for c in inspect(FinaMainbz).mapper.column_attrs]
+    keep = [c for c in df.columns if c in cols]
+    return df[keep]
