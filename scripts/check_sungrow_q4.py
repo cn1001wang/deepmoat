@@ -1,4 +1,10 @@
-﻿import os
+"""
+作用：
+专项核对阳光电源 2025Q4 与 2024Q4 的单季度收入、毛利率、营业利润率和净利率，
+用于验证全年累计报表拆分出的四季度数据是否合理。
+"""
+
+import os
 from pathlib import Path
 import pandas as pd
 from dotenv import load_dotenv

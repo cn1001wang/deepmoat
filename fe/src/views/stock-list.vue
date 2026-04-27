@@ -3,7 +3,7 @@
 import type { DailyBasic, FinaIndicator, IndustryTreeNode, Stock } from '@/api/finance'
 import dayjs from 'dayjs'
 import { onMounted, ref } from 'vue'
-import { buildIndustryTree, getAllUserStockData, getDailyBasic, getFinaIndicator, getIndexMember, getStockBasicAll, getStockCompany, getSWIndustry } from '@/api/finance'
+import { buildIndustryTree, getAllUserStockData, getAnnualMetricTrends, getDailyBasic, getFinaIndicator, getIndexMember, getStockBasicAll, getStockCompany, getSWIndustry } from '@/api/finance'
 import StockListTable from '@/components/StockListTable.vue'
 import { toFixed } from '@/utils'
 
@@ -95,9 +95,10 @@ function getLatestTradingDay(): Date {
 const tradingDay = dayjs(getLatestTradingDay()).format('YYYYMMDD')
 const pick = <T, K extends keyof T>(o: T, k: K[]) => k.reduce((r, c) => (r[c] = o[c], r), {} as Pick<T, K>)
 function loadData() {
-  Promise.all([getSWIndustry(), getStockBasicAll(), getIndexMember(), getStockCompany(), getFinaIndicator({ endDate }), getDailyBasic({ tradeDate: tradingDay }), getAllUserStockData()]).then((res) => {
-    const [{ data: industry }, { data: stock }, { data: member }, { data: company }, { data: finaIndicator }, { data: dailyBasic }, { data: userData }] = res
+  Promise.all([getSWIndustry(), getStockBasicAll(), getIndexMember(), getStockCompany(), getFinaIndicator({ endDate }), getDailyBasic({ tradeDate: tradingDay }), getAllUserStockData(), getAnnualMetricTrends({ years: 10 })]).then((res) => {
+    const [{ data: industry }, { data: stock }, { data: member }, { data: company }, { data: finaIndicator }, { data: dailyBasic }, { data: userData }, { data: annualMetricTrends }] = res
     industryTree.value = buildIndustryTree(industry)
+    const annualMetricMap = new Map(annualMetricTrends.map(item => [item.tsCode, item.annualMetrics]))
     const _stockList: Stock[] = []
     stock.forEach((item) => {
       const indexMember = member.find(o => o.tsCode === item.tsCode)
@@ -113,6 +114,7 @@ function loadData() {
         ...finaIndicatorItem,
         ...dailyBasicItem,
         ...userDataItem,
+        annualMetrics: annualMetricMap.get(item.tsCode),
       })
     })
 

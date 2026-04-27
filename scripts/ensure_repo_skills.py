@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
-Ensure skill resolution is repo-local across machines.
+作用：
+把项目技能统一映射到仓库内 `.agents/skills/`，避免不同机器误用全局技能目录。
+适合在新机器初始化仓库，或修复技能解析路径混乱时使用。
 
 What this script does:
 1. Creates/updates local mapping files for supported clients:
@@ -93,4 +95,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

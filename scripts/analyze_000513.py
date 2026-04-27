@@ -1,3 +1,9 @@
+"""
+作用：
+读取 000513.SZ（丽珠集团）的核心财务表、财务指标和估值数据，
+用于手工排查数据库数据是否完整，或做单票基本面快速核对。
+"""
+
 import os
 import sys
 from pathlib import Path

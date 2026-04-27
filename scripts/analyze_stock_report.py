@@ -1,3 +1,9 @@
+"""
+作用：
+按单只股票生成结构化文本分析，整合利润表、资产负债表、现金流、估值和主营业务，
+适合快速产出一个可读的基本面摘要报告。
+"""
+
 import os
 import sys
 from pathlib import Path

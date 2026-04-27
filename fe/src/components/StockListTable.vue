@@ -3,7 +3,7 @@ import { AgGridVue } from 'ag-grid-vue3'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import type { ColDef, FilterChangedEvent, GridReadyEvent } from 'ag-grid-community'
-import type { Stock } from '@/api/finance'
+import type { AnnualMetricSeries, Stock } from '@/api/finance'
 
 const props = defineProps<{
   data: Stock[]
@@ -51,6 +51,109 @@ const cellClassRules = {
     return prevNode && value === prevNode.data?.[field]
   },
 }
+
+type AnnualMetricKey = 'revenue' | 'netProfit' | 'operatingCashFlow' | 'grossMargin'
+
+const annualMetricColumnMeta: Array<{
+  headerName: string
+  key: AnnualMetricKey
+  color: string
+  unit: 'yuan' | 'percent'
+}> = [
+  { headerName: '营业收入数据', key: 'revenue', color: '#7c3aed', unit: 'yuan' },
+  { headerName: '净利润数据', key: 'netProfit', color: '#ef4444', unit: 'yuan' },
+  { headerName: '经营净现金数据', key: 'operatingCashFlow', color: '#f59e0b', unit: 'yuan' },
+  { headerName: '毛利率数据', key: 'grossMargin', color: '#0891b2', unit: 'percent' },
+]
+
+function isFiniteNumber(value: unknown): value is number {
+  return typeof value === 'number' && Number.isFinite(value)
+}
+
+function formatAnnualMetricValue(value: number | null, unit: 'yuan' | 'percent') {
+  if (!isFiniteNumber(value))
+    return '暂无数据'
+  if (unit === 'percent')
+    return `${value.toFixed(2)}%`
+  return `${(value / 100000000).toFixed(2)}亿`
+}
+
+function findLatestAnnualMetric(values: Array<number | null>, years: number[]) {
+  for (let index = values.length - 1; index >= 0; index -= 1) {
+    const value = values[index]
+    if (isFiniteNumber(value)) {
+      return {
+        year: years[index],
+        value,
+      }
+    }
+  }
+  return null
+}
+
+function createAnnualBarCell(series: AnnualMetricSeries | undefined, key: AnnualMetricKey, color: string, unit: 'yuan' | 'percent') {
+  const values = series?.[key] || Array.from<number | null>({ length: 10 }).fill(null)
+  const years = series?.years || []
+  const numericValues = values.filter(isFiniteNumber)
+  const min = numericValues.length ? Math.min(0, ...numericValues) : 0
+  const max = numericValues.length ? Math.max(0, ...numericValues) : 0
+  const span = max - min || 1
+  const zeroY = max <= 0 ? 0 : min >= 0 ? 1 : max / span
+  const valueToY = (value: number) => (max - value) / span
+
+  const root = document.createElement('div')
+  root.className = 'annual-bar-cell'
+  root.title = values.map((value, index) => {
+    const year = years[index] || ''
+    return `${year}: ${formatAnnualMetricValue(value, unit)}`
+  }).join('\n')
+
+  const latestMetric = findLatestAnnualMetric(values, years)
+  const latest = document.createElement('span')
+  latest.className = 'annual-bar-latest'
+  latest.textContent = latestMetric
+    ? `${latestMetric.year || ''} ${formatAnnualMetricValue(latestMetric.value, unit)}`
+    : '暂无数据'
+  root.appendChild(latest)
+
+  values.forEach((value) => {
+    const slot = document.createElement('span')
+    slot.className = 'annual-bar-slot'
+
+    const bar = document.createElement('span')
+    bar.className = 'annual-bar'
+
+    if (isFiniteNumber(value)) {
+      const valueY = valueToY(value)
+      const start = Math.min(zeroY, valueY)
+      const end = Math.max(zeroY, valueY)
+      const top = Math.max(0, Math.min(1, start)) * 100
+      const height = Math.max(2, Math.max(0.02, end - start) * 100)
+      bar.style.top = `${top}%`
+      bar.style.height = `${height}%`
+      bar.style.background = value < 0 ? '#22c55e' : color
+    }
+    else {
+      bar.classList.add('annual-bar-placeholder')
+    }
+
+    slot.appendChild(bar)
+    root.appendChild(slot)
+  })
+
+  return root
+}
+
+const annualMetricColumns: ColDef[] = annualMetricColumnMeta.map(meta => ({
+  headerName: meta.headerName,
+  colId: `annual_${meta.key}`,
+  width: 190,
+  minWidth: 150,
+  sortable: false,
+  filter: false,
+  cellClass: 'annual-bar-grid-cell',
+  cellRenderer: (params: any) => createAnnualBarCell(params.data?.annualMetrics, meta.key, meta.color, meta.unit),
+}))
 
 const finaIndicatorColumns = [
   { headerName: '收盘价', field: 'close' },
@@ -258,6 +361,7 @@ const columnDefs: ColDef[] = [
     sortable: false,
     resizable: false,
   },
+  ...annualMetricColumns,
   {
     headerName: '一级行业',
     field: 'l1Name',
@@ -596,6 +700,58 @@ const columnDefs: ColDef[] = [
 
 :deep(.ag-cell) {
   border-right: 1px solid #eee !important;
+}
+
+:deep(.annual-bar-grid-cell) {
+  padding: 4px 10px !important;
+}
+
+:deep(.annual-bar-cell) {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(10, minmax(5px, 1fr));
+  align-items: stretch;
+  gap: 3px;
+  width: 100%;
+  height: 34px;
+}
+
+:deep(.annual-bar-latest) {
+  position: absolute;
+  top: -1px;
+  right: 0;
+  z-index: 1;
+  max-width: 96px;
+  overflow: hidden;
+  padding-left: 4px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #111827;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:deep(.annual-bar-slot) {
+  position: relative;
+  min-width: 0;
+  height: 100%;
+}
+
+:deep(.annual-bar) {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: auto;
+  border-radius: 2px 2px 0 0;
+}
+
+:deep(.annual-bar-placeholder) {
+  top: calc(50% - 1px) !important;
+  height: 2px !important;
+  border-radius: 999px;
+  background: #d1d5db !important;
 }
 
 .industry-grid-wrapper {

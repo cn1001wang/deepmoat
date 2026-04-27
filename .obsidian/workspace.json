@@ -4,24 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "322e38c361ca0899",
+        "id": "28e98d7ebe0ec16f",
         "type": "tabs",
         "children": [
           {
-            "id": "1667449525210769",
+            "id": "18ac7a105d5baf02",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "outputs/reports/300274_阳光电源/value_300274_阳光电源_2604170018.md",
+                "file": "outputs/reports/300274_阳光电源/分析.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "value_300274_阳光电源_2604170018"
+              "title": "分析"
+            }
+          },
+          {
+            "id": "273a9c8b1090831f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "有用的总结.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "有用的总结"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -78,7 +93,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 421.5
+    "width": 421.5,
+    "collapsed": true
   },
   "right": {
     "id": "08c001ea0529b228",
@@ -183,17 +199,29 @@
       "bases:新建数据库": false
     }
   },
-  "active": "1667449525210769",
+  "active": "273a9c8b1090831f",
   "lastOpenFiles": [
-    "outputs/reports/300274_阳光电源/analysis_300274_阳光电源_2604170022.md",
+    "fe/dist/assets/index-2ErDMgST.js",
+    "fe/dist/assets/index-CLrzt9zZ.css",
+    "fe/dist/assets/Industry-_3WC146L.js",
+    "fe/dist/index.html",
+    "fe/dist/assets/index-UPCQYd5H.css",
+    "fe/dist/assets/index-DdCjEMtg.js",
+    "fe/dist/assets/Industry-CHvKQwRE.js",
+    "fe/dist/assets/Industry-4HUlcH1P.css",
+    "fe/dist/assets",
+    "scripts/__pycache__/analyze_cmb_agm_report.cpython-313.pyc",
+    "scripts/__pycache__/peer_snapshot.cpython-313.pyc",
+    "outputs/reports/300274_阳光电源/分析.md",
+    "有用的总结.md",
+    "2026-04-22.md",
+    "未命名 1.canvas",
+    "未命名.canvas",
     "outputs/reports/300274_阳光电源/value_300274_阳光电源_2604170018.md",
+    "outputs/reports/300274_阳光电源/analysis_300274_阳光电源_2604170022.md",
     "outputs/reports/600600_青岛啤酒/value_600600_青岛啤酒_2604220015.md",
-    "app/crud/__pycache__/crud_fina_mainbz.cpython-313.pyc",
-    "app/crud/crud_fina_mainbz.py",
     "outputs/reports/digital_chip_design/digital_chip_design_summary_260422.md",
     "outputs/reports/digital_chip_design/digital_chip_design_watchlist_260422.md",
-    "outputs/reports/digital_chip_design/digital_chip_design_compare_260422.csv",
-    "outputs/reports/digital_chip_design",
     "outputs/reports/603501_豪威集团/analysis_603501_豪威集团_2604202209.md",
     "outputs/reports/600600_青岛啤酒/charts/charts_snippet.md",
     "outputs/reports/600600_青岛啤酒/value_600600_青岛啤酒_2604220015_draft.md",
@@ -208,7 +236,6 @@
     "outputs/reports/600519_贵州茅台/charts/chart_05.svg",
     "outputs/reports/600519_贵州茅台/charts/chart_04.svg",
     "outputs/reports/600519_贵州茅台/charts/chart_03.svg",
-    "outputs/reports/600519_贵州茅台/charts",
     "outputs/reports/600519_贵州茅台/value_600519_贵州茅台_2604220011.md",
     "outputs/reports/600519_贵州茅台/r12_600519_贵州茅台_2604220011.md",
     "outputs/reports/600519_贵州茅台/analysis_600519_贵州茅台_2604220011.md",
@@ -217,19 +244,10 @@
     "outputs/reports/000848_承德露露/value_000848_承德露露_2604181628.md",
     "outputs/reports/002001_新和成/value_002001_新和成_2604202228_draft.md",
     "outputs/reports/300750_宁德时代/value_300750_宁德时代_2604181616.md",
-    "outputs/reports/600519_贵州茅台/peer_valuation_600519.csv",
-    "outputs/reports/600519_贵州茅台/financial_annual_merge_600519.csv",
-    "outputs/reports/600519_贵州茅台/income_annual_600519.csv",
-    "outputs/reports/600519_贵州茅台/daily_basic_1y_600519.csv",
-    "outputs/reports/600519_贵州茅台/calc_metrics_600519.json",
     "outputs/reports/600519_贵州茅台/value_600519_贵州茅台_2604220008_draft.md",
     "outputs/reports/300274_阳光电源/value_300274_阳光电源_2604170018_draft.md",
     "agents/排雷分析.md",
     "outputs/reports/000848_承德露露/analysis_000848_承德露露_2604181628.md",
-    "outputs/reports/300896_爱美客/value_300896_爱美客_2604202217.md",
-    "outputs/reports/300896_爱美客/r12_300896_爱美客_2604202217.md",
-    "outputs/reports/300896_爱美客/analysis_300896_爱美客_2604202217.md",
-    "outputs/reports/300896_爱美客/value_300896_爱美客_2604202212_draft.md",
-    "outputs/reports/603501_豪威集团/value_603501_豪威集团_2604202205_draft.md"
+    "outputs/reports/300896_爱美客/value_300896_爱美客_2604202217.md"
   ]
 }
