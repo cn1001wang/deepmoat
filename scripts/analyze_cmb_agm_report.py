@@ -1,3 +1,9 @@
+"""
+作用：
+针对招商银行生成股东会问答风格的专项分析报告，
+会结合公司财务数据、同业对比和公开资料做定向输出。
+"""
+
 from datetime import datetime
 from pathlib import Path
 import sys

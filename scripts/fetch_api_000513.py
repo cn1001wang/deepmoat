@@ -1,3 +1,9 @@
+"""
+作用：
+请求本地接口 `http://localhost:5100/stock/000513.SZ`，
+并把返回结果落盘到 `outputs/`，用于调试本地股票详情接口。
+"""
+
 import requests
 import json
 from pathlib import Path

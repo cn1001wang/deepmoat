@@ -53,11 +53,41 @@ python app.worker.sync.py --xxx
 uv run python -m app.worker.sync --daily
 ```
 
-ROE > 12%
-AND 市值 > 100亿
-AND 营收增长率 > 10%
-AND 净利润增长率 > 10%
-AND 经营现金流 > 净利润
-AND 资产负债率 < 70%
-AND PE < 行业平均
+低积分推荐（先按关注股票跑）
+uv run python -m app.worker.sync --fina_mainbz --mainbz_ts_codes 600600.SH,000001.SZ --mainbz_types P,D --workers 1
+全市场增量（跳过已存在）
+uv run python -m app.worker.sync --fina_mainbz --mainbz_types P,D --workers 1
+全市场强制重刷（最耗积分，不建议频繁）
+uv run python -m app.worker.sync --fina_mainbz --mainbz_types P,D --workers 1 --fina_mainbz_force
+
+## scripts 说明
+
+`scripts/` 目录里现在同时存在临时核查脚本、数据筛选脚本、报告生成脚本和浏览器控制台脚本。为了避免“文件名看不出用途”，约定如下：
+
+- 新脚本优先使用中文或中文主语义命名，例如：`查询主营业务近五年.py`、`筛选低估值A股.py`
+- 每个脚本文件开头必须补一段中文说明，至少写清楚“作用”和“适用场景”
+- 能复用的脚本尽量参数化；一次性实验脚本也至少要说明它是给哪只股票、哪个专项问题服务的
+
+当前脚本用途示例：
+
+- `scripts/查询主营业务近五年.py`：按产品关键字查询 `fina_mainbz` 近五年数据，输出收入、利润、成本、毛利率、同比和 CAGR
+- `scripts/screen_low_valuation_a_share.py`：筛选低估值 A 股候选池
+- `scripts/filter_high_growth_from_shortlist.py`：从候选池里再筛高增长股票
+- `scripts/quality_check_report.py`：单票财务质量检查
+- `scripts/analyze_stock_report.py`：生成单票结构化分析报告
+- `scripts/analysis_dialogue_report.py`：生成对话式长篇公司分析报告
+- `scripts/peer_snapshot.py`：生成简版同业快照
+- `scripts/check_sungrow_q4.py`：专项核对阳光电源四季度数据
+- `scripts/fetch_api_000513.py`：调试本地股票详情接口
+- `scripts/富途牛牛脚本.js`：在富途网页抓取财务表 JSON
+- `scripts/东方财富脚本.js`：在东方财富网页导出 CSV
+
+示例：
+
+```bash
+uv run python scripts/查询主营业务近五年.py --keyword 储能系统
+uv run python scripts/查询主营业务近五年.py --keyword 光伏逆变器
+uv run python scripts/quality_check_report.py 600036.SH
+uv run python scripts/peer_snapshot.py 招商银行
+```
 

@@ -1,0 +1,64 @@
+{
+  "company": {
+    "ts_code": "603501.SH",
+    "symbol": "603501",
+    "name": "豪威集团",
+    "industry": "半导体",
+    "area": "上海",
+    "list_date": "20170504",
+    "main_business": "主营业务:半导体分立器件和电源管理IC等半导体产品的研发设计,以及被动件(包括电阻,电容,电感等),结构器件,分立器件和IC等半导体产品的分销业务.,公司研发设计的半导体产品主要有分立器件(包括TVS,MOSFET,肖特基二极管等),电源管理IC(包括LDO,DC-DC,LED背光驱动,开关等),直播芯片和射频芯片等,公司代理分销的半导体产品主要有被动件(包括电阻,电容,电感等),结构器件,分立器件和IC等.",
+    "chairman": "高文宝",
+    "manager": "高文宝",
+    "employees": 5376,
+    "website": "www.omnivision-group.com"
+  },
+  "latest_valuation": {
+    "trade_date": "20260420",
+    "close": 93.78,
+    "pe_ttm": 29.2357,
+    "pb": 3.6186,
+    "ps_ttm": 4.0988,
+    "dv_ttm": 0.6578,
+    "total_mv": 11827044.8468,
+    "circ_mv": 11351194.811
+  },
+  "pe_ttm_1y_pct": 14.893617021276595,
+  "pb_1y_pct": 14.893617021276595,
+  "ps_ttm_1y_pct": 14.893617021276595,
+  "latest_fin_end_date": "20251231",
+  "latest_financials": {
+    "revenue": 28854805517.49,
+    "net_profit": 4045416530.33,
+    "ocf": 4119514939.45,
+    "fcf": 1686635526.257,
+    "total_assets": 43600508995.65,
+    "total_liab": 15446649874.69,
+    "money_cap": 12820808745.16,
+    "interest_debt": NaN,
+    "net_cash": NaN
+  },
+  "latest_indicator": {
+    "ts_code": "603501.SH",
+    "ann_date": "20251029",
+    "end_date": "20250930",
+    "roe": 12.3686,
+    "roic": 8.6554,
+    "roa": 8.3455,
+    "grossprofit_margin": 30.4292,
+    "netprofit_margin": 14.688,
+    "current_ratio": 2.4593,
+    "quick_ratio": 1.6792,
+    "debt_to_assets": 37.3419,
+    "ocf_to_profit": 75.7211,
+    "eps": 2.67,
+    "bps": 22.7745,
+    "arturn_days": 53.7966,
+    "invturn_days": 133.8555
+  },
+  "cagr_5y": {
+    "revenue": 0.046006702357040075,
+    "net_profit": -0.02497950589362785
+  },
+  "ext_price_date": "20260420",
+  "ext_close": 93.78
+}

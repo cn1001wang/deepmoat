@@ -1,3 +1,9 @@
+"""
+作用：
+根据股票代码、名称或简称生成一个简版同业快照，
+快速查看目标公司最新财务数据、估值和关键指标，适合横向比较前的预览。
+"""
+
 import argparse
 import os
 from pathlib import Path

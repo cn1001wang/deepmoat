@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
+<text x="40" y="42" font-size="26" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#222">毛利率和净利率对比图</text>
+<rect x="40" y="60" width="22" height="10" fill="#4E79A7"/>
+<text x="68" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">毛利率</text>
+<rect x="210" y="60" width="22" height="10" fill="#F28E2B"/>
+<text x="238" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">净利率</text>
+<line x1="90" y1="130" x2="90" y2="630" stroke="#555" stroke-width="1"/>
+<line x1="90" y1="630.0" x2="1130" y2="630.0" stroke="#555" stroke-width="1"/>
+<line x1="90" y1="630.0" x2="1130" y2="630.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="635.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.00</text>
+<line x1="90" y1="530.0" x2="1130" y2="530.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="535.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">18.39</text>
+<line x1="90" y1="430.0" x2="1130" y2="430.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="435.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">36.78</text>
+<line x1="90" y1="329.99999999999994" x2="1130" y2="329.99999999999994" stroke="#eee" stroke-width="1"/>
+<text x="78" y="334.99999999999994" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">55.18</text>
+<line x1="90" y1="229.99999999999997" x2="1130" y2="229.99999999999997" stroke="#eee" stroke-width="1"/>
+<text x="78" y="234.99999999999997" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">73.57</text>
+<line x1="90" y1="130.0" x2="1130" y2="130.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="135.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">91.96</text>
+<text x="194.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2020</text>
+<text x="402.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2021</text>
+<text x="610.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2022</text>
+<text x="818.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2023</text>
+<text x="1026.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2024</text>
+<rect x="123.28" y="132.99" width="65.06" height="497.01" fill="#4E79A7" opacity="0.85"/>
+<rect x="331.28" y="132.28" width="65.06" height="497.72" fill="#4E79A7" opacity="0.85"/>
+<rect x="539.28" y="130.49" width="65.06" height="499.51" fill="#4E79A7" opacity="0.85"/>
+<rect x="747.28" y="130.00" width="65.06" height="500.00" fill="#4E79A7" opacity="0.85"/>
+<rect x="955.28" y="130.16" width="65.06" height="499.84" fill="#4E79A7" opacity="0.85"/>
+<rect x="194.00" y="346.29" width="65.06" height="283.71" fill="#F28E2B" opacity="0.85"/>
+<rect x="402.00" y="344.71" width="65.06" height="285.29" fill="#F28E2B" opacity="0.85"/>
+<rect x="610.00" y="343.57" width="65.06" height="286.43" fill="#F28E2B" opacity="0.85"/>
+<rect x="818.00" y="344.60" width="65.06" height="285.40" fill="#F28E2B" opacity="0.85"/>
+<rect x="1026.00" y="345.80" width="65.06" height="284.20" fill="#F28E2B" opacity="0.85"/>
+</svg>

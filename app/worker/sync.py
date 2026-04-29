@@ -2,14 +2,17 @@
 import argparse
 import logging
 import time
+import traceback
 from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import contextmanager
+from sqlalchemy import text
 
 from app.crud.crud_daily import save_daily_basic
 from app.db.session import Base, engine, SessionLocal
 from app.crud.crud_industry import save_sw_industry, save_index_member
 from app.crud.crud_stock import save_stock_basic
+from app.models.models import StockBasic
 from app.crud.crud_company import save_stock_company, get_all_listed_companies_info
 from app.crud.crud_fina_indicator import (
     save_fina_indicator,
@@ -23,6 +26,10 @@ from app.crud.crud_dividend import (
     save_dividend,
     check_dividend_exists,
 )
+from app.crud.crud_fina_mainbz import (
+    save_fina_mainbz,
+    check_fina_mainbz_exists,
+)
 from app.service.finance_service import fetch_finance_for_stock_2
 from app.utils.tushare_utils import fetch_paginated
 from app.service.tushare_service import (
@@ -34,6 +41,7 @@ from app.service.tushare_service import (
     fetch_fina_indicator,
     fetch_fina_audit,
     fetch_dividend,
+    fetch_fina_mainbz,
 )
 
 
@@ -72,6 +80,225 @@ def fetch_industry():
         with get_db_session() as db:
             save_sw_industry(db, df)
     logging.info("申万行业抓取完成！")
+
+
+def ensure_fina_mainbz_schema():
+    """
+    修复/对齐 fina_mainbz 表结构：
+    1) 补齐 type 列
+    2) 主键改为 (ts_code, end_date, type, bz_item)
+
+    说明：旧结构主键仅 (ts_code, end_date)，会导致同一期多条主营构成无法入库。
+    """
+    with engine.begin() as conn:
+        conn.execute(
+            text("ALTER TABLE fina_mainbz ADD COLUMN IF NOT EXISTS type VARCHAR(10)")
+        )
+
+        conn.execute(
+            text("UPDATE fina_mainbz SET type='P' WHERE type IS NULL OR type = ''")
+        )
+        conn.execute(
+            text(
+                "UPDATE fina_mainbz SET bz_item='UNKNOWN' "
+                "WHERE bz_item IS NULL OR bz_item = ''"
+            )
+        )
+
+        conn.execute(text("ALTER TABLE fina_mainbz ALTER COLUMN type SET NOT NULL"))
+        conn.execute(text("ALTER TABLE fina_mainbz ALTER COLUMN bz_item SET NOT NULL"))
+
+        pk_rows = conn.execute(
+            text(
+                """
+                SELECT kcu.column_name
+                FROM information_schema.table_constraints tc
+                JOIN information_schema.key_column_usage kcu
+                  ON tc.constraint_name = kcu.constraint_name
+                 AND tc.table_schema = kcu.table_schema
+                WHERE tc.table_schema = 'public'
+                  AND tc.table_name = 'fina_mainbz'
+                  AND tc.constraint_type = 'PRIMARY KEY'
+                ORDER BY kcu.ordinal_position
+                """
+            )
+        ).fetchall()
+
+        current_pk = [row[0] for row in pk_rows]
+        target_pk = ["ts_code", "end_date", "type", "bz_item"]
+
+        if current_pk != target_pk:
+            pk_name_row = conn.execute(
+                text(
+                    """
+                    SELECT tc.constraint_name
+                    FROM information_schema.table_constraints tc
+                    WHERE tc.table_schema = 'public'
+                      AND tc.table_name = 'fina_mainbz'
+                      AND tc.constraint_type = 'PRIMARY KEY'
+                    """
+                )
+            ).fetchone()
+            if pk_name_row:
+                conn.exec_driver_sql(
+                    f'ALTER TABLE fina_mainbz DROP CONSTRAINT "{pk_name_row[0]}"'
+                )
+
+            conn.execute(
+                text(
+                    """
+                    ALTER TABLE fina_mainbz
+                    ADD CONSTRAINT fina_mainbz_pkey
+                    PRIMARY KEY (ts_code, end_date, type, bz_item)
+                    """
+                )
+            )
+
+        conn.execute(
+            text(
+                """
+                CREATE INDEX IF NOT EXISTS idx_fina_mainbz_ts_type_end_date
+                ON fina_mainbz (ts_code, type, end_date DESC)
+                """
+            )
+        )
+
+    logging.info("fina_mainbz 表结构已校验/修复完成")
+
+
+def parse_mainbz_types(raw: str) -> list[str]:
+    allowed = {"P", "D", "I"}
+    parts = [p.strip().upper() for p in raw.split(",") if p.strip()]
+    if not parts:
+        return ["P", "D"]
+    invalid = [p for p in parts if p not in allowed]
+    if invalid:
+        raise ValueError(f"mainbz type 非法: {invalid}，仅支持 P/D/I")
+    # 去重并保持顺序
+    out: list[str] = []
+    for p in parts:
+        if p not in out:
+            out.append(p)
+    return out
+
+
+def parse_ts_codes(raw: str | None) -> set[str]:
+    if not raw:
+        return set()
+    return {item.strip().upper() for item in raw.split(",") if item.strip()}
+
+
+def sync_fina_mainbz(
+    max_workers=1,
+    types: list[str] | None = None,
+    force: bool = False,
+    ts_codes: set[str] | None = None,
+):
+    if types is None:
+        types = ["P", "D"]
+
+    logging.info("开始抓取主营业务构成数据 fina_mainbz...")
+    logging.info("同步类型: %s", ",".join(types))
+
+    with get_db_session() as db:
+        # 优先使用 stock_basic 在市股票，避免 stock_company 全量历史导致任务过大。
+        listed_codes = [
+            row[0]
+            for row in db.query(StockBasic.ts_code)
+            .filter(StockBasic.list_status == "L")
+            .all()
+            if row and row[0]
+        ]
+
+        if listed_codes:
+            companies = [(code, None) for code in listed_codes]
+            logging.info("股票池来源: stock_basic(list_status='L')")
+        else:
+            companies = get_all_listed_companies_info(db)
+            logging.info("股票池来源: stock_company(回退)")
+
+        if ts_codes:
+            companies = [row for row in companies if row[0] in ts_codes]
+        logging.info(f"共 {len(companies)} 支股票")
+
+        def fetch_one(ts_code: str, missing_types: list[str]):
+            for bz_type in missing_types:
+                total = 0
+                page = 0
+                while True:
+                    retries = 0
+                    df = None
+                    while retries < 3:
+                        try:
+                            df = fetch_fina_mainbz(
+                                ts_code=ts_code,
+                                bz_type=bz_type,
+                                limit=100,
+                                offset=page * 100,
+                            )
+                            break
+                        except Exception as e:
+                            retries += 1
+                            wait_s = 1.5 * retries
+                            logging.warning(
+                                "%s[%s] 第%s次拉取失败（offset=%s）: %s | %s，%.1fs后重试",
+                                ts_code,
+                                bz_type,
+                                retries,
+                                page * 100,
+                                type(e).__name__,
+                                str(e),
+                                wait_s,
+                            )
+                            time.sleep(wait_s)
+
+                    if df is None:
+                        logging.error(
+                            "%s[%s] 主营构成抓取终止（连续重试失败，offset=%s）",
+                            ts_code,
+                            bz_type,
+                            page * 100,
+                        )
+                        break
+
+                    if df.empty:
+                        break
+
+                    try:
+                        save_fina_mainbz(df)
+                    except Exception as e:
+                        logging.error(
+                            "%s[%s] 主营构成写入失败（offset=%s）: %s | %s",
+                            ts_code,
+                            bz_type,
+                            page * 100,
+                            type(e).__name__,
+                            str(e),
+                        )
+                        logging.debug(traceback.format_exc())
+                        break
+
+                    total += len(df)
+                    if len(df) < 100:
+                        break
+
+                    page += 1
+                    time.sleep(0.05)
+
+                logging.info("%s[%s] 主营构成抓取成功 (%s条)", ts_code, bz_type, total)
+
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            for ts_code, _ in companies:
+                if force:
+                    missing_types = types
+                else:
+                    missing_types = [
+                        t for t in types if not check_fina_mainbz_exists(db, ts_code, t)
+                    ]
+                if missing_types:
+                    executor.submit(fetch_one, ts_code, missing_types)
+
+    logging.info("fina_mainbz 抓取完成！")
 
 def sync_dividend():
     """
@@ -241,6 +468,14 @@ def run(args):
         sync_dividend()
     if args.fina_audit:
         sync_fina_audit_data(max_workers=args.workers)
+    if args.fina_mainbz:
+        ensure_fina_mainbz_schema()
+        sync_fina_mainbz(
+            max_workers=args.workers,
+            types=parse_mainbz_types(args.mainbz_types),
+            force=args.fina_mainbz_force,
+            ts_codes=parse_ts_codes(args.mainbz_ts_codes),
+        )
 
 
 if __name__ == "__main__":
@@ -255,6 +490,10 @@ if __name__ == "__main__":
     parser.add_argument("--fina_indicator", action="store_true", help="抓取财务指标数据")
     parser.add_argument("--dividend", action="store_true", help="抓取送股分红")
     parser.add_argument("--fina_audit", action="store_true", help="抓取财报审计意见")
+    parser.add_argument("--fina_mainbz", action="store_true", help="抓取主营业务构成")
+    parser.add_argument("--mainbz_types", type=str, default="P,D", help="主营构成类型，逗号分隔：P,D,I")
+    parser.add_argument("--mainbz_ts_codes", type=str, default="", help="仅同步指定股票，逗号分隔：如 600600.SH,000001.SZ")
+    parser.add_argument("--fina_mainbz_force", action="store_true", help="强制重刷已存在的主营构成数据")
     args = parser.parse_args()
 
     run(args)

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
+<text x="40" y="42" font-size="26" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#222">2024区域收入结构（亿元）</text>
+<path d="M 380.00 390.00 L 380.00 170.00 A 220.00 220.00 0 1 1 261.70 204.51 Z" fill="#4E79A7" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 261.70 204.51 A 220.00 220.00 0 0 1 335.73 174.50 Z" fill="#F28E2B" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 335.73 174.50 A 220.00 220.00 0 0 1 380.00 170.00 Z" fill="#E15759" stroke="#fff" stroke-width="1"/>
+<rect x="700" y="179" width="20" height="12" fill="#4E79A7"/>
+<text x="728" y="190" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">北部  29.90 (91.0%)</text>
+<rect x="700" y="209" width="20" height="12" fill="#F28E2B"/>
+<text x="728" y="220" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">中部  1.91 (5.8%)</text>
+<rect x="700" y="239" width="20" height="12" fill="#E15759"/>
+<text x="728" y="250" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">其他地区  1.06 (3.2%)</text>
+</svg>

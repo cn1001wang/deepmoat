@@ -1,0 +1,64 @@
+{
+  "company": {
+    "ts_code": "300896.SZ",
+    "symbol": "300896",
+    "name": "爱美客",
+    "industry": "医疗保健",
+    "area": "北京",
+    "list_date": "20200928",
+    "main_business": "公司立足于生物医用材料的研发和转化,致力于重组蛋白和多肽等生物医药的开发,公司自主研发的产品主要针对面部,颈部褶皱皮肤的修复.",
+    "chairman": "简军",
+    "manager": "石毅峰",
+    "employees": 1458,
+    "website": "www.imeik.net/cn/"
+  },
+  "latest_valuation": {
+    "trade_date": "20260420",
+    "close": 114.91,
+    "pe_ttm": 26.9329,
+    "pb": 4.5848,
+    "ps_ttm": 14.177,
+    "dv_ttm": 4.3345,
+    "total_mv": 3477085.373,
+    "circ_mv": 2349350.1871
+  },
+  "pe_ttm_1y_pct": 12.76595744680851,
+  "pb_1y_pct": 12.76595744680851,
+  "ps_ttm_1y_pct": 12.76595744680851,
+  "latest_fin_end_date": "20251231",
+  "latest_financials": {
+    "revenue": 2452617161.44,
+    "net_profit": 1291017682.24,
+    "ocf": 1324231592.64,
+    "fcf": 1048810527.7019,
+    "total_assets": 8908047716.98,
+    "total_liab": 743427421.3,
+    "money_cap": 1227289283.18,
+    "interest_debt": NaN,
+    "net_cash": NaN
+  },
+  "latest_indicator": {
+    "ts_code": "300896.SZ",
+    "ann_date": "20251029",
+    "end_date": "20250930",
+    "roe": 14.3967,
+    "roic": 13.6578,
+    "roa": 14.844,
+    "grossprofit_margin": 93.3619,
+    "netprofit_margin": 59.3775,
+    "current_ratio": 10.0348,
+    "quick_ratio": 9.7944,
+    "debt_to_assets": 8.2004,
+    "ocf_to_profit": 83.6004,
+    "eps": 3.63,
+    "bps": 24.4246,
+    "arturn_days": 22.4581,
+    "invturn_days": 184.6028
+  },
+  "cagr_5y": {
+    "revenue": 0.14084041571347172,
+    "net_profit": 0.07749311570516415
+  },
+  "ext_price_date": "20260420",
+  "ext_close": 114.91
+}

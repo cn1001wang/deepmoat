@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
+<text x="40" y="42" font-size="26" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#222">资产负债表关键数据图</text>
+<rect x="40" y="60" width="22" height="10" fill="#4E79A7"/>
+<text x="68" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">总资产</text>
+<rect x="210" y="60" width="22" height="10" fill="#F28E2B"/>
+<text x="238" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">总负债</text>
+<rect x="380" y="60" width="22" height="10" fill="#E15759"/>
+<text x="408" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">股东权益</text>
+<line x1="90" y1="130" x2="90" y2="630" stroke="#555" stroke-width="1"/>
+<line x1="90" y1="630.0" x2="1130" y2="630.0" stroke="#555" stroke-width="1"/>
+<line x1="90" y1="630.0" x2="1130" y2="630.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="635.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.00</text>
+<line x1="90" y1="530.0" x2="1130" y2="530.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="535.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">104.26</text>
+<line x1="90" y1="430.0" x2="1130" y2="430.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="435.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">208.53</text>
+<line x1="90" y1="330.0" x2="1130" y2="330.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="335.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">312.79</text>
+<line x1="90" y1="230.0" x2="1130" y2="230.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="235.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">417.06</text>
+<line x1="90" y1="130.0" x2="1130" y2="130.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="135.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">521.32</text>
+<text x="194.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2021</text>
+<text x="402.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2022</text>
+<text x="610.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2023</text>
+<text x="818.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2024</text>
+<text x="1026.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2025</text>
+<rect x="123.28" y="183.41" width="65.06" height="446.59" fill="#4E79A7" opacity="0.85"/>
+<rect x="331.28" y="147.46" width="65.06" height="482.54" fill="#4E79A7" opacity="0.85"/>
+<rect x="539.28" y="157.58" width="65.06" height="472.42" fill="#4E79A7" opacity="0.85"/>
+<rect x="747.28" y="136.83" width="65.06" height="493.17" fill="#4E79A7" opacity="0.85"/>
+<rect x="955.28" y="130.00" width="65.06" height="500.00" fill="#4E79A7" opacity="0.85"/>
+<rect x="194.00" y="411.62" width="65.06" height="218.38" fill="#F28E2B" opacity="0.85"/>
+<rect x="402.00" y="399.44" width="65.06" height="230.56" fill="#F28E2B" opacity="0.85"/>
+<rect x="610.00" y="428.58" width="65.06" height="201.42" fill="#F28E2B" opacity="0.85"/>
+<rect x="818.00" y="423.21" width="65.06" height="206.79" fill="#F28E2B" opacity="0.85"/>
+<rect x="1026.00" y="432.24" width="65.06" height="197.76" fill="#F28E2B" opacity="0.85"/>
+<polyline fill="none" stroke="#E15759" stroke-width="3" points="194.00,401.79 402.00,378.02 610.00,359.01 818.00,343.61 1026.00,327.77"/>
+<circle cx="194.00" cy="401.79" r="4" fill="#E15759"/>
+<circle cx="402.00" cy="378.02" r="4" fill="#E15759"/>
+<circle cx="610.00" cy="359.01" r="4" fill="#E15759"/>
+<circle cx="818.00" cy="343.61" r="4" fill="#E15759"/>
+<circle cx="1026.00" cy="327.77" r="4" fill="#E15759"/>
+</svg>

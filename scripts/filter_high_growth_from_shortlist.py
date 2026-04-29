@@ -1,3 +1,9 @@
+"""
+作用：
+从已有低估值候选池 CSV 中再筛出高增长股票，
+同时约束 ROE、估值、负债率和净现比，输出更聚焦的 shortlist。
+"""
+
 from __future__ import annotations
 
 import argparse

@@ -1,0 +1,64 @@
+{
+  "company": {
+    "ts_code": "600298.SH",
+    "symbol": "600298",
+    "name": "安琪酵母",
+    "industry": "食品",
+    "area": "湖北",
+    "list_date": "20000818",
+    "main_business": "主要产品:公司主要产品包括:酵母及深加工产品,保健食品,特殊营养食品,烘焙原料,食品添加剂,乳制品,调味品等.",
+    "chairman": "熊涛",
+    "manager": "肖明华",
+    "employees": 12196,
+    "website": "www.angelyeast.com"
+  },
+  "latest_valuation": {
+    "trade_date": "20260417",
+    "close": 39.76,
+    "pe_ttm": 22.3444,
+    "pb": 2.8703,
+    "ps_ttm": 2.0628,
+    "dv_ttm": 1.3836,
+    "total_mv": 3450884.3959,
+    "circ_mv": 3408030.2727
+  },
+  "pe_ttm_1y_pct": 4.3478260869565215,
+  "pb_1y_pct": 4.3478260869565215,
+  "ps_ttm_1y_pct": 4.3478260869565215,
+  "latest_fin_end_date": "20251231",
+  "latest_financials": {
+    "revenue": 16728842770.37,
+    "net_profit": 1544409068.94,
+    "ocf": 2477959556.34,
+    "fcf": 454536734.8433,
+    "total_assets": 25458488639.6,
+    "total_liab": 12560525578.1,
+    "money_cap": 2811726974.28,
+    "interest_debt": 6642354112.78,
+    "net_cash": -3830627138.4999995
+  },
+  "latest_indicator": {
+    "ts_code": "600298.SH",
+    "ann_date": "20251030",
+    "end_date": "20250930",
+    "roe": 9.9661,
+    "roic": 6.5377,
+    "roa": 6.5738,
+    "grossprofit_margin": 25.5393,
+    "netprofit_margin": 9.7666,
+    "current_ratio": 1.1791,
+    "quick_ratio": 0.6767,
+    "debt_to_assets": 48.8541,
+    "ocf_to_profit": 159.205,
+    "eps": 1.3,
+    "bps": 13.3355,
+    "arturn_days": 38.49,
+    "invturn_days": 137.4046
+  },
+  "cagr_5y": {
+    "revenue": 0.11884806987449137,
+    "net_profit": 0.04230301820933491
+  },
+  "ext_price_date": "20260417",
+  "ext_close": 39.76
+}

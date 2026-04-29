@@ -1,3 +1,9 @@
+"""
+作用：
+对单只股票做基础财务质量检查，重点看 ROE、毛利率、偿债、净现比和审计意见，
+用于快速判断公司财务质量是否存在明显风险。
+"""
+
 import os
 import sys
 from dataclasses import dataclass

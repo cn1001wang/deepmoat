@@ -1,3 +1,9 @@
+/*
+作用：
+在东方财富网页中把财务表导出为 CSV，
+适合浏览器控制台临时执行，快速拿到页面表格原始数据。
+*/
+
 (function() {
     function tableToCSV(tableId) {
         const table = document.getElementById(tableId) || document.querySelector('.report_table table');

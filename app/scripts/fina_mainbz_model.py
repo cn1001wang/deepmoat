@@ -6,7 +6,8 @@ class FinaMainbz(Base):
 
     ts_code = Column(String(100), primary_key=True, index=True, comment="TS代码")  # TS代码
     end_date = Column(String(100), primary_key=True, index=True, comment="报告期")  # 报告期
-    bz_item = Column(String(100), comment="主营业务来源")  # 主营业务来源
+    type = Column(String(10), primary_key=True, index=True, comment="类型：P产品 D地区 I行业")  # 类型
+    bz_item = Column(String(100), primary_key=True, comment="主营业务来源")  # 主营业务来源
     bz_sales = Column(Float, comment="主营业务收入(元)")  # 主营业务收入(元)
     bz_profit = Column(Float, comment="主营业务利润(元)")  # 主营业务利润(元)
     bz_cost = Column(Float, comment="主营业务成本(元)")  # 主营业务成本(元)

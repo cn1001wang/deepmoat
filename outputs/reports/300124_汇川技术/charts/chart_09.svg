@@ -19,21 +19,21 @@
 <text x="78" y="235.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">57.60</text>
 <line x1="90" y1="130.0" x2="1130" y2="130.0" stroke="#eee" stroke-width="1"/>
 <text x="78" y="135.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">72.00</text>
-<text x="194.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2020</text>
-<text x="402.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2021</text>
-<text x="610.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2022</text>
-<text x="818.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2023</text>
-<text x="1026.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2024</text>
-<polyline fill="none" stroke="#4E79A7" stroke-width="3" points="194.00,528.12 402.00,507.36 610.00,407.71 818.00,395.97 1026.00,130.00"/>
-<circle cx="194.00" cy="528.12" r="4" fill="#4E79A7"/>
-<circle cx="402.00" cy="507.36" r="4" fill="#4E79A7"/>
-<circle cx="610.00" cy="407.71" r="4" fill="#4E79A7"/>
-<circle cx="818.00" cy="395.97" r="4" fill="#4E79A7"/>
-<circle cx="1026.00" cy="130.00" r="4" fill="#4E79A7"/>
-<polyline fill="none" stroke="#F28E2B" stroke-width="3" points="194.00,501.04 402.00,572.50 610.00,447.36 818.00,457.15 1026.00,330.62"/>
-<circle cx="194.00" cy="501.04" r="4" fill="#F28E2B"/>
-<circle cx="402.00" cy="572.50" r="4" fill="#F28E2B"/>
-<circle cx="610.00" cy="447.36" r="4" fill="#F28E2B"/>
-<circle cx="818.00" cy="457.15" r="4" fill="#F28E2B"/>
-<circle cx="1026.00" cy="330.62" r="4" fill="#F28E2B"/>
+<text x="194.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2021</text>
+<text x="402.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2022</text>
+<text x="610.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2023</text>
+<text x="818.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2024</text>
+<text x="1026.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2025</text>
+<polyline fill="none" stroke="#4E79A7" stroke-width="3" points="194.00,507.36 402.00,407.71 610.00,395.97 818.00,130.00 1026.00,166.04"/>
+<circle cx="194.00" cy="507.36" r="4" fill="#4E79A7"/>
+<circle cx="402.00" cy="407.71" r="4" fill="#4E79A7"/>
+<circle cx="610.00" cy="395.97" r="4" fill="#4E79A7"/>
+<circle cx="818.00" cy="130.00" r="4" fill="#4E79A7"/>
+<circle cx="1026.00" cy="166.04" r="4" fill="#4E79A7"/>
+<polyline fill="none" stroke="#F28E2B" stroke-width="3" points="194.00,572.50 402.00,447.36 610.00,457.15 818.00,330.62 1026.00,630.00"/>
+<circle cx="194.00" cy="572.50" r="4" fill="#F28E2B"/>
+<circle cx="402.00" cy="447.36" r="4" fill="#F28E2B"/>
+<circle cx="610.00" cy="457.15" r="4" fill="#F28E2B"/>
+<circle cx="818.00" cy="330.62" r="4" fill="#F28E2B"/>
+<circle cx="1026.00" cy="630.00" r="4" fill="#F28E2B"/>
 </svg>
