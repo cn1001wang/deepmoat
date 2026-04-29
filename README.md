@@ -53,5 +53,11 @@ python app.worker.sync.py --xxx
 uv run python -m app.worker.sync --daily
 ```
 
-
+ROE > 12%
+AND 市值 > 100亿
+AND 营收增长率 > 10%
+AND 净利润增长率 > 10%
+AND 经营现金流 > 净利润
+AND 资产负债率 < 70%
+AND PE < 行业平均
 

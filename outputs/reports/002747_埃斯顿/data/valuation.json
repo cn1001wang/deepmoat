@@ -1,0 +1,38 @@
+{
+  "shares_est": 967798453.0217186,
+  "market_cap_yi": 204.97971235,
+  "net_debt_yi": 15.9800474444,
+  "peer_median": {
+    "pe": 198.41895,
+    "pb": 7.3096,
+    "ps": 9.5497
+  },
+  "relative_value_yi": {
+    "pe": 89.23337683809507,
+    "pb": 234.6808215825139,
+    "ps": 466.7925978368415
+  },
+  "relative_price": {
+    "pe": 9.220243797609434,
+    "pb": 24.24893539039862,
+    "ps": 48.232418266364604
+  },
+  "dcf": {
+    "bear": {
+      "equity_value_yi": -4.708331541941275,
+      "price": -0.4864991804068956
+    },
+    "base": {
+      "equity_value_yi": 15.907737781863089,
+      "price": 1.6437035761108103
+    },
+    "bull": {
+      "equity_value_yi": 46.33447731575571,
+      "price": 4.787616385528145
+    }
+  },
+  "reverse_dcf": {
+    "assumption": "fcf_margin=3%, wacc=9.5%, terminal_g=2.5%, explicit=5y",
+    "implied_revenue_cagr_5y": 0.5
+  }
+}

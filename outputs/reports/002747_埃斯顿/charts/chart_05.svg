@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
+<text x="40" y="42" font-size="26" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#222">资产负债率与偿债指标</text>
+<rect x="40" y="60" width="22" height="10" fill="#4E79A7"/>
+<text x="68" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">资产负债率</text>
+<rect x="210" y="60" width="22" height="10" fill="#F28E2B"/>
+<text x="238" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">流动比率</text>
+<rect x="380" y="60" width="22" height="10" fill="#E15759"/>
+<text x="408" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">速动比率</text>
+<line x1="90" y1="130" x2="90" y2="630" stroke="#555" stroke-width="1"/>
+<line x1="90" y1="630.0" x2="1130" y2="630.0" stroke="#555" stroke-width="1"/>
+<line x1="90" y1="630.0" x2="1130" y2="630.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="635.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.00</text>
+<line x1="90" y1="530.0" x2="1130" y2="530.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="535.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">16.27</text>
+<line x1="90" y1="430.0" x2="1130" y2="430.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="435.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">32.54</text>
+<line x1="90" y1="330.0" x2="1130" y2="330.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="335.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">48.80</text>
+<line x1="90" y1="230.0" x2="1130" y2="230.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="235.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">65.07</text>
+<line x1="90" y1="130.0" x2="1130" y2="130.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="135.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">81.34</text>
+<text x="176.66666666666669" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2020</text>
+<text x="350.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2021</text>
+<text x="523.3333333333334" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2022</text>
+<text x="696.6666666666667" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2023</text>
+<text x="870.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2024</text>
+<text x="1043.3333333333335" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2025</text>
+<rect x="117.73" y="230.20" width="108.44" height="399.80" fill="#4E79A7" opacity="0.85"/>
+<rect x="291.07" y="268.68" width="108.44" height="361.32" fill="#4E79A7" opacity="0.85"/>
+<rect x="464.40" y="244.03" width="108.44" height="385.97" fill="#4E79A7" opacity="0.85"/>
+<rect x="637.73" y="187.35" width="108.44" height="442.65" fill="#4E79A7" opacity="0.85"/>
+<rect x="811.07" y="130.00" width="108.44" height="500.00" fill="#4E79A7" opacity="0.85"/>
+<rect x="984.40" y="147.09" width="108.44" height="482.91" fill="#4E79A7" opacity="0.85"/>
+<polyline fill="none" stroke="#F28E2B" stroke-width="3" points="176.67,622.50 350.00,621.46 523.33,621.70 696.67,623.05 870.00,623.79 1043.33,623.73"/>
+<circle cx="176.67" cy="622.50" r="4" fill="#F28E2B"/>
+<circle cx="350.00" cy="621.46" r="4" fill="#F28E2B"/>
+<circle cx="523.33" cy="621.70" r="4" fill="#F28E2B"/>
+<circle cx="696.67" cy="623.05" r="4" fill="#F28E2B"/>
+<circle cx="870.00" cy="623.79" r="4" fill="#F28E2B"/>
+<circle cx="1043.33" cy="623.73" r="4" fill="#F28E2B"/>
+<polyline fill="none" stroke="#E15759" stroke-width="3" points="176.67,624.41 350.00,623.42 523.33,623.79 696.67,624.65 870.00,625.57 1043.33,625.45"/>
+<circle cx="176.67" cy="624.41" r="4" fill="#E15759"/>
+<circle cx="350.00" cy="623.42" r="4" fill="#E15759"/>
+<circle cx="523.33" cy="623.79" r="4" fill="#E15759"/>
+<circle cx="696.67" cy="624.65" r="4" fill="#E15759"/>
+<circle cx="870.00" cy="625.57" r="4" fill="#E15759"/>
+<circle cx="1043.33" cy="625.45" r="4" fill="#E15759"/>
+</svg>
