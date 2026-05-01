@@ -143,8 +143,8 @@ def fetch_dividend(ts_code: str | None = None, limit: int | None = None, offset:
     return df
 
 
-# 文档要求 2000 积分可用，单次最多 100 行；为稳妥控制在 60 次/分钟。
-tushare_limiter_mainbz = RateLimiter(max_calls=60, period=60)
+# fina_mainbz 服务端限制为 60 次/分钟；本地留余量，避免滑动窗口和同 token 其他任务撞限。
+tushare_limiter_mainbz = RateLimiter(max_calls=50, period=60)
 
 
 def fetch_fina_mainbz(

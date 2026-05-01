@@ -30,7 +30,10 @@ from app.crud.crud_fina_mainbz import (
     save_fina_mainbz,
     check_fina_mainbz_exists,
 )
-from app.service.finance_service import fetch_finance_for_stock_2
+from app.service.finance_service import (
+    fetch_finance_for_stock_2,
+    fetch_finance_for_stock_overwrite,
+)
 from app.utils.tushare_utils import fetch_paginated
 from app.service.tushare_service import (
     fetch_today_daily_basic,
@@ -188,6 +191,11 @@ def parse_ts_codes(raw: str | None) -> set[str]:
     return {item.strip().upper() for item in raw.split(",") if item.strip()}
 
 
+def is_tushare_rate_limit_error(exc: Exception) -> bool:
+    msg = str(exc)
+    return "频率超限" in msg or "频次" in msg or "rate limit" in msg.lower()
+
+
 def sync_fina_mainbz(
     max_workers=1,
     types: list[str] | None = None,
@@ -239,7 +247,11 @@ def sync_fina_mainbz(
                             break
                         except Exception as e:
                             retries += 1
-                            wait_s = 1.5 * retries
+                            wait_s = (
+                                65.0
+                                if is_tushare_rate_limit_error(e)
+                                else 1.5 * retries
+                            )
                             logging.warning(
                                 "%s[%s] 第%s次拉取失败（offset=%s）: %s | %s，%.1fs后重试",
                                 ts_code,
@@ -375,15 +387,19 @@ def fetch_index_member():
     fetch_paginated(fetch_func=get_index_member, save_func=save_index_member)
 
 
-def fetch_finance_data(max_workers=5):
-    logging.info("开始抓取财务数据...")
+def fetch_finance_data(max_workers=5, overwrite: bool = False):
+    mode = "完全覆盖" if overwrite else "增量"
+    logging.info("开始抓取财务数据（%s）...", mode)
     with get_db_session() as db:
         companies = get_all_listed_companies_info(db)
         logging.info(f"共 {len(companies)} 支股票")
 
         def fetch_one(ts_code):
             try:
-                fetch_finance_for_stock_2(ts_code)
+                if overwrite:
+                    fetch_finance_for_stock_overwrite(ts_code)
+                else:
+                    fetch_finance_for_stock_2(ts_code)
                 logging.info(f"{ts_code} 财务数据抓取成功")
             except Exception as e:
                 logging.error(f"{ts_code} 财务数据抓取失败: {e}")
@@ -459,7 +475,7 @@ def run(args):
     if args.index_member:
         fetch_index_member()
     if args.finance:
-        fetch_finance_data(max_workers=args.workers)
+        fetch_finance_data(max_workers=args.workers, overwrite=args.finance_overwrite)
     if args.daily:
         sync_today_daily_basic()
     if args.fina_indicator:
@@ -485,13 +501,18 @@ if __name__ == "__main__":
     parser.add_argument("--stock_company", action="store_true", help="抓取公司信息")
     parser.add_argument("--index_member", action="store_true", help="抓取指数成分股")
     parser.add_argument("--finance", action="store_true", help="抓取财务数据")
+    parser.add_argument(
+        "--finance_overwrite",
+        action="store_true",
+        help="完全覆盖同步财务数据：删除旧 income/balancesheet/cashflow 后重拉",
+    )
     parser.add_argument("--daily", action="store_true", help="抓取今日指标")
     parser.add_argument("--workers", type=int, default=1, help="抓取财务数据线程数")
     parser.add_argument("--fina_indicator", action="store_true", help="抓取财务指标数据")
     parser.add_argument("--dividend", action="store_true", help="抓取送股分红")
     parser.add_argument("--fina_audit", action="store_true", help="抓取财报审计意见")
     parser.add_argument("--fina_mainbz", action="store_true", help="抓取主营业务构成")
-    parser.add_argument("--mainbz_types", type=str, default="P,D", help="主营构成类型，逗号分隔：P,D,I")
+    parser.add_argument("--mainbz_types", type=str, default="P,D,I", help="主营构成类型，逗号分隔：P,D,I")
     parser.add_argument("--mainbz_ts_codes", type=str, default="", help="仅同步指定股票，逗号分隔：如 600600.SH,000001.SZ")
     parser.add_argument("--fina_mainbz_force", action="store_true", help="强制重刷已存在的主营构成数据")
     args = parser.parse_args()

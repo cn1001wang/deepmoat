@@ -156,3 +156,56 @@ def fetch_finance_for_stock_2(ts_code: str):
         update_sync_log(ts_code, table_name, max_end_date)
 
         time.sleep(0.35)
+
+
+def delete_finance_table_for_stock(ts_code: str, table_name: str) -> int:
+    model = TABLE_MODEL_MAP[table_name]
+    session = SessionLocal()
+    try:
+        deleted = (
+            session.query(model)
+            .filter(model.ts_code == ts_code)
+            .delete(synchronize_session=False)
+        )
+        session.commit()
+        return deleted
+    except Exception:
+        session.rollback()
+        raise
+    finally:
+        session.close()
+
+
+def fetch_finance_for_stock_overwrite(ts_code: str):
+    """
+    完全覆盖同步某只股票的三张财务表。
+
+    每张表先从 Tushare 拉取全量数据并完成去重；确认有返回数据后，
+    删除该股票在本地对应表的旧记录，再写入本次拉取结果。
+    """
+    print(f"[OVERWRITE] {ts_code} 财务数据开始完全覆盖同步…")
+
+    for table_name, (fetch, save) in TABLES.items():
+        df = fetch(ts_code)
+        if df is None or df.empty:
+            print(f"[OVERWRITE] {ts_code} {table_name} 无返回数据，跳过覆盖")
+            time.sleep(0.35)
+            continue
+
+        df = dedup_finance_df(df)
+        if df.empty:
+            print(f"[OVERWRITE] {ts_code} {table_name} 去重后为空，跳过覆盖")
+            time.sleep(0.35)
+            continue
+
+        deleted = delete_finance_table_for_stock(ts_code, table_name)
+        save(df)
+
+        max_end_date = df["end_date"].max()
+        update_sync_log(ts_code, table_name, max_end_date)
+
+        print(
+            f"[OVERWRITE] {ts_code} {table_name} 覆盖完成，"
+            f"删除{deleted}条，写入{len(df)}条"
+        )
+        time.sleep(0.35)
