@@ -1,0 +1,20 @@
+{
+  "ts_code": "002747.SZ",
+  "symbol": "002747",
+  "name": "埃斯顿",
+  "industry": "机械基件",
+  "area": "江苏",
+  "list_date": "20150320",
+  "last_open_trade_date": "20260422",
+  "counts": {
+    "daily": 1282,
+    "daily_basic": 1282,
+    "income": 62,
+    "balancesheet": 73,
+    "cashflow": 69,
+    "fina_indicator": 89,
+    "dividend": 33,
+    "fina_audit": 16,
+    "fina_mainbz": 125
+  }
+}

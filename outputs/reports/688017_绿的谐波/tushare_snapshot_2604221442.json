@@ -1,0 +1,511 @@
+{
+  "stock_basic": [
+    {
+      "ts_code": "688017.SH",
+      "symbol": "688017",
+      "name": "绿的谐波",
+      "area": "江苏",
+      "industry": "机械基件",
+      "market": "科创板",
+      "list_date": "20200828"
+    }
+  ],
+  "daily_basic_latest": [
+    {
+      "ts_code": "688017.SH",
+      "trade_date": "20260421",
+      "close": 213.32,
+      "pe_ttm": 313.073,
+      "pb": 11.0567,
+      "ps_ttm": 68.7368,
+      "dv_ttm": 0.0468,
+      "total_mv": 3910798.2265,
+      "circ_mv": 3910798.2265
+    }
+  ],
+  "income_latest12": [
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20251031",
+      "end_date": "20250930",
+      "total_revenue": 406652949.93,
+      "n_income_attr_p": 93667349.33,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20250816",
+      "end_date": "20250630",
+      "total_revenue": 251411920.69,
+      "n_income_attr_p": 53416376.35,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20250430",
+      "end_date": "20250331",
+      "total_revenue": 98026541.57,
+      "n_income_attr_p": 20248432.23,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20250430",
+      "end_date": "20241231",
+      "total_revenue": 387411303.84,
+      "n_income_attr_p": 56168149.88,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20241030",
+      "end_date": "20240930",
+      "total_revenue": 275955021.41,
+      "n_income_attr_p": 58832909.64,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20240831",
+      "end_date": "20240630",
+      "total_revenue": 172407176.66,
+      "n_income_attr_p": 36618495.08,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20240430",
+      "end_date": "20240331",
+      "total_revenue": 81927118.72,
+      "n_income_attr_p": 20115815.39,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20240430",
+      "end_date": "20240331",
+      "total_revenue": 81927118.72,
+      "n_income_attr_p": 20115815.39,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20240430",
+      "end_date": "20231231",
+      "total_revenue": 356165776.9,
+      "n_income_attr_p": 84155317.77,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20231031",
+      "end_date": "20230930",
+      "total_revenue": 254008574.38,
+      "n_income_attr_p": 72499639.68,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20230831",
+      "end_date": "20230630",
+      "total_revenue": 171561970.11,
+      "n_income_attr_p": 50641099.09,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20230429",
+      "end_date": "20230331",
+      "total_revenue": 88524708.11,
+      "n_income_attr_p": 24649877.39,
+      "report_type": "1"
+    }
+  ],
+  "fina_indicator_latest12": [
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20251031",
+      "end_date": "20250930",
+      "roe": 2.7026,
+      "roic": 2.7072,
+      "grossprofit_margin": 36.5979,
+      "netprofit_margin": 23.3452,
+      "debt_to_assets": 9.8269,
+      "current_ratio": 10.0904,
+      "ocf_to_profit": 103.9258
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20250816",
+      "end_date": "20250630",
+      "roe": 1.5513,
+      "roic": 1.5454,
+      "grossprofit_margin": 34.7687,
+      "netprofit_margin": 21.9107,
+      "debt_to_assets": 12.8555,
+      "current_ratio": 5.2293,
+      "ocf_to_profit": 76.4465
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20250430",
+      "end_date": "20250331",
+      "roe": 0.5894,
+      "roic": 0.5761,
+      "grossprofit_margin": 34.0622,
+      "netprofit_margin": 21.4852,
+      "debt_to_assets": 15.6224,
+      "current_ratio": 4.7078,
+      "ocf_to_profit": 73.9799
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20250430",
+      "end_date": "20250331",
+      "roe": 0.5894,
+      "roic": 0.5761,
+      "grossprofit_margin": 34.0622,
+      "netprofit_margin": 21.4852,
+      "debt_to_assets": 15.6224,
+      "current_ratio": 4.7078,
+      "ocf_to_profit": 73.9799
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20250430",
+      "end_date": "20241231",
+      "roe": 2.0658,
+      "roic": 1.7635,
+      "grossprofit_margin": 37.5401,
+      "netprofit_margin": 14.4056,
+      "debt_to_assets": 8.6566,
+      "current_ratio": 9.6825,
+      "ocf_to_profit": 45.9952
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20241030",
+      "end_date": "20240930",
+      "roe": 2.9135,
+      "roic": 2.3113,
+      "grossprofit_margin": 39.5299,
+      "netprofit_margin": 21.7095,
+      "debt_to_assets": 19.8829,
+      "current_ratio": 2.8627,
+      "ocf_to_profit": 75.0849
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20240831",
+      "end_date": "20240630",
+      "roe": 1.8254,
+      "roic": 1.3336,
+      "grossprofit_margin": 40.3875,
+      "netprofit_margin": 21.6802,
+      "debt_to_assets": 25.8551,
+      "current_ratio": 2.4635,
+      "ocf_to_profit": 0.8715
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20240831",
+      "end_date": "20240630",
+      "roe": 1.8254,
+      "roic": 1.3336,
+      "grossprofit_margin": 40.3875,
+      "netprofit_margin": 21.6802,
+      "debt_to_assets": 25.8551,
+      "current_ratio": 2.4635,
+      "ocf_to_profit": 0.8715
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20240430",
+      "end_date": "20240331",
+      "roe": 0.9945,
+      "roic": 0.6931,
+      "grossprofit_margin": 42.553,
+      "netprofit_margin": 25.332,
+      "debt_to_assets": 29.2861,
+      "current_ratio": 2.6666,
+      "ocf_to_profit": 31.2854
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20240430",
+      "end_date": "20231231",
+      "roe": 4.2625,
+      "roic": 2.6236,
+      "grossprofit_margin": 41.1357,
+      "netprofit_margin": 23.8182,
+      "debt_to_assets": 28.2454,
+      "current_ratio": 2.7285,
+      "ocf_to_profit": 163.0081
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20231031",
+      "end_date": "20230930",
+      "roe": 3.6841,
+      "roic": 2.0878,
+      "grossprofit_margin": 41.7322,
+      "netprofit_margin": 29.0771,
+      "debt_to_assets": 27.8679,
+      "current_ratio": 2.7976,
+      "ocf_to_profit": 111.2406
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20230831",
+      "end_date": "20230630",
+      "roe": 2.5885,
+      "roic": 1.7293,
+      "grossprofit_margin": 42.3147,
+      "netprofit_margin": 29.981,
+      "debt_to_assets": 18.6901,
+      "current_ratio": 4.8893,
+      "ocf_to_profit": 55.3097
+    }
+  ],
+  "cashflow_latest12": [
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20251031",
+      "end_date": "20250930",
+      "n_cashflow_act": 110265491.84,
+      "free_cashflow": -304940807.854,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20251031",
+      "end_date": "20250930",
+      "n_cashflow_act": 110265491.84,
+      "free_cashflow": NaN,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20250816",
+      "end_date": "20250630",
+      "n_cashflow_act": 46796095.4,
+      "free_cashflow": 38220552.3831,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20250816",
+      "end_date": "20250630",
+      "n_cashflow_act": 46796095.4,
+      "free_cashflow": 38224156.6931,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20250430",
+      "end_date": "20250331",
+      "n_cashflow_act": 17150027.49,
+      "free_cashflow": -6671009.8259,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20250430",
+      "end_date": "20250331",
+      "n_cashflow_act": 17150027.49,
+      "free_cashflow": NaN,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20250430",
+      "end_date": "20241231",
+      "n_cashflow_act": 27981461.73,
+      "free_cashflow": 290737157.7406,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20241030",
+      "end_date": "20240930",
+      "n_cashflow_act": 49622714.13,
+      "free_cashflow": -102455502.0422,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20241030",
+      "end_date": "20240930",
+      "n_cashflow_act": 49622714.13,
+      "free_cashflow": NaN,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20240831",
+      "end_date": "20240630",
+      "n_cashflow_act": 356503.98,
+      "free_cashflow": -323109414.7047,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20240831",
+      "end_date": "20240630",
+      "n_cashflow_act": 356503.98,
+      "free_cashflow": NaN,
+      "report_type": "1"
+    },
+    {
+      "ts_code": "688017.SH",
+      "ann_date": "20240430",
+      "end_date": "20240331",
+      "n_cashflow_act": 7231393.88,
+      "free_cashflow": 6740407.6635,
+      "report_type": "1"
+    }
+  ],
+  "dividend_latest20": [
+    {
+      "ts_code": "688017.SH",
+      "end_date": "20250630",
+      "ann_date": "20250816",
+      "ex_date": null,
+      "cash_div_tax": 0.0
+    },
+    {
+      "ts_code": "688017.SH",
+      "end_date": "20241231",
+      "ann_date": "20250430",
+      "ex_date": null,
+      "cash_div_tax": 0.1
+    },
+    {
+      "ts_code": "688017.SH",
+      "end_date": "20241231",
+      "ann_date": "20250430",
+      "ex_date": null,
+      "cash_div_tax": 0.1
+    },
+    {
+      "ts_code": "688017.SH",
+      "end_date": "20241231",
+      "ann_date": "20250430",
+      "ex_date": "20250619",
+      "cash_div_tax": 0.1
+    },
+    {
+      "ts_code": "688017.SH",
+      "end_date": "20240630",
+      "ann_date": "20240831",
+      "ex_date": null,
+      "cash_div_tax": 0.0
+    },
+    {
+      "ts_code": "688017.SH",
+      "end_date": "20231231",
+      "ann_date": "20240430",
+      "ex_date": null,
+      "cash_div_tax": 0.3
+    },
+    {
+      "ts_code": "688017.SH",
+      "end_date": "20231231",
+      "ann_date": "20240430",
+      "ex_date": null,
+      "cash_div_tax": 0.3
+    },
+    {
+      "ts_code": "688017.SH",
+      "end_date": "20231231",
+      "ann_date": "20240430",
+      "ex_date": "20240613",
+      "cash_div_tax": 0.3
+    },
+    {
+      "ts_code": "688017.SH",
+      "end_date": "20230630",
+      "ann_date": "20230831",
+      "ex_date": null,
+      "cash_div_tax": 0.0
+    },
+    {
+      "ts_code": "688017.SH",
+      "end_date": "20221231",
+      "ann_date": "20230429",
+      "ex_date": null,
+      "cash_div_tax": 0.1
+    },
+    {
+      "ts_code": "688017.SH",
+      "end_date": "20221231",
+      "ann_date": "20230429",
+      "ex_date": null,
+      "cash_div_tax": 0.1
+    },
+    {
+      "ts_code": "688017.SH",
+      "end_date": "20221231",
+      "ann_date": "20230429",
+      "ex_date": null,
+      "cash_div_tax": 0.1
+    },
+    {
+      "ts_code": "688017.SH",
+      "end_date": "20221231",
+      "ann_date": "20230429",
+      "ex_date": "20230626",
+      "cash_div_tax": 0.1
+    },
+    {
+      "ts_code": "688017.SH",
+      "end_date": "20220630",
+      "ann_date": "20220812",
+      "ex_date": null,
+      "cash_div_tax": 0.0
+    },
+    {
+      "ts_code": "688017.SH",
+      "end_date": "20211231",
+      "ann_date": "20220423",
+      "ex_date": null,
+      "cash_div_tax": 0.65
+    },
+    {
+      "ts_code": "688017.SH",
+      "end_date": "20211231",
+      "ann_date": "20220423",
+      "ex_date": null,
+      "cash_div_tax": 0.65
+    },
+    {
+      "ts_code": "688017.SH",
+      "end_date": "20211231",
+      "ann_date": "20220423",
+      "ex_date": "20220630",
+      "cash_div_tax": 0.65
+    },
+    {
+      "ts_code": "688017.SH",
+      "end_date": "20210630",
+      "ann_date": "20210820",
+      "ex_date": null,
+      "cash_div_tax": 0.0
+    },
+    {
+      "ts_code": "688017.SH",
+      "end_date": "20201231",
+      "ann_date": "20210416",
+      "ex_date": null,
+      "cash_div_tax": 0.25
+    },
+    {
+      "ts_code": "688017.SH",
+      "end_date": "20201231",
+      "ann_date": "20210416",
+      "ex_date": null,
+      "cash_div_tax": 0.25
+    }
+  ],
+  "anns_recent": []
+}
