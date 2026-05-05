@@ -9,4 +9,6 @@ wheels/
 # Virtual environments
 .venv
 
+.cache/
+
 财报/*

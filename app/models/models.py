@@ -120,7 +120,7 @@ class StockCompany(Base):
 
     website = Column(String(200))
     email = Column(String(100))
-    office = Column(String(100))
+    office = Column(String(500))
     main_business = Column(String(2000))
     business_scope = Column(String(2000))
 

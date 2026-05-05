@@ -529,6 +529,11 @@ export interface AnnualMetricSeries {
   netProfit: Array<number | null>
   operatingCashFlow: Array<number | null>
   grossMargin: Array<number | null>
+  netProfitMargin: Array<number | null>
+  adminExpenseRatio: Array<number | null>
+  salesExpenseRatio: Array<number | null>
+  rdExpenseRatio: Array<number | null>
+  financeExpenseRatio: Array<number | null>
 }
 
 export interface AnnualMetricTrend {

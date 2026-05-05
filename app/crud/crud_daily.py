@@ -1,5 +1,6 @@
 from app.models.models import DailyBasic
 from .base_bulk_upsert import bulk_upsert
+from sqlalchemy import func
 from sqlalchemy.orm import Session
 import pandas as pd
 
@@ -18,5 +19,13 @@ def get_daily_basic(trade_date: str, ts_code: str, db: Session):
     if ts_code:
         query = query.filter(DailyBasic.ts_code == ts_code)
     if trade_date:
-        query = query.filter(DailyBasic.trade_date == trade_date)
+        latest_trade_date_query = db.query(func.max(DailyBasic.trade_date)).filter(
+            DailyBasic.trade_date <= trade_date
+        )
+        if ts_code:
+            latest_trade_date_query = latest_trade_date_query.filter(DailyBasic.ts_code == ts_code)
+        latest_trade_date = latest_trade_date_query.scalar()
+        if latest_trade_date is None:
+            return []
+        query = query.filter(DailyBasic.trade_date == latest_trade_date)
     return query.all()

@@ -6,17 +6,16 @@ import traceback
 from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import contextmanager
-from sqlalchemy import text
+from sqlalchemy import func, text
 
 from app.crud.crud_daily import save_daily_basic
 from app.db.session import Base, engine, SessionLocal
 from app.crud.crud_industry import save_sw_industry, save_index_member
 from app.crud.crud_stock import save_stock_basic
-from app.models.models import StockBasic
+from app.models.models import FinaIndicator, StockBasic
 from app.crud.crud_company import save_stock_company, get_all_listed_companies_info
 from app.crud.crud_fina_indicator import (
     save_fina_indicator,
-    check_fina_indicator_exists,
 )
 from app.crud.crud_fina_audit import (
     save_fina_audit,
@@ -382,6 +381,26 @@ def fetch_stock_basic():
 def fetch_stock_company():
     fetch_paginated(fetch_func=get_stock_company, save_func=save_stock_company)
 
+def ensure_stock_company_schema():
+    """
+    Keep DB schema compatible with upstream data.
+
+    Postgres won't auto-migrate when SQLAlchemy models change; we do a minimal
+    ALTER for columns that have grown beyond their original sizes.
+    """
+    with engine.begin() as conn:
+        row = conn.execute(
+            text(
+                """
+                SELECT character_maximum_length
+                FROM information_schema.columns
+                WHERE table_name = 'stock_company' AND column_name = 'office'
+                """
+            )
+        ).fetchone()
+        if row and row[0] is not None and int(row[0]) < 500:
+            conn.execute(text("ALTER TABLE stock_company ALTER COLUMN office TYPE varchar(500)"))
+
 
 def fetch_index_member():
     fetch_paginated(fetch_func=get_index_member, save_func=save_index_member)
@@ -439,6 +458,8 @@ def sync_today_daily_basic():
 
 def sync_fina_indicator(max_workers=5):
     logging.info("开始抓取财务指标数据...")
+    target_end_date = get_latest_indicator_target_end_date()
+    logging.info("财务指标目标报告期：%s", target_end_date)
     with get_db_session() as db:
         companies = get_all_listed_companies_info(db)
         logging.info(f"共 {len(companies)} 支股票")
@@ -453,10 +474,35 @@ def sync_fina_indicator(max_workers=5):
 
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             for ts_code, _ in companies:
-                if not check_fina_indicator_exists(db, ts_code):
+                if should_sync_fina_indicator(db, ts_code, target_end_date):
                     executor.submit(fetch_one, ts_code)
 
         logging.info("财务指标数据抓取完成！")
+
+
+def get_latest_indicator_target_end_date(today=None):
+    if today is None:
+        today = datetime.now()
+
+    year = today.year
+    md = today.month * 100 + today.day
+
+    if md >= 1231:
+        return f"{year}1231"
+    if md >= 930:
+        return f"{year}0930"
+    if md >= 630:
+        return f"{year}0630"
+    return f"{year}0331"
+
+
+def should_sync_fina_indicator(db, ts_code, target_end_date):
+    max_end_date = (
+        db.query(func.max(FinaIndicator.end_date))
+        .filter(FinaIndicator.ts_code == ts_code)
+        .scalar()
+    )
+    return not max_end_date or max_end_date < target_end_date
 
 
 # -----------------------------
@@ -471,6 +517,7 @@ def run(args):
     if args.stock_basic:
         fetch_stock_basic()
     if args.stock_company:
+        ensure_stock_company_schema()
         fetch_stock_company()
     if args.index_member:
         fetch_index_member()

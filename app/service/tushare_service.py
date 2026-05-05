@@ -6,10 +6,20 @@ from sqlalchemy.inspection import inspect
 from app.models.models import FinaIndicator, Dividend, FinaAudit, FinaMainbz
 from app.utils.tushare_utils import RateLimiter
 
-token = settings.TUSHARE_TOKEN
-ts.set_token(token)
+def _get_tushare_pro():
+    """
+    Return a Tushare Pro client without calling `ts.set_token()`.
 
-pro = ts.pro_api()
+    `ts.set_token()` writes a token cache file (e.g. `~/tk.csv`) which can fail
+    under restricted filesystem permissions in automation/sandbox runs.
+    """
+    token = settings.TUSHARE_TOKEN
+    if not token:
+        raise RuntimeError("TUSHARE_TOKEN is not configured")
+    return ts.pro_api(token)
+
+
+pro = _get_tushare_pro()
 
 
 def get_sw_industry(level="L1", src="SW2021"):

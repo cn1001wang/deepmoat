@@ -58,6 +58,13 @@ def _safe_float(value):
     return result if math.isfinite(result) else None
 
 
+def _safe_ratio(numerator, denominator):
+    if numerator is None or denominator in (None, 0):
+        return None
+    result = float(numerator) / float(denominator) * 100
+    return result if math.isfinite(result) else None
+
+
 @router.get("/annual_metric_trends")
 def get_annual_metric_trends_api(
     years: int = Query(10, ge=1, le=20),
@@ -111,6 +118,11 @@ def get_annual_metric_trends_api(
                     "netProfit": [None] * years,
                     "operatingCashFlow": [None] * years,
                     "grossMargin": [None] * years,
+                    "netProfitMargin": [None] * years,
+                    "adminExpenseRatio": [None] * years,
+                    "salesExpenseRatio": [None] * years,
+                    "rdExpenseRatio": [None] * years,
+                    "financeExpenseRatio": [None] * years,
                 },
             }
         return result[ts_code]["annualMetrics"]
@@ -176,6 +188,10 @@ def get_annual_metric_trends_api(
             FinaIndicator.end_date,
             FinaIndicator.ann_date,
             FinaIndicator.grossprofit_margin,
+            FinaIndicator.netprofit_margin,
+            FinaIndicator.adminexp_of_gr,
+            FinaIndicator.saleexp_to_gr,
+            FinaIndicator.finaexp_of_gr,
         )
         .filter(FinaIndicator.end_date >= start_end_date, FinaIndicator.end_date <= end_end_date)
         .filter(FinaIndicator.end_date.like("%1231"))
@@ -193,7 +209,40 @@ def get_annual_metric_trends_api(
             continue
         seen_indicator.add(key)
         metrics = ensure_row(row.ts_code)
-        metrics["grossMargin"][year - year_list[0]] = _safe_float(row.grossprofit_margin)
+        index = year - year_list[0]
+        metrics["grossMargin"][index] = _safe_float(row.grossprofit_margin)
+        metrics["netProfitMargin"][index] = _safe_float(row.netprofit_margin)
+        metrics["adminExpenseRatio"][index] = _safe_float(row.adminexp_of_gr)
+        metrics["salesExpenseRatio"][index] = _safe_float(row.saleexp_to_gr)
+        metrics["financeExpenseRatio"][index] = _safe_float(row.finaexp_of_gr)
+
+    rd_rows = (
+        db.query(
+            Income.ts_code,
+            Income.end_date,
+            Income.ann_date,
+            Income.report_type,
+            Income.revenue,
+            Income.total_revenue,
+            Income.rd_exp,
+        )
+        .filter(Income.end_date >= start_end_date, Income.end_date <= end_end_date)
+        .filter(Income.end_date.like("%1231"))
+        .order_by(Income.ts_code, Income.end_date, Income.ann_date.desc(), Income.report_type)
+        .all()
+    )
+    seen_rd = set()
+    for row in rd_rows:
+        year = _annual_year(row.end_date)
+        if year not in year_list:
+            continue
+        key = (row.ts_code, year)
+        if key in seen_rd:
+            continue
+        seen_rd.add(key)
+        metrics = ensure_row(row.ts_code)
+        revenue = row.revenue if row.revenue is not None else row.total_revenue
+        metrics["rdExpenseRatio"][year - year_list[0]] = _safe_ratio(row.rd_exp, revenue)
 
     return ok(list(result.values()))
 

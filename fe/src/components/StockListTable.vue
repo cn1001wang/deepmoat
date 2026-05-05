@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { AgGridVue } from 'ag-grid-vue3'
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import type { ColDef, FilterChangedEvent, GridReadyEvent } from 'ag-grid-community'
+import type { ColDef, ColumnVisibleEvent, FilterChangedEvent, GridReadyEvent } from 'ag-grid-community'
 import type { AnnualMetricSeries, Stock } from '@/api/finance'
+import { AgGridVue } from 'ag-grid-vue3'
+import { computed, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 const props = defineProps<{
   data: Stock[]
@@ -13,12 +13,32 @@ const router = useRouter()
 
 // 1. 定义存储标识
 const STORAGE_KEY = 'stock-list-filter-state'
+const COLUMN_STATE_STORAGE_KEY = 'stock-list-column-state'
 const gridApi = ref<any>(null)
+const showColumnPanel = ref(false)
+const hiddenColumnIds = ref(new Set<string>())
 
 // 2. 筛选变化时保存状态
 function onFilterChanged(event: FilterChangedEvent) {
   const filterModel = event.api.getFilterModel()
   localStorage.setItem(STORAGE_KEY, JSON.stringify(filterModel))
+}
+
+function updateHiddenColumnIdsFromGrid() {
+  if (!gridApi.value?.getColumnState)
+    return
+  hiddenColumnIds.value = new Set(
+    gridApi.value.getColumnState()
+      .filter((column: any) => column.hide)
+      .map((column: any) => column.colId),
+  )
+}
+
+function saveColumnState() {
+  if (!gridApi.value?.getColumnState)
+    return
+  localStorage.setItem(COLUMN_STATE_STORAGE_KEY, JSON.stringify(gridApi.value.getColumnState()))
+  updateHiddenColumnIdsFromGrid()
 }
 
 // 3. 表格就绪时恢复状态
@@ -36,6 +56,32 @@ function onGridReady(params: GridReadyEvent) {
       console.error('解析缓存的筛选项失败', e)
     }
   }
+
+  const savedColumnState = localStorage.getItem(COLUMN_STATE_STORAGE_KEY)
+  if (savedColumnState) {
+    try {
+      params.api.applyColumnState({
+        state: JSON.parse(savedColumnState),
+        applyOrder: true,
+      })
+    }
+    catch (e) {
+      console.error('解析缓存的列设置失败', e)
+    }
+  }
+
+  updateHiddenColumnIdsFromGrid()
+}
+
+function onColumnVisible(_event: ColumnVisibleEvent) {
+  saveColumnState()
+}
+
+function toggleColumnVisibility(columnId: string, visible: boolean) {
+  if (!gridApi.value)
+    return
+  gridApi.value.setColumnsVisible([columnId], visible)
+  saveColumnState()
 }
 
 /**
@@ -52,18 +98,26 @@ const cellClassRules = {
   },
 }
 
-type AnnualMetricKey = 'revenue' | 'netProfit' | 'operatingCashFlow' | 'grossMargin'
+type AnnualMetricKey = 'revenue' | 'netProfit' | 'operatingCashFlow' | 'grossMargin' | 'netProfitMargin' | 'adminExpenseRatio' | 'salesExpenseRatio' | 'rdExpenseRatio' | 'financeExpenseRatio'
 
 const annualMetricColumnMeta: Array<{
   headerName: string
   key: AnnualMetricKey
   color: string
   unit: 'yuan' | 'percent'
+  display?: 'latest' | 'bars'
 }> = [
   { headerName: '营业收入数据', key: 'revenue', color: '#7c3aed', unit: 'yuan' },
   { headerName: '净利润数据', key: 'netProfit', color: '#ef4444', unit: 'yuan' },
   { headerName: '经营净现金数据', key: 'operatingCashFlow', color: '#f59e0b', unit: 'yuan' },
   { headerName: '毛利率数据', key: 'grossMargin', color: '#0891b2', unit: 'percent' },
+  { headerName: '最新年毛利率', key: 'grossMargin', color: '#ef4444', unit: 'percent', display: 'latest' },
+  { headerName: '历年毛利率', key: 'grossMargin', color: '#ef4444', unit: 'percent' },
+  { headerName: '历年净利润率', key: 'netProfitMargin', color: '#f97316', unit: 'percent' },
+  { headerName: '历年管理费用率', key: 'adminExpenseRatio', color: '#3b82f6', unit: 'percent' },
+  { headerName: '历年销售费用率', key: 'salesExpenseRatio', color: '#22c55e', unit: 'percent' },
+  { headerName: '历年研发费用率', key: 'rdExpenseRatio', color: '#14b8a6', unit: 'percent' },
+  { headerName: '历年财务费用率', key: 'financeExpenseRatio', color: '#7c3aed', unit: 'percent' },
 ]
 
 function isFiniteNumber(value: unknown): value is number {
@@ -144,15 +198,30 @@ function createAnnualBarCell(series: AnnualMetricSeries | undefined, key: Annual
   return root
 }
 
+function createAnnualLatestCell(series: AnnualMetricSeries | undefined, key: AnnualMetricKey, unit: 'yuan' | 'percent') {
+  const values = series?.[key] || []
+  const years = series?.years || []
+  const latestMetric = findLatestAnnualMetric(values, years)
+  const root = document.createElement('div')
+  root.className = 'annual-latest-cell'
+  root.textContent = latestMetric ? formatAnnualMetricValue(latestMetric.value, unit) : '暂无数据'
+  root.title = latestMetric
+    ? `${latestMetric.year || ''}: ${formatAnnualMetricValue(latestMetric.value, unit)}`
+    : '暂无数据'
+  return root
+}
+
 const annualMetricColumns: ColDef[] = annualMetricColumnMeta.map(meta => ({
   headerName: meta.headerName,
-  colId: `annual_${meta.key}`,
-  width: 190,
-  minWidth: 150,
+  colId: `annual_${meta.headerName}_${meta.key}`,
+  width: meta.display === 'latest' ? 128 : 190,
+  minWidth: meta.display === 'latest' ? 112 : 150,
   sortable: false,
   filter: false,
-  cellClass: 'annual-bar-grid-cell',
-  cellRenderer: (params: any) => createAnnualBarCell(params.data?.annualMetrics, meta.key, meta.color, meta.unit),
+  cellClass: meta.display === 'latest' ? 'annual-latest-grid-cell' : 'annual-bar-grid-cell',
+  cellRenderer: (params: any) => meta.display === 'latest'
+    ? createAnnualLatestCell(params.data?.annualMetrics, meta.key, meta.unit)
+    : createAnnualBarCell(params.data?.annualMetrics, meta.key, meta.color, meta.unit),
 }))
 
 const finaIndicatorColumns = [
@@ -665,13 +734,49 @@ const columnDefs: ColDef[] = [
     cellClass: 'text-ellipsis', // 添加类名
   },
 ]
+
+const columnToggleItems = computed(() => columnDefs.map((column) => {
+  const id = column.colId || column.field
+  return id
+    ? {
+        id,
+        headerName: column.headerName || id,
+        visible: !hiddenColumnIds.value.has(id),
+      }
+    : null
+}).filter((column): column is { id: string, headerName: string, visible: boolean } => Boolean(column)))
+
+function showAllColumns() {
+  if (!gridApi.value)
+    return
+  gridApi.value.setColumnsVisible(columnToggleItems.value.map(column => column.id), true)
+  saveColumnState()
+}
 </script>
 
 <template>
   <div class="industry-grid-wrapper h-full">
+    <div class="column-toolbar">
+      <button class="column-toolbar-button" type="button" @click="showColumnPanel = !showColumnPanel">
+        列设置
+      </button>
+      <button class="column-toolbar-button secondary" type="button" @click="showAllColumns">
+        全部显示
+      </button>
+      <div v-if="showColumnPanel" class="column-panel">
+        <label v-for="column in columnToggleItems" :key="column.id" class="column-option">
+          <input
+            type="checkbox"
+            :checked="column.visible"
+            @change="toggleColumnVisibility(column.id, ($event.target as HTMLInputElement).checked)"
+          >
+          <span>{{ column.headerName }}</span>
+        </label>
+      </div>
+    </div>
     <AgGridVue
       class="ag-theme-alpine"
-      style="width: 100%; height: 100%"
+      style="width: 100%; height: calc(100% - 42px)"
       :column-defs="columnDefs"
       :row-data="data"
       :default-col-def="defaultColDef"
@@ -681,6 +786,7 @@ const columnDefs: ColDef[] = [
       :ensure-dom-order="true"
       @grid-ready="onGridReady"
       @filter-changed="onFilterChanged"
+      @column-visible="onColumnVisible"
     />
   </div>
 </template>
@@ -704,6 +810,21 @@ const columnDefs: ColDef[] = [
 
 :deep(.annual-bar-grid-cell) {
   padding: 4px 10px !important;
+}
+
+:deep(.annual-latest-grid-cell) {
+  justify-content: flex-end;
+  padding: 4px 10px !important;
+}
+
+:deep(.annual-latest-cell) {
+  width: 100%;
+  overflow: hidden;
+  color: #111827;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 :deep(.annual-bar-cell) {
@@ -755,8 +876,69 @@ const columnDefs: ColDef[] = [
 }
 
 .industry-grid-wrapper {
+  position: relative;
   border: 1px solid #ddd;
   border-radius: 4px;
   overflow: hidden;
+}
+
+.column-toolbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 6px 10px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+.column-toolbar-button {
+  height: 28px;
+  padding: 0 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  background: #f8fafc;
+  color: #0f172a;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.column-toolbar-button.secondary {
+  color: #475569;
+}
+
+.column-panel {
+  position: absolute;
+  top: 36px;
+  left: 10px;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
+  gap: 6px 12px;
+  max-width: min(860px, calc(100vw - 80px));
+  max-height: 360px;
+  overflow: auto;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.14);
+}
+
+.column-option {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 6px;
+  color: #1f2937;
+  font-size: 13px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.column-option span {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>
