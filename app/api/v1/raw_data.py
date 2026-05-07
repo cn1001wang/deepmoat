@@ -8,11 +8,11 @@ from sqlalchemy import or_
 from sqlalchemy.orm import Session
 
 from app.db.session import get_db
-from app.models.models import CashFlow, FinaIndicator, Income
+from app.models.models import BalanceSheet, CashFlow, DailyBasic, FinaIndicator, Income
 from app.schemas.stock_shcemes import SwIndustryRead, StockBasicRead, IndexMemberRead, StockCompanyRead, MetricsTable
 from app.schemas.finance_schemes import FinaIndicatorRead, FinaAuditRead, DailyBasicRead
 from app.service.finance_metrics import build_metrics_table
-from app.crud.crud_stock import get_stock_basic_all
+from app.crud.crud_stock import get_stock_basic_all, get_stock_by_code
 from app.crud.crud_company import get_stock_companies
 from app.crud.crud_industry import get_sw_industry, get_index_member, get_index_member_by_ts_code
 from app.utils.api_utils import ok, ResponseOk
@@ -255,6 +255,141 @@ def get_sw_industry_api(db: Session = Depends(get_db)):
 @router.get("/stock_basic_all",  response_model=ResponseOk[list[StockBasicRead]])
 def get_stock_basic_all_api(db: Session = Depends(get_db)):
     return ok(get_stock_basic_all(db))
+
+
+@router.get("/stock_basic", response_model=ResponseOk[StockBasicRead])
+def get_stock_basic_api(
+    ts_code: str = Query(..., description="股票代码，如 000001.SZ"),
+    db: Session = Depends(get_db),
+):
+    stock = get_stock_by_code(db, ts_code)
+    if not stock:
+        raise HTTPException(status_code=404, detail="未找到股票基础资料")
+    return ok(stock)
+
+
+def _latest_by_period(rows):
+    result = {}
+    for row in rows:
+        current = result.get(row.end_date)
+        if current is None or (row.ann_date or "") > (current.ann_date or ""):
+            result[row.end_date] = row
+    return [result[key] for key in sorted(result.keys())]
+
+
+def _format_period(end_date: str | None):
+    if not end_date or len(end_date) != 8:
+        return end_date
+    return f"{end_date[:4]}-{end_date[4:6]}-{end_date[6:]}"
+
+
+@router.get("/finance/card")
+def get_finance_card_api(
+    ts_code: str = Query(..., description="股票代码，如 000001.SZ"),
+    years: int = Query(10, ge=1, le=20),
+    db: Session = Depends(get_db),
+):
+    """
+    财务小卡片本地只读数据。
+    不从 Tushare 拉取，不自动补数；缺失模块由前端提示同步命令。
+    """
+    stock = get_stock_by_code(db, ts_code)
+    industry = get_index_member_by_ts_code(db, ts_code)
+
+    income_rows = _latest_by_period(
+        db.query(Income)
+        .filter(Income.ts_code == ts_code)
+        .order_by(Income.end_date.desc(), Income.ann_date.desc())
+        .limit(years * 4)
+        .all()
+    )
+    balance_rows = _latest_by_period(
+        db.query(BalanceSheet)
+        .filter(BalanceSheet.ts_code == ts_code)
+        .order_by(BalanceSheet.end_date.desc(), BalanceSheet.ann_date.desc())
+        .limit(years * 4)
+        .all()
+    )
+    cashflow_rows = _latest_by_period(
+        db.query(CashFlow)
+        .filter(CashFlow.ts_code == ts_code)
+        .order_by(CashFlow.end_date.desc(), CashFlow.ann_date.desc())
+        .limit(years * 4)
+        .all()
+    )
+    indicator_rows = _latest_by_period(
+        db.query(FinaIndicator)
+        .filter(FinaIndicator.ts_code == ts_code)
+        .order_by(FinaIndicator.end_date.desc(), FinaIndicator.ann_date.desc())
+        .limit(years * 4)
+        .all()
+    )
+    daily_rows = (
+        db.query(DailyBasic)
+        .filter(DailyBasic.ts_code == ts_code)
+        .order_by(DailyBasic.trade_date.desc())
+        .limit(260)
+        .all()
+    )
+
+    periods = sorted({
+        row.end_date
+        for row in [*income_rows, *balance_rows, *cashflow_rows, *indicator_rows]
+        if row.end_date
+    })
+    income_map = {row.end_date: row for row in income_rows}
+    balance_map = {row.end_date: row for row in balance_rows}
+    cashflow_map = {row.end_date: row for row in cashflow_rows}
+    indicator_map = {row.end_date: row for row in indicator_rows}
+
+    finance_series = []
+    for period in periods:
+        income = income_map.get(period)
+        balance = balance_map.get(period)
+        cashflow = cashflow_map.get(period)
+        indicator = indicator_map.get(period)
+        finance_series.append({
+            "period": _format_period(period),
+            "revenue": _safe_float(income.revenue if income and income.revenue is not None else income.total_revenue if income else None),
+            "netProfit": _safe_float(income.n_income_attr_p if income and income.n_income_attr_p is not None else income.n_income if income else None),
+            "operatingCashFlow": _safe_float(cashflow.n_cashflow_act if cashflow else None),
+            "grossMargin": _safe_float(indicator.grossprofit_margin if indicator else None),
+            "netProfitMargin": _safe_float(indicator.netprofit_margin if indicator else None),
+            "roe": _safe_float(indicator.roe if indicator else None),
+            "totalAssets": _safe_float(balance.total_assets if balance else None),
+            "totalLiab": _safe_float(balance.total_liab if balance else None),
+            "moneyCap": _safe_float(balance.money_cap if balance else None),
+            "interestDebt": _safe_float(indicator.interestdebt if indicator else None),
+        })
+
+    valuation_series = [
+        {
+            "tradeDate": _format_period(row.trade_date),
+            "close": _safe_float(row.close),
+            "pe": _safe_float(row.pe_ttm if row.pe_ttm is not None else row.pe),
+            "pb": _safe_float(row.pb),
+        }
+        for row in reversed(daily_rows)
+    ]
+
+    missing_modules = []
+    if not stock:
+        missing_modules.append("stock_basic")
+    if not income_rows or not balance_rows or not cashflow_rows:
+        missing_modules.append("finance")
+    if not indicator_rows:
+        missing_modules.append("fina_indicator")
+    if not daily_rows:
+        missing_modules.append("daily_basic")
+
+    return ok({
+        "tsCode": ts_code,
+        "stock": stock.to_dict() if stock else None,
+        "industry": industry.to_dict() if industry else None,
+        "financeSeries": finance_series,
+        "valuationSeries": valuation_series,
+        "missingModules": missing_modules,
+    })
 
 
 @router.get("/index_member",  response_model=ResponseOk[list[IndexMemberRead]])

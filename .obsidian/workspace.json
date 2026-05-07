@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "outputs/reports/300274_阳光电源/value_300274_阳光电源_2604170018_draft.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "value_300274_阳光电源_2604170018_draft"
+              "title": "README"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "outputs/reports/300274_阳光电源/value_300274_阳光电源_2604170018_draft.md",
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "value_300274_阳光电源_2604170018_draft 的反向链接列表"
+              "title": "README 的反向链接列表"
             }
           },
           {
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "outputs/reports/300274_阳光电源/value_300274_阳光电源_2604170018_draft.md",
+                "file": "README.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "value_300274_阳光电源_2604170018_draft 的大纲"
+              "title": "README 的大纲"
             }
           }
         ],
@@ -185,17 +185,20 @@
   },
   "active": "16bd840bbb8bc517",
   "lastOpenFiles": [
-    "tests/test_sync_fina_indicator.py",
-    "tests/__pycache__/test_crud_latest_fallback.cpython-313.pyc",
-    "tests/__pycache__",
-    "tests/test_crud_latest_fallback.py",
-    "tests",
-    "fe/dist/index.html",
-    "fe/dist/assets/index-vFNWwc5W.js",
-    "fe/dist/assets/index-BXwJeSuU.css",
-    "fe/dist/assets/Industry-DlkiqGvl.js",
-    "fe/dist/assets/Industry-4HUlcH1P.css",
-    "fe/dist/assets",
+    "fe/pnpm-lock.yaml.529395113",
+    "财务小卡片.js",
+    "未命名.base",
+    "README.md",
+    "Users/raywang/codes/github/deepmoat/outputs/charts/value_605117_德业股份_2604160024/chart_01.svg.md",
+    "Users/raywang/codes/github/deepmoat/outputs/charts/value_605117_德业股份_2604160024",
+    "Users/raywang/codes/github/deepmoat/outputs/charts",
+    "Users/raywang/codes/github/deepmoat/outputs",
+    "Users/raywang/codes/github/deepmoat",
+    "Users/raywang/codes/github",
+    "Users/raywang/codes",
+    "Users/raywang",
+    "Users",
+    "未命名.canvas",
     "outputs/reports/300274_阳光电源/value_300274_阳光电源_2604170018_draft.md",
     "未命名.md",
     "outputs/reports/300274_阳光电源/value_300274_阳光电源_2604170018.md",
@@ -229,9 +232,6 @@
     "有用的总结.md",
     "outputs/reports/300124_汇川技术/r12_300124_汇川技术_2604282244.md",
     "outputs/reports/300124_汇川技术/value_300124_汇川技术_2604282242_draft.md",
-    "2026-04-28.md",
-    "2026-04-22.md",
-    "未命名 1.canvas",
-    "未命名.canvas"
+    "未命名 1.canvas"
   ]
 }
