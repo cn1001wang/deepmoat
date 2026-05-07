@@ -1,0 +1,234 @@
+{
+  "stock": {
+    "ts_code": "603259.SH",
+    "symbol": "603259",
+    "name": "药明康德",
+    "area": "江苏",
+    "industry": "化学制药",
+    "market": "主板",
+    "exchange": "SSE",
+    "list_date": "20180508"
+  },
+  "price_date": "20260430",
+  "price_snapshot": {
+    "close": 109.55,
+    "pe_ttm": 16.2379,
+    "pb": 3.8811,
+    "ps_ttm": 6.7763,
+    "dv_ttm": 1.5473,
+    "total_mv_yi": 3268.71
+  },
+  "latest_quarter": {
+    "end_date": "20260331",
+    "ann_date": "20260428",
+    "revenue_yi": 124.36,
+    "profit_yi": 46.52,
+    "revenue_yoy_pct": 28.81,
+    "profit_yoy_pct": 26.68,
+    "gross_margin_pct": 50.4,
+    "net_margin_pct": 37.56,
+    "roe_pct": 5.67,
+    "debt_to_assets_pct": 21.08,
+    "ocf_to_profit_pct": 64.04,
+    "current_ratio": 3.42,
+    "cash_ratio": 2.7,
+    "ocf_yi": 35.96,
+    "free_cf_yi": 18.2,
+    "cash_yi": 359.05,
+    "total_assets_yi": 1074.14,
+    "total_liab_yi": 226.43
+  },
+  "annuals": [
+    {
+      "end_date": "20251231",
+      "revenue_yi": 454.56,
+      "profit_yi": 191.51,
+      "revenue_yoy_pct": 15.84,
+      "profit_yoy_pct": 102.65,
+      "gross_margin_pct": 47.64,
+      "net_margin_pct": 42.53,
+      "roe_pct": 27.69,
+      "debt_to_assets_pct": 22.18,
+      "ocf_yi": 172.03,
+      "free_cf_yi": 125.04
+    },
+    {
+      "end_date": "20241231",
+      "revenue_yi": 392.41,
+      "profit_yi": 94.5,
+      "revenue_yoy_pct": -2.73,
+      "profit_yoy_pct": -1.63,
+      "gross_margin_pct": 41.48,
+      "net_margin_pct": 24.38,
+      "roe_pct": 16.62,
+      "debt_to_assets_pct": 26.44,
+      "ocf_yi": 124.07,
+      "free_cf_yi": 53.99
+    },
+    {
+      "end_date": "20231231",
+      "revenue_yi": 403.41,
+      "profit_yi": 96.07,
+      "revenue_yoy_pct": 2.51,
+      "profit_yoy_pct": 9.0,
+      "gross_margin_pct": 41.18,
+      "net_margin_pct": 24.05,
+      "roe_pct": 18.89,
+      "debt_to_assets_pct": 24.64,
+      "ocf_yi": 133.87,
+      "free_cf_yi": 64.66
+    },
+    {
+      "end_date": "20221231",
+      "revenue_yi": 393.55,
+      "profit_yi": 88.14,
+      "revenue_yoy_pct": 71.84,
+      "profit_yoy_pct": 72.91,
+      "gross_margin_pct": 37.3,
+      "net_margin_pct": 22.62,
+      "roe_pct": 20.72,
+      "debt_to_assets_pct": 27.46,
+      "ocf_yi": 106.16,
+      "free_cf_yi": -23.72
+    },
+    {
+      "end_date": "20211231",
+      "revenue_yi": 229.02,
+      "profit_yi": 50.97,
+      "revenue_yoy_pct": 38.5,
+      "profit_yoy_pct": 72.19,
+      "gross_margin_pct": 36.28,
+      "net_margin_pct": 22.43,
+      "roe_pct": 14.36,
+      "debt_to_assets_pct": 29.69,
+      "ocf_yi": 45.89,
+      "free_cf_yi": 15.75
+    }
+  ],
+  "mainbz_2025": [
+    {
+      "bz_item": "化学业务(产品)",
+      "sales_yi": 364.66,
+      "share_pct": 80.22,
+      "profit_yi": 189.23,
+      "margin_pct": 51.89
+    },
+    {
+      "bz_item": "测试业务",
+      "sales_yi": 40.42,
+      "share_pct": 8.89,
+      "profit_yi": 11.82,
+      "margin_pct": 29.26
+    },
+    {
+      "bz_item": "生物学业务(产品)",
+      "sales_yi": 26.77,
+      "share_pct": 5.89,
+      "profit_yi": 9.28,
+      "margin_pct": 34.66
+    },
+    {
+      "bz_item": "终止经营业务",
+      "sales_yi": 20.35,
+      "share_pct": 4.48,
+      "profit_yi": 4.19,
+      "margin_pct": 20.58
+    },
+    {
+      "bz_item": "其他业务",
+      "sales_yi": 2.36,
+      "share_pct": 0.52,
+      "profit_yi": 2.02,
+      "margin_pct": 85.68
+    }
+  ],
+  "audit": [
+    {
+      "ts_code": "603259.SH",
+      "end_date": "20251231",
+      "ann_date": "20260324",
+      "audit_result": "标准无保留意见",
+      "audit_agency": "德勤华永会计师事务所"
+    },
+    {
+      "ts_code": "603259.SH",
+      "end_date": "20241231",
+      "ann_date": "20250318",
+      "audit_result": "标准无保留意见",
+      "audit_agency": "德勤华永会计师事务所"
+    },
+    {
+      "ts_code": "603259.SH",
+      "end_date": "20231231",
+      "ann_date": "20240319",
+      "audit_result": "标准无保留意见",
+      "audit_agency": "德勤华永会计师事务所"
+    },
+    {
+      "ts_code": "603259.SH",
+      "end_date": "20221231",
+      "ann_date": "20230321",
+      "audit_result": "标准无保留意见",
+      "audit_agency": "德勤华永会计师事务所"
+    },
+    {
+      "ts_code": "603259.SH",
+      "end_date": "20211231",
+      "ann_date": "20220324",
+      "audit_result": "标准无保留意见",
+      "audit_agency": "德勤华永会计师事务所"
+    }
+  ],
+  "dividend": [
+    {
+      "ts_code": "603259.SH",
+      "end_date": "20251231",
+      "ann_date": "20260324",
+      "ex_date": null,
+      "cash_div_tax": 1.57927,
+      "stk_bo_rate": null,
+      "stk_co_rate": NaN,
+      "base_share": 298375.7155
+    },
+    {
+      "ts_code": "603259.SH",
+      "end_date": "20251231",
+      "ann_date": "20260324",
+      "ex_date": null,
+      "cash_div_tax": 1.57927,
+      "stk_bo_rate": null,
+      "stk_co_rate": NaN,
+      "base_share": 298375.7155
+    },
+    {
+      "ts_code": "603259.SH",
+      "end_date": "20250630",
+      "ann_date": "20250729",
+      "ex_date": null,
+      "cash_div_tax": 0.35,
+      "stk_bo_rate": null,
+      "stk_co_rate": NaN,
+      "base_share": 286595.368
+    },
+    {
+      "ts_code": "603259.SH",
+      "end_date": "20250630",
+      "ann_date": "20250729",
+      "ex_date": "20250926",
+      "cash_div_tax": 0.35,
+      "stk_bo_rate": null,
+      "stk_co_rate": NaN,
+      "base_share": 295150.6736
+    },
+    {
+      "ts_code": "603259.SH",
+      "end_date": "20250318",
+      "ann_date": "20250318",
+      "ex_date": null,
+      "cash_div_tax": 0.35,
+      "stk_bo_rate": null,
+      "stk_co_rate": NaN,
+      "base_share": 288799.2582
+    }
+  ]
+}

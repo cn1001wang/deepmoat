@@ -13,7 +13,7 @@ from app.db.session import Base, engine, SessionLocal
 from app.crud.crud_industry import save_sw_industry, save_index_member
 from app.crud.crud_stock import save_stock_basic
 from app.models.models import FinaIndicator, StockBasic
-from app.crud.crud_company import save_stock_company, get_all_listed_companies_info
+from app.crud.crud_company import save_stock_company
 from app.crud.crud_fina_indicator import (
     save_fina_indicator,
 )
@@ -190,6 +190,50 @@ def parse_ts_codes(raw: str | None) -> set[str]:
     return {item.strip().upper() for item in raw.split(",") if item.strip()}
 
 
+def get_active_stock_codes_for_sync(db) -> list[str]:
+    """
+    获取财务类同步任务使用的股票池。
+
+    优先读取 Tushare 最新在市名单，避免把已经退市的股票继续纳入同步。
+    如果远端拉取失败，再回退到本地 stock_basic(list_status='L')。
+    若两者都不可用，则直接返回空，避免误用 stock_company 全量历史池。
+    """
+    try:
+        df = get_stock_list()
+        if df is not None and not df.empty and "ts_code" in df.columns:
+            codes = [
+                ts_code.strip().upper()
+                for ts_code in df["ts_code"].tolist()
+                if isinstance(ts_code, str) and ts_code.strip()
+            ]
+            if codes:
+                logging.info("股票池来源: tushare stock_basic(list_status='L')")
+                return list(dict.fromkeys(codes))
+        logging.warning("Tushare 在市股票池为空，回退到本地 stock_basic")
+    except Exception as e:
+        logging.warning(
+            "获取 Tushare 在市股票池失败，回退到本地 stock_basic: %s | %s",
+            type(e).__name__,
+            str(e),
+        )
+
+    codes = [
+        row[0].strip().upper()
+        for row in db.query(StockBasic.ts_code)
+        .filter(StockBasic.list_status == "L")
+        .all()
+        if row and isinstance(row[0], str) and row[0].strip()
+    ]
+    if codes:
+        logging.info("股票池来源: 本地 stock_basic(list_status='L')")
+        return list(dict.fromkeys(codes))
+
+    logging.warning(
+        "未找到可用的在市股票池，跳过本轮同步以避免抓取已退市股票；可先执行 --stock_basic 刷新股票列表"
+    )
+    return []
+
+
 def is_tushare_rate_limit_error(exc: Exception) -> bool:
     msg = str(exc)
     return "频率超限" in msg or "频次" in msg or "rate limit" in msg.lower()
@@ -208,25 +252,10 @@ def sync_fina_mainbz(
     logging.info("同步类型: %s", ",".join(types))
 
     with get_db_session() as db:
-        # 优先使用 stock_basic 在市股票，避免 stock_company 全量历史导致任务过大。
-        listed_codes = [
-            row[0]
-            for row in db.query(StockBasic.ts_code)
-            .filter(StockBasic.list_status == "L")
-            .all()
-            if row and row[0]
-        ]
-
-        if listed_codes:
-            companies = [(code, None) for code in listed_codes]
-            logging.info("股票池来源: stock_basic(list_status='L')")
-        else:
-            companies = get_all_listed_companies_info(db)
-            logging.info("股票池来源: stock_company(回退)")
-
+        listed_codes = get_active_stock_codes_for_sync(db)
         if ts_codes:
-            companies = [row for row in companies if row[0] in ts_codes]
-        logging.info(f"共 {len(companies)} 支股票")
+            listed_codes = [code for code in listed_codes if code in ts_codes]
+        logging.info(f"共 {len(listed_codes)} 支股票")
 
         def fetch_one(ts_code: str, missing_types: list[str]):
             for bz_type in missing_types:
@@ -299,7 +328,7 @@ def sync_fina_mainbz(
                 logging.info("%s[%s] 主营构成抓取成功 (%s条)", ts_code, bz_type, total)
 
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            for ts_code, _ in companies:
+            for ts_code in listed_codes:
                 if force:
                     missing_types = types
                 else:
@@ -325,8 +354,8 @@ def sync_dividend():
     # )
 
     with get_db_session() as db:
-        companies = get_all_listed_companies_info(db)
-        logging.info(f"共 {len(companies)} 支股票")
+        stock_codes = get_active_stock_codes_for_sync(db)
+        logging.info(f"共 {len(stock_codes)} 支股票")
 
         def fetch_one(ts_code):
             try:
@@ -342,7 +371,7 @@ def sync_dividend():
         # fetch_one('600132.SH')
         # 使用线程池并发抓取
         with ThreadPoolExecutor(max_workers=5) as executor:
-            for ts_code, _ in companies:
+            for ts_code in stock_codes:
                 if not check_dividend_exists(db, ts_code):
                     executor.submit(fetch_one, ts_code)
 
@@ -352,10 +381,10 @@ def sync_dividend():
 def sync_fina_audit_data(**_):
     logging.info("开始抓取财报审计意见数据...")
     with get_db_session() as db:
-        companies = get_all_listed_companies_info(db)
-        logging.info(f"共 {len(companies)} 支股票")
+        stock_codes = get_active_stock_codes_for_sync(db)
+        logging.info(f"共 {len(stock_codes)} 支股票")
 
-        for ts_code, _ in companies:
+        for ts_code in stock_codes:
             if check_fina_audit_exists(db, ts_code):
                 continue
             try:
@@ -410,8 +439,8 @@ def fetch_finance_data(max_workers=5, overwrite: bool = False):
     mode = "完全覆盖" if overwrite else "增量"
     logging.info("开始抓取财务数据（%s）...", mode)
     with get_db_session() as db:
-        companies = get_all_listed_companies_info(db)
-        logging.info(f"共 {len(companies)} 支股票")
+        stock_codes = get_active_stock_codes_for_sync(db)
+        logging.info(f"共 {len(stock_codes)} 支股票")
 
         def fetch_one(ts_code):
             try:
@@ -424,7 +453,7 @@ def fetch_finance_data(max_workers=5, overwrite: bool = False):
                 logging.error(f"{ts_code} 财务数据抓取失败: {e}")
 
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            for ts_code, _ in companies:
+            for ts_code in stock_codes:
                 executor.submit(fetch_one, ts_code)
 
     logging.info("财务数据抓取完成！")
@@ -461,8 +490,8 @@ def sync_fina_indicator(max_workers=5):
     target_end_date = get_latest_indicator_target_end_date()
     logging.info("财务指标目标报告期：%s", target_end_date)
     with get_db_session() as db:
-        companies = get_all_listed_companies_info(db)
-        logging.info(f"共 {len(companies)} 支股票")
+        stock_codes = get_active_stock_codes_for_sync(db)
+        logging.info(f"共 {len(stock_codes)} 支股票")
 
         def fetch_one(ts_code):
             try:
@@ -473,7 +502,7 @@ def sync_fina_indicator(max_workers=5):
                 logging.error("%s 财务指标写入失败: %s", ts_code, type(e).__name__)
 
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            for ts_code, _ in companies:
+            for ts_code in stock_codes:
                 if should_sync_fina_indicator(db, ts_code, target_end_date):
                     executor.submit(fetch_one, ts_code)
 
