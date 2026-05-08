@@ -10,10 +10,12 @@ import { AgGridVue } from 'ag-grid-vue3'
 import dayjs from 'dayjs'
 import quarterOfYear from 'dayjs/plugin/quarterOfYear'
 import { computed, ref, watch } from 'vue'
+import { useRouter } from 'vue-router'
 import { getFinanceTable, getIndexMemberByTsCode, getUserStockData, updateUserStockData, getTagsHistory } from '@/api/finance'
 import { ElMessage } from 'element-plus'
 
 const props = defineProps<{ tscode: string }>()
+const router = useRouter()
 
 dayjs.extend(quarterOfYear)
 
@@ -291,6 +293,12 @@ async function saveUserData() {
   }
 }
 
+function openFinanceCard() {
+  if (!tsCode.value)
+    return
+  router.push(`/stock/${encodeURIComponent(tsCode.value)}/card`)
+}
+
 async function load() {
   if (!tsCode.value) {
     status.value = '请输入 ts_code'
@@ -338,6 +346,9 @@ watch(years, load) // years 变化时重新加载
       <input v-model="tsCode" placeholder="输入 ts_code，如 603259.SH">
       <input v-model.number="years" type="number" min="3" max="10">
       <button :disabled="loading" @click="load">查询</button>
+      <button :disabled="loading || !tsCode" @click="openFinanceCard">
+        财务小卡片
+      </button>
       <button :disabled="loading" @click="filterLatestQAndQ4 = !filterLatestQAndQ4">
         {{ filterLatestQAndQ4 ? '显示全部季度' : '仅最新季度+历年Q4' }}
       </button>

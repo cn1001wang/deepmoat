@@ -10,6 +10,7 @@ wheels/
 .venv
 
 .cache/
+logs/
 
 财报/*
 .vscode
