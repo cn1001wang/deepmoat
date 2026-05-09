@@ -567,6 +567,13 @@ export interface FinanceCardPoint {
   intangibleAssets: number | null
   goodwill: number | null
   otherAssets: number | null
+  interestBearingDebt: number | null
+  payables: number | null
+  contractLiabilities: number | null
+  employeeTaxPayables: number | null
+  otherLiabilities: number | null
+  parentEquity: number | null
+  minorityEquity: number | null
 }
 
 export interface ValuationPoint {

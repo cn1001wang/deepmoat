@@ -104,6 +104,17 @@ BALANCESHEET_CARD_COLUMNS = {
     "oil_and_gas_assets": "FLOAT",
     "r_and_d": "FLOAT",
     "lt_amor_exp": "FLOAT",
+    "non_cur_liab_due_1y": "FLOAT",
+    "cb_borr": "FLOAT",
+    "depos_ib_deposits": "FLOAT",
+    "loan_oth_bank": "FLOAT",
+    "trading_fl": "FLOAT",
+    "accounts_payable": "FLOAT",
+    "contract_liab": "FLOAT",
+    "payroll_payable": "FLOAT",
+    "lt_payable": "FLOAT",
+    "specific_payables": "FLOAT",
+    "estimated_liab": "FLOAT",
 }
 
 
@@ -490,6 +501,30 @@ def get_finance_card_api(
         prepaid_assets = _safe_sum(balance.prepayment) if balance else None
         intangible_assets = _safe_sum(balance.intan_assets, balance.r_and_d, balance.lt_amor_exp) if balance else None
         goodwill = _safe_float(balance.goodwill) if balance else None
+        interest_bearing_debt = _safe_sum(
+            balance.st_borr,
+            balance.lt_borr,
+            balance.non_cur_liab_due_1y,
+            balance.bond_payable,
+            balance.cb_borr,
+            balance.depos_ib_deposits,
+            balance.loan_oth_bank,
+            balance.trading_fl,
+        ) if balance else None
+        payables = _safe_sum(balance.notes_payable, balance.accounts_payable, balance.acct_payable) if balance else None
+        contract_liabilities = _safe_sum(balance.adv_receipts, balance.contract_liab) if balance else None
+        employee_tax_payables = _safe_sum(balance.payroll_payable, balance.taxes_payable) if balance else None
+        other_liabilities = None
+        if balance and balance.total_liab is not None:
+            known_liabilities = _safe_sum(
+                interest_bearing_debt,
+                payables,
+                contract_liabilities,
+                employee_tax_payables,
+            )
+            other_liabilities = max(balance.total_liab - (known_liabilities or 0), 0)
+        parent_equity = _safe_float(balance.total_hldr_eqy_exc_min_int if balance else None)
+        minority_equity = _safe_float(balance.minority_int if balance else None)
         known_assets = _safe_sum(
             balance.money_cap if balance else None,
             financial_assets,
@@ -531,6 +566,13 @@ def get_finance_card_api(
             "intangibleAssets": _safe_float(intangible_assets),
             "goodwill": _safe_float(goodwill),
             "otherAssets": _safe_float(other_assets),
+            "interestBearingDebt": _safe_float(interest_bearing_debt),
+            "payables": _safe_float(payables),
+            "contractLiabilities": _safe_float(contract_liabilities),
+            "employeeTaxPayables": _safe_float(employee_tax_payables),
+            "otherLiabilities": _safe_float(other_liabilities),
+            "parentEquity": _safe_float(parent_equity),
+            "minorityEquity": _safe_float(minority_equity),
         })
 
     valuation_series = [

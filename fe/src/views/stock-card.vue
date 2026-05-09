@@ -12,6 +12,13 @@ interface ChartSpec {
   id: string
   option: EChartsOption
   className?: string
+  fieldRows?: FieldSpec[]
+}
+
+interface FieldSpec {
+  label: string
+  cnFields: string
+  fields: string
 }
 
 const props = defineProps<{ tscode: string }>()
@@ -23,6 +30,7 @@ const loading = ref(false)
 const status = ref('')
 const cardData = ref<FinanceCardResponse | null>(null)
 const showAllPeriods = ref(false)
+const openExplanationIds = ref<Set<string>>(new Set())
 const chartEls = new Map<string, HTMLDivElement>()
 const charts: ECharts[] = []
 
@@ -54,7 +62,7 @@ const syncCommands: Record<string, string> = {
   fina_mainbz: 'uv run python -m app.worker.sync --fina_mainbz --mainbz_ts_codes {ts_code} --mainbz_types P --workers 1',
 }
 
-const assetStructureRows = [
+const assetStructureRows: FieldSpec[] = [
   {
     label: '固定资产+在建工程',
     cnFields: '固定资产 + （在建工程合计优先，否则在建工程） + 工程物资 + 固定资产清理 + 生产性生物资产 + 油气资产',
@@ -107,6 +115,44 @@ const assetStructureRows = [
   },
 ]
 
+const capitalStructureRows: FieldSpec[] = [
+  {
+    label: '有息负债',
+    cnFields: '短期借款 + 长期借款 + 一年内到期的非流动负债 + 应付债券 + 向中央银行借款 + 吸收存款及同业存放 + 拆入资金 + 交易性金融负债',
+    fields: 'st_borr + lt_borr + non_cur_liab_due_1y + bond_payable + cb_borr + depos_ib_deposits + loan_oth_bank + trading_fl',
+  },
+  {
+    label: '应付类款项',
+    cnFields: '应付票据 + 应付账款 + 应付款项',
+    fields: 'notes_payable + accounts_payable + acct_payable',
+  },
+  {
+    label: '在手订单',
+    cnFields: '预收款项 + 合同负债',
+    fields: 'adv_receipts + contract_liab',
+  },
+  {
+    label: '应付职工薪酬+应交税费',
+    cnFields: '应付职工薪酬 + 应交税费',
+    fields: 'payroll_payable + taxes_payable',
+  },
+  {
+    label: '其他负债',
+    cnFields: '负债合计 - 以上已归类负债',
+    fields: 'total_liab - classified_liabilities',
+  },
+  {
+    label: '归属母公司股东权益',
+    cnFields: '归属于母公司的股东权益',
+    fields: 'total_hldr_eqy_exc_min_int',
+  },
+  {
+    label: '少数股东权益',
+    cnFields: '少数股东权益',
+    fields: 'minority_int',
+  },
+]
+
 const rawFinanceRows = computed(() => cardData.value?.financeSeries ?? [])
 const financeRows = computed(() => {
   const rows = rawFinanceRows.value
@@ -142,28 +188,34 @@ const queriedAt = ref(dayjs().format('YYYY-MM-DD HH:mm:ss'))
 
 const chartSpecs = computed<ChartSpec[]>(() => {
   const specs: ChartSpec[] = []
+  const makeSpec = (id: string, option: EChartsOption, className?: string, fieldRows?: FieldSpec[]): ChartSpec => ({
+    id,
+    option,
+    className,
+    fieldRows,
+  })
   if (hasFinanceData.value) {
     specs.push(
-      { id: 'income-pie', option: buildIncomePieOption(), className: 'pie-chart' },
-      { id: 'asset-pie', option: buildAssetPieOption(), className: 'pie-chart' },
-      { id: 'valuation-quality', option: buildValuationQualityOption(), className: 'wide' },
-      { id: 'asset-structure', option: buildAssetStructureOption(), className: 'wide' },
-      { id: 'capital-structure', option: buildCapitalStructureOption(), className: 'wide' },
-      { id: 'operating-assets', option: buildOperatingAssetsOption(), className: 'wide' },
-      { id: 'revenue-cash', option: buildRevenueCashOption(), className: 'wide' },
-      { id: 'profit-cash', option: buildProfitCashOption(), className: 'wide' },
-      { id: 'profit-distribution', option: buildProfitDistributionOption(), className: 'wide' },
-      { id: 'expense-ratio', option: buildExpenseRatioOption(), className: 'wide' },
-      { id: 'cashflow-function', option: buildCashflowFunctionOption(), className: 'wide' },
-      { id: 'free-cashflow', option: buildFreeCashflowOption(), className: 'wide' },
-      { id: 'single-quarter-revenue', option: buildQuarterRevenueOption(), className: 'wide' },
-      { id: 'single-quarter-profit', option: buildQuarterProfitOption(), className: 'wide' },
+      makeSpec('income-pie', buildIncomePieOption(), 'pie-chart'),
+      makeSpec('asset-pie', buildAssetPieOption(), 'pie-chart'),
+      makeSpec('valuation-quality', buildValuationQualityOption(), 'wide'),
+      makeSpec('asset-structure', buildAssetStructureOption(), 'wide', assetStructureRows),
+      makeSpec('capital-structure', buildCapitalStructureOption(), 'wide', capitalStructureRows),
+      makeSpec('operating-assets', buildOperatingAssetsOption(), 'wide'),
+      makeSpec('revenue-cash', buildRevenueCashOption(), 'wide'),
+      makeSpec('profit-cash', buildProfitCashOption(), 'wide'),
+      makeSpec('profit-distribution', buildProfitDistributionOption(), 'wide'),
+      makeSpec('expense-ratio', buildExpenseRatioOption(), 'wide'),
+      makeSpec('cashflow-function', buildCashflowFunctionOption(), 'wide'),
+      makeSpec('free-cashflow', buildFreeCashflowOption(), 'wide'),
+      makeSpec('single-quarter-revenue', buildQuarterRevenueOption(), 'wide'),
+      makeSpec('single-quarter-profit', buildQuarterProfitOption(), 'wide'),
     )
   }
   if (hasValuationData.value) {
     specs.push(
-      { id: 'pe-price', option: buildPePriceOption(), className: 'wide' },
-      { id: 'shareholder-staff', option: buildShareholderStaffOption(), className: 'wide' },
+      makeSpec('pe-price', buildPePriceOption(), 'wide'),
+      makeSpec('shareholder-staff', buildShareholderStaffOption(), 'wide'),
     )
   }
   return specs
@@ -258,6 +310,24 @@ function latestMainBusinessPeriod() {
 
 function syncCommand(moduleName: string) {
   return (syncCommands[moduleName] || moduleName).replace('{ts_code}', cardData.value?.tsCode || inputCode.value)
+}
+
+function isExplanationOpen(id: string) {
+  return openExplanationIds.value.has(id)
+}
+
+function toggleExplanation(id: string) {
+  const nextIds = new Set(openExplanationIds.value)
+  if (nextIds.has(id)) {
+    nextIds.delete(id)
+  }
+  else {
+    nextIds.add(id)
+  }
+  openExplanationIds.value = nextIds
+  nextTick(() => {
+    charts.forEach(chart => chart.resize())
+  })
 }
 
 function yoy(values: Array<number | null>) {
@@ -528,20 +598,16 @@ function buildAssetStructureOption(): EChartsOption {
 }
 
 function buildCapitalStructureOption(): EChartsOption {
-  const assets = financeValue('totalAssets').map(toYi)
-  const liab = financeValue('totalLiab').map(toYi)
-  const equity = assets.map((value, index) => {
-    if (value === null) {
-      return null
-    }
-    return Number(Math.max(value - (liab[index] ?? 0), 0).toFixed(1))
-  })
   return {
     ...baseOption(`${stockName.value} 负债 + 股东权益结构图（亿元）`),
     series: [
-      stackAreaSeries('负债合计', liab),
-      stackAreaSeries('股东权益', equity),
-      lineSeries('资产合计', assets, 0, { label: { show: false } }),
+      stackAreaSeries('有息负债', financeValue('interestBearingDebt').map(toYi)),
+      stackAreaSeries('应付类款项', financeValue('payables').map(toYi)),
+      stackAreaSeries('在手订单', financeValue('contractLiabilities').map(toYi)),
+      stackAreaSeries('应付职工薪酬+应交税费', financeValue('employeeTaxPayables').map(toYi)),
+      stackAreaSeries('其他负债', financeValue('otherLiabilities').map(toYi)),
+      stackAreaSeries('归属母公司股东权益', financeValue('parentEquity').map(toYi)),
+      stackAreaSeries('少数股东权益', financeValue('minorityEquity').map(toYi)),
     ],
   }
 }
@@ -818,39 +884,46 @@ onBeforeUnmount(() => {
     </section>
 
     <section class="chart-report">
-      <div
+      <article
         v-for="spec in chartSpecs"
         :key="spec.id"
-        :ref="el => setChartEl(spec.id, el)"
-        class="chart-block"
+        class="chart-card"
         :class="spec.className"
-      />
+      >
+        <div
+          :ref="el => setChartEl(spec.id, el)"
+          class="chart-block"
+        />
+        <div v-if="spec.fieldRows?.length" class="chart-explain-bar">
+          <button type="button" class="chart-explain-toggle" @click="toggleExplanation(spec.id)">
+            {{ isExplanationOpen(spec.id) ? '收起字段口径' : '查看字段口径' }}
+          </button>
+        </div>
+        <div v-if="spec.fieldRows?.length && isExplanationOpen(spec.id)" class="chart-field-table">
+          <table>
+            <thead>
+              <tr>
+                <th>图表展示名称</th>
+                <th>中文字段</th>
+                <th>Tushare 字段名</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="row in spec.fieldRows" :key="row.label">
+                <td>{{ row.label }}</td>
+                <td>{{ row.cnFields }}</td>
+                <td><code>{{ row.fields }}</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
       <div v-if="!hasFinanceData && !loading" class="empty-panel">
         财务三表缺失，无法展示财务小卡片主体图表。
       </div>
       <div v-if="!hasValuationData && !loading" class="empty-panel">
         日估值/行情缺失，无法展示 PE、PB 与股价图。
       </div>
-    </section>
-
-    <section class="asset-field-table">
-      <h2>资产结构图字段口径</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>图表展示名称</th>
-            <th>中文字段</th>
-            <th>Tushare 字段名</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="row in assetStructureRows" :key="row.label">
-            <td>{{ row.label }}</td>
-            <td>{{ row.cnFields }}</td>
-            <td><code>{{ row.fields }}</code></td>
-          </tr>
-        </tbody>
-      </table>
     </section>
 
   </main>
@@ -984,6 +1057,11 @@ code {
   width: min(1000px, calc(100vw - 20px));
 }
 
+.chart-card {
+  min-width: 0;
+  width: 100%;
+}
+
 .chart-block {
   background: #fff;
   height: 430px;
@@ -991,13 +1069,51 @@ code {
   width: 100%;
 }
 
-.pie-chart {
+.pie-chart .chart-block {
   height: 360px;
 }
 
 .wide {
   grid-column: 1 / -1;
+}
+
+.wide .chart-block {
   height: 500px;
+}
+
+.chart-explain-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -22px;
+  padding-right: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.chart-explain-toggle {
+  background: #f5f5f5;
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  color: #333;
+  cursor: pointer;
+  font-size: 12px;
+  height: 24px;
+  line-height: 22px;
+  padding: 0 10px;
+}
+
+.chart-explain-toggle:hover {
+  background: #eee;
+}
+
+.chart-field-table {
+  background: #fafafa;
+  border: 1px solid #d8d8d8;
+  color: #333;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 8px 24px 4px;
+  padding: 8px 10px;
 }
 
 .empty-panel {
@@ -1011,44 +1127,33 @@ code {
   justify-content: center;
 }
 
-.asset-field-table {
-  margin: 14px auto 0;
-  width: min(1000px, calc(100vw - 20px));
-}
-
-.asset-field-table h2 {
-  font-size: 16px;
-  line-height: 1.6;
-  text-align: center;
-}
-
-.asset-field-table table {
+.chart-field-table table {
   border-collapse: collapse;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.45;
   width: 100%;
 }
 
-.asset-field-table th,
-.asset-field-table td {
+.chart-field-table th,
+.chart-field-table td {
   border: 1px solid #d8d8d8;
   padding: 6px 8px;
   text-align: left;
   vertical-align: top;
 }
 
-.asset-field-table th {
+.chart-field-table th {
   background: #f5f5f5;
   text-align: center;
 }
 
-.asset-field-table td:first-child {
+.chart-field-table td:first-child {
   font-weight: 700;
   white-space: nowrap;
   width: 140px;
 }
 
-.asset-field-table code {
+.chart-field-table code {
   background: transparent;
   color: #333;
   font-family: Consolas, 'Courier New', monospace;
