@@ -541,6 +541,67 @@ export interface AnnualMetricTrend {
   annualMetrics: AnnualMetricSeries
 }
 
+export interface FinanceCardPoint {
+  period: string
+  revenue: number | null
+  netProfit: number | null
+  operatingCashFlow: number | null
+  grossMargin: number | null
+  netProfitMargin: number | null
+  roe: number | null
+  totalAssets: number | null
+  totalLiab: number | null
+  moneyCap: number | null
+  interestDebt: number | null
+  valuationDate: string | null
+  close: number | null
+  pe: number | null
+  pb: number | null
+  fixedAssets: number | null
+  financialAssets: number | null
+  investRealEstate: number | null
+  longEquityInvestment: number | null
+  receivables: number | null
+  prepaidAssets: number | null
+  inventories: number | null
+  intangibleAssets: number | null
+  goodwill: number | null
+  otherAssets: number | null
+  interestBearingDebt: number | null
+  payables: number | null
+  contractLiabilities: number | null
+  employeeTaxPayables: number | null
+  otherLiabilities: number | null
+  parentEquity: number | null
+  minorityEquity: number | null
+}
+
+export interface ValuationPoint {
+  tradeDate: string
+  close: number | null
+  pe: number | null
+  pb: number | null
+}
+
+export interface MainBusinessPoint {
+  period: string
+  type: string
+  item: string
+  sales: number | null
+  profit: number | null
+  cost: number | null
+}
+
+export interface FinanceCardResponse {
+  tsCode: string
+  stock: StockBasic | null
+  industry: IndexMember | null
+  financeSeries: FinanceCardPoint[]
+  valuationSeries: ValuationPoint[]
+  mainBusinessSeries: MainBusinessPoint[]
+  missingModules: string[]
+}
+
 // export type Stock = StockBasic & Partial<IndexMember>
 export interface Stock extends StockBasic, Partial<Omit<IndexMember, 'tsCode' | 'name'>>, Partial<Omit<StockCompany, 'tsCode' | 'exchange'>>, Partial<Omit<DailyBasic, 'tsCode' | 'tradeDate'>>, Partial<Omit<FinaIndicator, 'tsCode' | 'annDate' | 'endDate'>> {
   // 这样既保留了 StockBasic 的必选 name，又引入了 IndexMember 的其他可选行业字段
@@ -561,6 +622,10 @@ export function getSWIndustry() {
 
 export function getStockBasicAll() {
   return request<StockBasic[]>(`/api/stock_basic_all`)
+}
+
+export function getStockBasic(tsCode: string) {
+  return request<StockBasic>(`/api/stock_basic?ts_code=${encodeURIComponent(tsCode)}`)
 }
 
 export function getIndexMember() {
@@ -607,6 +672,13 @@ export function getAnnualMetricTrends({ years = 10, latestYear }: { years?: numb
     params.append('latest_year', String(latestYear))
   }
   return request<AnnualMetricTrend[]>(`/api/annual_metric_trends?${params.toString()}`)
+}
+
+export function getFinanceCard(tsCode: string, years = 10) {
+  const params = new URLSearchParams()
+  params.append('ts_code', tsCode)
+  params.append('years', String(years))
+  return request<FinanceCardResponse>(`/api/finance/card?${params.toString()}`)
 }
 
 export function getUserStockData(tsCode: string) {

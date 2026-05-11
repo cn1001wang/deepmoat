@@ -21,6 +21,12 @@ def _get_tushare_pro():
 
 pro = _get_tushare_pro()
 
+# Tushare's standard financial statement endpoints are limited to
+# 200 calls/minute per interface. Keep a small buffer below the hard limit.
+income_limiter = RateLimiter(max_calls=180, period=60)
+balancesheet_limiter = RateLimiter(max_calls=180, period=60)
+cashflow_limiter = RateLimiter(max_calls=180, period=60)
+
 
 def get_sw_industry(level="L1", src="SW2021"):
     """获取申万行业分类数据"""
@@ -74,14 +80,17 @@ def get_income_vip(period: str):
 
 # 利润表
 def get_income_all(ts_code: str):
+    income_limiter.acquire()
     return pro.income(ts_code=ts_code)
 
 # 资产负债表
 def get_balancesheet_all(ts_code: str):
+    balancesheet_limiter.acquire()
     return pro.balancesheet(ts_code=ts_code)
 
 # 现金流量表
 def get_cashflow_all(ts_code: str):
+    cashflow_limiter.acquire()
     return pro.cashflow(ts_code=ts_code)
 
 def get_index_member(offset: int = 0, limit: int = 2000):

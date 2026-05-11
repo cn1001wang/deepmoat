@@ -1,6 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHistory } from 'vue-router'
 import FinanceStock from '@/views/finanace-stock.vue'
+import StockCard from '@/views/stock-card.vue'
 import StockList from '@/views/stock-list.vue'
 
 const routes: RouteRecordRaw[] = [
@@ -13,6 +14,12 @@ const routes: RouteRecordRaw[] = [
     path: '/stock/:tscode',
     name: 'FinanceStock',
     component: FinanceStock,
+    props: true,
+  },
+  {
+    path: '/stock/:tscode/card',
+    name: 'StockCard',
+    component: StockCard,
     props: true,
   },
   {

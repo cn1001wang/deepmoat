@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "24d79dbd0a348172",
+        "id": "b36c9dd2126a742f",
         "type": "tabs",
         "children": [
           {
-            "id": "a26c29d180076ea7",
+            "id": "16bd840bbb8bc517",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "outputs/a_share_watchlist_20260430_report.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "a_share_watchlist_20260430_report"
+              "title": "README"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "outputs/reports/300274_阳光电源/value_300274_阳光电源_2604170018_draft.md",
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "value_300274_阳光电源_2604170018_draft 的反向链接列表"
+              "title": "README 的反向链接列表"
             }
           },
           {
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "outputs/a_share_watchlist_20260430_report.md",
+                "file": "README.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "a_share_watchlist_20260430_report 的大纲"
+              "title": "README 的大纲"
             }
           }
         ],
@@ -183,19 +183,31 @@
       "bases:新建数据库": false
     }
   },
-  "active": "a26c29d180076ea7",
+  "active": "16bd840bbb8bc517",
   "lastOpenFiles": [
-    "outputs/reports/300274_阳光电源/value_300274_阳光电源_2604170018_draft.md",
-    "tests/test_sync_fina_indicator.py",
-    "tests/__pycache__/test_crud_latest_fallback.cpython-313.pyc",
-    "tests/__pycache__",
-    "tests/test_crud_latest_fallback.py",
-    "tests",
     "fe/dist/index.html",
-    "fe/dist/assets/index-vFNWwc5W.js",
-    "fe/dist/assets/index-BXwJeSuU.css",
-    "fe/dist/assets/Industry-DlkiqGvl.js",
+    "fe/dist/assets/index-DauWntHI.css",
+    "fe/dist/assets/index-DDbomqAf.js",
+    "fe/dist/assets/Industry-BcEZZNjt.js",
     "fe/dist/assets/Industry-4HUlcH1P.css",
+    "fe/dist/assets",
+    "fe/dist/assets/index-DLiMu7Jh.css",
+    "fe/dist/assets/index-CaU7Sdsd.js",
+    "fe/dist/assets/Industry-De-OTP0m.js",
+    "fe/dist/assets/index-oCIKIRv3.js",
+    "fe/dist/assets/index-kJqYiQte.css",
+    "简单筛选.md",
+    "价值筛选.md",
+    "outputs/reports/603259_药明康德/analysis_603259_药明康德_2605061350.md",
+    "outputs/reports/600176_中国巨石/analysis_600176_中国巨石_2605061659.md",
+    "outputs/reports/002821_凯莱英/analysis_002821_凯莱英_2605061443.md",
+    "outputs/reports/002222_福晶科技/analysis_002222_福晶科技_2605061644.md",
+    "outputs/reports/002130_沃尔核材/analysis_002130_沃尔核材_2605061700.md",
+    "outputs/a_share_watchlist_20260430_report.md",
+    "README.md",
+    "Users/raywang/codes/github/deepmoat/outputs/charts/value_605117_德业股份_2604160024/chart_01.svg.md",
+    "未命名.canvas",
+    "outputs/reports/300274_阳光电源/value_300274_阳光电源_2604170018_draft.md",
     "未命名.md",
     "outputs/reports/300274_阳光电源/value_300274_阳光电源_2604170018.md",
     "outputs/reports/300274_阳光电源/300274_阳光电源_年报员工研发资料整理.md",
@@ -220,17 +232,6 @@
     "outputs/reports/002747_埃斯顿/charts/charts_snippet.md",
     "outputs/reports/002747_埃斯顿/value_002747_埃斯顿_2604221459_draft.md",
     "outputs/reports/002747_埃斯顿/value_002747_埃斯顿_2604221459.md",
-    "outputs/reports/002747_埃斯顿/r12_002747_埃斯顿_2604221459.md",
-    "outputs/reports/002747_埃斯顿/analysis_002747_埃斯顿_2604221459.md",
-    "outputs/reports/000513_丽珠集团/analysis_000513_丽珠集团_2604270959.md",
-    "outputs/reports/688390_固德威/network_analysis_688390_固德威_260429.md",
-    "outputs/reports/300274_阳光电源/sotp_dcf_300274_阳光电源_2604290028.md",
-    "有用的总结.md",
-    "outputs/reports/300124_汇川技术/r12_300124_汇川技术_2604282244.md",
-    "outputs/reports/300124_汇川技术/value_300124_汇川技术_2604282242_draft.md",
-    "2026-04-28.md",
-    "2026-04-22.md",
-    "未命名 1.canvas",
-    "未命名.canvas"
+    "未命名 1.canvas"
   ]
 }
