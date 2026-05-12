@@ -544,7 +544,14 @@ export interface AnnualMetricTrend {
 export interface FinanceCardPoint {
   period: string
   revenue: number | null
+  totalRevenue: number | null
   netProfit: number | null
+  nIncome: number | null
+  investIncome: number | null
+  assetsImpairLoss: number | null
+  nonOperatingBalance: number | null
+  otherIncome: number | null
+  salesGoodsCash: number | null
   operatingCashFlow: number | null
   grossMargin: number | null
   netProfitMargin: number | null
@@ -574,6 +581,9 @@ export interface FinanceCardPoint {
   otherLiabilities: number | null
   parentEquity: number | null
   minorityEquity: number | null
+  operatingAssets: number | null
+  operatingLiabilities: number | null
+  operatingNetAssets: number | null
 }
 
 export interface ValuationPoint {

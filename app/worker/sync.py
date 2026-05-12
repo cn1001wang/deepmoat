@@ -460,18 +460,53 @@ def fetch_finance_data(max_workers=5, overwrite: bool = False):
 
 
 def sync_today_daily_basic():
+    sync_daily_basic_range()
+
+
+def parse_yyyymmdd(raw: str) -> datetime:
+    try:
+        return datetime.strptime(raw, "%Y%m%d")
+    except ValueError as exc:
+        raise ValueError(f"日期格式非法: {raw}，应为 YYYYMMDD，如 20160101") from exc
+
+
+def get_default_daily_end_date() -> datetime:
     now = datetime.now()
     # 如果当前时间早于15点，截止日期为昨天
     if now.hour < 15:
-        end_date = now - timedelta(days=1)
+        return now - timedelta(days=1)
+    return now
+
+
+def sync_daily_basic_range(
+    start_date: str | None = None,
+    end_date: str | None = None,
+):
+    if end_date:
+        end_dt = parse_yyyymmdd(end_date)
     else:
-        end_date = now
+        end_dt = get_default_daily_end_date()
 
-    # 往前推6天，总共7天
-    start_date = end_date - timedelta(days=6)
+    if start_date:
+        start_dt = parse_yyyymmdd(start_date)
+    else:
+        # 往前推6天，总共7天，保持 --daily 原有默认行为。
+        start_dt = end_dt - timedelta(days=6)
 
-    current_date = start_date
-    while current_date <= end_date:
+    if start_dt > end_dt:
+        raise ValueError(
+            f"daily_basic 起始日期不能晚于结束日期: {start_dt:%Y%m%d} > {end_dt:%Y%m%d}"
+        )
+
+    logging.info(
+        "开始同步 daily_basic，日期范围 %s 至 %s",
+        start_dt.strftime("%Y%m%d"),
+        end_dt.strftime("%Y%m%d"),
+    )
+
+    total_days = 0
+    current_date = start_dt
+    while current_date <= end_dt:
         trade_date_str = current_date.strftime("%Y%m%d")
         logging.info(f"正在同步 {trade_date_str} 的 daily_basic 数据...")
 
@@ -482,7 +517,98 @@ def sync_today_daily_basic():
             page_size=6000,
         )
 
+        total_days += 1
         current_date += timedelta(days=1)
+
+    logging.info("daily_basic 同步完成，共扫描 %s 个自然日", total_days)
+
+
+def iter_month_end_sample_dates(
+    start_dt: datetime,
+    end_dt: datetime,
+    window_days: int = 7,
+):
+    if window_days < 1:
+        raise ValueError("monthly sample window_days 必须大于等于 1")
+
+    month = datetime(start_dt.year, start_dt.month, 1)
+    while month <= end_dt:
+        if month.month == 12:
+            next_month = datetime(month.year + 1, 1, 1)
+        else:
+            next_month = datetime(month.year, month.month + 1, 1)
+
+        month_end = min(next_month - timedelta(days=1), end_dt)
+        sample_start = max(start_dt, month_end - timedelta(days=window_days - 1))
+
+        current = sample_start
+        while current <= month_end:
+            yield current
+            current += timedelta(days=1)
+
+        month = next_month
+
+
+def sync_daily_basic_dates(dates, label: str):
+    total_days = 0
+    for current_date in dates:
+        trade_date_str = current_date.strftime("%Y%m%d")
+        logging.info("正在同步 %s 的 daily_basic 数据（%s）...", trade_date_str, label)
+
+        fetch_paginated(
+            fetch_func=fetch_today_daily_basic,
+            save_func=lambda db, df: save_daily_basic(df),
+            trade_date=trade_date_str,
+            page_size=6000,
+        )
+
+        total_days += 1
+
+    logging.info("daily_basic %s同步完成，共扫描 %s 个自然日", label, total_days)
+
+
+def sync_daily_basic_hybrid(
+    start_date: str = "20160101",
+    end_date: str | None = None,
+    recent_years: int = 3,
+    sample_window_days: int = 7,
+):
+    if recent_years < 1:
+        raise ValueError("recent_years 必须大于等于 1")
+
+    start_dt = parse_yyyymmdd(start_date)
+    end_dt = parse_yyyymmdd(end_date) if end_date else get_default_daily_end_date()
+    if start_dt > end_dt:
+        raise ValueError(
+            f"daily_basic 起始日期不能晚于结束日期: {start_dt:%Y%m%d} > {end_dt:%Y%m%d}"
+        )
+
+    recent_start_dt = max(start_dt, end_dt - timedelta(days=365 * recent_years - 1))
+    older_end_dt = recent_start_dt - timedelta(days=1)
+
+    logging.info(
+        "开始 hybrid daily_basic 同步：近 %s 年逐日 %s 至 %s；历史抽样 %s 至 %s（月末前 %s 天）",
+        recent_years,
+        recent_start_dt.strftime("%Y%m%d"),
+        end_dt.strftime("%Y%m%d"),
+        start_dt.strftime("%Y%m%d"),
+        older_end_dt.strftime("%Y%m%d") if older_end_dt >= start_dt else "无",
+        sample_window_days,
+    )
+
+    # 先同步最近 3 年完整数据，保证最常用的筛选和分析窗口优先可用。
+    sync_daily_basic_range(
+        start_date=recent_start_dt.strftime("%Y%m%d"),
+        end_date=end_dt.strftime("%Y%m%d"),
+    )
+
+    if older_end_dt >= start_dt:
+        sampled_dates = iter_month_end_sample_dates(
+            start_dt=start_dt,
+            end_dt=older_end_dt,
+            window_days=sample_window_days,
+        )
+        sync_daily_basic_dates(sampled_dates, label="历史月末抽样")
 
 
 def sync_fina_indicator(max_workers=5):
@@ -553,7 +679,18 @@ def run(args):
     if args.finance:
         fetch_finance_data(max_workers=args.workers, overwrite=args.finance_overwrite)
     if args.daily:
-        sync_today_daily_basic()
+        if args.daily_hybrid:
+            sync_daily_basic_hybrid(
+                start_date=args.daily_start_date or "20160101",
+                end_date=args.daily_end_date,
+                recent_years=args.daily_recent_years,
+                sample_window_days=args.daily_sample_window_days,
+            )
+        else:
+            sync_daily_basic_range(
+                start_date=args.daily_start_date,
+                end_date=args.daily_end_date,
+            )
     if args.fina_indicator:
         sync_fina_indicator(max_workers=args.workers)
     if args.dividend:
@@ -582,7 +719,12 @@ if __name__ == "__main__":
         action="store_true",
         help="完全覆盖同步财务数据：删除旧 income/balancesheet/cashflow 后重拉",
     )
-    parser.add_argument("--daily", action="store_true", help="抓取今日指标")
+    parser.add_argument("--daily", action="store_true", help="抓取 daily_basic 指标")
+    parser.add_argument("--daily_start_date", type=str, default=None, help="daily_basic 起始日期，格式 YYYYMMDD；不传则同步最近 7 天")
+    parser.add_argument("--daily_end_date", type=str, default=None, help="daily_basic 结束日期，格式 YYYYMMDD；不传则按当前时间自动取今天/昨天")
+    parser.add_argument("--daily_hybrid", action="store_true", help="daily_basic hybrid 模式：近几年逐日同步，更早数据按月末抽样")
+    parser.add_argument("--daily_recent_years", type=int, default=3, help="hybrid 模式下逐日同步最近几年，默认 3")
+    parser.add_argument("--daily_sample_window_days", type=int, default=7, help="hybrid 模式下历史月末抽样窗口天数，默认 7")
     parser.add_argument("--workers", type=int, default=1, help="抓取财务数据线程数")
     parser.add_argument("--fina_indicator", action="store_true", help="抓取财务指标数据")
     parser.add_argument("--dividend", action="store_true", help="抓取送股分红")

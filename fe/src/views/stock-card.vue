@@ -30,6 +30,7 @@ const loading = ref(false)
 const status = ref('')
 const cardData = ref<FinanceCardResponse | null>(null)
 const showAllPeriods = ref(false)
+const includeInventoryInOperatingAssets = ref(true)
 const openExplanationIds = ref<Set<string>>(new Set())
 const chartEls = new Map<string, HTMLDivElement>()
 const charts: ECharts[] = []
@@ -52,6 +53,7 @@ const moduleLabels: Record<string, string> = {
   fina_indicator: '财务指标缺失',
   daily_basic: '日估值/行情缺失',
   fina_mainbz: '主营业务构成缺失',
+  balancesheet_payroll_payable: '资产负债表字段 payroll_payable（应付职工薪酬）缺失',
 }
 
 const syncCommands: Record<string, string> = {
@@ -60,6 +62,7 @@ const syncCommands: Record<string, string> = {
   fina_indicator: 'uv run python -m app.worker.sync --fina_indicator --workers 1',
   daily_basic: 'uv run python -m app.worker.sync --daily',
   fina_mainbz: 'uv run python -m app.worker.sync --fina_mainbz --mainbz_ts_codes {ts_code} --mainbz_types P --workers 1',
+  balancesheet_payroll_payable: 'uv run python -m app.worker.sync --finance --finance_overwrite --workers 1',
 }
 
 const assetStructureRows: FieldSpec[] = [
@@ -153,6 +156,38 @@ const capitalStructureRows: FieldSpec[] = [
   },
 ]
 
+const operatingAssetRows: FieldSpec[] = [
+  {
+    label: '营运资产',
+    cnFields: '应收账款 + 应收票据 + 存货 + 预付款项',
+    fields: 'accounts_receiv + notes_receiv + inventories + prepayment',
+  },
+  {
+    label: '营运负债',
+    cnFields: '应付账款 + 预收款项 + 合同负债 + 应付职工薪酬 + 应交税费',
+    fields: 'acct_payable + adv_receipts + contract_liab + payroll_payable + taxes_payable',
+  },
+  {
+    label: '营运净资产',
+    cnFields: '营运资产 - 营运负债',
+    fields: 'operating_assets - operating_liabilities',
+  },
+]
+
+const operatingAssetRowsNoInventory: FieldSpec[] = [
+  {
+    label: '营运资产（不含存货）',
+    cnFields: '应收账款 + 应收票据 + 预付款项',
+    fields: 'accounts_receiv + notes_receiv + prepayment',
+  },
+  operatingAssetRows[1],
+  {
+    label: '营运净资产（不含存货）',
+    cnFields: '营运资产（不含存货） - 营运负债',
+    fields: 'operating_assets_no_inventory - operating_liabilities',
+  },
+]
+
 const rawFinanceRows = computed(() => cardData.value?.financeSeries ?? [])
 const financeRows = computed(() => {
   const rows = rawFinanceRows.value
@@ -201,7 +236,12 @@ const chartSpecs = computed<ChartSpec[]>(() => {
       makeSpec('valuation-quality', buildValuationQualityOption(), 'wide'),
       makeSpec('asset-structure', buildAssetStructureOption(), 'wide', assetStructureRows),
       makeSpec('capital-structure', buildCapitalStructureOption(), 'wide', capitalStructureRows),
-      makeSpec('operating-assets', buildOperatingAssetsOption(), 'wide'),
+      makeSpec(
+        'operating-assets',
+        buildOperatingAssetsOption(),
+        'wide',
+        includeInventoryInOperatingAssets.value ? operatingAssetRows : operatingAssetRowsNoInventory,
+      ),
       makeSpec('revenue-cash', buildRevenueCashOption(), 'wide'),
       makeSpec('profit-cash', buildProfitCashOption(), 'wide'),
       makeSpec('profit-distribution', buildProfitDistributionOption(), 'wide'),
@@ -325,6 +365,13 @@ function toggleExplanation(id: string) {
     nextIds.add(id)
   }
   openExplanationIds.value = nextIds
+  nextTick(() => {
+    charts.forEach(chart => chart.resize())
+  })
+}
+
+function toggleOperatingAssetMode() {
+  includeInventoryInOperatingAssets.value = !includeInventoryInOperatingAssets.value
   nextTick(() => {
     charts.forEach(chart => chart.resize())
   })
@@ -613,30 +660,53 @@ function buildCapitalStructureOption(): EChartsOption {
 }
 
 function buildOperatingAssetsOption(): EChartsOption {
+  const operatingAssetsWithInventory = financeValue('operatingAssets').map(toYi)
+  const inventories = financeValue('inventories').map(toYi)
+  const operatingAssets = operatingAssetsWithInventory.map((value, index) => {
+    if (value === null) {
+      return null
+    }
+    if (includeInventoryInOperatingAssets.value) {
+      return value
+    }
+    return Number((value - (inventories[index] ?? 0)).toFixed(1))
+  })
+  const operatingLiabilities = financeValue('operatingLiabilities').map(toYi)
+  const operatingNetAssets = operatingAssets.map((value, index) => {
+    if (value === null || operatingLiabilities[index] === null) {
+      return null
+    }
+    return Number((value - Number(operatingLiabilities[index])).toFixed(1))
+  })
   return {
     ...baseOption(`${stockName.value} 营运净资产变化（亿元）`),
     series: [
-      barSeries('货币资金', financeValue('moneyCap').map(toYi), { itemStyle: { color: palette.yellow } }),
-      barSeries('有息负债', financeValue('interestDebt').map(value => {
-        const n = toYi(value)
-        return n === null ? null : -n
-      }), { itemStyle: { color: palette.red } }),
-      barSeries('营运净资产', financeRows.value.map(item => toYi((item.moneyCap ?? 0) - (item.interestDebt ?? 0))), { itemStyle: { color: palette.orange } }),
+      barSeries(
+        includeInventoryInOperatingAssets.value ? '营运资产' : '营运资产（不含存货）',
+        operatingAssets,
+        { itemStyle: { color: palette.yellow } },
+      ),
+      barSeries('营运负债', operatingLiabilities, { itemStyle: { color: palette.orange } }),
+      barSeries(
+        includeInventoryInOperatingAssets.value ? '营运净资产' : '营运净资产（不含存货）',
+        operatingNetAssets,
+        { itemStyle: { color: palette.red } },
+      ),
     ],
   }
 }
 
 function buildRevenueCashOption(): EChartsOption {
   return {
-    ...baseOption(`${stockName.value} 营业收入 和 经营活动收到的现金变化（亿元）`),
+    ...baseOption(`${stockName.value} 营业总收入 和 销售商品、提供劳务收到的现金变化（亿元）`),
     yAxis: [
       { type: 'value', axisLabel: { color: '#555', fontSize: 10 }, splitLine: { lineStyle: { color: '#e8e8e8' } } },
       { type: 'value', axisLabel: { formatter: '{value}%', color: '#555', fontSize: 10 }, splitLine: { show: false } },
     ],
     series: [
-      barSeries('营业收入', financeValue('revenue').map(toYi)),
-      barSeries('经营现金流', financeValue('operatingCashFlow').map(toYi)),
-      lineSeries('现金流占收入比率', financeRows.value.map(item => safeRatio(item.operatingCashFlow, item.revenue)), 1),
+      barSeries('营业总收入', financeValue('totalRevenue').map(toYi)),
+      barSeries('销售商品、提供劳务收到的现金', financeValue('salesGoodsCash').map(toYi), { itemStyle: { color: palette.yellow } }),
+      lineSeries('现金收入占营业总收入比率', financeRows.value.map(item => safeRatio(item.salesGoodsCash, item.totalRevenue)), 1),
     ],
   }
 }
@@ -649,9 +719,10 @@ function buildProfitCashOption(): EChartsOption {
       { type: 'value', axisLabel: { formatter: '{value}%', color: '#555', fontSize: 10 }, splitLine: { show: false } },
     ],
     series: [
-      barSeries('净利润', financeValue('netProfit').map(toYi)),
+      barSeries('净利润', financeValue('nIncome').map(toYi)),
       barSeries('经营现金流', financeValue('operatingCashFlow').map(toYi)),
-      lineSeries('净利润现金比率', financeRows.value.map(item => safeRatio(item.operatingCashFlow, item.netProfit)), 1),
+      lineSeries('净利润现金比率', financeRows.value.map(item => safeRatio(item.operatingCashFlow, item.nIncome)), 1),
+      lineSeries('净利润同比增长率', yoy(financeValue('nIncome').map(toYi)), 1),
     ],
   }
 }
@@ -659,11 +730,13 @@ function buildProfitCashOption(): EChartsOption {
 function buildProfitDistributionOption(): EChartsOption {
   return {
     ...baseOption(`${stockName.value} 税前利润分布（亿元）`),
+    color: ['#ff4d55', '#f4bf00', '#84cc16', '#10b981', '#60739b'],
     series: [
-      barSeries('主业利润', financeValue('netProfit').map(toYi)),
-      lineSeries('毛利率', financeValue('grossMargin').map(value => toFixedNumber(value)), 0, { label: { show: false } }),
-      lineSeries('净利率', financeValue('netProfitMargin').map(value => toFixedNumber(value)), 0, { label: { show: false } }),
-      lineSeries('ROE', financeValue('roe').map(value => toFixedNumber(value)), 0, { label: { show: false } }),
+      barSeries('主业利润', financeValue('netProfit').map(toYi), { itemStyle: { color: '#ff4d55' } }),
+      barSeries('投资收益', financeValue('investIncome').map(toYi), { itemStyle: { color: '#f4bf00' } }),
+      barSeries('资产减值损益', financeValue('assetsImpairLoss').map(toYi), { itemStyle: { color: '#84cc16' } }),
+      barSeries('营业外收支', financeValue('nonOperatingBalance').map(toYi), { itemStyle: { color: '#10b981' } }),
+      barSeries('其他收益', financeValue('otherIncome').map(toYi), { itemStyle: { color: '#60739b' } }),
     ],
   }
 }
@@ -894,7 +967,15 @@ onBeforeUnmount(() => {
           :ref="el => setChartEl(spec.id, el)"
           class="chart-block"
         />
-        <div v-if="spec.fieldRows?.length" class="chart-explain-bar">
+        <div v-if="spec.fieldRows?.length || spec.id === 'operating-assets'" class="chart-explain-bar">
+          <button
+            v-if="spec.id === 'operating-assets'"
+            type="button"
+            class="chart-explain-toggle"
+            @click="toggleOperatingAssetMode"
+          >
+            {{ includeInventoryInOperatingAssets ? '切换为不含存货' : '切换为含存货' }}
+          </button>
           <button type="button" class="chart-explain-toggle" @click="toggleExplanation(spec.id)">
             {{ isExplanationOpen(spec.id) ? '收起字段口径' : '查看字段口径' }}
           </button>

@@ -80,6 +80,12 @@ def _safe_sum(*values):
     return total if has_value else None
 
 
+def _required_sum(*values):
+    if any(value is None for value in values):
+        return None
+    return _safe_sum(*values)
+
+
 BALANCESHEET_CARD_COLUMNS = {
     "loanto_oth_bank_fi": "FLOAT",
     "deriv_assets": "FLOAT",
@@ -87,6 +93,7 @@ BALANCESHEET_CARD_COLUMNS = {
     "fair_value_fin_assets": "FLOAT",
     "cost_fin_assets": "FLOAT",
     "receiv_financing": "FLOAT",
+    "contract_assets": "FLOAT",
     "accounts_receiv_bill": "FLOAT",
     "acc_receivable": "FLOAT",
     "premium_receiv": "FLOAT",
@@ -513,7 +520,7 @@ def get_finance_card_api(
         ) if balance else None
         payables = _safe_sum(balance.notes_payable, balance.accounts_payable, balance.acct_payable) if balance else None
         contract_liabilities = _safe_sum(balance.adv_receipts, balance.contract_liab) if balance else None
-        employee_tax_payables = _safe_sum(balance.payroll_payable, balance.taxes_payable) if balance else None
+        employee_tax_payables = _required_sum(balance.payroll_payable, balance.taxes_payable) if balance else None
         other_liabilities = None
         if balance and balance.total_liab is not None:
             known_liabilities = _safe_sum(
@@ -525,6 +532,22 @@ def get_finance_card_api(
             other_liabilities = max(balance.total_liab - (known_liabilities or 0), 0)
         parent_equity = _safe_float(balance.total_hldr_eqy_exc_min_int if balance else None)
         minority_equity = _safe_float(balance.minority_int if balance else None)
+        operating_assets = _safe_sum(
+            balance.accounts_receiv if balance else None,
+            balance.notes_receiv if balance else None,
+            balance.inventories if balance else None,
+            balance.prepayment if balance else None,
+        )
+        operating_liabilities = _safe_sum(
+            balance.acct_payable if balance else None,
+            balance.adv_receipts if balance else None,
+            balance.contract_liab if balance else None,
+            balance.payroll_payable if balance else None,
+            balance.taxes_payable if balance else None,
+        )
+        operating_net_assets = None
+        if operating_assets is not None and operating_liabilities is not None:
+            operating_net_assets = operating_assets - operating_liabilities
         known_assets = _safe_sum(
             balance.money_cap if balance else None,
             financial_assets,
@@ -543,7 +566,18 @@ def get_finance_card_api(
         finance_series.append({
             "period": _format_period(period),
             "revenue": _safe_float(income.revenue if income and income.revenue is not None else income.total_revenue if income else None),
+            "totalRevenue": _safe_float(income.total_revenue if income else None),
             "netProfit": _safe_float(income.n_income_attr_p if income and income.n_income_attr_p is not None else income.n_income if income else None),
+            "nIncome": _safe_float(income.n_income if income else None),
+            "investIncome": _safe_float(income.invest_income if income else None),
+            "assetsImpairLoss": _safe_float(income.assets_impair_loss if income else None),
+            "nonOperatingBalance": _safe_float(
+                (income.non_oper_income or 0) - (income.non_oper_exp or 0)
+                if income
+                else None
+            ),
+            "otherIncome": _safe_float(income.oth_income if income else None),
+            "salesGoodsCash": _safe_float(cashflow.c_fr_sale_sg if cashflow else None),
             "operatingCashFlow": _safe_float(cashflow.n_cashflow_act if cashflow else None),
             "grossMargin": _safe_float(indicator.grossprofit_margin if indicator else None),
             "netProfitMargin": _safe_float(indicator.netprofit_margin if indicator else None),
@@ -573,6 +607,9 @@ def get_finance_card_api(
             "otherLiabilities": _safe_float(other_liabilities),
             "parentEquity": _safe_float(parent_equity),
             "minorityEquity": _safe_float(minority_equity),
+            "operatingAssets": _safe_float(operating_assets),
+            "operatingLiabilities": _safe_float(operating_liabilities),
+            "operatingNetAssets": _safe_float(operating_net_assets),
         })
 
     valuation_series = [
@@ -596,6 +633,11 @@ def get_finance_card_api(
         missing_modules.append("daily_basic")
     if not mainbz_rows:
         missing_modules.append("fina_mainbz")
+    if balance_rows:
+        has_taxes_payable = any(row.taxes_payable is not None for row in balance_rows)
+        has_payroll_payable = any(row.payroll_payable is not None for row in balance_rows)
+        if has_taxes_payable and not has_payroll_payable:
+            missing_modules.append("balancesheet_payroll_payable")
 
     return ok({
         "tsCode": ts_code,

@@ -296,6 +296,7 @@ class BalanceSheet(Base):
     accounts_receiv = Column(Float)
     acc_receivable = Column(Float)
     oth_receiv = Column(Float)
+    contract_assets = Column(Float)
     prepayment = Column(Float)
     div_receiv = Column(Float)
     int_receiv = Column(Float)

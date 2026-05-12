@@ -119,6 +119,10 @@ def get_daily_basic(
     )
 
 
+# daily_basic 常规限频留出余量，避免一次性补历史时撞到 Tushare 滑动窗口。
+daily_basic_limiter = RateLimiter(max_calls=180, period=60)
+
+
 def fetch_today_daily_basic(trade_date: str | None = None, offset: int = 0, limit: int = 6000) -> pd.DataFrame:
     """
     从 tushare 获取当天 daily_basic 数据
@@ -126,6 +130,7 @@ def fetch_today_daily_basic(trade_date: str | None = None, offset: int = 0, limi
     if trade_date is None:
         trade_date = datetime.now().strftime("%Y%m%d")
 
+    daily_basic_limiter.acquire()
     df = pro.daily_basic(trade_date=trade_date, offset=offset, limit=limit)
     return df
 
