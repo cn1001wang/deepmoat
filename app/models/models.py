@@ -400,19 +400,24 @@ class CashFlow(Base):
     st_cash_out_act = Column(Float)
 
     n_cashflow_act = Column(Float)
+    depr_fa_coga_dpba = Column(Float)
+    amort_intang_assets = Column(Float)
 
     c_disp_withdrwl_invest = Column(Float)
     c_recp_return_invest = Column(Float)
+    n_recp_disp_sobu = Column(Float)
     stot_inflows_inv_act = Column(Float)
 
     c_pay_acq_const_fiolta = Column(Float)
     c_paid_invest = Column(Float)
+    n_disp_subs_oth_biz = Column(Float)
     stot_out_inv_act = Column(Float)
 
     n_cashflow_inv_act = Column(Float)
 
     c_recp_borrow = Column(Float)
     proc_issue_bonds = Column(Float)
+    c_recp_cap_contrib = Column(Float)
     stot_cash_in_fnc_act = Column(Float)
 
     c_prepay_amt_borr = Column(Float)

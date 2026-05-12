@@ -547,12 +547,24 @@ export interface FinanceCardPoint {
   totalRevenue: number | null
   netProfit: number | null
   nIncome: number | null
+  operateProfit: number | null
+  mainBusinessProfit: number | null
   investIncome: number | null
   assetsImpairLoss: number | null
   nonOperatingBalance: number | null
   otherIncome: number | null
   salesGoodsCash: number | null
   operatingCashFlow: number | null
+  maintenanceCapex: number | null
+  actualCapex: number | null
+  freeCashFlowAfterMaintenance: number | null
+  actualFreeCashFlow: number | null
+  financialWealthInvestNet: number | null
+  productionOperationInvestNet: number | null
+  maInvestNet: number | null
+  equityFinancingNet: number | null
+  interestDebtFinancingNet: number | null
+  dividendInterestPaymentNet: number | null
   grossMargin: number | null
   netProfitMargin: number | null
   roe: number | null
@@ -584,12 +596,17 @@ export interface FinanceCardPoint {
   operatingAssets: number | null
   operatingLiabilities: number | null
   operatingNetAssets: number | null
+  salesExpenseRatio: number | null
+  adminExpenseRatio: number | null
+  financeExpenseRatio: number | null
+  rdExpenseRatio: number | null
 }
 
 export interface ValuationPoint {
   tradeDate: string
   close: number | null
   pe: number | null
+  ps: number | null
   pb: number | null
 }
 

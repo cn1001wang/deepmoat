@@ -168,6 +168,54 @@ def ensure_fina_mainbz_schema():
     logging.info("fina_mainbz 表结构已校验/修复完成")
 
 
+def ensure_cashflow_schema():
+    """
+    对齐 cashflow 表新增字段，避免模型更新后同步报 UndefinedColumn。
+    """
+    with engine.begin() as conn:
+        conn.execute(
+            text(
+                """
+                ALTER TABLE cashflow
+                ADD COLUMN IF NOT EXISTS depr_fa_coga_dpba DOUBLE PRECISION
+                """
+            )
+        )
+        conn.execute(
+            text(
+                """
+                ALTER TABLE cashflow
+                ADD COLUMN IF NOT EXISTS amort_intang_assets DOUBLE PRECISION
+                """
+            )
+        )
+        conn.execute(
+            text(
+                """
+                ALTER TABLE cashflow
+                ADD COLUMN IF NOT EXISTS n_recp_disp_sobu DOUBLE PRECISION
+                """
+            )
+        )
+        conn.execute(
+            text(
+                """
+                ALTER TABLE cashflow
+                ADD COLUMN IF NOT EXISTS n_disp_subs_oth_biz DOUBLE PRECISION
+                """
+            )
+        )
+        conn.execute(
+            text(
+                """
+                ALTER TABLE cashflow
+                ADD COLUMN IF NOT EXISTS c_recp_cap_contrib DOUBLE PRECISION
+                """
+            )
+        )
+    logging.info("cashflow 表结构已校验/修复完成")
+
+
 def parse_mainbz_types(raw: str) -> list[str]:
     allowed = {"P", "D", "I"}
     parts = [p.strip().upper() for p in raw.split(",") if p.strip()]
@@ -677,6 +725,7 @@ def run(args):
     if args.index_member:
         fetch_index_member()
     if args.finance:
+        ensure_cashflow_schema()
         fetch_finance_data(max_workers=args.workers, overwrite=args.finance_overwrite)
     if args.daily:
         if args.daily_hybrid:

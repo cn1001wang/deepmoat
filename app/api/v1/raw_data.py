@@ -86,6 +86,14 @@ def _required_sum(*values):
     return _safe_sum(*values)
 
 
+def _safe_diff(inflow, outflow):
+    in_value = _safe_float(inflow)
+    out_value = _safe_float(outflow)
+    if in_value is None and out_value is None:
+        return None
+    return (in_value or 0.0) - (out_value or 0.0)
+
+
 BALANCESHEET_CARD_COLUMNS = {
     "loanto_oth_bank_fi": "FLOAT",
     "deriv_assets": "FLOAT",
@@ -125,6 +133,15 @@ BALANCESHEET_CARD_COLUMNS = {
 }
 
 
+CASHFLOW_CARD_COLUMNS = {
+    "depr_fa_coga_dpba": "FLOAT",
+    "amort_intang_assets": "FLOAT",
+    "n_recp_disp_sobu": "FLOAT",
+    "n_disp_subs_oth_biz": "FLOAT",
+    "c_recp_cap_contrib": "FLOAT",
+}
+
+
 def _ensure_balancesheet_card_columns(db: Session):
     bind = db.get_bind()
     existing_columns = {column["name"] for column in inspect(bind).get_columns("balancesheet")}
@@ -133,6 +150,17 @@ def _ensure_balancesheet_card_columns(db: Session):
         return
     for name in missing_columns:
         db.execute(text(f"ALTER TABLE balancesheet ADD COLUMN {name} {BALANCESHEET_CARD_COLUMNS[name]}"))
+    db.commit()
+
+
+def _ensure_cashflow_card_columns(db: Session):
+    bind = db.get_bind()
+    existing_columns = {column["name"] for column in inspect(bind).get_columns("cashflow")}
+    missing_columns = [name for name in CASHFLOW_CARD_COLUMNS if name not in existing_columns]
+    if not missing_columns:
+        return
+    for name in missing_columns:
+        db.execute(text(f"ALTER TABLE cashflow ADD COLUMN {name} {CASHFLOW_CARD_COLUMNS[name]}"))
     db.commit()
 
 
@@ -392,6 +420,7 @@ def get_finance_card_api(
     不从 Tushare 拉取，不自动补数；缺失模块由前端提示同步命令。
     """
     _ensure_balancesheet_card_columns(db)
+    _ensure_cashflow_card_columns(db)
 
     stock = get_stock_by_code(db, ts_code)
     industry = get_index_member_by_ts_code(db, ts_code)
@@ -424,11 +453,14 @@ def get_finance_card_api(
         .limit(years * 4)
         .all()
     )
+    # 估值图需要按多年财报期抽样（3/31、6/30、9/30、12/31），
+    # 这里按 years 放大日频窗口，避免仅取近一年导致前端无法展示近10年点位。
+    daily_window = max(years * 320, 260)
     daily_rows = (
         db.query(DailyBasic)
         .filter(DailyBasic.ts_code == ts_code)
         .order_by(DailyBasic.trade_date.desc())
-        .limit(260)
+        .limit(daily_window)
         .all()
     )
     latest_mainbz_period = (
@@ -548,6 +580,23 @@ def get_finance_card_api(
         operating_net_assets = None
         if operating_assets is not None and operating_liabilities is not None:
             operating_net_assets = operating_assets - operating_liabilities
+        total_revenue = income.revenue if income and income.revenue is not None else income.total_revenue if income else None
+        main_business_profit = None
+        if income:
+            revenue_for_main = income.revenue if income.revenue is not None else income.total_revenue
+            if revenue_for_main is not None:
+                main_business_profit = (
+                    revenue_for_main
+                    - (income.oper_cost or 0)
+                    - (income.biz_tax_surchg or 0)
+                    - (income.sell_exp or 0)
+                    - (income.admin_exp or 0)
+                    - (income.fin_exp or 0)
+                )
+        sales_expense_ratio = _safe_ratio(income.sell_exp if income else None, total_revenue)
+        admin_expense_ratio = _safe_ratio(income.admin_exp if income else None, total_revenue)
+        finance_expense_ratio = _safe_ratio(income.fin_exp if income else None, total_revenue)
+        rd_expense_ratio = _safe_ratio(income.rd_exp if income else None, total_revenue)
         known_assets = _safe_sum(
             balance.money_cap if balance else None,
             financial_assets,
@@ -569,6 +618,8 @@ def get_finance_card_api(
             "totalRevenue": _safe_float(income.total_revenue if income else None),
             "netProfit": _safe_float(income.n_income_attr_p if income and income.n_income_attr_p is not None else income.n_income if income else None),
             "nIncome": _safe_float(income.n_income if income else None),
+            "operateProfit": _safe_float(income.operate_profit if income else None),
+            "mainBusinessProfit": _safe_float(main_business_profit),
             "investIncome": _safe_float(income.invest_income if income else None),
             "assetsImpairLoss": _safe_float(income.assets_impair_loss if income else None),
             "nonOperatingBalance": _safe_float(
@@ -579,6 +630,40 @@ def get_finance_card_api(
             "otherIncome": _safe_float(income.oth_income if income else None),
             "salesGoodsCash": _safe_float(cashflow.c_fr_sale_sg if cashflow else None),
             "operatingCashFlow": _safe_float(cashflow.n_cashflow_act if cashflow else None),
+            "maintenanceCapex": _safe_float(
+                _safe_sum(cashflow.depr_fa_coga_dpba if cashflow else None, cashflow.amort_intang_assets if cashflow else None)
+            ),
+            "actualCapex": _safe_float(cashflow.c_pay_acq_const_fiolta if cashflow else None),
+            "freeCashFlowAfterMaintenance": _safe_float(
+                _safe_diff(
+                    cashflow.n_cashflow_act if cashflow else None,
+                    _safe_sum(cashflow.depr_fa_coga_dpba if cashflow else None, cashflow.amort_intang_assets if cashflow else None),
+                )
+            ),
+            "actualFreeCashFlow": _safe_float(
+                _safe_diff(cashflow.n_cashflow_act if cashflow else None, cashflow.c_pay_acq_const_fiolta if cashflow else None)
+            ),
+            "financialWealthInvestNet": _safe_float(
+                _safe_diff(cashflow.c_recp_return_invest if cashflow else None, cashflow.c_paid_invest if cashflow else None)
+            ),
+            "productionOperationInvestNet": _safe_float(
+                _safe_diff(cashflow.c_disp_withdrwl_invest if cashflow else None, cashflow.c_pay_acq_const_fiolta if cashflow else None)
+            ),
+            "maInvestNet": _safe_float(
+                _safe_diff(cashflow.n_recp_disp_sobu if cashflow else None, cashflow.n_disp_subs_oth_biz if cashflow else None)
+            ),
+            "equityFinancingNet": _safe_float(cashflow.c_recp_cap_contrib if cashflow else None),
+            "interestDebtFinancingNet": _safe_float(
+                _safe_diff(
+                    _safe_sum(cashflow.c_recp_borrow if cashflow else None, cashflow.proc_issue_bonds if cashflow else None),
+                    cashflow.c_prepay_amt_borr if cashflow else None,
+                )
+            ),
+            "dividendInterestPaymentNet": _safe_float(
+                -((cashflow.c_pay_dist_dpcp_int_exp if cashflow else None) or 0)
+                if cashflow and cashflow.c_pay_dist_dpcp_int_exp is not None
+                else None
+            ),
             "grossMargin": _safe_float(indicator.grossprofit_margin if indicator else None),
             "netProfitMargin": _safe_float(indicator.netprofit_margin if indicator else None),
             "roe": _safe_float(indicator.roe if indicator else None),
@@ -610,6 +695,10 @@ def get_finance_card_api(
             "operatingAssets": _safe_float(operating_assets),
             "operatingLiabilities": _safe_float(operating_liabilities),
             "operatingNetAssets": _safe_float(operating_net_assets),
+            "salesExpenseRatio": _safe_float(sales_expense_ratio),
+            "adminExpenseRatio": _safe_float(admin_expense_ratio),
+            "financeExpenseRatio": _safe_float(finance_expense_ratio),
+            "rdExpenseRatio": _safe_float(rd_expense_ratio),
         })
 
     valuation_series = [
@@ -617,6 +706,7 @@ def get_finance_card_api(
             "tradeDate": _format_period(row.trade_date),
             "close": _safe_float(row.close),
             "pe": _safe_float(row.pe_ttm if row.pe_ttm is not None else row.pe),
+            "ps": _safe_float(row.ps_ttm if row.ps_ttm is not None else row.ps),
             "pb": _safe_float(row.pb),
         }
         for row in reversed(daily_rows)
@@ -633,6 +723,20 @@ def get_finance_card_api(
         missing_modules.append("daily_basic")
     if not mainbz_rows:
         missing_modules.append("fina_mainbz")
+    if not any(point.get("financialWealthInvestNet") is not None for point in finance_series):
+        missing_modules.append("cashflow_financial_invest")
+    if not any(point.get("productionOperationInvestNet") is not None for point in finance_series):
+        missing_modules.append("cashflow_production_invest")
+    if not any(point.get("maInvestNet") is not None for point in finance_series):
+        missing_modules.append("cashflow_ma_invest")
+    if not any(point.get("equityFinancingNet") is not None for point in finance_series):
+        missing_modules.append("cashflow_equity_financing")
+    if not any(point.get("interestDebtFinancingNet") is not None for point in finance_series):
+        missing_modules.append("cashflow_interest_debt_financing")
+    if not any(point.get("dividendInterestPaymentNet") is not None for point in finance_series):
+        missing_modules.append("cashflow_dividend_interest")
+    if not any(point.get("maintenanceCapex") is not None for point in finance_series):
+        missing_modules.append("cashflow_maintenance_capex")
     if balance_rows:
         has_taxes_payable = any(row.taxes_payable is not None for row in balance_rows)
         has_payroll_payable = any(row.payroll_payable is not None for row in balance_rows)
