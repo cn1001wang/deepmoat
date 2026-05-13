@@ -784,11 +784,11 @@ def render_report(stock_row: pd.Series, bundle: dict, annual_df: pd.DataFrame, l
 
     valuation_lines = ["- 无估值数据"] if daily is None else [
         f"- 交易日：{daily['trade_date']}",
-        f"- 收盘价：{daily['close']:.2f} 元",
-        f"- PE(TTM)：{daily['pe_ttm']:.2f} 倍",
-        f"- PB：{daily['pb']:.2f} 倍",
-        f"- PS(TTM)：{daily['ps_ttm']:.2f} 倍",
-        f"- 股息率(TTM)：{daily['dv_ttm']:.2f}%",
+        f"- 收盘价：{format_num(daily['close'])} 元",
+        f"- PE(TTM)：{format_num(daily['pe_ttm'])} 倍",
+        f"- PB：{format_num(daily['pb'])} 倍",
+        f"- PS(TTM)：{format_num(daily['ps_ttm'])} 倍",
+        f"- 股息率(TTM)：{format_pct(daily['dv_ttm'])}",
         f"- 总市值：{daily['total_mv'] / 10000:.2f} 亿元",
     ]
 

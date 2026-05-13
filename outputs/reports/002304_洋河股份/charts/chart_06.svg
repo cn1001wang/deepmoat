@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
+<text x="40" y="42" font-size="26" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#222">分产品利润结构图</text>
+<rect x="40" y="60" width="22" height="10" fill="#4E79A7"/>
+<text x="68" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">利润</text>
+<rect x="210" y="60" width="22" height="10" fill="#F28E2B"/>
+<text x="238" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">毛利率</text>
+<line x1="90" y1="130" x2="90" y2="630" stroke="#555" stroke-width="1"/>
+<line x1="90" y1="630.0" x2="1130" y2="630.0" stroke="#555" stroke-width="1"/>
+<line x1="90" y1="630.0" x2="1130" y2="630.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="635.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.00</text>
+<line x1="90" y1="530.0" x2="1130" y2="530.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="535.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">27.31</text>
+<line x1="90" y1="430.00000000000006" x2="1130" y2="430.00000000000006" stroke="#eee" stroke-width="1"/>
+<text x="78" y="435.00000000000006" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">54.61</text>
+<line x1="90" y1="330.0" x2="1130" y2="330.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="335.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">81.92</text>
+<line x1="90" y1="230.0" x2="1130" y2="230.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="235.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">109.22</text>
+<line x1="90" y1="130.0" x2="1130" y2="130.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="135.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">136.53</text>
+<text x="164.28571428571428" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">酒类</text>
+<text x="312.8571428571429" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">白酒</text>
+<text x="461.42857142857144" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">省外</text>
+<text x="610.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">省内</text>
+<text x="758.5714285714287" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">其他业务</text>
+<text x="907.1428571428572" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">其他业务(行业)</text>
+<text x="1055.7142857142858" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">红酒</text>
+<rect x="113.77" y="130.00" width="92.95" height="500.00" fill="#4E79A7" opacity="0.85"/>
+<rect x="262.34" y="130.37" width="92.95" height="499.63" fill="#4E79A7" opacity="0.85"/>
+<rect x="410.91" y="363.21" width="92.95" height="266.79" fill="#4E79A7" opacity="0.85"/>
+<rect x="559.49" y="396.83" width="92.95" height="233.17" fill="#4E79A7" opacity="0.85"/>
+<rect x="708.06" y="626.23" width="92.95" height="3.77" fill="#4E79A7" opacity="0.85"/>
+<rect x="856.63" y="626.23" width="92.95" height="3.77" fill="#4E79A7" opacity="0.85"/>
+<rect x="1005.20" y="629.63" width="92.95" height="0.37" fill="#4E79A7" opacity="0.85"/>
+<polyline fill="none" stroke="#F28E2B" stroke-width="3" points="164.29,363.72 312.86,363.50 461.43,367.31 610.00,359.44 758.57,543.35 907.14,543.35 1055.71,502.92"/>
+<circle cx="164.29" cy="363.72" r="4" fill="#F28E2B"/>
+<circle cx="312.86" cy="363.50" r="4" fill="#F28E2B"/>
+<circle cx="461.43" cy="367.31" r="4" fill="#F28E2B"/>
+<circle cx="610.00" cy="359.44" r="4" fill="#F28E2B"/>
+<circle cx="758.57" cy="543.35" r="4" fill="#F28E2B"/>
+<circle cx="907.14" cy="543.35" r="4" fill="#F28E2B"/>
+<circle cx="1055.71" cy="502.92" r="4" fill="#F28E2B"/>
+</svg>

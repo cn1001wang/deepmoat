@@ -6,24 +6,42 @@
 <rect x="210" y="60" width="22" height="10" fill="#F28E2B"/>
 <text x="238" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">毛利率</text>
 <line x1="90" y1="130" x2="90" y2="630" stroke="#555" stroke-width="1"/>
-<line x1="90" y1="630.0" x2="1130" y2="630.0" stroke="#555" stroke-width="1"/>
+<line x1="90" y1="573.9446366782007" x2="1130" y2="573.9446366782007" stroke="#555" stroke-width="1"/>
 <line x1="90" y1="630.0" x2="1130" y2="630.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="635.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.00</text>
+<text x="78" y="635.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">-4.86</text>
 <line x1="90" y1="530.0" x2="1130" y2="530.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="535.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.20</text>
+<text x="78" y="535.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">3.81</text>
 <line x1="90" y1="430.0" x2="1130" y2="430.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="435.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.40</text>
+<text x="78" y="435.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">12.48</text>
 <line x1="90" y1="330.0" x2="1130" y2="330.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="335.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.60</text>
-<line x1="90" y1="229.99999999999997" x2="1130" y2="229.99999999999997" stroke="#eee" stroke-width="1"/>
-<text x="78" y="234.99999999999997" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.80</text>
+<text x="78" y="335.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">21.15</text>
+<line x1="90" y1="230.0" x2="1130" y2="230.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="235.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">29.82</text>
 <line x1="90" y1="130.0" x2="1130" y2="130.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="135.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">1.00</text>
-<text x="350.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">1</text>
-<text x="870.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2</text>
-<rect x="173.20" y="630.00" width="325.31" height="0.00" fill="#4E79A7" opacity="0.85"/>
-<rect x="693.20" y="630.00" width="325.31" height="0.00" fill="#4E79A7" opacity="0.85"/>
-<polyline fill="none" stroke="#F28E2B" stroke-width="3" points="350.00,630.00 870.00,630.00"/>
-<circle cx="350.00" cy="630.00" r="4" fill="#F28E2B"/>
-<circle cx="870.00" cy="630.00" r="4" fill="#F28E2B"/>
+<text x="78" y="135.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">38.49</text>
+<text x="155.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">酵母及深加工产品行业</text>
+<text x="285.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">酵母系列</text>
+<text x="415.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">国外</text>
+<text x="545.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">原材料(行业)</text>
+<text x="675.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">食品原料</text>
+<text x="805.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">制糖</text>
+<text x="935.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">制糖业(行业)</text>
+<text x="1065.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">其他(行业)</text>
+<rect x="110.80" y="130.00" width="81.33" height="443.94" fill="#4E79A7" opacity="0.85"/>
+<rect x="240.80" y="130.00" width="81.33" height="443.94" fill="#4E79A7" opacity="0.85"/>
+<rect x="370.80" y="320.66" width="81.33" height="253.29" fill="#4E79A7" opacity="0.85"/>
+<rect x="500.80" y="546.26" width="81.33" height="27.68" fill="#4E79A7" opacity="0.85"/>
+<rect x="630.80" y="546.26" width="81.33" height="27.68" fill="#4E79A7" opacity="0.85"/>
+<rect x="760.80" y="573.94" width="81.33" height="7.50" fill="#4E79A7" opacity="0.85"/>
+<rect x="890.80" y="573.94" width="81.33" height="7.50" fill="#4E79A7" opacity="0.85"/>
+<rect x="1020.80" y="562.99" width="81.33" height="10.96" fill="#4E79A7" opacity="0.85"/>
+<polyline fill="none" stroke="#F28E2B" stroke-width="3" points="155.00,202.43 285.00,202.43 415.00,204.05 545.00,449.38 675.00,449.38 805.00,630.00 935.00,630.00 1065.00,434.73"/>
+<circle cx="155.00" cy="202.43" r="4" fill="#F28E2B"/>
+<circle cx="285.00" cy="202.43" r="4" fill="#F28E2B"/>
+<circle cx="415.00" cy="204.05" r="4" fill="#F28E2B"/>
+<circle cx="545.00" cy="449.38" r="4" fill="#F28E2B"/>
+<circle cx="675.00" cy="449.38" r="4" fill="#F28E2B"/>
+<circle cx="805.00" cy="630.00" r="4" fill="#F28E2B"/>
+<circle cx="935.00" cy="630.00" r="4" fill="#F28E2B"/>
+<circle cx="1065.00" cy="434.73" r="4" fill="#F28E2B"/>
 </svg>
