@@ -34,28 +34,28 @@
 <rect x="331.28" y="407.02" width="65.06" height="222.98" fill="#4E79A7" opacity="0.85"/>
 <rect x="539.28" y="444.10" width="65.06" height="185.90" fill="#4E79A7" opacity="0.85"/>
 <rect x="747.28" y="451.24" width="65.06" height="178.76" fill="#4E79A7" opacity="0.85"/>
-<rect x="955.28" y="630.00" width="65.06" height="0.00" fill="#4E79A7" opacity="0.85"/>
+<rect x="955.28" y="470.89" width="65.06" height="159.11" fill="#4E79A7" opacity="0.85"/>
 <rect x="194.00" y="590.54" width="65.06" height="39.46" fill="#F28E2B" opacity="0.85"/>
 <rect x="402.00" y="584.52" width="65.06" height="45.48" fill="#F28E2B" opacity="0.85"/>
 <rect x="610.00" y="583.25" width="65.06" height="46.75" fill="#F28E2B" opacity="0.85"/>
 <rect x="818.00" y="580.87" width="65.06" height="49.13" fill="#F28E2B" opacity="0.85"/>
-<rect x="1026.00" y="630.00" width="65.06" height="0.00" fill="#F28E2B" opacity="0.85"/>
-<polyline fill="none" stroke="#E15759" stroke-width="3" points="194.00,166.93 402.00,130.00 610.00,147.59 818.00,185.63 1026.00,630.00"/>
+<rect x="1026.00" y="587.05" width="65.06" height="42.95" fill="#F28E2B" opacity="0.85"/>
+<polyline fill="none" stroke="#E15759" stroke-width="3" points="194.00,166.93 402.00,130.00 610.00,147.59 818.00,185.63 1026.00,195.29"/>
 <circle cx="194.00" cy="166.93" r="4" fill="#E15759"/>
 <circle cx="402.00" cy="130.00" r="4" fill="#E15759"/>
 <circle cx="610.00" cy="147.59" r="4" fill="#E15759"/>
 <circle cx="818.00" cy="185.63" r="4" fill="#E15759"/>
-<circle cx="1026.00" cy="630.00" r="4" fill="#E15759"/>
-<polyline fill="none" stroke="#76B7B2" stroke-width="3" points="194.00,590.86 402.00,588.80 610.00,587.84 818.00,591.01 1026.00,630.00"/>
+<circle cx="1026.00" cy="195.29" r="4" fill="#E15759"/>
+<polyline fill="none" stroke="#76B7B2" stroke-width="3" points="194.00,590.86 402.00,588.80 610.00,587.84 818.00,591.01 1026.00,592.60"/>
 <circle cx="194.00" cy="590.86" r="4" fill="#76B7B2"/>
 <circle cx="402.00" cy="588.80" r="4" fill="#76B7B2"/>
 <circle cx="610.00" cy="587.84" r="4" fill="#76B7B2"/>
 <circle cx="818.00" cy="591.01" r="4" fill="#76B7B2"/>
-<circle cx="1026.00" cy="630.00" r="4" fill="#76B7B2"/>
-<polyline fill="none" stroke="#59A14F" stroke-width="3" points="194.00,597.35 402.00,594.18 610.00,594.03 818.00,598.30 1026.00,630.00"/>
+<circle cx="1026.00" cy="592.60" r="4" fill="#76B7B2"/>
+<polyline fill="none" stroke="#59A14F" stroke-width="3" points="194.00,597.35 402.00,594.18 610.00,594.03 818.00,598.30 1026.00,599.41"/>
 <circle cx="194.00" cy="597.35" r="4" fill="#59A14F"/>
 <circle cx="402.00" cy="594.18" r="4" fill="#59A14F"/>
 <circle cx="610.00" cy="594.03" r="4" fill="#59A14F"/>
 <circle cx="818.00" cy="598.30" r="4" fill="#59A14F"/>
-<circle cx="1026.00" cy="630.00" r="4" fill="#59A14F"/>
+<circle cx="1026.00" cy="599.41" r="4" fill="#59A14F"/>
 </svg>

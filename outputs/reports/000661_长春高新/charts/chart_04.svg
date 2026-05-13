@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
+<text x="40" y="42" font-size="26" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#222">分产品收入结构图</text>
+<path d="M 380.00 390.00 L 380.00 170.00 A 220.00 220.00 0 0 1 435.38 602.92 Z" fill="#4E79A7" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 435.38 602.92 A 220.00 220.00 0 0 1 237.60 222.31 Z" fill="#F28E2B" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 237.60 222.31 A 220.00 220.00 0 0 1 275.86 196.21 Z" fill="#E15759" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 275.86 196.21 A 220.00 220.00 0 0 1 318.73 178.70 Z" fill="#76B7B2" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 318.73 178.70 A 220.00 220.00 0 0 1 360.92 170.83 Z" fill="#59A14F" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 360.92 170.83 A 220.00 220.00 0 0 1 369.09 170.27 Z" fill="#EDC948" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 369.09 170.27 A 220.00 220.00 0 0 1 374.54 170.07 Z" fill="#B07AA1" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 374.54 170.07 A 220.00 220.00 0 0 1 380.00 170.00 Z" fill="#FF9DA7" stroke="#fff" stroke-width="1"/>
+<rect x="700" y="179" width="20" height="12" fill="#4E79A7"/>
+<text x="728" y="190" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">制药业(行业)  111.71 (46.0%)</text>
+<rect x="700" y="209" width="20" height="12" fill="#F28E2B"/>
+<text x="728" y="220" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">基因工程药品\生物类药品  104.16 (42.8%)</text>
+<rect x="700" y="239" width="20" height="12" fill="#E15759"/>
+<text x="728" y="250" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">房地产  8.16 (3.4%)</text>
+<rect x="700" y="269" width="20" height="12" fill="#76B7B2"/>
+<text x="728" y="280" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">房地产(行业)  8.16 (3.4%)</text>
+<rect x="700" y="299" width="20" height="12" fill="#59A14F"/>
+<text x="728" y="310" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">中成药  7.56 (3.1%)</text>
+<rect x="700" y="329" width="20" height="12" fill="#EDC948"/>
+<text x="728" y="340" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">国外  1.44 (0.6%)</text>
+<rect x="700" y="359" width="20" height="12" fill="#B07AA1"/>
+<text x="728" y="370" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">服务业(行业)  0.96 (0.4%)</text>
+<rect x="700" y="389" width="20" height="12" fill="#FF9DA7"/>
+<text x="728" y="400" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">服务业收入  0.96 (0.4%)</text>
+</svg>

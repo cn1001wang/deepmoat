@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
+<text x="40" y="42" font-size="26" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#222">分产品收入变化图</text>
+<rect x="40" y="60" width="22" height="10" fill="#4E79A7"/>
+<text x="68" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">医药制造业</text>
+<rect x="210" y="60" width="22" height="10" fill="#F28E2B"/>
+<text x="238" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">肿瘤类</text>
+<rect x="380" y="60" width="22" height="10" fill="#E15759"/>
+<text x="408" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">国外</text>
+<rect x="550" y="60" width="22" height="10" fill="#76B7B2"/>
+<text x="578" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">神经科学</text>
+<rect x="720" y="60" width="22" height="10" fill="#59A14F"/>
+<text x="748" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">其他业务</text>
+<line x1="90" y1="130" x2="90" y2="630" stroke="#555" stroke-width="1"/>
+<line x1="90" y1="630.0" x2="1130" y2="630.0" stroke="#555" stroke-width="1"/>
+<line x1="90" y1="630.0" x2="1130" y2="630.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="635.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.00</text>
+<line x1="90" y1="530.0" x2="1130" y2="530.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="535.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">56.03</text>
+<line x1="90" y1="430.0" x2="1130" y2="430.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="435.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">112.05</text>
+<line x1="90" y1="330.0" x2="1130" y2="330.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="335.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">168.08</text>
+<line x1="90" y1="230.0" x2="1130" y2="230.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="235.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">224.10</text>
+<line x1="90" y1="130.0" x2="1130" y2="130.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="135.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">280.13</text>
+<text x="194.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2021</text>
+<text x="402.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2022</text>
+<text x="610.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2023</text>
+<text x="818.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2024</text>
+<text x="1026.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2025</text>
+<rect x="123.28" y="169.86" width="26.02" height="460.14" fill="#4E79A7" opacity="0.85"/>
+<rect x="331.28" y="251.37" width="26.02" height="378.63" fill="#4E79A7" opacity="0.85"/>
+<rect x="539.28" y="230.60" width="26.02" height="399.40" fill="#4E79A7" opacity="0.85"/>
+<rect x="747.28" y="183.60" width="26.02" height="446.40" fill="#4E79A7" opacity="0.85"/>
+<rect x="955.28" y="130.00" width="26.02" height="500.00" fill="#4E79A7" opacity="0.85"/>
+<rect x="151.57" y="396.68" width="26.02" height="233.32" fill="#F28E2B" opacity="0.85"/>
+<rect x="359.57" y="428.08" width="26.02" height="201.92" fill="#F28E2B" opacity="0.85"/>
+<rect x="567.57" y="411.94" width="26.02" height="218.06" fill="#F28E2B" opacity="0.85"/>
+<rect x="775.57" y="242.18" width="26.02" height="387.82" fill="#F28E2B" opacity="0.85"/>
+<rect x="983.57" y="332.44" width="26.02" height="297.56" fill="#F28E2B" opacity="0.85"/>
+<rect x="179.86" y="618.99" width="26.02" height="11.01" fill="#E15759" opacity="0.85"/>
+<rect x="387.86" y="616.10" width="26.02" height="13.90" fill="#E15759" opacity="0.85"/>
+<rect x="595.86" y="618.99" width="26.02" height="11.01" fill="#E15759" opacity="0.85"/>
+<rect x="803.86" y="617.22" width="26.02" height="12.78" fill="#E15759" opacity="0.85"/>
+<rect x="1011.86" y="499.01" width="26.02" height="130.99" fill="#E15759" opacity="0.85"/>
+<rect x="208.14" y="630.00" width="26.02" height="0.00" fill="#76B7B2" opacity="0.85"/>
+<rect x="416.14" y="630.00" width="26.02" height="0.00" fill="#76B7B2" opacity="0.85"/>
+<rect x="624.14" y="630.00" width="26.02" height="0.00" fill="#76B7B2" opacity="0.85"/>
+<rect x="832.14" y="553.45" width="26.02" height="76.55" fill="#76B7B2" opacity="0.85"/>
+<rect x="1040.14" y="553.39" width="26.02" height="76.61" fill="#76B7B2" opacity="0.85"/>
+<rect x="236.43" y="627.77" width="26.02" height="2.23" fill="#59A14F" opacity="0.85"/>
+<rect x="444.43" y="628.89" width="26.02" height="1.11" fill="#59A14F" opacity="0.85"/>
+<rect x="652.43" y="630.00" width="26.02" height="0.00" fill="#59A14F" opacity="0.85"/>
+<rect x="860.43" y="576.90" width="26.02" height="53.10" fill="#59A14F" opacity="0.85"/>
+<rect x="1068.43" y="565.46" width="26.02" height="64.54" fill="#59A14F" opacity="0.85"/>
+</svg>

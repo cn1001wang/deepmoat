@@ -1,5 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
 <rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
 <text x="40" y="42" font-size="26" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#222">分地区收入分布图</text>
-<text x="40" y="120" font-size="20" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#777">无有效数据可绘制</text>
+<path d="M 380.00 390.00 L 380.00 170.00 A 220.00 220.00 0 1 1 351.24 608.11 Z" fill="#4E79A7" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 351.24 608.11 A 220.00 220.00 0 0 1 160.03 393.89 Z" fill="#F28E2B" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 160.03 393.89 A 220.00 220.00 0 0 1 272.64 197.97 Z" fill="#E15759" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 272.64 197.97 A 220.00 220.00 0 0 1 327.32 176.40 Z" fill="#76B7B2" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 327.32 176.40 A 220.00 220.00 0 0 1 380.00 170.00 Z" fill="#59A14F" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 380.00 170.00 A 220.00 220.00 0 0 1 380.00 170.00 Z" fill="#EDC948" stroke="#fff" stroke-width="1"/>
+<rect x="700" y="179" width="20" height="12" fill="#4E79A7"/>
+<text x="728" y="190" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">华北  78.64 (52.1%)</text>
+<rect x="700" y="209" width="20" height="12" fill="#F28E2B"/>
+<text x="728" y="220" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">华南  34.17 (22.6%)</text>
+<rect x="700" y="239" width="20" height="12" fill="#E15759"/>
+<text x="728" y="250" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">华东  25.92 (17.2%)</text>
+<rect x="700" y="269" width="20" height="12" fill="#76B7B2"/>
+<text x="728" y="280" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">其他业务(地区)  6.44 (4.3%)</text>
+<rect x="700" y="299" width="20" height="12" fill="#59A14F"/>
+<text x="728" y="310" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">中国港澳台地区及海外地区  5.81 (3.8%)</text>
+<rect x="700" y="329" width="20" height="12" fill="#EDC948"/>
+<text x="728" y="340" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">内部抵销(地区)  0.00 (0.0%)</text>
 </svg>

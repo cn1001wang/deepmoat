@@ -16,46 +16,46 @@
 <line x1="90" y1="630.0" x2="1130" y2="630.0" stroke="#eee" stroke-width="1"/>
 <text x="78" y="635.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.00</text>
 <line x1="90" y1="530.0" x2="1130" y2="530.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="535.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">9.56</text>
+<text x="78" y="535.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">9.87</text>
 <line x1="90" y1="430.0" x2="1130" y2="430.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="435.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">19.13</text>
+<text x="78" y="435.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">19.74</text>
 <line x1="90" y1="330.0" x2="1130" y2="330.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="335.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">28.69</text>
+<text x="78" y="335.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">29.60</text>
 <line x1="90" y1="230.0" x2="1130" y2="230.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="235.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">38.26</text>
+<text x="78" y="235.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">39.47</text>
 <line x1="90" y1="130.0" x2="1130" y2="130.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="135.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">47.82</text>
+<text x="78" y="135.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">49.34</text>
 <text x="194.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2021</text>
 <text x="402.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2022</text>
 <text x="610.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2023</text>
 <text x="818.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2024</text>
 <text x="1026.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2025</text>
-<rect x="123.28" y="513.84" width="65.06" height="116.16" fill="#4E79A7" opacity="0.85"/>
-<rect x="331.28" y="530.77" width="65.06" height="99.23" fill="#4E79A7" opacity="0.85"/>
-<rect x="539.28" y="539.24" width="65.06" height="90.76" fill="#4E79A7" opacity="0.85"/>
-<rect x="747.28" y="535.90" width="65.06" height="94.10" fill="#4E79A7" opacity="0.85"/>
-<rect x="955.28" y="630.00" width="65.06" height="0.00" fill="#4E79A7" opacity="0.85"/>
-<rect x="194.00" y="591.73" width="65.06" height="38.27" fill="#F28E2B" opacity="0.85"/>
-<rect x="402.00" y="591.63" width="65.06" height="38.37" fill="#F28E2B" opacity="0.85"/>
-<rect x="610.00" y="598.42" width="65.06" height="31.58" fill="#F28E2B" opacity="0.85"/>
-<rect x="818.00" y="599.99" width="65.06" height="30.01" fill="#F28E2B" opacity="0.85"/>
-<rect x="1026.00" y="630.00" width="65.06" height="0.00" fill="#F28E2B" opacity="0.85"/>
-<polyline fill="none" stroke="#E15759" stroke-width="3" points="194.00,144.43 402.00,177.89 610.00,159.38 818.00,130.00 1026.00,630.00"/>
-<circle cx="194.00" cy="144.43" r="4" fill="#E15759"/>
-<circle cx="402.00" cy="177.89" r="4" fill="#E15759"/>
-<circle cx="610.00" cy="159.38" r="4" fill="#E15759"/>
-<circle cx="818.00" cy="130.00" r="4" fill="#E15759"/>
-<circle cx="1026.00" cy="630.00" r="4" fill="#E15759"/>
-<polyline fill="none" stroke="#76B7B2" stroke-width="3" points="194.00,617.24 402.00,619.65 610.00,616.20 818.00,617.24 1026.00,630.00"/>
-<circle cx="194.00" cy="617.24" r="4" fill="#76B7B2"/>
-<circle cx="402.00" cy="619.65" r="4" fill="#76B7B2"/>
-<circle cx="610.00" cy="616.20" r="4" fill="#76B7B2"/>
-<circle cx="818.00" cy="617.24" r="4" fill="#76B7B2"/>
-<circle cx="1026.00" cy="630.00" r="4" fill="#76B7B2"/>
-<polyline fill="none" stroke="#59A14F" stroke-width="3" points="194.00,622.47 402.00,624.25 610.00,622.68 818.00,622.99 1026.00,630.00"/>
-<circle cx="194.00" cy="622.47" r="4" fill="#59A14F"/>
-<circle cx="402.00" cy="624.25" r="4" fill="#59A14F"/>
-<circle cx="610.00" cy="622.68" r="4" fill="#59A14F"/>
-<circle cx="818.00" cy="622.99" r="4" fill="#59A14F"/>
-<circle cx="1026.00" cy="630.00" r="4" fill="#59A14F"/>
+<rect x="123.28" y="517.41" width="65.06" height="112.59" fill="#4E79A7" opacity="0.85"/>
+<rect x="331.28" y="533.83" width="65.06" height="96.17" fill="#4E79A7" opacity="0.85"/>
+<rect x="539.28" y="542.04" width="65.06" height="87.96" fill="#4E79A7" opacity="0.85"/>
+<rect x="747.28" y="538.80" width="65.06" height="91.20" fill="#4E79A7" opacity="0.85"/>
+<rect x="955.28" y="537.68" width="65.06" height="92.32" fill="#4E79A7" opacity="0.85"/>
+<rect x="194.00" y="592.91" width="65.06" height="37.09" fill="#F28E2B" opacity="0.85"/>
+<rect x="402.00" y="592.81" width="65.06" height="37.19" fill="#F28E2B" opacity="0.85"/>
+<rect x="610.00" y="599.40" width="65.06" height="30.60" fill="#F28E2B" opacity="0.85"/>
+<rect x="818.00" y="600.92" width="65.06" height="29.08" fill="#F28E2B" opacity="0.85"/>
+<rect x="1026.00" y="602.84" width="65.06" height="27.16" fill="#F28E2B" opacity="0.85"/>
+<polyline fill="none" stroke="#E15759" stroke-width="3" points="194.00,159.39 402.00,191.82 610.00,173.88 818.00,145.40 1026.00,130.00"/>
+<circle cx="194.00" cy="159.39" r="4" fill="#E15759"/>
+<circle cx="402.00" cy="191.82" r="4" fill="#E15759"/>
+<circle cx="610.00" cy="173.88" r="4" fill="#E15759"/>
+<circle cx="818.00" cy="145.40" r="4" fill="#E15759"/>
+<circle cx="1026.00" cy="130.00" r="4" fill="#E15759"/>
+<polyline fill="none" stroke="#76B7B2" stroke-width="3" points="194.00,617.64 402.00,619.97 610.00,616.62 818.00,617.64 1026.00,617.74"/>
+<circle cx="194.00" cy="617.64" r="4" fill="#76B7B2"/>
+<circle cx="402.00" cy="619.97" r="4" fill="#76B7B2"/>
+<circle cx="610.00" cy="616.62" r="4" fill="#76B7B2"/>
+<circle cx="818.00" cy="617.64" r="4" fill="#76B7B2"/>
+<circle cx="1026.00" cy="617.74" r="4" fill="#76B7B2"/>
+<polyline fill="none" stroke="#59A14F" stroke-width="3" points="194.00,622.70 402.00,624.43 610.00,622.91 818.00,623.21 1026.00,623.11"/>
+<circle cx="194.00" cy="622.70" r="4" fill="#59A14F"/>
+<circle cx="402.00" cy="624.43" r="4" fill="#59A14F"/>
+<circle cx="610.00" cy="622.91" r="4" fill="#59A14F"/>
+<circle cx="818.00" cy="623.21" r="4" fill="#59A14F"/>
+<circle cx="1026.00" cy="623.11" r="4" fill="#59A14F"/>
 </svg>

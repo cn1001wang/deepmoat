@@ -13,6 +13,7 @@ interface ChartSpec {
   option: EChartsOption
   className?: string
   fieldRows?: FieldSpec[]
+  readingGuide?: string[]
 }
 
 interface FieldSpec {
@@ -30,6 +31,7 @@ const loading = ref(false)
 const status = ref('')
 const cardData = ref<FinanceCardResponse | null>(null)
 const showAllPeriods = ref(false)
+const includeInventoryInOperatingAssets = ref(true)
 const openExplanationIds = ref<Set<string>>(new Set())
 const chartEls = new Map<string, HTMLDivElement>()
 const charts: ECharts[] = []
@@ -52,6 +54,14 @@ const moduleLabels: Record<string, string> = {
   fina_indicator: '财务指标缺失',
   daily_basic: '日估值/行情缺失',
   fina_mainbz: '主营业务构成缺失',
+  balancesheet_payroll_payable: '资产负债表字段 payroll_payable（应付职工薪酬）缺失',
+  cashflow_financial_invest: '现金流字段缺失：金融理财投资净额',
+  cashflow_production_invest: '现金流字段缺失：生产经营投资净额',
+  cashflow_ma_invest: '现金流字段缺失：收购兼并投资净额',
+  cashflow_equity_financing: '现金流字段缺失：发行股份筹资净额',
+  cashflow_interest_debt_financing: '现金流字段缺失：有息负债筹资净额',
+  cashflow_dividend_interest: '现金流字段缺失：支付股息及利息净额',
+  cashflow_maintenance_capex: '现金流字段缺失：维持性开支（折旧摊销）',
 }
 
 const syncCommands: Record<string, string> = {
@@ -60,6 +70,14 @@ const syncCommands: Record<string, string> = {
   fina_indicator: 'uv run python -m app.worker.sync --fina_indicator --workers 1',
   daily_basic: 'uv run python -m app.worker.sync --daily',
   fina_mainbz: 'uv run python -m app.worker.sync --fina_mainbz --mainbz_ts_codes {ts_code} --mainbz_types P --workers 1',
+  balancesheet_payroll_payable: 'uv run python -m app.worker.sync --finance --finance_overwrite --workers 1',
+  cashflow_financial_invest: 'uv run python -m app.worker.sync --finance --finance_overwrite --workers 1',
+  cashflow_production_invest: 'uv run python -m app.worker.sync --finance --finance_overwrite --workers 1',
+  cashflow_ma_invest: '本地 cashflow 模型暂无并购投资净额字段，请补模型后同步',
+  cashflow_equity_financing: '本地 cashflow 模型暂无发行股份筹资净额字段，请补模型后同步',
+  cashflow_interest_debt_financing: 'uv run python -m app.worker.sync --finance --finance_overwrite --workers 1',
+  cashflow_dividend_interest: 'uv run python -m app.worker.sync --finance --finance_overwrite --workers 1',
+  cashflow_maintenance_capex: 'uv run python -m app.worker.sync --finance --finance_overwrite --workers 1',
 }
 
 const assetStructureRows: FieldSpec[] = [
@@ -153,6 +171,159 @@ const capitalStructureRows: FieldSpec[] = [
   },
 ]
 
+const operatingAssetRows: FieldSpec[] = [
+  {
+    label: '营运资产',
+    cnFields: '应收账款 + 应收票据 + 存货 + 预付款项',
+    fields: 'accounts_receiv + notes_receiv + inventories + prepayment',
+  },
+  {
+    label: '营运负债',
+    cnFields: '应付账款 + 预收款项 + 合同负债 + 应付职工薪酬 + 应交税费',
+    fields: 'acct_payable + adv_receipts + contract_liab + payroll_payable + taxes_payable',
+  },
+  {
+    label: '营运净资产',
+    cnFields: '营运资产 - 营运负债',
+    fields: 'operating_assets - operating_liabilities',
+  },
+]
+
+const operatingAssetRowsNoInventory: FieldSpec[] = [
+  {
+    label: '营运资产（不含存货）',
+    cnFields: '应收账款 + 应收票据 + 预付款项',
+    fields: 'accounts_receiv + notes_receiv + prepayment',
+  },
+  operatingAssetRows[1],
+  {
+    label: '营运净资产（不含存货）',
+    cnFields: '营运资产（不含存货） - 营运负债',
+    fields: 'operating_assets_no_inventory - operating_liabilities',
+  },
+]
+
+const profitDistributionRows: FieldSpec[] = [
+  {
+    label: '主营利润',
+    cnFields: '营业收入 - 营业成本 - 税金及附加 - 销售费用 - 管理费用 - 财务费用',
+    fields: 'revenue - oper_cost - biz_tax_surchg - sell_exp - admin_exp - fin_exp',
+  },
+  {
+    label: '投资收益',
+    cnFields: '投资收益',
+    fields: 'invest_income',
+  },
+  {
+    label: '资产减值损益',
+    cnFields: '资产减值损失',
+    fields: 'assets_impair_loss',
+  },
+  {
+    label: '营业外收支',
+    cnFields: '营业外收入 - 营业外支出',
+    fields: 'non_oper_income - non_oper_exp',
+  },
+  {
+    label: '其他收益',
+    cnFields: '其他收益',
+    fields: 'oth_income',
+  },
+]
+
+const expenseRatioRows: FieldSpec[] = [
+  {
+    label: '销售费用率',
+    cnFields: '销售费用 / 营业总收入',
+    fields: 'sell_exp / total_revenue',
+  },
+  {
+    label: '管理费用率',
+    cnFields: '管理费用 / 营业总收入',
+    fields: 'admin_exp / total_revenue',
+  },
+  {
+    label: '研发费用率',
+    cnFields: '研发费用 / 营业总收入',
+    fields: 'rd_exp / total_revenue',
+  },
+  {
+    label: '财务费用率',
+    cnFields: '财务费用 / 营业总收入',
+    fields: 'fin_exp / total_revenue',
+  },
+  {
+    label: '毛利率',
+    cnFields: '销售毛利率',
+    fields: 'grossprofit_margin',
+  },
+  {
+    label: '净利率',
+    cnFields: '销售净利率',
+    fields: 'netprofit_margin',
+  },
+  {
+    label: 'ROE',
+    cnFields: '净资产收益率',
+    fields: 'roe',
+  },
+  {
+    label: '负债率',
+    cnFields: '负债合计 / 资产总计',
+    fields: 'total_liab / total_assets',
+  },
+]
+
+const cashflowCapitalAllocationRows: FieldSpec[] = [
+  {
+    label: 'A. 自我造血：经营现金流',
+    cnFields: '经营活动产生的现金流量净额',
+    fields: 'n_cashflow_act',
+  },
+  {
+    label: 'B. 维持生存：维持性支出（估算）',
+    cnFields: '固定资产折旧 + 无形资产摊销（非现金口径，用作维持性资本开支代理）',
+    fields: 'depr_fa_coga_dpba + amort_intang_assets',
+  },
+  {
+    label: 'C. 扩张投入：扩张性CapEx（估算）',
+    cnFields: '购建固定资产、无形资产和其他长期资产支付的现金',
+    fields: 'c_pay_acq_const_fiolta',
+  },
+  {
+    label: 'D. 金融化：金融理财投资净额',
+    cnFields: '收回投资收到的现金 - 投资支付的现金',
+    fields: 'c_recp_return_invest - c_paid_invest',
+  },
+  {
+    label: 'E. 外延扩张：并购投资净额',
+    cnFields: '处置子公司及其他营业单位收到现金净额 - 取得子公司及其他营业单位支付现金净额',
+    fields: 'n_recp_disp_sobu - n_disp_subs_oth_biz',
+  },
+  {
+    label: 'F1. 融资依赖：债务融资净额',
+    cnFields: '取得借款 + 发行债券 - 偿还债务',
+    fields: 'c_recp_borrow + proc_issue_bonds - c_prepay_amt_borr',
+  },
+  {
+    label: 'F2. 融资依赖：股权融资净额',
+    cnFields: '吸收投资收到的现金净额（发行股份/增资）',
+    fields: 'c_recp_cap_contrib',
+  },
+  {
+    label: 'G. 股东回报：分红+利息净流出',
+    cnFields: '分配股利、利润或偿付利息支付的现金（净流出）',
+    fields: '-c_pay_dist_dpcp_int_exp',
+  },
+]
+
+const cashflowReadingGuide = [
+  '读图顺序：1）先看经营现金流（发动机） 2）再看资本开支（维持/扩张） 3）再看融资（债务/股权） 4）最后看投资与并购用途。',
+  '经营现金流长期为正且高于净利润，通常代表利润含金量更高；长期低于净利润需警惕应收、存货和回款压力。',
+  '维持性开支后自由现金流 = 经营现金流 - 维持性支出；实际自由现金流 = 经营现金流 - 扩张性CapEx。若长期为正，通常资金更自主。',
+  '债务融资长期为正且股东回报也高，需核对是否“借新还旧”或“借钱分红”；并购投资大幅波动时应结合商誉与长期股权投资验证质量。',
+]
+
 const rawFinanceRows = computed(() => cardData.value?.financeSeries ?? [])
 const financeRows = computed(() => {
   const rows = rawFinanceRows.value
@@ -166,7 +337,55 @@ const financeRows = computed(() => {
   }
   return filtered
 })
-const valuationRows = computed(() => cardData.value?.valuationSeries ?? [])
+const rawValuationRows = computed(() => cardData.value?.valuationSeries ?? [])
+const valuationRows = computed(() => {
+  const parsed = rawValuationRows.value
+    .map((item) => {
+      const parsedDate = parseAnyDate(item.tradeDate)
+      return parsedDate ? { ...item, _d: parsedDate } : null
+    })
+    .filter((item): item is (ValuationPoint & { _d: dayjs.Dayjs }) => item !== null)
+    .sort((a, b) => a._d.valueOf() - b._d.valueOf())
+
+  if (parsed.length === 0) {
+    return []
+  }
+
+  const latestYear = parsed[parsed.length - 1]._d.year()
+  const startYear = latestYear - 9
+  const quarterTargets = [
+    { month: 3, day: 31 },
+    { month: 6, day: 30 },
+    { month: 9, day: 30 },
+    { month: 12, day: 31 },
+  ]
+
+  const selected: Array<ValuationPoint & { _d: dayjs.Dayjs }> = []
+  for (let year = startYear; year <= latestYear; year += 1) {
+    for (const target of quarterTargets) {
+      const targetDate = dayjs(`${year}-${String(target.month).padStart(2, '0')}-${String(target.day).padStart(2, '0')}`)
+      const sameQuarter = parsed.filter(row =>
+        row._d.year() === year
+        && Math.floor(row._d.month() / 3) === Math.floor((target.month - 1) / 3),
+      )
+      if (sameQuarter.length === 0) {
+        continue
+      }
+      const exact = sameQuarter.find(row => row._d.isSame(targetDate, 'day'))
+      if (exact) {
+        selected.push(exact)
+        continue
+      }
+      const after = sameQuarter.filter(row => row._d.isAfter(targetDate)).sort((a, b) => a._d.valueOf() - b._d.valueOf())[0]
+      const before = sameQuarter.filter(row => row._d.isBefore(targetDate)).sort((a, b) => b._d.valueOf() - a._d.valueOf())[0]
+      selected.push(after || before || sameQuarter[sameQuarter.length - 1])
+    }
+  }
+
+  const dedup = new Map<string, ValuationPoint>()
+  selected.forEach((item) => dedup.set(item.tradeDate, item))
+  return Array.from(dedup.values()).sort((a, b) => parseAnyDate(a.tradeDate)!.valueOf() - parseAnyDate(b.tradeDate)!.valueOf())
+})
 const mainBusinessRows = computed(() => cardData.value?.mainBusinessSeries ?? [])
 const missingModules = computed(() => cardData.value?.missingModules ?? [])
 const hasFinanceData = computed(() => rawFinanceRows.value.length > 0)
@@ -188,11 +407,12 @@ const queriedAt = ref(dayjs().format('YYYY-MM-DD HH:mm:ss'))
 
 const chartSpecs = computed<ChartSpec[]>(() => {
   const specs: ChartSpec[] = []
-  const makeSpec = (id: string, option: EChartsOption, className?: string, fieldRows?: FieldSpec[]): ChartSpec => ({
+  const makeSpec = (id: string, option: EChartsOption, className?: string, fieldRows?: FieldSpec[], readingGuide?: string[]): ChartSpec => ({
     id,
     option,
     className,
     fieldRows,
+    readingGuide,
   })
   if (hasFinanceData.value) {
     specs.push(
@@ -201,21 +421,22 @@ const chartSpecs = computed<ChartSpec[]>(() => {
       makeSpec('valuation-quality', buildValuationQualityOption(), 'wide'),
       makeSpec('asset-structure', buildAssetStructureOption(), 'wide', assetStructureRows),
       makeSpec('capital-structure', buildCapitalStructureOption(), 'wide', capitalStructureRows),
-      makeSpec('operating-assets', buildOperatingAssetsOption(), 'wide'),
+      makeSpec(
+        'operating-assets',
+        buildOperatingAssetsOption(),
+        'wide',
+        includeInventoryInOperatingAssets.value ? operatingAssetRows : operatingAssetRowsNoInventory,
+      ),
       makeSpec('revenue-cash', buildRevenueCashOption(), 'wide'),
       makeSpec('profit-cash', buildProfitCashOption(), 'wide'),
-      makeSpec('profit-distribution', buildProfitDistributionOption(), 'wide'),
-      makeSpec('expense-ratio', buildExpenseRatioOption(), 'wide'),
-      makeSpec('cashflow-function', buildCashflowFunctionOption(), 'wide'),
-      makeSpec('free-cashflow', buildFreeCashflowOption(), 'wide'),
-      makeSpec('single-quarter-revenue', buildQuarterRevenueOption(), 'wide'),
-      makeSpec('single-quarter-profit', buildQuarterProfitOption(), 'wide'),
+      makeSpec('profit-distribution', buildProfitDistributionOption(), 'wide', profitDistributionRows),
+      makeSpec('expense-ratio', buildExpenseRatioOption(), 'wide', expenseRatioRows),
+      makeSpec('cashflow-capital-allocation', buildCashflowCapitalAllocationOption(), 'wide', cashflowCapitalAllocationRows, cashflowReadingGuide),
     )
   }
   if (hasValuationData.value) {
     specs.push(
       makeSpec('pe-price', buildPePriceOption(), 'wide'),
-      makeSpec('shareholder-staff', buildShareholderStaffOption(), 'wide'),
     )
   }
   return specs
@@ -246,6 +467,19 @@ function formatDate(value?: string | null) {
     return `${value.slice(0, 4)}-${value.slice(4, 6)}-${value.slice(6)}`
   }
   return value
+}
+
+function parseAnyDate(value?: string | null) {
+  if (!value) {
+    return null
+  }
+  if (/^\d{8}$/.test(value)) {
+    const normalized = `${value.slice(0, 4)}-${value.slice(4, 6)}-${value.slice(6, 8)}`
+    const d = dayjs(normalized)
+    return d.isValid() ? d : null
+  }
+  const d = dayjs(value)
+  return d.isValid() ? d : null
 }
 
 function safeNumber(value: number | null | undefined) {
@@ -325,6 +559,13 @@ function toggleExplanation(id: string) {
     nextIds.add(id)
   }
   openExplanationIds.value = nextIds
+  nextTick(() => {
+    charts.forEach(chart => chart.resize())
+  })
+}
+
+function toggleOperatingAssetMode() {
+  includeInventoryInOperatingAssets.value = !includeInventoryInOperatingAssets.value
   nextTick(() => {
     charts.forEach(chart => chart.resize())
   })
@@ -613,30 +854,55 @@ function buildCapitalStructureOption(): EChartsOption {
 }
 
 function buildOperatingAssetsOption(): EChartsOption {
+  const operatingAssetsWithInventory = financeValue('operatingAssets').map(toYi)
+  const inventories = financeValue('inventories').map(toYi)
+  const operatingAssets = operatingAssetsWithInventory.map((value, index) => {
+    if (value === null) {
+      return null
+    }
+    if (includeInventoryInOperatingAssets.value) {
+      return value
+    }
+    return Number((value - (inventories[index] ?? 0)).toFixed(1))
+  })
+  const operatingLiabilities = financeValue('operatingLiabilities').map(toYi)
+  const operatingNetAssets = operatingAssets.map((value, index) => {
+    if (value === null || operatingLiabilities[index] === null) {
+      return null
+    }
+    return Number((value - Number(operatingLiabilities[index])).toFixed(1))
+  })
   return {
     ...baseOption(`${stockName.value} 营运净资产变化（亿元）`),
     series: [
-      barSeries('货币资金', financeValue('moneyCap').map(toYi), { itemStyle: { color: palette.yellow } }),
-      barSeries('有息负债', financeValue('interestDebt').map(value => {
-        const n = toYi(value)
-        return n === null ? null : -n
-      }), { itemStyle: { color: palette.red } }),
-      barSeries('营运净资产', financeRows.value.map(item => toYi((item.moneyCap ?? 0) - (item.interestDebt ?? 0))), { itemStyle: { color: palette.orange } }),
+      barSeries(
+        includeInventoryInOperatingAssets.value ? '营运资产' : '营运资产（不含存货）',
+        operatingAssets,
+        { itemStyle: { color: palette.yellow } },
+      ),
+      barSeries('营运负债', operatingLiabilities, { itemStyle: { color: palette.orange } }),
+      barSeries(
+        includeInventoryInOperatingAssets.value ? '营运净资产' : '营运净资产（不含存货）',
+        operatingNetAssets,
+        { itemStyle: { color: palette.red } },
+      ),
     ],
   }
 }
 
 function buildRevenueCashOption(): EChartsOption {
+  const totalRevenue = financeValue('totalRevenue').map(toYi)
   return {
-    ...baseOption(`${stockName.value} 营业收入 和 经营活动收到的现金变化（亿元）`),
+    ...baseOption(`${stockName.value} 营业总收入 和 销售商品、提供劳务收到的现金变化（亿元）`),
     yAxis: [
       { type: 'value', axisLabel: { color: '#555', fontSize: 10 }, splitLine: { lineStyle: { color: '#e8e8e8' } } },
       { type: 'value', axisLabel: { formatter: '{value}%', color: '#555', fontSize: 10 }, splitLine: { show: false } },
     ],
     series: [
-      barSeries('营业收入', financeValue('revenue').map(toYi)),
-      barSeries('经营现金流', financeValue('operatingCashFlow').map(toYi)),
-      lineSeries('现金流占收入比率', financeRows.value.map(item => safeRatio(item.operatingCashFlow, item.revenue)), 1),
+      barSeries('营业总收入', totalRevenue),
+      barSeries('销售商品、提供劳务收到的现金', financeValue('salesGoodsCash').map(toYi), { itemStyle: { color: palette.yellow } }),
+      lineSeries('现金收入占营业总收入比率', financeRows.value.map(item => safeRatio(item.salesGoodsCash, item.totalRevenue)), 1),
+      lineSeries('营业总收入同比增长率', yoy(totalRevenue), 1),
     ],
   }
 }
@@ -649,9 +915,10 @@ function buildProfitCashOption(): EChartsOption {
       { type: 'value', axisLabel: { formatter: '{value}%', color: '#555', fontSize: 10 }, splitLine: { show: false } },
     ],
     series: [
-      barSeries('净利润', financeValue('netProfit').map(toYi)),
+      barSeries('净利润', financeValue('nIncome').map(toYi)),
       barSeries('经营现金流', financeValue('operatingCashFlow').map(toYi)),
-      lineSeries('净利润现金比率', financeRows.value.map(item => safeRatio(item.operatingCashFlow, item.netProfit)), 1),
+      lineSeries('净利润现金比率', financeRows.value.map(item => safeRatio(item.operatingCashFlow, item.nIncome)), 1),
+      lineSeries('净利润同比增长率', yoy(financeValue('nIncome').map(toYi)), 1),
     ],
   }
 }
@@ -659,11 +926,13 @@ function buildProfitCashOption(): EChartsOption {
 function buildProfitDistributionOption(): EChartsOption {
   return {
     ...baseOption(`${stockName.value} 税前利润分布（亿元）`),
+    color: ['#ff4d55', '#f4bf00', '#84cc16', '#10b981', '#60739b'],
     series: [
-      barSeries('主业利润', financeValue('netProfit').map(toYi)),
-      lineSeries('毛利率', financeValue('grossMargin').map(value => toFixedNumber(value)), 0, { label: { show: false } }),
-      lineSeries('净利率', financeValue('netProfitMargin').map(value => toFixedNumber(value)), 0, { label: { show: false } }),
-      lineSeries('ROE', financeValue('roe').map(value => toFixedNumber(value)), 0, { label: { show: false } }),
+      barSeries('主营利润', financeValue('mainBusinessProfit').map(toYi), { itemStyle: { color: '#ff4d55' } }),
+      barSeries('投资收益', financeValue('investIncome').map(toYi), { itemStyle: { color: '#f4bf00' } }),
+      barSeries('资产减值损益', financeValue('assetsImpairLoss').map(toYi), { itemStyle: { color: '#84cc16' } }),
+      barSeries('营业外收支', financeValue('nonOperatingBalance').map(toYi), { itemStyle: { color: '#10b981' } }),
+      barSeries('其他收益', financeValue('otherIncome').map(toYi), { itemStyle: { color: '#60739b' } }),
     ],
   }
 }
@@ -672,6 +941,10 @@ function buildExpenseRatioOption(): EChartsOption {
   return {
     ...baseOption(`${stockName.value} 历年期间费用率`, '单位:%'),
     series: [
+      lineSeries('销售费用率', financeValue('salesExpenseRatio').map(value => toFixedNumber(value)), 0, { label: { show: false } }),
+      lineSeries('管理费用率', financeValue('adminExpenseRatio').map(value => toFixedNumber(value)), 0, { label: { show: false } }),
+      lineSeries('研发费用率', financeValue('rdExpenseRatio').map(value => toFixedNumber(value)), 0, { label: { show: false } }),
+      lineSeries('财务费用率', financeValue('financeExpenseRatio').map(value => toFixedNumber(value)), 0, { label: { show: false } }),
       lineSeries('毛利率', financeValue('grossMargin').map(value => toFixedNumber(value)), 0, { lineStyle: { width: 3 } }),
       lineSeries('净利率', financeValue('netProfitMargin').map(value => toFixedNumber(value))),
       lineSeries('ROE', financeValue('roe').map(value => toFixedNumber(value))),
@@ -680,68 +953,35 @@ function buildExpenseRatioOption(): EChartsOption {
   }
 }
 
-function buildCashflowFunctionOption(): EChartsOption {
+function buildCashflowCapitalAllocationOption(): EChartsOption {
+  const maintenanceCapex = financeValue('maintenanceCapex').map(toYi)
+  const actualCapex = financeValue('actualCapex').map(toYi)
+  const freeCashflowAfterMaintenance = financeValue('freeCashFlowAfterMaintenance').map(toYi)
+  const actualFreeCashflow = financeValue('actualFreeCashFlow').map(toYi)
   return {
-    ...baseOption(`${stockName.value} 不同功能现金流数据（亿元）`),
-    series: [
-      barSeries('经营活动现金净额', financeValue('operatingCashFlow').map(toYi)),
-      barSeries('净利润', financeValue('netProfit').map(toYi)),
-      barSeries('利润现金差额', financeRows.value.map(item => toYi((item.operatingCashFlow ?? 0) - (item.netProfit ?? 0))), { itemStyle: { color: palette.purple } }),
-      lineSeries('现金流/净利润', financeRows.value.map(item => safeRatio(item.operatingCashFlow, item.netProfit)), 0, { label: { show: false } }),
-    ],
-  }
-}
-
-function buildFreeCashflowOption(): EChartsOption {
-  return {
-    ...baseOption(`${stockName.value} 历年自由现金流数据（亿元）`),
-    series: [
-      barSeries('经营活动现金净额', financeValue('operatingCashFlow').map(toYi)),
-      barSeries('净利润', financeValue('netProfit').map(toYi), { itemStyle: { color: palette.yellow } }),
-      barSeries('实际自由现金流', financeRows.value.map(item => toYi((item.operatingCashFlow ?? 0) - Math.max((item.totalAssets ?? 0) * 0.02, 0))), { itemStyle: { color: palette.green } }),
-    ],
-  }
-}
-
-function buildQuarterRevenueOption(): EChartsOption {
-  const revenues = financeValue('revenue').map(toYi)
-  return {
-    ...baseOption(`${stockName.value} 单季度 营业收入 和 经营活动收到的现金变化（亿元）`),
-    dataZoom: [{ type: 'inside' }, { type: 'slider', height: 18, bottom: 20 }],
-    grid: { left: 70, right: 54, top: 86, bottom: 88 },
+    ...baseOption(`${stockName.value} 现金流资本配置总览（亿元）`),
     yAxis: [
       { type: 'value', axisLabel: { color: '#555', fontSize: 10 }, splitLine: { lineStyle: { color: '#e8e8e8' } } },
-      { type: 'value', axisLabel: { formatter: '{value}%', color: '#555', fontSize: 10 }, splitLine: { show: false } },
+      { type: 'value', axisLabel: { color: '#555', fontSize: 10 }, splitLine: { show: false } },
     ],
     series: [
-      barSeries('营业收入', revenues),
-      barSeries('经营现金流', financeValue('operatingCashFlow').map(toYi), { itemStyle: { color: palette.yellow } }),
-      lineSeries('收入同比增长率', yoy(revenues), 1),
-    ],
-  }
-}
-
-function buildQuarterProfitOption(): EChartsOption {
-  const profits = financeValue('netProfit').map(toYi)
-  return {
-    ...baseOption(`${stockName.value} 单季度 税前利润分布（亿元）`),
-    dataZoom: [{ type: 'inside' }, { type: 'slider', height: 18, bottom: 20 }],
-    grid: { left: 70, right: 54, top: 86, bottom: 88 },
-    yAxis: [
-      { type: 'value', axisLabel: { color: '#555', fontSize: 10 }, splitLine: { lineStyle: { color: '#e8e8e8' } } },
-      { type: 'value', axisLabel: { formatter: '{value}%', color: '#555', fontSize: 10 }, splitLine: { show: false } },
-    ],
-    series: [
-      barSeries('经营利润', profits),
-      barSeries('经营现金流', financeValue('operatingCashFlow').map(toYi), { itemStyle: { color: palette.yellow } }),
-      lineSeries('净利率', financeValue('netProfitMargin').map(value => toFixedNumber(value)), 1),
+      barSeries('经营现金流', financeValue('operatingCashFlow').map(toYi), { itemStyle: { color: palette.red } }),
+      barSeries('维持性支出(估算)', maintenanceCapex.map(value => (value === null ? null : Number((-value).toFixed(1)))), { itemStyle: { color: palette.yellow } }),
+      barSeries('扩张性CapEx(估算)', actualCapex.map(value => (value === null ? null : Number((-value).toFixed(1)))), { itemStyle: { color: palette.orange } }),
+      barSeries('金融投资净额', financeValue('financialWealthInvestNet').map(toYi), { itemStyle: { color: palette.green } }),
+      barSeries('并购投资净额', financeValue('maInvestNet').map(toYi), { itemStyle: { color: palette.teal } }),
+      barSeries('债务融资净额', financeValue('interestDebtFinancingNet').map(toYi), { itemStyle: { color: palette.blue } }),
+      barSeries('股权融资净额', financeValue('equityFinancingNet').map(toYi), { itemStyle: { color: palette.magenta } }),
+      barSeries('股东回报净额', financeValue('dividendInterestPaymentNet').map(toYi), { itemStyle: { color: palette.purple } }),
+      lineSeries('维持性开支后自由现金流', freeCashflowAfterMaintenance, 1, { lineStyle: { width: 2 }, label: { show: false } }),
+      lineSeries('实际自由现金流', actualFreeCashflow, 1, { lineStyle: { width: 2 }, label: { show: false } }),
     ],
   }
 }
 
 function buildPePriceOption(): EChartsOption {
   return {
-    ...baseOption(`${stockName.value} 近几年股价、市盈率、每股收益`, '单位:值'),
+    ...baseOption(`${stockName.value} 近10年财报期估值与股价（3/31、6/30、9/30、12/31）`, '单位:值'),
     xAxis: {
       type: 'category',
       data: valuationLabels(),
@@ -757,34 +997,9 @@ function buildPePriceOption(): EChartsOption {
     grid: { left: 70, right: 54, top: 86, bottom: 88 },
     series: [
       barSeries('市盈率-TTM', valuationValue('pe').map(value => toFixedNumber(value)), { itemStyle: { color: palette.yellow } }),
+      barSeries('市销率-TTM', valuationValue('ps').map(value => toFixedNumber(value)), { itemStyle: { color: palette.green } }),
       barSeries('市净率-TTM', valuationValue('pb').map(value => toFixedNumber(value)), { itemStyle: { color: palette.purple } }),
       lineSeries('股价', valuationValue('close').map(value => toFixedNumber(value)), 1),
-    ],
-  }
-}
-
-function buildShareholderStaffOption(): EChartsOption {
-  const closes = valuationValue('close').map(value => toFixedNumber(value))
-  const pe = valuationValue('pe').map(value => toFixedNumber(value))
-  return {
-    ...baseOption(`${stockName.value} 员工人数、人均工资、股东人数（万）`, '单位:万'),
-    xAxis: {
-      type: 'category',
-      data: valuationLabels(),
-      axisLabel: { color: '#555', fontSize: 10, rotate: 28 },
-      axisTick: { alignWithLabel: true },
-      axisLine: { lineStyle: { color: '#bbb' } },
-    },
-    yAxis: [
-      { type: 'value', axisLabel: { color: '#555', fontSize: 10 }, splitLine: { lineStyle: { color: '#e8e8e8' } } },
-      { type: 'value', axisLabel: { color: '#555', fontSize: 10 }, splitLine: { show: false } },
-    ],
-    dataZoom: [{ type: 'inside' }, { type: 'slider', height: 18, bottom: 20 }],
-    grid: { left: 70, right: 54, top: 86, bottom: 88 },
-    series: [
-      barSeries('估值强度', pe, { itemStyle: { color: palette.purple } }),
-      barSeries('股价', closes, { itemStyle: { color: palette.yellow } }),
-      lineSeries('价格趋势', closes, 1, { lineStyle: { width: 3, color: palette.red }, itemStyle: { color: palette.red } }),
     ],
   }
 }
@@ -894,7 +1109,15 @@ onBeforeUnmount(() => {
           :ref="el => setChartEl(spec.id, el)"
           class="chart-block"
         />
-        <div v-if="spec.fieldRows?.length" class="chart-explain-bar">
+        <div v-if="spec.fieldRows?.length || spec.id === 'operating-assets'" class="chart-explain-bar">
+          <button
+            v-if="spec.id === 'operating-assets'"
+            type="button"
+            class="chart-explain-toggle"
+            @click="toggleOperatingAssetMode"
+          >
+            {{ includeInventoryInOperatingAssets ? '切换为不含存货' : '切换为含存货' }}
+          </button>
           <button type="button" class="chart-explain-toggle" @click="toggleExplanation(spec.id)">
             {{ isExplanationOpen(spec.id) ? '收起字段口径' : '查看字段口径' }}
           </button>
@@ -916,6 +1139,10 @@ onBeforeUnmount(() => {
               </tr>
             </tbody>
           </table>
+          <div v-if="spec.readingGuide?.length" class="reading-guide">
+            <h3>阅读顺序与解读要点</h3>
+            <p v-for="line in spec.readingGuide" :key="line">{{ line }}</p>
+          </div>
         </div>
       </article>
       <div v-if="!hasFinanceData && !loading" class="empty-panel">
@@ -1158,6 +1385,22 @@ code {
   color: #333;
   font-family: Consolas, 'Courier New', monospace;
   padding: 0;
+}
+
+.reading-guide {
+  border-top: 1px dashed #d0d0d0;
+  margin-top: 8px;
+  padding-top: 8px;
+}
+
+.reading-guide h3 {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.reading-guide p {
+  font-size: 12px;
+  line-height: 1.6;
 }
 
 .report-footer {

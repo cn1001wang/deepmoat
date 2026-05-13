@@ -19,19 +19,19 @@
 <text x="78" y="235.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">23.29</text>
 <line x1="90" y1="129.99999999999994" x2="1130" y2="129.99999999999994" stroke="#eee" stroke-width="1"/>
 <text x="78" y="134.99999999999994" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">29.11</text>
-<text x="194.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2020</text>
-<text x="402.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2021</text>
-<text x="610.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2022</text>
-<text x="818.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2023</text>
-<text x="1026.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2024</text>
-<rect x="123.28" y="180.33" width="65.06" height="449.67" fill="#4E79A7" opacity="0.85"/>
-<rect x="331.28" y="213.13" width="65.06" height="416.87" fill="#4E79A7" opacity="0.85"/>
-<rect x="539.28" y="169.68" width="65.06" height="460.32" fill="#4E79A7" opacity="0.85"/>
-<rect x="747.28" y="135.32" width="65.06" height="494.68" fill="#4E79A7" opacity="0.85"/>
-<rect x="955.28" y="130.00" width="65.06" height="500.00" fill="#4E79A7" opacity="0.85"/>
-<rect x="194.00" y="593.41" width="65.06" height="36.59" fill="#F28E2B" opacity="0.85"/>
-<rect x="402.00" y="589.98" width="65.06" height="40.02" fill="#F28E2B" opacity="0.85"/>
-<rect x="610.00" y="617.46" width="65.06" height="12.54" fill="#F28E2B" opacity="0.85"/>
-<rect x="818.00" y="600.29" width="65.06" height="29.71" fill="#F28E2B" opacity="0.85"/>
-<rect x="1026.00" y="611.62" width="65.06" height="18.38" fill="#F28E2B" opacity="0.85"/>
+<text x="194.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2021</text>
+<text x="402.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2022</text>
+<text x="610.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2023</text>
+<text x="818.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2024</text>
+<text x="1026.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2025</text>
+<rect x="123.28" y="213.13" width="65.06" height="416.87" fill="#4E79A7" opacity="0.85"/>
+<rect x="331.28" y="169.68" width="65.06" height="460.32" fill="#4E79A7" opacity="0.85"/>
+<rect x="539.28" y="135.32" width="65.06" height="494.68" fill="#4E79A7" opacity="0.85"/>
+<rect x="747.28" y="130.00" width="65.06" height="500.00" fill="#4E79A7" opacity="0.85"/>
+<rect x="955.28" y="184.96" width="65.06" height="445.04" fill="#4E79A7" opacity="0.85"/>
+<rect x="194.00" y="589.98" width="65.06" height="40.02" fill="#F28E2B" opacity="0.85"/>
+<rect x="402.00" y="617.46" width="65.06" height="12.54" fill="#F28E2B" opacity="0.85"/>
+<rect x="610.00" y="600.29" width="65.06" height="29.71" fill="#F28E2B" opacity="0.85"/>
+<rect x="818.00" y="611.62" width="65.06" height="18.38" fill="#F28E2B" opacity="0.85"/>
+<rect x="1026.00" y="618.49" width="65.06" height="11.51" fill="#F28E2B" opacity="0.85"/>
 </svg>

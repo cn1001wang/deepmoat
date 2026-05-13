@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
+<text x="40" y="42" font-size="26" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#222">分产品利润结构图</text>
+<rect x="40" y="60" width="22" height="10" fill="#4E79A7"/>
+<text x="68" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">利润</text>
+<rect x="210" y="60" width="22" height="10" fill="#F28E2B"/>
+<text x="238" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">毛利率</text>
+<line x1="90" y1="130" x2="90" y2="630" stroke="#555" stroke-width="1"/>
+<line x1="90" y1="566.3057324840764" x2="1130" y2="566.3057324840764" stroke="#555" stroke-width="1"/>
+<line x1="90" y1="630.0" x2="1130" y2="630.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="635.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">-4.20</text>
+<line x1="90" y1="530.0" x2="1130" y2="530.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="535.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2.39</text>
+<line x1="90" y1="430.0" x2="1130" y2="430.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="435.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">8.99</text>
+<line x1="90" y1="330.0" x2="1130" y2="330.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="335.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">15.58</text>
+<line x1="90" y1="230.0" x2="1130" y2="230.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="235.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">22.18</text>
+<line x1="90" y1="130.0" x2="1130" y2="130.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="135.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">28.77</text>
+<text x="155.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">有色金属</text>
+<text x="285.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">铝加工</text>
+<text x="415.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">国外</text>
+<text x="545.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">电解铝</text>
+<text x="675.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">电力</text>
+<text x="805.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">煤炭</text>
+<text x="935.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">煤炭(行业)</text>
+<text x="1065.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">电</text>
+<rect x="110.80" y="130.00" width="81.33" height="436.31" fill="#4E79A7" opacity="0.85"/>
+<rect x="240.80" y="317.44" width="81.33" height="248.86" fill="#4E79A7" opacity="0.85"/>
+<rect x="370.80" y="437.25" width="81.33" height="129.06" fill="#4E79A7" opacity="0.85"/>
+<rect x="500.80" y="379.01" width="81.33" height="187.29" fill="#4E79A7" opacity="0.85"/>
+<rect x="630.80" y="553.26" width="81.33" height="13.04" fill="#4E79A7" opacity="0.85"/>
+<rect x="760.80" y="566.31" width="81.33" height="3.64" fill="#4E79A7" opacity="0.85"/>
+<rect x="890.80" y="566.31" width="81.33" height="3.64" fill="#4E79A7" opacity="0.85"/>
+<rect x="1020.80" y="551.60" width="81.33" height="14.71" fill="#4E79A7" opacity="0.85"/>
+<polyline fill="none" stroke="#F28E2B" stroke-width="3" points="155.00,366.12 285.00,393.57 415.00,424.36 545.00,312.29 675.00,344.89 805.00,630.00 935.00,630.00 1065.00,258.15"/>
+<circle cx="155.00" cy="366.12" r="4" fill="#F28E2B"/>
+<circle cx="285.00" cy="393.57" r="4" fill="#F28E2B"/>
+<circle cx="415.00" cy="424.36" r="4" fill="#F28E2B"/>
+<circle cx="545.00" cy="312.29" r="4" fill="#F28E2B"/>
+<circle cx="675.00" cy="344.89" r="4" fill="#F28E2B"/>
+<circle cx="805.00" cy="630.00" r="4" fill="#F28E2B"/>
+<circle cx="935.00" cy="630.00" r="4" fill="#F28E2B"/>
+<circle cx="1065.00" cy="258.15" r="4" fill="#F28E2B"/>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
+<text x="40" y="42" font-size="26" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#222">分产品收入结构图</text>
+<path d="M 380.00 390.00 L 380.00 170.00 A 220.00 220.00 0 0 1 532.93 548.15 Z" fill="#4E79A7" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 532.93 548.15 A 220.00 220.00 0 0 1 198.48 514.30 Z" fill="#F28E2B" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 198.48 514.30 A 220.00 220.00 0 0 1 190.82 277.70 Z" fill="#E15759" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 190.82 277.70 A 220.00 220.00 0 0 1 228.19 230.77 Z" fill="#76B7B2" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 228.19 230.77 A 220.00 220.00 0 0 1 264.29 202.89 Z" fill="#59A14F" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 264.29 202.89 A 220.00 220.00 0 0 1 305.32 183.06 Z" fill="#EDC948" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 305.32 183.06 A 220.00 220.00 0 0 1 343.54 173.04 Z" fill="#B07AA1" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 343.54 173.04 A 220.00 220.00 0 0 1 380.00 170.00 Z" fill="#FF9DA7" stroke="#fff" stroke-width="1"/>
+<rect x="700" y="179" width="20" height="12" fill="#4E79A7"/>
+<text x="728" y="190" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">制造业  4092.72 (37.8%)</text>
+<rect x="700" y="209" width="20" height="12" fill="#F28E2B"/>
+<text x="728" y="220" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">智能家居  2999.27 (27.7%)</text>
+<rect x="700" y="239" width="20" height="12" fill="#E15759"/>
+<text x="728" y="250" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">国外  1959.48 (18.1%)</text>
+<rect x="700" y="269" width="20" height="12" fill="#76B7B2"/>
+<text x="728" y="280" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">其他(行业)  471.79 (4.4%)</text>
+<rect x="700" y="299" width="20" height="12" fill="#59A14F"/>
+<text x="728" y="310" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">其他业务  358.22 (3.3%)</text>
+<rect x="700" y="329" width="20" height="12" fill="#EDC948"/>
+<text x="728" y="340" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">楼宇科技  357.91 (3.3%)</text>
+<rect x="700" y="359" width="20" height="12" fill="#B07AA1"/>
+<text x="728" y="370" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">机器人及自动化系统  310.11 (2.9%)</text>
+<rect x="700" y="389" width="20" height="12" fill="#FF9DA7"/>
+<text x="728" y="400" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">其他主营业务  287.19 (2.7%)</text>
+</svg>

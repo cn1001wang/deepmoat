@@ -10,20 +10,38 @@
 <line x1="90" y1="630.0" x2="1130" y2="630.0" stroke="#eee" stroke-width="1"/>
 <text x="78" y="635.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.00</text>
 <line x1="90" y1="530.0" x2="1130" y2="530.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="535.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.20</text>
+<text x="78" y="535.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">27.21</text>
 <line x1="90" y1="430.0" x2="1130" y2="430.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="435.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.40</text>
+<text x="78" y="435.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">54.42</text>
 <line x1="90" y1="330.0" x2="1130" y2="330.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="335.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.60</text>
-<line x1="90" y1="229.99999999999997" x2="1130" y2="229.99999999999997" stroke="#eee" stroke-width="1"/>
-<text x="78" y="234.99999999999997" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.80</text>
+<text x="78" y="335.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">81.62</text>
+<line x1="90" y1="230.0" x2="1130" y2="230.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="235.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">108.83</text>
 <line x1="90" y1="130.0" x2="1130" y2="130.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="135.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">1.00</text>
-<text x="350.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">1</text>
-<text x="870.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2</text>
-<rect x="173.20" y="630.00" width="325.31" height="0.00" fill="#4E79A7" opacity="0.85"/>
-<rect x="693.20" y="630.00" width="325.31" height="0.00" fill="#4E79A7" opacity="0.85"/>
-<polyline fill="none" stroke="#F28E2B" stroke-width="3" points="350.00,630.00 870.00,630.00"/>
-<circle cx="350.00" cy="630.00" r="4" fill="#F28E2B"/>
-<circle cx="870.00" cy="630.00" r="4" fill="#F28E2B"/>
+<text x="78" y="135.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">136.04</text>
+<text x="155.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">光伏行业</text>
+<text x="285.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">储能(行业)</text>
+<text x="415.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">储能系统</text>
+<text x="545.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">光伏逆变器等电力转换设备</text>
+<text x="675.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">新能源建设开发</text>
+<text x="805.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">其他(行业)</text>
+<text x="935.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">其他主营业务</text>
+<text x="1065.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">光伏电站发电收入</text>
+<rect x="110.80" y="149.11" width="81.33" height="480.89" fill="#4E79A7" opacity="0.85"/>
+<rect x="240.80" y="130.00" width="81.33" height="500.00" fill="#4E79A7" opacity="0.85"/>
+<rect x="370.80" y="130.00" width="81.33" height="500.00" fill="#4E79A7" opacity="0.85"/>
+<rect x="500.80" y="233.32" width="81.33" height="396.68" fill="#4E79A7" opacity="0.85"/>
+<rect x="630.80" y="541.75" width="81.33" height="88.25" fill="#4E79A7" opacity="0.85"/>
+<rect x="760.80" y="567.52" width="81.33" height="62.48" fill="#4E79A7" opacity="0.85"/>
+<rect x="890.80" y="602.14" width="81.33" height="27.86" fill="#4E79A7" opacity="0.85"/>
+<rect x="1020.80" y="604.53" width="81.33" height="25.47" fill="#4E79A7" opacity="0.85"/>
+<polyline fill="none" stroke="#F28E2B" stroke-width="3" points="155.00,522.05 285.00,495.89 415.00,495.89 545.00,502.61 675.00,576.71 805.00,544.95 935.00,523.82 1065.00,435.50"/>
+<circle cx="155.00" cy="522.05" r="4" fill="#F28E2B"/>
+<circle cx="285.00" cy="495.89" r="4" fill="#F28E2B"/>
+<circle cx="415.00" cy="495.89" r="4" fill="#F28E2B"/>
+<circle cx="545.00" cy="502.61" r="4" fill="#F28E2B"/>
+<circle cx="675.00" cy="576.71" r="4" fill="#F28E2B"/>
+<circle cx="805.00" cy="544.95" r="4" fill="#F28E2B"/>
+<circle cx="935.00" cy="523.82" r="4" fill="#F28E2B"/>
+<circle cx="1065.00" cy="435.50" r="4" fill="#F28E2B"/>
 </svg>

@@ -24,16 +24,16 @@
 <text x="610.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2023</text>
 <text x="818.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2024</text>
 <text x="1026.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2025</text>
-<polyline fill="none" stroke="#4E79A7" stroke-width="3" points="194.00,481.14 402.00,372.82 610.00,130.00 818.00,210.45 1026.00,630.00"/>
+<polyline fill="none" stroke="#4E79A7" stroke-width="3" points="194.00,481.14 402.00,372.82 610.00,130.00 818.00,210.45 1026.00,234.03"/>
 <circle cx="194.00" cy="481.14" r="4" fill="#4E79A7"/>
 <circle cx="402.00" cy="372.82" r="4" fill="#4E79A7"/>
 <circle cx="610.00" cy="130.00" r="4" fill="#4E79A7"/>
 <circle cx="818.00" cy="210.45" r="4" fill="#4E79A7"/>
-<circle cx="1026.00" cy="630.00" r="4" fill="#4E79A7"/>
-<polyline fill="none" stroke="#F28E2B" stroke-width="3" points="194.00,562.20 402.00,529.66 610.00,433.12 818.00,460.26 1026.00,630.00"/>
+<circle cx="1026.00" cy="234.03" r="4" fill="#4E79A7"/>
+<polyline fill="none" stroke="#F28E2B" stroke-width="3" points="194.00,562.20 402.00,529.66 610.00,433.12 818.00,460.26 1026.00,459.65"/>
 <circle cx="194.00" cy="562.20" r="4" fill="#F28E2B"/>
 <circle cx="402.00" cy="529.66" r="4" fill="#F28E2B"/>
 <circle cx="610.00" cy="433.12" r="4" fill="#F28E2B"/>
 <circle cx="818.00" cy="460.26" r="4" fill="#F28E2B"/>
-<circle cx="1026.00" cy="630.00" r="4" fill="#F28E2B"/>
+<circle cx="1026.00" cy="459.65" r="4" fill="#F28E2B"/>
 </svg>
