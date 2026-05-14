@@ -1,0 +1,568 @@
+{
+  "income_recent": [
+    {
+      "end_date": "20251231",
+      "total_revenue": 53693579201.52,
+      "n_income_attr_p": 3586177592.36
+    },
+    {
+      "end_date": "20250930",
+      "total_revenue": 39862118945.61,
+      "n_income_attr_p": 3051959512.37
+    },
+    {
+      "end_date": "20250630",
+      "total_revenue": 28150749967.59,
+      "n_income_attr_p": 2599752928.09
+    },
+    {
+      "end_date": "20250331",
+      "total_revenue": 16746050116.23,
+      "n_income_attr_p": 1937854243.4
+    },
+    {
+      "end_date": "20241231",
+      "total_revenue": 56473848287.07,
+      "n_income_attr_p": 4267111672.66
+    },
+    {
+      "end_date": "20240930",
+      "total_revenue": 43020585432.7,
+      "n_income_attr_p": 3919296160.74
+    },
+    {
+      "end_date": "20240630",
+      "total_revenue": 31264998401.66,
+      "n_income_attr_p": 3282896475.77
+    },
+    {
+      "end_date": "20240331",
+      "total_revenue": 18807168696.39,
+      "n_income_attr_p": 2306454931.34
+    },
+    {
+      "end_date": "20231231",
+      "total_revenue": 67540104550.94,
+      "n_income_attr_p": 6713686688.57
+    },
+    {
+      "end_date": "20230930",
+      "total_revenue": 50837011108.69,
+      "n_income_attr_p": 5206229345.02
+    },
+    {
+      "end_date": "20230630",
+      "total_revenue": 35858486322.26,
+      "n_income_attr_p": 3865590208.06
+    },
+    {
+      "end_date": "20230331",
+      "total_revenue": 20769431440.61,
+      "n_income_attr_p": 2300772308.42
+    }
+  ],
+  "annual": [
+    {
+      "end_date": "20251231",
+      "total_revenue": 53693579201.52,
+      "n_income_attr_p": 3586177592.36,
+      "total_assets": 74982870241.97,
+      "total_liab": 13857345805.32,
+      "money_cap": 33781245387.6,
+      "st_borr": 226682371.28,
+      "lt_borr": 2848679969.93,
+      "bond_payable": null,
+      "n_cashflow_act": 6058560224.26,
+      "free_cashflow": 826008620.7855,
+      "roe": 6.4869,
+      "roic": 4.8299,
+      "roa": 6.076,
+      "grossprofit_margin": 32.7504,
+      "netprofit_margin": 6.8715,
+      "current_ratio": 5.8283,
+      "quick_ratio": 4.2422,
+      "debt_to_assets": 18.4807,
+      "ocf_to_profit": 114.2204,
+      "ar_turn": 770.605,
+      "inv_turn": 2.2119
+    },
+    {
+      "end_date": "20241231",
+      "total_revenue": 56473848287.07,
+      "n_income_attr_p": 4267111672.66,
+      "total_assets": 76260373740.6,
+      "total_liab": 15312036850.03,
+      "money_cap": 34817316170.94,
+      "st_borr": 232632046.48,
+      "lt_borr": 2567047228.16,
+      "bond_payable": null,
+      "n_cashflow_act": 7939327277.01,
+      "free_cashflow": 5706949920.1391,
+      "roe": 7.8345,
+      "roic": 6.2842,
+      "roa": 6.693,
+      "grossprofit_margin": 32.0302,
+      "netprofit_margin": 8.6102,
+      "current_ratio": 5.1017,
+      "quick_ratio": 3.5201,
+      "debt_to_assets": 20.0786,
+      "ocf_to_profit": 128.5106,
+      "ar_turn": 549.7967,
+      "inv_turn": 1.999
+    },
+    {
+      "end_date": "20231231",
+      "total_revenue": 67540104550.94,
+      "n_income_attr_p": 6713686688.57,
+      "total_assets": 78869406192.71,
+      "total_liab": 19687771057.47,
+      "money_cap": 31838425096.1,
+      "st_borr": 369428534.66,
+      "lt_borr": 2522280291.36,
+      "bond_payable": null,
+      "n_cashflow_act": 15126419298.22,
+      "free_cashflow": 8919233579.3992,
+      "roe": 13.1117,
+      "roic": 10.5746,
+      "roa": 10.2056,
+      "grossprofit_margin": 31.8192,
+      "netprofit_margin": 10.7584,
+      "current_ratio": 3.8135,
+      "quick_ratio": 2.4398,
+      "debt_to_assets": 24.9625,
+      "ocf_to_profit": 174.3238,
+      "ar_turn": 465.5671,
+      "inv_turn": 1.8802
+    },
+    {
+      "end_date": "20221231",
+      "total_revenue": 54432851387.25,
+      "n_income_attr_p": 5030381552.61,
+      "total_assets": 75907603880.98,
+      "total_liab": 21780192148.77,
+      "money_cap": 26891700248.67,
+      "st_borr": 1932230516.44,
+      "lt_borr": 2508975000.0,
+      "bond_payable": null,
+      "n_cashflow_act": -3415245341.32,
+      "free_cashflow": -5134223283.7598,
+      "roe": 12.8667,
+      "roic": 12.0458,
+      "roa": 11.4226,
+      "grossprofit_margin": 28.3855,
+      "netprofit_margin": 11.3686,
+      "current_ratio": 3.2726,
+      "quick_ratio": 1.675,
+      "debt_to_assets": 28.693,
+      "ocf_to_profit": -44.8227,
+      "ar_turn": 423.1292,
+      "inv_turn": 1.6361
+    },
+    {
+      "end_date": "20211231",
+      "total_revenue": 67675515093.08,
+      "n_income_attr_p": 9653739902.26,
+      "total_assets": 55473728507.58,
+      "total_liab": 20682335234.43,
+      "money_cap": 16856199437.51,
+      "st_borr": 411336059.28,
+      "lt_borr": NaN,
+      "bond_payable": null,
+      "n_cashflow_act": 8328824733.0,
+      "free_cashflow": 7622725871.6019,
+      "roe": 37.1823,
+      "roic": 36.9899,
+      "roa": 30.3847,
+      "grossprofit_margin": 33.6801,
+      "netprofit_margin": 18.2705,
+      "current_ratio": 2.2491,
+      "quick_ratio": 1.0981,
+      "debt_to_assets": 37.2831,
+      "ocf_to_profit": 56.2589,
+      "ar_turn": 576.7882,
+      "inv_turn": 2.6051
+    },
+    {
+      "end_date": "20201231",
+      "total_revenue": 52596837907.89,
+      "n_income_attr_p": 6139938760.9,
+      "total_assets": 41919367961.05,
+      "total_liab": 15740531466.84,
+      "money_cap": 14706206896.51,
+      "st_borr": 417363582.67,
+      "lt_borr": NaN,
+      "bond_payable": null,
+      "n_cashflow_act": 8202265131.29,
+      "free_cashflow": 7790661858.0366,
+      "roe": 29.1011,
+      "roic": 29.1496,
+      "roa": 26.003,
+      "grossprofit_margin": 40.6417,
+      "netprofit_margin": 13.9486,
+      "current_ratio": 1.9776,
+      "quick_ratio": 1.0369,
+      "debt_to_assets": 37.5495,
+      "ocf_to_profit": 84.6113,
+      "ar_turn": 113.2626,
+      "inv_turn": 2.7395
+    },
+    {
+      "end_date": "20191231",
+      "total_revenue": 47966495033.74,
+      "n_income_attr_p": 4628988686.48,
+      "total_assets": 30687255888.76,
+      "total_liab": 8376899563.72,
+      "money_cap": 11905950444.67,
+      "st_borr": 223945000.0,
+      "lt_borr": NaN,
+      "bond_payable": null,
+      "n_cashflow_act": 2926031415.11,
+      "free_cashflow": 2103865993.0807,
+      "roe": 25.6276,
+      "roic": 25.0321,
+      "roa": 23.824,
+      "grossprofit_margin": 49.3964,
+      "netprofit_margin": 11.2885,
+      "current_ratio": 2.7942,
+      "quick_ratio": 1.7818,
+      "debt_to_assets": 27.2976,
+      "ocf_to_profit": 41.1618,
+      "ar_turn": 53.9357,
+      "inv_turn": 3.4668
+    },
+    {
+      "end_date": "20181231",
+      "total_revenue": 47007321221.24,
+      "n_income_attr_p": 3094748246.45,
+      "total_assets": 26847426306.46,
+      "total_liab": 8263114716.05,
+      "money_cap": 11289135391.56,
+      "st_borr": 289050000.0,
+      "lt_borr": NaN,
+      "bond_payable": null,
+      "n_cashflow_act": 2722225217.54,
+      "free_cashflow": 2136168223.2362,
+      "roe": 20.4487,
+      "roic": 21.8869,
+      "roa": 21.1108,
+      "grossprofit_margin": 41.4595,
+      "netprofit_margin": 8.3714,
+      "current_ratio": 2.5121,
+      "quick_ratio": 1.7496,
+      "debt_to_assets": 30.7781,
+      "ocf_to_profit": 50.1677,
+      "ar_turn": 48.8376,
+      "inv_turn": 6.0077
+    }
+  ],
+  "valuation_points": 54,
+  "valuation_latest": {
+    "trade_date": "20260513",
+    "close": 61.38,
+    "pe_ttm": 31.9107,
+    "pb": 2.2006,
+    "ps_ttm": 2.3682,
+    "dv_ttm": 2.118,
+    "total_mv": 12753515.8009,
+    "pe_pct_5y": 1.8518518518518516,
+    "pb_pct_5y": 1.8518518518518516,
+    "ps_pct_5y": 1.8518518518518516
+  },
+  "industry": "旅游服务",
+  "peer_table": [
+    {
+      "ts_code": "601888.SH",
+      "name": "中国中免",
+      "industry": "旅游服务",
+      "trade_date": "20260513",
+      "pe_ttm": 31.9107,
+      "pb": 2.2006,
+      "ps_ttm": 2.3682,
+      "total_mv": 12753515.8009,
+      "close": 61.38,
+      "roe": 6.4869,
+      "roic": 4.8299,
+      "grossprofit_margin": 32.7504,
+      "netprofit_margin": 6.8715,
+      "debt_to_assets": 18.4807
+    },
+    {
+      "ts_code": "600185.SH",
+      "name": "珠免集团",
+      "industry": "旅游服务",
+      "trade_date": "20260513",
+      "pe_ttm": NaN,
+      "pb": 129.4741,
+      "ps_ttm": 3.521,
+      "total_mv": 1117808.4364,
+      "close": 5.93,
+      "roe": NaN,
+      "roic": NaN,
+      "grossprofit_margin": NaN,
+      "netprofit_margin": NaN,
+      "debt_to_assets": NaN
+    },
+    {
+      "ts_code": "000796.SZ",
+      "name": "凯撒旅业",
+      "industry": "旅游服务",
+      "trade_date": "20260513",
+      "pe_ttm": 220.5204,
+      "pb": 8.5812,
+      "ps_ttm": 9.1183,
+      "total_mv": 779441.4132,
+      "close": 4.86,
+      "roe": 3.4034,
+      "roic": 5.7912,
+      "grossprofit_margin": 18.4168,
+      "netprofit_margin": 8.5492,
+      "debt_to_assets": 45.4813
+    },
+    {
+      "ts_code": "000524.SZ",
+      "name": "岭南控股",
+      "industry": "旅游服务",
+      "trade_date": "20260513",
+      "pe_ttm": 86.2958,
+      "pb": 2.848,
+      "ps_ttm": 1.4321,
+      "total_mv": 658815.0509,
+      "close": 9.83,
+      "roe": 3.0765,
+      "roic": 2.3728,
+      "grossprofit_margin": 18.3063,
+      "netprofit_margin": 1.6608,
+      "debt_to_assets": 40.2793
+    },
+    {
+      "ts_code": "002707.SZ",
+      "name": "众信旅游",
+      "industry": "旅游服务",
+      "trade_date": "20260513",
+      "pe_ttm": NaN,
+      "pb": 6.6478,
+      "ps_ttm": 0.8645,
+      "total_mv": 598473.4551,
+      "close": 6.09,
+      "roe": 0.8053,
+      "roic": 2.0595,
+      "grossprofit_margin": 11.9506,
+      "netprofit_margin": 0.2338,
+      "debt_to_assets": 71.59
+    },
+    {
+      "ts_code": "300859.SZ",
+      "name": "西域旅游",
+      "industry": "旅游服务",
+      "trade_date": "20260513",
+      "pe_ttm": 59.1857,
+      "pb": 6.4813,
+      "ps_ttm": 13.9639,
+      "total_mv": 459265.0,
+      "close": 29.63,
+      "roe": 9.7035,
+      "roic": 7.422,
+      "grossprofit_margin": 47.3542,
+      "netprofit_margin": 21.8318,
+      "debt_to_assets": 28.9061
+    },
+    {
+      "ts_code": "002159.SZ",
+      "name": "三特索道",
+      "industry": "旅游服务",
+      "trade_date": "20260513",
+      "pe_ttm": 20.7029,
+      "pb": 1.8721,
+      "ps_ttm": 4.3116,
+      "total_mv": 277121.971,
+      "close": 15.63,
+      "roe": 10.1418,
+      "roic": 9.721,
+      "grossprofit_margin": 62.3526,
+      "netprofit_margin": 24.1238,
+      "debt_to_assets": 20.0184
+    },
+    {
+      "ts_code": "000610.SZ",
+      "name": "*ST西旅",
+      "industry": "旅游服务",
+      "trade_date": "20260513",
+      "pe_ttm": NaN,
+      "pb": NaN,
+      "ps_ttm": 3.4296,
+      "total_mv": 186794.0939,
+      "close": 7.89,
+      "roe": -319.7626,
+      "roic": -18.4495,
+      "grossprofit_margin": 1.9266,
+      "netprofit_margin": -52.6625,
+      "debt_to_assets": 104.6178
+    }
+  ],
+  "sector_year": [
+    {
+      "y": "2019",
+      "median_rev_yoy": NaN,
+      "median_np_margin": 0.02666635166880414,
+      "sample_n": 8
+    },
+    {
+      "y": "2020",
+      "median_rev_yoy": -0.6929841074779597,
+      "median_np_margin": -0.0330257072904129,
+      "sample_n": 8
+    },
+    {
+      "y": "2021",
+      "median_rev_yoy": 0.09427079762298914,
+      "median_np_margin": -0.10702842163249193,
+      "sample_n": 8
+    },
+    {
+      "y": "2022",
+      "median_rev_yoy": -0.3189118021054047,
+      "median_np_margin": -0.36175652710035,
+      "sample_n": 8
+    },
+    {
+      "y": "2023",
+      "median_rev_yoy": 1.3528457494093438,
+      "median_np_margin": 0.059813218968585824,
+      "sample_n": 8
+    },
+    {
+      "y": "2024",
+      "median_rev_yoy": 0.08692814159902025,
+      "median_np_margin": 0.025626601742627493,
+      "sample_n": 8
+    },
+    {
+      "y": "2025",
+      "median_rev_yoy": -0.0002510116583130384,
+      "median_np_margin": 0.02529254441458375,
+      "sample_n": 8
+    }
+  ],
+  "dividend": [
+    {
+      "end_date": "20250930",
+      "ann_date": "20251031",
+      "ex_date": "20251216",
+      "cash_div_tax": 0.25
+    },
+    {
+      "end_date": "20250930",
+      "ann_date": "20251031",
+      "ex_date": null,
+      "cash_div_tax": 0.25
+    },
+    {
+      "end_date": "20250930",
+      "ann_date": "20251031",
+      "ex_date": null,
+      "cash_div_tax": 0.25
+    },
+    {
+      "end_date": "20250630",
+      "ann_date": "20250827",
+      "ex_date": null,
+      "cash_div_tax": 0.0
+    },
+    {
+      "end_date": "20241231",
+      "ann_date": "20250329",
+      "ex_date": "20250620",
+      "cash_div_tax": 1.05
+    },
+    {
+      "end_date": "20241231",
+      "ann_date": "20250329",
+      "ex_date": null,
+      "cash_div_tax": 1.05
+    },
+    {
+      "end_date": "20241231",
+      "ann_date": "20250329",
+      "ex_date": null,
+      "cash_div_tax": 1.05
+    },
+    {
+      "end_date": "20240630",
+      "ann_date": "20240831",
+      "ex_date": null,
+      "cash_div_tax": 0.0
+    },
+    {
+      "end_date": "20231231",
+      "ann_date": "20240328",
+      "ex_date": "20240614",
+      "cash_div_tax": 1.65
+    },
+    {
+      "end_date": "20231231",
+      "ann_date": "20240328",
+      "ex_date": null,
+      "cash_div_tax": 1.65
+    },
+    {
+      "end_date": "20231231",
+      "ann_date": "20240328",
+      "ex_date": null,
+      "cash_div_tax": 1.65
+    },
+    {
+      "end_date": "20230630",
+      "ann_date": "20230825",
+      "ex_date": null,
+      "cash_div_tax": 0.0
+    },
+    {
+      "end_date": "20221231",
+      "ann_date": "20230331",
+      "ex_date": "20230721",
+      "cash_div_tax": 0.8
+    },
+    {
+      "end_date": "20221231",
+      "ann_date": "20230331",
+      "ex_date": null,
+      "cash_div_tax": 0.8
+    },
+    {
+      "end_date": "20221231",
+      "ann_date": "20230331",
+      "ex_date": null,
+      "cash_div_tax": 0.8
+    },
+    {
+      "end_date": "20220630",
+      "ann_date": "20220831",
+      "ex_date": null,
+      "cash_div_tax": 0.0
+    },
+    {
+      "end_date": "20211231",
+      "ann_date": "20220423",
+      "ex_date": "20220715",
+      "cash_div_tax": 1.5
+    },
+    {
+      "end_date": "20211231",
+      "ann_date": "20220423",
+      "ex_date": null,
+      "cash_div_tax": 1.5
+    },
+    {
+      "end_date": "20211231",
+      "ann_date": "20220423",
+      "ex_date": null,
+      "cash_div_tax": 1.5
+    },
+    {
+      "end_date": "20210630",
+      "ann_date": "20210828",
+      "ex_date": null,
+      "cash_div_tax": 0.0
+    }
+  ]
+}

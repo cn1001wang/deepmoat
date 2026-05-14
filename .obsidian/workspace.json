@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "b36c9dd2126a742f",
+        "id": "c876f67d65aef0c9",
         "type": "tabs",
         "children": [
           {
-            "id": "16bd840bbb8bc517",
+            "id": "84840b7a8fedfdd2",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "outputs/reports/ISRG_直觉外科/analysis_ISRG_直觉外科_2605130123.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "analysis_ISRG_直觉外科_2605130123"
             }
           }
         ]
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md",
+                "file": "outputs/reports/ISRG_直觉外科/analysis_ISRG_直觉外科_2605130123.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "README 的大纲"
+              "title": "analysis_ISRG_直觉外科_2605130123 的大纲"
             }
           }
         ],
@@ -183,8 +183,28 @@
       "bases:新建数据库": false
     }
   },
-  "active": "16bd840bbb8bc517",
+  "active": "84840b7a8fedfdd2",
   "lastOpenFiles": [
+    "价值筛选.md",
+    "outputs/reports/002460_赣锋锂业/value_002460_赣锋锂业_2605141012.md",
+    "outputs/reports/603195_公牛集团/analysis_603195_公牛集团_2605130135.md",
+    "outputs/reports/603195_公牛集团/value_603195_公牛集团_2605130135.md",
+    "outputs/reports/603444_吉比特/value_603444_吉比特_2605130134.md",
+    "outputs/reports/603444_吉比特/analysis_603444_吉比特_2605130134.md",
+    "outputs/reports/603444_吉比特/r12_603444_吉比特_2605130134.md",
+    "outputs/reports/603583_捷昌驱动/r12_603583_捷昌驱动_2605130134.md",
+    "outputs/reports/603583_捷昌驱动/analysis_603583_捷昌驱动_2605130135.md",
+    "outputs/reports/603986_兆易创新/analysis_603986_兆易创新_2605130135.md",
+    "outputs/reports/603986_兆易创新/r12_603986_兆易创新_2605130134.md",
+    "outputs/reports/603986_兆易创新/value_603986_兆易创新_2605130135.md",
+    "outputs/reports/605499_东鹏饮料/analysis_605499_东鹏饮料_2605130135.md",
+    "outputs/reports/605499_东鹏饮料/r12_605499_东鹏饮料_2604181637.md",
+    "outputs/reports/605499_东鹏饮料/r12_605499_东鹏饮料_2605130134.md",
+    "outputs/reports/605499_东鹏饮料/value_605499_东鹏饮料_2605130135.md",
+    "outputs/reports/605499_东鹏饮料/value_605499_东鹏饮料_2604181637.md",
+    "outputs/reports/688017_绿的谐波/analysis_688017_绿的谐波_2604221448.md",
+    "outputs/reports/688017_绿的谐波/value_688017_绿的谐波_2604221448.md",
+    "README.md",
     "tests/__pycache__/test_sync_fina_indicator.cpython-313.pyc",
     "scripts/sync_daily_full.sh",
     "fe/dist/index.html",
@@ -195,25 +215,13 @@
     "fe/dist/assets",
     "fe/dist/assets/index-DLiMu7Jh.css",
     "fe/dist/assets/index-CaU7Sdsd.js",
-    "fe/dist/assets/Industry-De-OTP0m.js",
     "简单筛选.md",
-    "价值筛选.md",
     "outputs/reports/603259_药明康德/analysis_603259_药明康德_2605061350.md",
     "outputs/reports/600176_中国巨石/analysis_600176_中国巨石_2605061659.md",
     "outputs/reports/002821_凯莱英/analysis_002821_凯莱英_2605061443.md",
     "outputs/reports/002222_福晶科技/analysis_002222_福晶科技_2605061644.md",
     "outputs/reports/002130_沃尔核材/analysis_002130_沃尔核材_2605061700.md",
-    "outputs/a_share_watchlist_20260430_report.md",
-    "README.md",
-    "Users/raywang/codes/github/deepmoat/outputs/charts/value_605117_德业股份_2604160024/chart_01.svg.md",
     "未命名.canvas",
-    "outputs/reports/300274_阳光电源/value_300274_阳光电源_2604170018_draft.md",
-    "未命名.md",
-    "outputs/reports/300274_阳光电源/value_300274_阳光电源_2604170018.md",
-    "outputs/reports/300274_阳光电源/300274_阳光电源_年报员工研发资料整理.md",
-    "outputs/reports/300274_阳光电源/分析.md",
-    "outputs/reports/300124_汇川技术/value_300124_汇川技术_2604282244.md",
-    "outputs/reports/300124_汇川技术/analysis_300124_汇川技术_2604282244.md",
     "outputs/reports/688017_绿的谐波/charts/chart_12.svg",
     "outputs/reports/688017_绿的谐波/charts/chart_11.svg",
     "outputs/reports/688017_绿的谐波/charts/chart_10.svg",
@@ -224,14 +232,6 @@
     "outputs/reports/688017_绿的谐波/charts/chart_06.svg",
     "outputs/reports/688017_绿的谐波/charts/chart_05.svg",
     "outputs/reports/688017_绿的谐波/charts/chart_04.svg",
-    "outputs/reports/688017_绿的谐波/value_688017_绿的谐波_2604221448.md",
-    "outputs/reports/688017_绿的谐波/r12_688017_绿的谐波_2604221448.md",
-    "outputs/reports/688017_绿的谐波/analysis_688017_绿的谐波_2604221448.md",
-    "outputs/reports/300124_汇川技术/value_300124_汇川技术_2604221439.md",
-    "outputs/reports/300124_汇川技术/analysis_300124_汇川技术_2604281446.md",
-    "outputs/reports/002747_埃斯顿/charts/charts_snippet.md",
-    "outputs/reports/002747_埃斯顿/value_002747_埃斯顿_2604221459_draft.md",
-    "outputs/reports/002747_埃斯顿/value_002747_埃斯顿_2604221459.md",
     "未命名 1.canvas"
   ]
 }

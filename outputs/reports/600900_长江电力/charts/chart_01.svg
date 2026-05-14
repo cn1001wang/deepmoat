@@ -8,24 +8,24 @@
 <line x1="90" y1="630.0" x2="1130" y2="630.0" stroke="#eee" stroke-width="1"/>
 <text x="78" y="635.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.00</text>
 <line x1="90" y1="530.0" x2="1130" y2="530.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="535.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">26.69</text>
+<text x="78" y="535.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">172.48</text>
 <line x1="90" y1="430.0" x2="1130" y2="430.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="435.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">53.38</text>
+<text x="78" y="435.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">344.97</text>
 <line x1="90" y1="330.0" x2="1130" y2="330.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="335.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">80.08</text>
+<text x="78" y="335.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">517.45</text>
 <line x1="90" y1="230.0" x2="1130" y2="230.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="235.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">106.77</text>
-<line x1="90" y1="130.0" x2="1130" y2="130.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="135.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">133.46</text>
+<text x="78" y="235.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">689.94</text>
+<line x1="90" y1="130.00000000000006" x2="1130" y2="130.00000000000006" stroke="#eee" stroke-width="1"/>
+<text x="78" y="135.00000000000006" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">862.42</text>
 <text x="194.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2021</text>
 <text x="402.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2022</text>
 <text x="610.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2023</text>
 <text x="818.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2024</text>
 <text x="1026.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2025</text>
-<polyline fill="none" stroke="#4E79A7" stroke-width="3" points="194.00,490.33 402.00,424.70 610.00,216.13 818.00,166.60 1026.00,130.00"/>
-<circle cx="194.00" cy="490.33" r="4" fill="#4E79A7"/>
-<circle cx="402.00" cy="424.70" r="4" fill="#4E79A7"/>
-<circle cx="610.00" cy="216.13" r="4" fill="#4E79A7"/>
-<circle cx="818.00" cy="166.60" r="4" fill="#4E79A7"/>
+<polyline fill="none" stroke="#4E79A7" stroke-width="3" points="194.00,307.38 402.00,328.17 610.00,177.13 818.00,140.15 1026.00,130.00"/>
+<circle cx="194.00" cy="307.38" r="4" fill="#4E79A7"/>
+<circle cx="402.00" cy="328.17" r="4" fill="#4E79A7"/>
+<circle cx="610.00" cy="177.13" r="4" fill="#4E79A7"/>
+<circle cx="818.00" cy="140.15" r="4" fill="#4E79A7"/>
 <circle cx="1026.00" cy="130.00" r="4" fill="#4E79A7"/>
 </svg>
