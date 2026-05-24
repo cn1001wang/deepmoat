@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
+<text x="40" y="42" font-size="26" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#222">分产品收入结构图</text>
+<path d="M 380.00 390.00 L 380.00 170.00 A 220.00 220.00 0 0 1 576.68 488.58 Z" fill="#4E79A7" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 576.68 488.58 A 220.00 220.00 0 0 1 290.81 591.11 Z" fill="#F28E2B" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 290.81 591.11 A 220.00 220.00 0 0 1 167.85 448.26 Z" fill="#E15759" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 167.85 448.26 A 220.00 220.00 0 0 1 176.89 305.47 Z" fill="#76B7B2" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 176.89 305.47 A 220.00 220.00 0 0 1 242.80 218.03 Z" fill="#59A14F" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 242.80 218.03 A 220.00 220.00 0 0 1 298.69 185.58 Z" fill="#EDC948" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 298.69 185.58 A 220.00 220.00 0 0 1 341.19 173.45 Z" fill="#B07AA1" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 341.19 173.45 A 220.00 220.00 0 0 1 380.00 170.00 Z" fill="#FF9DA7" stroke="#fff" stroke-width="1"/>
+<rect x="700" y="179" width="20" height="12" fill="#4E79A7"/>
+<text x="728" y="190" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">药品制造与研发(行业)  298.33 (32.4%)</text>
+<rect x="700" y="209" width="20" height="12" fill="#F28E2B"/>
+<text x="728" y="220" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">其他业务  223.31 (24.2%)</text>
+<rect x="700" y="239" width="20" height="12" fill="#E15759"/>
+<text x="728" y="250" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">国外  129.77 (14.1%)</text>
+<rect x="700" y="269" width="20" height="12" fill="#76B7B2"/>
+<text x="728" y="280" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">抗肿瘤治疗领域核心产品  97.08 (10.5%)</text>
+<rect x="700" y="299" width="20" height="12" fill="#59A14F"/>
+<text x="728" y="310" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">医疗服务(行业)  73.73 (8.0%)</text>
+<rect x="700" y="329" width="20" height="12" fill="#EDC948"/>
+<text x="728" y="340" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">医学诊断与医疗器械制造产品  43.21 (4.7%)</text>
+<rect x="700" y="359" width="20" height="12" fill="#B07AA1"/>
+<text x="728" y="370" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">抗感染疾病治疗领域核心产品  29.50 (3.2%)</text>
+<rect x="700" y="389" width="20" height="12" fill="#FF9DA7"/>
+<text x="728" y="400" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">代谢及消化系统疾病治疗领域核心产品  25.99 (2.8%)</text>
+</svg>

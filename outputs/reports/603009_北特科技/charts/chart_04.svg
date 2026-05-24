@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
+<text x="40" y="42" font-size="26" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#222">分产品收入结构图</text>
+<path d="M 380.00 390.00 L 380.00 170.00 A 220.00 220.00 0 0 1 407.86 608.23 Z" fill="#4E79A7" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 407.86 608.23 A 220.00 220.00 0 0 1 164.84 344.09 Z" fill="#F28E2B" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 164.84 344.09 A 220.00 220.00 0 0 1 279.12 194.49 Z" fill="#E15759" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 279.12 194.49 A 220.00 220.00 0 0 1 333.74 174.92 Z" fill="#76B7B2" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 333.74 174.92 A 220.00 220.00 0 0 1 370.74 170.20 Z" fill="#59A14F" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 370.74 170.20 A 220.00 220.00 0 0 1 380.00 170.00 Z" fill="#EDC948" stroke="#fff" stroke-width="1"/>
+<rect x="700" y="179" width="20" height="12" fill="#4E79A7"/>
+<text x="728" y="190" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">汽车零部件  22.91 (48.0%)</text>
+<rect x="700" y="209" width="20" height="12" fill="#F28E2B"/>
+<text x="728" y="220" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">底盘零部件  14.50 (30.4%)</text>
+<rect x="700" y="239" width="20" height="12" fill="#E15759"/>
+<text x="728" y="250" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">空调压缩机  6.72 (14.1%)</text>
+<rect x="700" y="269" width="20" height="12" fill="#76B7B2"/>
+<text x="728" y="280" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">铝合金轻量化业务  2.01 (4.2%)</text>
+<rect x="700" y="299" width="20" height="12" fill="#59A14F"/>
+<text x="728" y="310" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">国外  1.29 (2.7%)</text>
+<rect x="700" y="329" width="20" height="12" fill="#EDC948"/>
+<text x="728" y="340" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">其他业务(行业)  0.32 (0.7%)</text>
+</svg>
