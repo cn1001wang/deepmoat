@@ -6,11 +6,11 @@
 <rect x="210" y="60" width="22" height="10" fill="#F28E2B"/>
 <text x="238" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">商品贸易-免税商品</text>
 <rect x="380" y="60" width="22" height="10" fill="#E15759"/>
-<text x="408" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">海南</text>
+<text x="408" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">商品贸易-有税商品</text>
 <rect x="550" y="60" width="22" height="10" fill="#76B7B2"/>
-<text x="578" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">商品贸易-有税商品</text>
+<text x="578" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">其他业务</text>
 <rect x="720" y="60" width="22" height="10" fill="#59A14F"/>
-<text x="748" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">其他业务</text>
+<text x="748" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">其他业务(行业)</text>
 <line x1="90" y1="130" x2="90" y2="630" stroke="#555" stroke-width="1"/>
 <line x1="90" y1="630.0" x2="1130" y2="630.0" stroke="#555" stroke-width="1"/>
 <line x1="90" y1="630.0" x2="1130" y2="630.0" stroke="#eee" stroke-width="1"/>
@@ -40,19 +40,19 @@
 <rect x="567.57" y="299.63" width="26.02" height="330.37" fill="#F28E2B" opacity="0.85"/>
 <rect x="775.57" y="179.33" width="26.02" height="450.67" fill="#F28E2B" opacity="0.85"/>
 <rect x="983.57" y="185.52" width="26.02" height="444.48" fill="#F28E2B" opacity="0.85"/>
-<rect x="179.86" y="278.23" width="26.02" height="351.77" fill="#E15759" opacity="0.85"/>
-<rect x="387.86" y="370.78" width="26.02" height="259.22" fill="#E15759" opacity="0.85"/>
-<rect x="595.86" y="333.84" width="26.02" height="296.16" fill="#E15759" opacity="0.85"/>
-<rect x="803.86" y="288.83" width="26.02" height="341.17" fill="#E15759" opacity="0.85"/>
-<rect x="1011.86" y="304.58" width="26.02" height="325.42" fill="#E15759" opacity="0.85"/>
-<rect x="208.14" y="450.69" width="26.02" height="179.31" fill="#76B7B2" opacity="0.85"/>
-<rect x="416.14" y="421.05" width="26.02" height="208.95" fill="#76B7B2" opacity="0.85"/>
-<rect x="624.14" y="463.11" width="26.02" height="166.89" fill="#76B7B2" opacity="0.85"/>
-<rect x="832.14" y="433.91" width="26.02" height="196.09" fill="#76B7B2" opacity="0.85"/>
-<rect x="1040.14" y="476.31" width="26.02" height="153.69" fill="#76B7B2" opacity="0.85"/>
-<rect x="236.43" y="624.52" width="26.02" height="5.48" fill="#59A14F" opacity="0.85"/>
-<rect x="444.43" y="626.81" width="26.02" height="3.19" fill="#59A14F" opacity="0.85"/>
-<rect x="652.43" y="622.80" width="26.02" height="7.20" fill="#59A14F" opacity="0.85"/>
-<rect x="860.43" y="621.41" width="26.02" height="8.59" fill="#59A14F" opacity="0.85"/>
-<rect x="1068.43" y="616.85" width="26.02" height="13.15" fill="#59A14F" opacity="0.85"/>
+<rect x="179.86" y="450.69" width="26.02" height="179.31" fill="#E15759" opacity="0.85"/>
+<rect x="387.86" y="421.05" width="26.02" height="208.95" fill="#E15759" opacity="0.85"/>
+<rect x="595.86" y="463.11" width="26.02" height="166.89" fill="#E15759" opacity="0.85"/>
+<rect x="803.86" y="433.91" width="26.02" height="196.09" fill="#E15759" opacity="0.85"/>
+<rect x="1011.86" y="476.31" width="26.02" height="153.69" fill="#E15759" opacity="0.85"/>
+<rect x="208.14" y="624.52" width="26.02" height="5.48" fill="#76B7B2" opacity="0.85"/>
+<rect x="416.14" y="626.81" width="26.02" height="3.19" fill="#76B7B2" opacity="0.85"/>
+<rect x="624.14" y="622.80" width="26.02" height="7.20" fill="#76B7B2" opacity="0.85"/>
+<rect x="832.14" y="621.41" width="26.02" height="8.59" fill="#76B7B2" opacity="0.85"/>
+<rect x="1040.14" y="616.85" width="26.02" height="13.15" fill="#76B7B2" opacity="0.85"/>
+<rect x="236.43" y="630.00" width="26.02" height="0.00" fill="#59A14F" opacity="0.85"/>
+<rect x="444.43" y="630.00" width="26.02" height="0.00" fill="#59A14F" opacity="0.85"/>
+<rect x="652.43" y="630.00" width="26.02" height="0.00" fill="#59A14F" opacity="0.85"/>
+<rect x="860.43" y="624.67" width="26.02" height="5.33" fill="#59A14F" opacity="0.85"/>
+<rect x="1068.43" y="621.48" width="26.02" height="8.52" fill="#59A14F" opacity="0.85"/>
 </svg>
