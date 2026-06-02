@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "c876f67d65aef0c9",
+        "id": "758b4d884cedca0b",
         "type": "tabs",
         "children": [
           {
-            "id": "84840b7a8fedfdd2",
+            "id": "dacb1eeb276b2308",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "outputs/reports/ISRG_直觉外科/analysis_ISRG_直觉外科_2605130123.md",
+                "file": "价值筛选.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "analysis_ISRG_直觉外科_2605130123"
+              "title": "价值筛选"
             }
           }
         ]
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "outputs/reports/ISRG_直觉外科/analysis_ISRG_直觉外科_2605130123.md",
+                "file": "价值筛选.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "analysis_ISRG_直觉外科_2605130123 的大纲"
+              "title": "价值筛选 的大纲"
             }
           }
         ],
@@ -183,9 +183,17 @@
       "bases:新建数据库": false
     }
   },
-  "active": "84840b7a8fedfdd2",
+  "active": "11df3e959e141a58",
   "lastOpenFiles": [
+    "简单筛选.md",
     "价值筛选.md",
+    "AGENTS.md",
+    "有用的总结.md",
+    "面试语音转录的结构化总结.md",
+    "outputs/reports/600116_三峡水利/value_600116_三峡水利_2605130810.md",
+    "Clippings/宇树科技 文档中心.md",
+    "outputs/reports/ISRG_直觉外科/analysis_ISRG_直觉外科_2605130123.md",
+    "Clippings",
     "outputs/reports/002460_赣锋锂业/value_002460_赣锋锂业_2605141012.md",
     "outputs/reports/603195_公牛集团/analysis_603195_公牛集团_2605130135.md",
     "outputs/reports/603195_公牛集团/value_603195_公牛集团_2605130135.md",
@@ -204,7 +212,6 @@
     "outputs/reports/605499_东鹏饮料/value_605499_东鹏饮料_2604181637.md",
     "outputs/reports/688017_绿的谐波/analysis_688017_绿的谐波_2604221448.md",
     "outputs/reports/688017_绿的谐波/value_688017_绿的谐波_2604221448.md",
-    "README.md",
     "tests/__pycache__/test_sync_fina_indicator.cpython-313.pyc",
     "scripts/sync_daily_full.sh",
     "fe/dist/index.html",
@@ -214,13 +221,6 @@
     "fe/dist/assets/Industry-4HUlcH1P.css",
     "fe/dist/assets",
     "fe/dist/assets/index-DLiMu7Jh.css",
-    "fe/dist/assets/index-CaU7Sdsd.js",
-    "简单筛选.md",
-    "outputs/reports/603259_药明康德/analysis_603259_药明康德_2605061350.md",
-    "outputs/reports/600176_中国巨石/analysis_600176_中国巨石_2605061659.md",
-    "outputs/reports/002821_凯莱英/analysis_002821_凯莱英_2605061443.md",
-    "outputs/reports/002222_福晶科技/analysis_002222_福晶科技_2605061644.md",
-    "outputs/reports/002130_沃尔核材/analysis_002130_沃尔核材_2605061700.md",
     "未命名.canvas",
     "outputs/reports/688017_绿的谐波/charts/chart_12.svg",
     "outputs/reports/688017_绿的谐波/charts/chart_11.svg",

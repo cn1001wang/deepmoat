@@ -10,38 +10,20 @@
 <line x1="90" y1="630.0" x2="1130" y2="630.0" stroke="#eee" stroke-width="1"/>
 <text x="78" y="635.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.00</text>
 <line x1="90" y1="530.0" x2="1130" y2="530.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="535.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">20.96</text>
+<text x="78" y="535.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.20</text>
 <line x1="90" y1="430.0" x2="1130" y2="430.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="435.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">41.93</text>
+<text x="78" y="435.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.40</text>
 <line x1="90" y1="330.0" x2="1130" y2="330.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="335.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">62.89</text>
-<line x1="90" y1="230.0" x2="1130" y2="230.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="235.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">83.86</text>
-<line x1="90" y1="130.00000000000006" x2="1130" y2="130.00000000000006" stroke="#eee" stroke-width="1"/>
-<text x="78" y="135.00000000000006" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">104.82</text>
-<text x="155.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">医疗行业</text>
-<text x="285.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">医疗服务-屈光项目</text>
-<text x="415.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">视光服务</text>
-<text x="545.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">医疗服务-白内障手术</text>
-<text x="675.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">医疗服务-眼前段手术</text>
-<text x="805.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">医疗服务-眼后段手术</text>
-<text x="935.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">其他病种项目</text>
-<text x="1065.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">其他业务</text>
-<rect x="110.80" y="130.00" width="81.33" height="500.00" fill="#4E79A7" opacity="0.85"/>
-<rect x="240.80" y="410.05" width="81.33" height="219.95" fill="#4E79A7" opacity="0.85"/>
-<rect x="370.80" y="486.66" width="81.33" height="143.34" fill="#4E79A7" opacity="0.85"/>
-<rect x="500.80" y="574.43" width="81.33" height="55.57" fill="#4E79A7" opacity="0.85"/>
-<rect x="630.80" y="590.93" width="81.33" height="39.07" fill="#4E79A7" opacity="0.85"/>
-<rect x="760.80" y="609.30" width="81.33" height="20.70" fill="#4E79A7" opacity="0.85"/>
-<rect x="890.80" y="608.63" width="81.33" height="21.37" fill="#4E79A7" opacity="0.85"/>
-<rect x="1020.80" y="627.66" width="81.33" height="2.34" fill="#4E79A7" opacity="0.85"/>
-<polyline fill="none" stroke="#F28E2B" stroke-width="3" points="155.00,405.57 285.00,367.60 415.00,382.34 545.00,470.30 675.00,437.57 805.00,498.39 935.00,422.02 1065.00,304.35"/>
-<circle cx="155.00" cy="405.57" r="4" fill="#F28E2B"/>
-<circle cx="285.00" cy="367.60" r="4" fill="#F28E2B"/>
-<circle cx="415.00" cy="382.34" r="4" fill="#F28E2B"/>
-<circle cx="545.00" cy="470.30" r="4" fill="#F28E2B"/>
-<circle cx="675.00" cy="437.57" r="4" fill="#F28E2B"/>
-<circle cx="805.00" cy="498.39" r="4" fill="#F28E2B"/>
-<circle cx="935.00" cy="422.02" r="4" fill="#F28E2B"/>
-<circle cx="1065.00" cy="304.35" r="4" fill="#F28E2B"/>
+<text x="78" y="335.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.60</text>
+<line x1="90" y1="229.99999999999997" x2="1130" y2="229.99999999999997" stroke="#eee" stroke-width="1"/>
+<text x="78" y="234.99999999999997" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.80</text>
+<line x1="90" y1="130.0" x2="1130" y2="130.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="135.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">1.00</text>
+<text x="350.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">1</text>
+<text x="870.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2</text>
+<rect x="173.20" y="630.00" width="325.31" height="0.00" fill="#4E79A7" opacity="0.85"/>
+<rect x="693.20" y="630.00" width="325.31" height="0.00" fill="#4E79A7" opacity="0.85"/>
+<polyline fill="none" stroke="#F28E2B" stroke-width="3" points="350.00,630.00 870.00,630.00"/>
+<circle cx="350.00" cy="630.00" r="4" fill="#F28E2B"/>
+<circle cx="870.00" cy="630.00" r="4" fill="#F28E2B"/>
 </svg>

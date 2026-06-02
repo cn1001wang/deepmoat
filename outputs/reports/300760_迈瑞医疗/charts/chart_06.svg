@@ -19,29 +19,26 @@
 <text x="78" y="235.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">160.10</text>
 <line x1="90" y1="130.0" x2="1130" y2="130.0" stroke="#eee" stroke-width="1"/>
 <text x="78" y="135.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">200.12</text>
-<text x="155.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">医疗器械行业</text>
-<text x="285.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">国外</text>
-<text x="415.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">体外诊断类产品</text>
-<text x="545.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">生命信息与支持类产品</text>
-<text x="675.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">医学影像类产品</text>
-<text x="805.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">新兴业务</text>
-<text x="935.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">其他业务</text>
-<text x="1065.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">其他业务(行业)</text>
-<rect x="110.80" y="130.00" width="81.33" height="500.00" fill="#4E79A7" opacity="0.85"/>
-<rect x="240.80" y="630.00" width="81.33" height="0.00" fill="#4E79A7" opacity="0.85"/>
-<rect x="370.80" y="451.63" width="81.33" height="178.37" fill="#4E79A7" opacity="0.85"/>
-<rect x="500.80" y="484.09" width="81.33" height="145.91" fill="#4E79A7" opacity="0.85"/>
-<rect x="630.80" y="539.95" width="81.33" height="90.05" fill="#4E79A7" opacity="0.85"/>
-<rect x="760.80" y="544.35" width="81.33" height="85.65" fill="#4E79A7" opacity="0.85"/>
-<rect x="890.80" y="628.45" width="81.33" height="1.55" fill="#4E79A7" opacity="0.85"/>
-<rect x="1020.80" y="628.45" width="81.33" height="1.55" fill="#4E79A7" opacity="0.85"/>
-<polyline fill="none" stroke="#F28E2B" stroke-width="3" points="155.00,479.27 285.00,630.00 415.00,484.26 545.00,481.66 675.00,472.47 805.00,470.75 935.00,489.01 1065.00,489.01"/>
-<circle cx="155.00" cy="479.27" r="4" fill="#F28E2B"/>
-<circle cx="285.00" cy="630.00" r="4" fill="#F28E2B"/>
-<circle cx="415.00" cy="484.26" r="4" fill="#F28E2B"/>
-<circle cx="545.00" cy="481.66" r="4" fill="#F28E2B"/>
-<circle cx="675.00" cy="472.47" r="4" fill="#F28E2B"/>
-<circle cx="805.00" cy="470.75" r="4" fill="#F28E2B"/>
-<circle cx="935.00" cy="489.01" r="4" fill="#F28E2B"/>
-<circle cx="1065.00" cy="489.01" r="4" fill="#F28E2B"/>
+<text x="164.28571428571428" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">医疗器械行业</text>
+<text x="312.8571428571429" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">体外诊断类产品</text>
+<text x="461.42857142857144" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">生命信息与支持类产品</text>
+<text x="610.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">医学影像类产品</text>
+<text x="758.5714285714287" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">新兴业务</text>
+<text x="907.1428571428572" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">其他业务(行业)</text>
+<text x="1055.7142857142858" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">其他业务</text>
+<rect x="113.77" y="130.00" width="92.95" height="500.00" fill="#4E79A7" opacity="0.85"/>
+<rect x="262.34" y="451.63" width="92.95" height="178.37" fill="#4E79A7" opacity="0.85"/>
+<rect x="410.91" y="484.09" width="92.95" height="145.91" fill="#4E79A7" opacity="0.85"/>
+<rect x="559.49" y="539.95" width="92.95" height="90.05" fill="#4E79A7" opacity="0.85"/>
+<rect x="708.06" y="544.35" width="92.95" height="85.65" fill="#4E79A7" opacity="0.85"/>
+<rect x="856.63" y="628.45" width="92.95" height="1.55" fill="#4E79A7" opacity="0.85"/>
+<rect x="1005.20" y="628.45" width="92.95" height="1.55" fill="#4E79A7" opacity="0.85"/>
+<polyline fill="none" stroke="#F28E2B" stroke-width="3" points="164.29,479.27 312.86,484.26 461.43,481.66 610.00,472.47 758.57,470.75 907.14,489.01 1055.71,489.01"/>
+<circle cx="164.29" cy="479.27" r="4" fill="#F28E2B"/>
+<circle cx="312.86" cy="484.26" r="4" fill="#F28E2B"/>
+<circle cx="461.43" cy="481.66" r="4" fill="#F28E2B"/>
+<circle cx="610.00" cy="472.47" r="4" fill="#F28E2B"/>
+<circle cx="758.57" cy="470.75" r="4" fill="#F28E2B"/>
+<circle cx="907.14" cy="489.01" r="4" fill="#F28E2B"/>
+<circle cx="1055.71" cy="489.01" r="4" fill="#F28E2B"/>
 </svg>

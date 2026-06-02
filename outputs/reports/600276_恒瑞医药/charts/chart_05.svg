@@ -6,9 +6,9 @@
 <rect x="210" y="60" width="22" height="10" fill="#F28E2B"/>
 <text x="238" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">肿瘤类</text>
 <rect x="380" y="60" width="22" height="10" fill="#E15759"/>
-<text x="408" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">国外</text>
+<text x="408" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">神经科学</text>
 <rect x="550" y="60" width="22" height="10" fill="#76B7B2"/>
-<text x="578" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">神经科学</text>
+<text x="578" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">其他业务(行业)</text>
 <rect x="720" y="60" width="22" height="10" fill="#59A14F"/>
 <text x="748" y="70" font-size="16" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">其他业务</text>
 <line x1="90" y1="130" x2="90" y2="630" stroke="#555" stroke-width="1"/>
@@ -40,16 +40,16 @@
 <rect x="567.57" y="411.94" width="26.02" height="218.06" fill="#F28E2B" opacity="0.85"/>
 <rect x="775.57" y="242.18" width="26.02" height="387.82" fill="#F28E2B" opacity="0.85"/>
 <rect x="983.57" y="332.44" width="26.02" height="297.56" fill="#F28E2B" opacity="0.85"/>
-<rect x="179.86" y="618.99" width="26.02" height="11.01" fill="#E15759" opacity="0.85"/>
-<rect x="387.86" y="616.10" width="26.02" height="13.90" fill="#E15759" opacity="0.85"/>
-<rect x="595.86" y="618.99" width="26.02" height="11.01" fill="#E15759" opacity="0.85"/>
-<rect x="803.86" y="617.22" width="26.02" height="12.78" fill="#E15759" opacity="0.85"/>
-<rect x="1011.86" y="499.01" width="26.02" height="130.99" fill="#E15759" opacity="0.85"/>
+<rect x="179.86" y="630.00" width="26.02" height="0.00" fill="#E15759" opacity="0.85"/>
+<rect x="387.86" y="630.00" width="26.02" height="0.00" fill="#E15759" opacity="0.85"/>
+<rect x="595.86" y="630.00" width="26.02" height="0.00" fill="#E15759" opacity="0.85"/>
+<rect x="803.86" y="553.45" width="26.02" height="76.55" fill="#E15759" opacity="0.85"/>
+<rect x="1011.86" y="553.39" width="26.02" height="76.61" fill="#E15759" opacity="0.85"/>
 <rect x="208.14" y="630.00" width="26.02" height="0.00" fill="#76B7B2" opacity="0.85"/>
 <rect x="416.14" y="630.00" width="26.02" height="0.00" fill="#76B7B2" opacity="0.85"/>
 <rect x="624.14" y="630.00" width="26.02" height="0.00" fill="#76B7B2" opacity="0.85"/>
-<rect x="832.14" y="553.45" width="26.02" height="76.55" fill="#76B7B2" opacity="0.85"/>
-<rect x="1040.14" y="553.39" width="26.02" height="76.61" fill="#76B7B2" opacity="0.85"/>
+<rect x="832.14" y="576.90" width="26.02" height="53.10" fill="#76B7B2" opacity="0.85"/>
+<rect x="1040.14" y="565.46" width="26.02" height="64.54" fill="#76B7B2" opacity="0.85"/>
 <rect x="236.43" y="627.77" width="26.02" height="2.23" fill="#59A14F" opacity="0.85"/>
 <rect x="444.43" y="628.89" width="26.02" height="1.11" fill="#59A14F" opacity="0.85"/>
 <rect x="652.43" y="630.00" width="26.02" height="0.00" fill="#59A14F" opacity="0.85"/>

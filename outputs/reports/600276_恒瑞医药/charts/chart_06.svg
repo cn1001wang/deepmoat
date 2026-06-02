@@ -21,27 +21,27 @@
 <text x="78" y="135.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">238.30</text>
 <text x="155.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">医药制造业</text>
 <text x="285.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">肿瘤类</text>
-<text x="415.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">国外</text>
-<text x="545.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">神经科学</text>
+<text x="415.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">神经科学</text>
+<text x="545.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">其他业务(行业)</text>
 <text x="675.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">其他业务</text>
-<text x="805.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">其他业务(行业)</text>
-<text x="935.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">造影剂</text>
-<text x="1065.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">代谢和心血管</text>
+<text x="805.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">造影剂</text>
+<text x="935.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">代谢和心血管</text>
+<text x="1065.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">免疫和呼吸系统</text>
 <rect x="110.80" y="130.00" width="81.33" height="500.00" fill="#4E79A7" opacity="0.85"/>
 <rect x="240.80" y="303.00" width="81.33" height="327.00" fill="#4E79A7" opacity="0.85"/>
-<rect x="370.80" y="540.64" width="81.33" height="89.36" fill="#4E79A7" opacity="0.85"/>
-<rect x="500.80" y="555.49" width="81.33" height="74.51" fill="#4E79A7" opacity="0.85"/>
+<rect x="370.80" y="555.49" width="81.33" height="74.51" fill="#4E79A7" opacity="0.85"/>
+<rect x="500.80" y="557.89" width="81.33" height="72.11" fill="#4E79A7" opacity="0.85"/>
 <rect x="630.80" y="557.89" width="81.33" height="72.11" fill="#4E79A7" opacity="0.85"/>
-<rect x="760.80" y="557.89" width="81.33" height="72.11" fill="#4E79A7" opacity="0.85"/>
-<rect x="890.80" y="593.09" width="81.33" height="36.91" fill="#4E79A7" opacity="0.85"/>
-<rect x="1020.80" y="592.34" width="81.33" height="37.66" fill="#4E79A7" opacity="0.85"/>
-<polyline fill="none" stroke="#F28E2B" stroke-width="3" points="155.00,451.53 285.00,433.86 415.00,442.69 545.00,456.42 675.00,430.55 805.00,430.55 935.00,506.73 1065.00,475.38"/>
+<rect x="760.80" y="593.09" width="81.33" height="36.91" fill="#4E79A7" opacity="0.85"/>
+<rect x="890.80" y="592.34" width="81.33" height="37.66" fill="#4E79A7" opacity="0.85"/>
+<rect x="1020.80" y="614.70" width="81.33" height="15.30" fill="#4E79A7" opacity="0.85"/>
+<polyline fill="none" stroke="#F28E2B" stroke-width="3" points="155.00,451.53 285.00,433.86 415.00,456.42 545.00,430.55 675.00,430.55 805.00,506.73 935.00,475.38 1065.00,452.45"/>
 <circle cx="155.00" cy="451.53" r="4" fill="#F28E2B"/>
 <circle cx="285.00" cy="433.86" r="4" fill="#F28E2B"/>
-<circle cx="415.00" cy="442.69" r="4" fill="#F28E2B"/>
-<circle cx="545.00" cy="456.42" r="4" fill="#F28E2B"/>
+<circle cx="415.00" cy="456.42" r="4" fill="#F28E2B"/>
+<circle cx="545.00" cy="430.55" r="4" fill="#F28E2B"/>
 <circle cx="675.00" cy="430.55" r="4" fill="#F28E2B"/>
-<circle cx="805.00" cy="430.55" r="4" fill="#F28E2B"/>
-<circle cx="935.00" cy="506.73" r="4" fill="#F28E2B"/>
-<circle cx="1065.00" cy="475.38" r="4" fill="#F28E2B"/>
+<circle cx="805.00" cy="506.73" r="4" fill="#F28E2B"/>
+<circle cx="935.00" cy="475.38" r="4" fill="#F28E2B"/>
+<circle cx="1065.00" cy="452.45" r="4" fill="#F28E2B"/>
 </svg>
