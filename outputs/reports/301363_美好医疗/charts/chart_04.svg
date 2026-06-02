@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
+<text x="40" y="42" font-size="26" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#222">分产品收入结构图</text>
+<path d="M 380.00 390.00 L 380.00 170.00 A 220.00 220.00 0 0 1 590.49 453.98 Z" fill="#4E79A7" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 590.49 453.98 A 220.00 220.00 0 0 1 277.39 584.61 Z" fill="#F28E2B" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 277.39 584.61 A 220.00 220.00 0 0 1 168.41 329.76 Z" fill="#E15759" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 168.41 329.76 A 220.00 220.00 0 0 1 216.24 243.09 Z" fill="#76B7B2" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 216.24 243.09 A 220.00 220.00 0 0 1 270.56 199.15 Z" fill="#59A14F" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 270.56 199.15 A 220.00 220.00 0 0 1 317.03 179.21 Z" fill="#EDC948" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 317.03 179.21 A 220.00 220.00 0 0 1 353.08 171.65 Z" fill="#B07AA1" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 353.08 171.65 A 220.00 220.00 0 0 1 380.00 170.00 Z" fill="#FF9DA7" stroke="#fff" stroke-width="1"/>
+<rect x="700" y="179" width="20" height="12" fill="#4E79A7"/>
+<text x="728" y="190" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">国外  13.69 (29.7%)</text>
+<rect x="700" y="209" width="20" height="12" fill="#F28E2B"/>
+<text x="728" y="220" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">医疗  12.92 (28.0%)</text>
+<rect x="700" y="239" width="20" height="12" fill="#E15759"/>
+<text x="728" y="250" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">呼吸管理与监护类  10.00 (21.7%)</text>
+<rect x="700" y="269" width="20" height="12" fill="#76B7B2"/>
+<text x="728" y="280" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">非医疗行业  3.33 (7.2%)</text>
+<rect x="700" y="299" width="20" height="12" fill="#59A14F"/>
+<text x="728" y="310" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">家用及消费电子组件  2.34 (5.1%)</text>
+<rect x="700" y="329" width="20" height="12" fill="#EDC948"/>
+<text x="728" y="340" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">贸易类其他医疗器械产品  1.69 (3.7%)</text>
+<rect x="700" y="359" width="20" height="12" fill="#B07AA1"/>
+<text x="728" y="370" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">五官及神经类  1.23 (2.7%)</text>
+<rect x="700" y="389" width="20" height="12" fill="#FF9DA7"/>
+<text x="728" y="400" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">智能装备与技术服务  0.90 (2.0%)</text>
+</svg>

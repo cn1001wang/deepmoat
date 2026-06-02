@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>
+<text x="40" y="42" font-size="26" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#222">分产品收入结构图</text>
+<path d="M 380.00 390.00 L 380.00 170.00 A 220.00 220.00 0 0 1 595.79 432.84 Z" fill="#4E79A7" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 595.79 432.84 A 220.00 220.00 0 0 1 320.01 601.66 Z" fill="#F28E2B" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 320.01 601.66 A 220.00 220.00 0 0 1 162.97 353.94 Z" fill="#E15759" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 162.97 353.94 A 220.00 220.00 0 0 1 250.45 212.19 Z" fill="#76B7B2" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 250.45 212.19 A 220.00 220.00 0 0 1 285.14 191.50 Z" fill="#59A14F" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 285.14 191.50 A 220.00 220.00 0 0 1 320.92 178.08 Z" fill="#EDC948" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 320.92 178.08 A 220.00 220.00 0 0 1 354.19 171.52 Z" fill="#B07AA1" stroke="#fff" stroke-width="1"/>
+<path d="M 380.00 390.00 L 354.19 171.52 A 220.00 220.00 0 0 1 380.00 170.00 Z" fill="#FF9DA7" stroke="#fff" stroke-width="1"/>
+<rect x="700" y="179" width="20" height="12" fill="#4E79A7"/>
+<text x="728" y="190" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">暖通电驱动系统解决方案  49.58 (28.1%)</text>
+<rect x="700" y="209" width="20" height="12" fill="#F28E2B"/>
+<text x="728" y="220" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">防爆电驱动系统解决方案  46.33 (26.3%)</text>
+<rect x="700" y="239" width="20" height="12" fill="#E15759"/>
+<text x="728" y="250" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">工业电驱动系统解决方案  40.95 (23.2%)</text>
+<rect x="700" y="269" width="20" height="12" fill="#76B7B2"/>
+<text x="728" y="280" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">美洲  21.79 (12.4%)</text>
+<rect x="700" y="299" width="20" height="12" fill="#59A14F"/>
+<text x="728" y="310" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">机器人组件及系统应用  5.16 (2.9%)</text>
+<rect x="700" y="329" width="20" height="12" fill="#EDC948"/>
+<text x="728" y="340" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">其他主营业务  4.88 (2.8%)</text>
+<rect x="700" y="359" width="20" height="12" fill="#B07AA1"/>
+<text x="728" y="370" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">新能源交通电驱动系统解决方案  4.33 (2.5%)</text>
+<rect x="700" y="389" width="20" height="12" fill="#FF9DA7"/>
+<text x="728" y="400" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#333">其他业务  3.30 (1.9%)</text>
+</svg>

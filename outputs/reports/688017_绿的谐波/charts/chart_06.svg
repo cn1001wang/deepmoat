@@ -10,20 +10,38 @@
 <line x1="90" y1="630.0" x2="1130" y2="630.0" stroke="#eee" stroke-width="1"/>
 <text x="78" y="635.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.00</text>
 <line x1="90" y1="530.0" x2="1130" y2="530.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="535.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.20</text>
-<line x1="90" y1="430.0" x2="1130" y2="430.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="435.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.40</text>
-<line x1="90" y1="330.0" x2="1130" y2="330.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="335.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.60</text>
-<line x1="90" y1="229.99999999999997" x2="1130" y2="229.99999999999997" stroke="#eee" stroke-width="1"/>
-<text x="78" y="234.99999999999997" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">0.80</text>
+<text x="78" y="535.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">10.91</text>
+<line x1="90" y1="430.00000000000006" x2="1130" y2="430.00000000000006" stroke="#eee" stroke-width="1"/>
+<text x="78" y="435.00000000000006" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">21.82</text>
+<line x1="90" y1="329.99999999999994" x2="1130" y2="329.99999999999994" stroke="#eee" stroke-width="1"/>
+<text x="78" y="334.99999999999994" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">32.72</text>
+<line x1="90" y1="230.0" x2="1130" y2="230.0" stroke="#eee" stroke-width="1"/>
+<text x="78" y="235.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">43.63</text>
 <line x1="90" y1="130.0" x2="1130" y2="130.0" stroke="#eee" stroke-width="1"/>
-<text x="78" y="135.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">1.00</text>
-<text x="350.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">1</text>
-<text x="870.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">2</text>
-<rect x="173.20" y="630.00" width="325.31" height="0.00" fill="#4E79A7" opacity="0.85"/>
-<rect x="693.20" y="630.00" width="325.31" height="0.00" fill="#4E79A7" opacity="0.85"/>
-<polyline fill="none" stroke="#F28E2B" stroke-width="3" points="350.00,630.00 870.00,630.00"/>
-<circle cx="350.00" cy="630.00" r="4" fill="#F28E2B"/>
-<circle cx="870.00" cy="630.00" r="4" fill="#F28E2B"/>
+<text x="78" y="135.0" text-anchor="end" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">54.54</text>
+<text x="155.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">谐波减速器及金属部件</text>
+<text x="285.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">机器人</text>
+<text x="415.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">机械装备</text>
+<text x="545.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">机电一体化产品</text>
+<text x="675.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">国外</text>
+<text x="805.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">数控机床</text>
+<text x="935.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">智能自动化设备</text>
+<text x="1065.0" y="658" text-anchor="middle" font-size="14" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif" fill="#666">医疗器械</text>
+<rect x="110.80" y="613.96" width="81.33" height="16.04" fill="#4E79A7" opacity="0.85"/>
+<rect x="240.80" y="616.52" width="81.33" height="13.48" fill="#4E79A7" opacity="0.85"/>
+<rect x="370.80" y="626.24" width="81.33" height="3.76" fill="#4E79A7" opacity="0.85"/>
+<rect x="500.80" y="627.25" width="81.33" height="2.75" fill="#4E79A7" opacity="0.85"/>
+<rect x="630.80" y="628.07" width="81.33" height="1.93" fill="#4E79A7" opacity="0.85"/>
+<rect x="760.80" y="628.62" width="81.33" height="1.38" fill="#4E79A7" opacity="0.85"/>
+<rect x="890.80" y="629.82" width="81.33" height="0.18" fill="#4E79A7" opacity="0.85"/>
+<rect x="1020.80" y="629.72" width="81.33" height="0.28" fill="#4E79A7" opacity="0.85"/>
+<polyline fill="none" stroke="#F28E2B" stroke-width="3" points="155.00,292.91 285.00,310.23 415.00,265.50 545.00,255.14 675.00,306.20 805.00,208.38 935.00,524.39 1065.00,130.00"/>
+<circle cx="155.00" cy="292.91" r="4" fill="#F28E2B"/>
+<circle cx="285.00" cy="310.23" r="4" fill="#F28E2B"/>
+<circle cx="415.00" cy="265.50" r="4" fill="#F28E2B"/>
+<circle cx="545.00" cy="255.14" r="4" fill="#F28E2B"/>
+<circle cx="675.00" cy="306.20" r="4" fill="#F28E2B"/>
+<circle cx="805.00" cy="208.38" r="4" fill="#F28E2B"/>
+<circle cx="935.00" cy="524.39" r="4" fill="#F28E2B"/>
+<circle cx="1065.00" cy="130.00" r="4" fill="#F28E2B"/>
 </svg>
