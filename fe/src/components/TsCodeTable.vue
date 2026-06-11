@@ -296,7 +296,7 @@ async function saveUserData() {
 function openFinanceCard() {
   if (!tsCode.value)
     return
-  router.push(`/stock/${encodeURIComponent(tsCode.value)}/card`)
+  router.push(`/stock/${encodeURIComponent(tsCode.value)}`)
 }
 
 async function load() {
@@ -347,7 +347,7 @@ watch(years, load) // years 变化时重新加载
       <input v-model.number="years" type="number" min="3" max="10">
       <button :disabled="loading" @click="load">查询</button>
       <button :disabled="loading || !tsCode" @click="openFinanceCard">
-        财务小卡片
+        个股工作台
       </button>
       <button :disabled="loading" @click="filterLatestQAndQ4 = !filterLatestQAndQ4">
         {{ filterLatestQAndQ4 ? '显示全部季度' : '仅最新季度+历年Q4' }}

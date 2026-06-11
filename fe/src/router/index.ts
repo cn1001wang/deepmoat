@@ -8,7 +8,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'Home',
-    redirect: '/StockList',
+    component: () => import('@/views/Home.vue'),
   },
   {
     path: '/stock/:tscode',
@@ -31,6 +31,35 @@ const routes: RouteRecordRaw[] = [
     path: '/Industry',
     name: 'Industry',
     component: () => import('@/views/Industry.vue'),
+  },
+  {
+    path: '/screener',
+    name: 'StockScreener',
+    component: () => import('@/views/stock-screener.vue'),
+  },
+  {
+    path: '/stock/:tscode/cashflow',
+    name: 'CashFlowAnalysis',
+    component: () => import('@/views/cashflow-analysis.vue'),
+    props: true,
+  },
+  {
+    path: '/stock/:tscode/income',
+    name: 'IncomeAnalysis',
+    component: () => import('@/views/income-analysis.vue'),
+    props: true,
+  },
+  {
+    path: '/stock/:tscode/balance',
+    name: 'BalanceAnalysis',
+    component: () => import('@/views/balance-analysis.vue'),
+    props: true,
+  },
+  {
+    path: '/stock/:tscode/ai-valuation',
+    name: 'AiValuation',
+    component: () => import('@/views/ai-valuation.vue'),
+    props: true,
   },
 ]
 

@@ -3,9 +3,8 @@ import axios from 'axios'
 import { ElMessage } from 'element-plus'
 
 const request: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:5005',
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:5005',
   timeout: 60000,
-  // headers: { 'Content-Type': ContentTypeEnum.JSON },
 })
 async function requestHandler(config: InternalAxiosRequestConfig): Promise<InternalAxiosRequestConfig> {
   return config
