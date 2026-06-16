@@ -72,7 +72,7 @@ const analysisEntries = computed<AnalysisEntry[]>(() => [
 const sortedSeries = computed(() => [...(cardData.value?.financeSeries ?? [])])
 const latestPoint = computed(() => sortedSeries.value.at(-1) ?? null)
 const latestAnnualPoint = computed(() => {
-  const annual = [...sortedSeries.value].reverse().find(point => point.period.endsWith('1231'))
+  const annual = [...sortedSeries.value].reverse().find(point => point.period.endsWith('-12-31'))
   return annual ?? latestPoint.value
 })
 

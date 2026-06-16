@@ -13,6 +13,9 @@ const cardData = ref<FinanceCardResponse | null>(null)
 const showAllPeriods = ref(false)
 const charts: ECharts[] = []
 const chartRefs = ref<HTMLDivElement[]>([])
+function setChartRef(el: any, index: number) {
+  if (el) chartRefs.value[index] = el as HTMLDivElement
+}
 
 const toBillion = (v: number | null) => v != null ? v / 1e8 : null
 
@@ -20,7 +23,7 @@ const filteredSeries = computed(() => {
   if (!cardData.value) return []
   const series = cardData.value.financeSeries
   if (showAllPeriods.value) return series
-  return series.filter(p => p.period.endsWith('1231'))
+  return series.filter(p => p.period.endsWith('-12-31'))
 })
 
 const periods = computed(() => filteredSeries.value.map(p => p.period.slice(0, 4)))
@@ -223,12 +226,12 @@ function renderCharts() {
     <div v-if="loading" class="loading">加载中...</div>
 
     <div v-else class="charts-grid">
-      <div ref="chartRefs" class="chart-box" />
-      <div ref="chartRefs" class="chart-box" />
-      <div ref="chartRefs" class="chart-box" />
-      <div ref="chartRefs" class="chart-box" />
-      <div ref="chartRefs" class="chart-box" />
-      <div ref="chartRefs" class="chart-box" />
+      <div :ref="(el) => setChartRef(el, 0)" class="chart-box" />
+      <div :ref="(el) => setChartRef(el, 1)" class="chart-box" />
+      <div :ref="(el) => setChartRef(el, 2)" class="chart-box" />
+      <div :ref="(el) => setChartRef(el, 3)" class="chart-box" />
+      <div :ref="(el) => setChartRef(el, 4)" class="chart-box" />
+      <div :ref="(el) => setChartRef(el, 5)" class="chart-box" />
     </div>
 
     <div v-if="cardData && filteredSeries.length" class="reading-guide">

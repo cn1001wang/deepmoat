@@ -7,7 +7,7 @@ class Settings(BaseSettings):
 
     AI_API_URL: str = ""
     AI_API_KEY: str = ""
-    AI_MODEL: str = "claude-sonnet-4-20250514"
+    AI_API_MODEL: str = "claude-sonnet-4-20250514"
 
     class Config:
         env_file = ".env"

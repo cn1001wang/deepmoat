@@ -5,6 +5,19 @@ from sqlalchemy.orm import Session
 from app.config import settings
 from app.models.models import StockBasic, Income, BalanceSheet, CashFlow, FinaIndicator
 from app.crud.crud_stock import get_stock_by_code
+import json
+import logging
+import sys
+
+logger = logging.getLogger("app.ai_service")
+if not logger.handlers:
+    _h = logging.StreamHandler(sys.stderr)
+    _h.setFormatter(logging.Formatter(
+        "%(asctime)s %(levelname)s %(name)s: %(message)s"
+    ))
+    logger.addHandler(_h)
+    logger.setLevel(logging.INFO)
+    logger.propagate = False
 
 
 def _build_financial_context(ts_code: str, db: Session, years: int = 5) -> str:
@@ -96,6 +109,27 @@ async def generate_valuation(ts_code: str, db: Session) -> dict:
 
 请给出完整的估值分析。"""
 
+    payload = {
+        "model": settings.AI_API_MODEL,
+        "max_tokens": 128000,
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ],
+    }
+
+    logger.info("[AI] POST %s model=%s ts_code=%s", settings.AI_API_URL, settings.AI_API_MODEL, ts_code)
+    logger.info(
+        "[AI] system_prompt (len=%d):\n%s",
+        len(system_prompt),
+        system_prompt,
+    )
+    logger.info(
+        "[AI] user_prompt (len=%d):\n%s",
+        len(user_prompt),
+        user_prompt,
+    )
+
     async with httpx.AsyncClient(timeout=120.0) as client:
         response = await client.post(
             settings.AI_API_URL,
@@ -103,27 +137,39 @@ async def generate_valuation(ts_code: str, db: Session) -> dict:
                 "Authorization": f"Bearer {settings.AI_API_KEY}",
                 "Content-Type": "application/json",
             },
-            json={
-                "model": settings.AI_MODEL,
-                "max_tokens": 4096,
-                "messages": [
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": user_prompt},
-                ],
-            },
+            json=payload,
         )
+        logger.info("[AI] response status=%s", response.status_code)
+        raw_text = response.text
+        logger.info("[AI] response body (truncated): %s", raw_text[:2000])
         response.raise_for_status()
-        data = response.json()
+        try:
+            data = response.json()
+        except Exception as exc:
+            logger.exception("[AI] failed to decode JSON: %s", exc)
+            raise
 
-    content = data.get("content", [{}])
-    if isinstance(content, list) and len(content) > 0:
-        analysis_text = content[0].get("text", "")
+    logger.info("[AI] response top-level keys: %s", list(data.keys()) if isinstance(data, dict) else type(data))
+
+    analysis_text = ""
+    content = data.get("content") if isinstance(data, dict) else None
+    if isinstance(content, list) and len(content) > 0 and isinstance(content[0], dict):
+        analysis_text = content[0].get("text", "") or ""
+    if not analysis_text:
+        choices = data.get("choices") if isinstance(data, dict) else None
+        if isinstance(choices, list) and choices:
+            msg = choices[0].get("message") if isinstance(choices[0], dict) else None
+            if isinstance(msg, dict):
+                analysis_text = msg.get("content", "") or ""
+
+    if not analysis_text:
+        logger.warning("[AI] empty analysis_text. full response=%s", json.dumps(data, ensure_ascii=False)[:4000])
     else:
-        analysis_text = data.get("choices", [{}])[0].get("message", {}).get("content", "")
+        logger.info("[AI] analysis_text length=%d, preview=%s", len(analysis_text), analysis_text[:200])
 
     return {
         "analysis": analysis_text,
-        "model_used": settings.AI_MODEL,
+        "model_used": settings.AI_API_MODEL,
         "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
     }
 
