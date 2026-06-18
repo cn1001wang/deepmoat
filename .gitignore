@@ -14,3 +14,4 @@ logs/
 
 财报/*
 .vscode
+.env
