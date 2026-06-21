@@ -27,6 +27,14 @@ refactor/
 
 ## 已拍板锚点
 
-- 后端：Rust + **axum** + **PostgreSQL** + sqlx + polars + tokio + utoipa
-- 前端：**保留 Vue 3 + Vite + UnoCSS**，只做 UI 美化（UI 库 / 深色模式 / ECharts / design tokens）
 - 详见 `00_meta/DECISIONS.md`
+
+## 多环境
+
+### deepvalue仓库
+windows环境：C:\codes\github\deepvalue
+mac环境：/Users/raywang/codes/github/deepvalue
+
+### deepmoat 仓库
+windows环境：C:\codes\github\deepmoat\
+mac环境:/Users/raywang/codes/github/deepmoat
