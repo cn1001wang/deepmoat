@@ -43,6 +43,10 @@ def write_local_mappings(root: Path, skill_names: list[str]) -> None:
     for client_dir, skills_dir in CLIENT_SKILLS_DIRS:
         out_dir = root / client_dir / skills_dir
         out_dir.mkdir(parents=True, exist_ok=True)
+        # 清理失效映射：移除指向已删除 skill 的旧映射文件
+        for existing in out_dir.iterdir():
+            if existing.is_file() and existing.name not in skill_names:
+                existing.unlink()
         for skill in skill_names:
             mapping_file = out_dir / skill
             mapping_file.write_text(f"../../.agents/skills/{skill}\n", encoding="utf-8")

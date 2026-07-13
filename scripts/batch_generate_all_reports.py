@@ -3,7 +3,7 @@
 全量批处理生成三类报告：
 1) 12-report (r12_*)
 2) analysis (analysis_*)
-3) value-report (value_* + 图表回插)
+3) deepmoat-research 深度估值 (value_* + 图表回插)
 
 说明：
 - 主口径使用本地数据库（deepmoat-local-data）
@@ -28,8 +28,8 @@ from sqlalchemy import create_engine, text
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORT_ROOT = ROOT / "outputs" / "reports"
-SKILL_VALUE_SCAFFOLD = ROOT / ".agents" / "skills" / "value-report" / "value_report_scaffold.py"
-SKILL_VALUE_CHARTS = ROOT / ".agents" / "skills" / "value-report" / "render_value_report_charts.py"
+SKILL_VALUE_SCAFFOLD = ROOT / ".agents" / "skills" / "deepmoat-research" / "value_report_scaffold.py"
+SKILL_VALUE_CHARTS = ROOT / ".agents" / "skills" / "deepmoat-research" / "render_value_report_charts.py"
 ANALYSIS_SCRIPT = ROOT / "scripts" / "analysis_dialogue_report.py"
 
 
