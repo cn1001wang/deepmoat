@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "outputs/reports/300274_阳光电源/value_300274_阳光电源_2607131003_addition_strategy.md",
+                "file": "refactor/04_design/01_current_backend_design.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "value_300274_阳光电源_2607131003_addition_strategy"
+              "title": "01_current_backend_design"
             }
           }
         ]
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "outputs/reports/300274_阳光电源/value_300274_阳光电源_2607131003_addition_strategy.md",
+                "file": "refactor/04_design/01_current_backend_design.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "value_300274_阳光电源_2607131003_addition_strategy 的大纲"
+              "title": "01_current_backend_design 的大纲"
             }
           }
         ],
@@ -183,23 +183,27 @@
       "bases:新建数据库": false
     }
   },
-  "active": "11df3e959e141a58",
+  "active": "dacb1eeb276b2308",
   "lastOpenFiles": [
-    "refactor/04_design/02_refactor_upgrade_design.md",
-    "refactor/04_design/01_current_backend_design.md",
-    "outputs/reports/600703_三安光电/analysis_600703_三安光电_2607122318.md",
-    "outputs/reports/600703_三安光电",
-    "outputs/reports/02577_英诺赛科/analysis_02577_英诺赛科_2607122320.md",
-    "outputs/reports/02577_英诺赛科",
+    "app/service/ai/__pycache__/report.cpython-313.pyc",
+    "app/service/ai/__pycache__/prompts.cpython-313.pyc",
+    "app/service/ai/__pycache__/modes.cpython-313.pyc",
+    "app/service/ai/__pycache__/context.cpython-313.pyc",
+    "app/service/ai/__pycache__/client.cpython-313.pyc",
+    "app/service/ai/__pycache__/analyzer.cpython-313.pyc",
+    "app/service/ai/__pycache__/__init__.cpython-313.pyc",
+    "app/service/ai/__pycache__",
+    "app/service/ai/__init__.py",
+    "app/service/ai/analyzer.py",
+    "app/service/ai/prompts.py",
+    "refactor/05_impl_plan/01_reconciled_plan.md",
+    "deploy/README.md",
     "outputs/reports/300274_阳光电源/fund_timing_300274_2607150929.md",
     "outputs/reports/300274_阳光电源/fund_timing_300274_2607141504.md",
+    "outputs/reports/300274_阳光电源/value_300274_阳光电源_2607131003_addition_strategy.md",
     "outputs/reports/002851_麦格米特/analysis_002851_麦格米特_2607131051.md",
-    "outputs/reports/002851_麦格米特",
     "outputs/reports/300274_阳光电源/analysis_300274_阳光电源_2607030930.md",
     "outputs/reports/300274_阳光电源/storage_dive_event_300274_2607091340.md",
-    "outputs/tmp/sw_idx_0709.json",
-    "outputs/tmp/storage_sector_flow_0709.json",
-    "outputs/tmp/storage_dive_0709.json",
     "价值筛选.md",
     "简单筛选.md",
     "AGENTS.md",
@@ -208,7 +212,6 @@
     "outputs/reports/600116_三峡水利/value_600116_三峡水利_2605130810.md",
     "Clippings/宇树科技 文档中心.md",
     "outputs/reports/ISRG_直觉外科/analysis_ISRG_直觉外科_2605130123.md",
-    "Clippings",
     "outputs/reports/002460_赣锋锂业/value_002460_赣锋锂业_2605141012.md",
     "outputs/reports/603195_公牛集团/analysis_603195_公牛集团_2605130135.md",
     "outputs/reports/603195_公牛集团/value_603195_公牛集团_2605130135.md",
@@ -218,9 +221,6 @@
     "outputs/reports/603583_捷昌驱动/r12_603583_捷昌驱动_2605130134.md",
     "outputs/reports/603583_捷昌驱动/analysis_603583_捷昌驱动_2605130135.md",
     "outputs/reports/603986_兆易创新/analysis_603986_兆易创新_2605130135.md",
-    "tests/__pycache__/test_sync_fina_indicator.cpython-313.pyc",
-    "scripts/sync_daily_full.sh",
-    "fe/dist/index.html",
     "未命名.canvas",
     "outputs/reports/688017_绿的谐波/charts/chart_12.svg",
     "outputs/reports/688017_绿的谐波/charts/chart_11.svg",

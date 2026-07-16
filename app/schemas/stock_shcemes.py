@@ -12,8 +12,6 @@ class SwIndustryRead(BaseSchema):
     industry_code: Optional[str] = Field(None, alias="industryCode")
     is_pub: Optional[str] = Field(None, alias="isPub")
     src: Optional[str] = None
-    class Config:
-        orm_mode = True
 
 class IndexMemberRead(BaseSchema):
     l1_code: str = Field(..., alias="l1Code")

@@ -7,7 +7,7 @@ const request: AxiosInstance = axios.create({
   // behind its HTTPS/authentication boundary. Local development keeps the
   // existing standalone FastAPI address.
   baseURL: import.meta.env.VITE_API_BASE_URL || (import.meta.env.PROD ? '' : 'http://localhost:5005'),
-  timeout: 60000,
+  timeout: 60000*60,
 })
 async function requestHandler(config: InternalAxiosRequestConfig): Promise<InternalAxiosRequestConfig> {
   return config
