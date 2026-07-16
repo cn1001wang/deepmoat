@@ -5,13 +5,8 @@ from datetime import datetime
 from typing import List, Dict, Any
 import pandas as pd
 
-from app.service.tushare_service import (
-    get_income_all,
-    get_balancesheet_all,
-    get_cashflow_all,
-    fetch_fina_indicator,
-)
-from app.db.session import SessionLocal
+from sqlalchemy.orm import Session
+from app.models.models import Income, BalanceSheet, CashFlow, FinaIndicator
 from app.crud.crud_dividend import get_dividend_by_ts_code
 from app.utils.date_utils import generate_periods
 from app.utils.df_utils import dedup_finance_df
@@ -89,24 +84,33 @@ INDICATOR_COLUMNS = [
 ]
 
 
-def build_metrics_table(ts_code: str, years: int = 6) -> Dict[str, Any]:
+def _load_table(db: Session, model, ts_code: str) -> pd.DataFrame:
+    """Load one stock from the local database; online APIs must not call Tushare."""
+    rows = db.query(model).filter(model.ts_code == ts_code).all()
+    if not rows:
+        return pd.DataFrame()
+    columns = [column.name for column in model.__table__.columns]
+    return pd.DataFrame([{column: getattr(row, column) for column in columns} for row in rows])
+
+
+def build_metrics_table(ts_code: str, years: int, db: Session) -> Dict[str, Any]:
     """
     构建前端财务指标表
     """
     income = filter_periods(
-        ensure_columns(get_income_all(ts_code), INCOME_COLUMNS),
+        ensure_columns(_load_table(db, Income, ts_code), INCOME_COLUMNS),
         years
     )
     balance = filter_periods(
-        ensure_columns(get_balancesheet_all(ts_code), BALANCE_COLUMNS),
+        ensure_columns(_load_table(db, BalanceSheet, ts_code), BALANCE_COLUMNS),
         years
     )
     cash = filter_periods(
-        ensure_columns(get_cashflow_all(ts_code), CASHFLOW_COLUMNS),
+        ensure_columns(_load_table(db, CashFlow, ts_code), CASHFLOW_COLUMNS),
         years
     )
     indicator = filter_periods(
-        ensure_columns(fetch_fina_indicator(ts_code), INDICATOR_COLUMNS),
+        ensure_columns(_load_table(db, FinaIndicator, ts_code), INDICATOR_COLUMNS),
         years
     )
 
@@ -456,7 +460,7 @@ def build_metrics_table(ts_code: str, years: int = 6) -> Dict[str, Any]:
     })
 
     # 15. 公司品质
-    with SessionLocal() as db:
+    with db.no_autoflush:
         dividends = get_dividend_by_ts_code(db, ts_code)
         best_records = {} # end_date -> record
         for div in dividends:

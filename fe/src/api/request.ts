@@ -3,7 +3,10 @@ import axios from 'axios'
 import { ElMessage } from 'element-plus'
 
 const request: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:5005',
+  // Production is served by Nginx on the same origin, so requests remain
+  // behind its HTTPS/authentication boundary. Local development keeps the
+  // existing standalone FastAPI address.
+  baseURL: import.meta.env.VITE_API_BASE_URL || (import.meta.env.PROD ? '' : 'http://localhost:5005'),
   timeout: 60000,
 })
 async function requestHandler(config: InternalAxiosRequestConfig): Promise<InternalAxiosRequestConfig> {
@@ -13,7 +16,7 @@ async function requestHandler(config: InternalAxiosRequestConfig): Promise<Inter
 export interface ResponseBody<T = any> {
   code: number
   data: T
-  msg: string
+  message: string
 }
 function responseHandler(response: any): ResponseBody<any> | AxiosResponse<any> | Promise<any> | any {
   const resData = response.data
@@ -25,15 +28,16 @@ function responseHandler(response: any): ResponseBody<any> | AxiosResponse<any> 
     return resData
   }
   else {
-    ElMessage.error(resData.msg)
-    return Promise.reject(new Error(resData.msg))
+    const message = resData.message || '请求失败'
+    ElMessage.error(message)
+    return Promise.reject(new Error(message))
   }
 }
 function errorHandler(error: AxiosError): Promise<any> {
   console.log('HTTP ERROR:', error)
 
   const { data, statusText } = error.response as AxiosResponse<ResponseBody>
-  ElMessage.error(data?.msg || statusText)
+  ElMessage.error(data?.message || statusText)
 
   return Promise.reject(error)
 }

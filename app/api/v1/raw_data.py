@@ -33,9 +33,9 @@ def get_finance_table_api(
     db: Session = Depends(get_db)
 ):
     try:
-        data = build_metrics_table(ts_code, years)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        data = build_metrics_table(ts_code, years, db)
+    except Exception:
+        raise HTTPException(status_code=500, detail="财务指标计算失败")
 
     if not data["periods"]:
         raise HTTPException(status_code=404, detail="未找到财报数据")
@@ -419,9 +419,6 @@ def get_finance_card_api(
     财务小卡片本地只读数据。
     不从 Tushare 拉取，不自动补数；缺失模块由前端提示同步命令。
     """
-    _ensure_balancesheet_card_columns(db)
-    _ensure_cashflow_card_columns(db)
-
     stock = get_stock_by_code(db, ts_code)
     industry = get_index_member_by_ts_code(db, ts_code)
 

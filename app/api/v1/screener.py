@@ -30,10 +30,10 @@ def screener_run(req: ScreenerRequest, db: Session = Depends(get_db)):
         params=req.params.model_dump(exclude_none=True) if req.params else {},
         years=req.years,
     )
-    return {"code": 200, "data": result, "msg": "ok"}
+    return {"code": 200, "data": result, "message": "ok"}
 
 
 @router.get("/risk-check")
 def screener_risk_check(ts_code: str, db: Session = Depends(get_db)):
     result = check_risk(db, ts_code)
-    return {"code": 200, "data": result, "msg": "ok"}
+    return {"code": 200, "data": result, "message": "ok"}

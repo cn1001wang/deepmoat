@@ -491,18 +491,24 @@ def fetch_finance_data(max_workers=5, overwrite: bool = False):
         logging.info(f"共 {len(stock_codes)} 支股票")
 
         def fetch_one(ts_code):
-            try:
-                if overwrite:
-                    fetch_finance_for_stock_overwrite(ts_code)
-                else:
-                    fetch_finance_for_stock_2(ts_code)
-                logging.info(f"{ts_code} 财务数据抓取成功")
-            except Exception as e:
-                logging.error(f"{ts_code} 财务数据抓取失败: {e}")
+            if overwrite:
+                fetch_finance_for_stock_overwrite(ts_code)
+            else:
+                fetch_finance_for_stock_2(ts_code)
+            logging.info(f"{ts_code} 财务数据抓取成功")
 
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            for ts_code in stock_codes:
-                executor.submit(fetch_one, ts_code)
+            futures = {executor.submit(fetch_one, ts_code): ts_code for ts_code in stock_codes}
+            failed = []
+            for future, ts_code in futures.items():
+                try:
+                    future.result()
+                except Exception as exc:
+                    failed.append(ts_code)
+                    logging.exception("%s 财务数据抓取失败: %s", ts_code, exc)
+
+        if failed:
+            raise RuntimeError(f"财务数据同步失败：{len(failed)} 支股票，例如 {', '.join(failed[:10])}")
 
     logging.info("财务数据抓取完成！")
 

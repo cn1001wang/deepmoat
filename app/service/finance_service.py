@@ -84,13 +84,13 @@ def get_latest_available_end_date(today: date | None = None) -> str:
     md = today.month * 100 + today.day
 
     if md >= 1231:
-        return f"{year}-12-31"
+        return f"{year}1231"
     elif md >= 930:
-        return f"{year}-09-30"
+        return f"{year}0930"
     elif md >= 630:
-        return f"{year}-06-30"
+        return f"{year}0630"
     else:
-        return f"{year}-03-31"
+        return f"{year}0331"
 
 from sqlalchemy import func
 from app.db.session import SessionLocal

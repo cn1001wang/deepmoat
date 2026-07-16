@@ -156,7 +156,7 @@ async function loadData() {
     const res = await getFinanceCard(props.tscode, 10)
     cardData.value = res.data
   } catch (err: any) {
-    error.value = err?.response?.data?.msg || err?.message || '加载个股分析页失败'
+    error.value = err?.response?.data?.message || err?.message || '加载个股分析页失败'
   } finally {
     loading.value = false
   }

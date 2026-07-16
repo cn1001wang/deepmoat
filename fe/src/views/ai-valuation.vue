@@ -81,7 +81,7 @@ async function handleGenerate() {
     modelUsed.value = res.data.model_used
     generatedAt.value = res.data.generated_at
   } catch (e: any) {
-    error.value = e?.response?.data?.msg || e?.message || '生成失败，请检查 AI 配置'
+    error.value = e?.response?.data?.message || e?.message || '生成失败，请检查 AI 配置'
   } finally {
     generating.value = false
   }
@@ -95,7 +95,7 @@ async function handleSave() {
     const res = await saveValuation(props.tscode, analysisContent.value)
     savedPath.value = res.data.path
   } catch (e: any) {
-    error.value = e?.response?.data?.msg || e?.message || '保存失败'
+    error.value = e?.response?.data?.message || e?.message || '保存失败'
   } finally {
     saving.value = false
   }

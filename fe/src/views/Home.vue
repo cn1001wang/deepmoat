@@ -56,6 +56,12 @@ const quickStocks = [
   { code: '000001.SZ', name: '平安银行' },
   { code: '600036.SH', name: '招商银行' },
 ]
+
+function setElementStyle(event: MouseEvent, styles: Partial<CSSStyleDeclaration>) {
+  const target = event.currentTarget as HTMLElement | null
+  if (target)
+    Object.assign(target.style, styles)
+}
 </script>
 
 <template>
@@ -105,8 +111,8 @@ const quickStocks = [
               box-shadow: 0 18px 36px rgba(15, 23, 42, 0.06);
               transition: all 0.2s ease;
             "
-            @mouseover="e => e.currentTarget.style.transform = 'translateY(-3px)'"
-            @mouseout="e => e.currentTarget.style.transform = 'translateY(0)'"
+            @mouseover="e => setElementStyle(e, { transform: 'translateY(-3px)' })"
+            @mouseout="e => setElementStyle(e, { transform: 'translateY(0)' })"
           >
             <span class="feature-icon" style="
               display: grid;
@@ -144,8 +150,8 @@ const quickStocks = [
               transition: all 0.15s ease;
             "
             @click="router.push(`/stock/${s.code}`)"
-            @mouseover="e => { e.currentTarget.style.borderColor = '#2563eb'; e.currentTarget.style.color = '#2563eb'; }"
-            @mouseout="e => { e.currentTarget.style.borderColor = '#cbd5e1'; e.currentTarget.style.color = '#0f172a'; }"
+            @mouseover="e => setElementStyle(e, { borderColor: '#2563eb', color: '#2563eb' })"
+            @mouseout="e => setElementStyle(e, { borderColor: '#cbd5e1', color: '#0f172a' })"
           >
             {{ s.name }}
           </span>
@@ -164,8 +170,8 @@ const quickStocks = [
               box-shadow: 0 14px 30px rgba(15, 23, 42, 0.05);
               transition: all 0.2s ease;
             "
-            @mouseover="e => e.currentTarget.style.transform = 'translateY(-2px)'"
-            @mouseout="e => e.currentTarget.style.transform = 'translateY(0)'"
+            @mouseover="e => setElementStyle(e, { transform: 'translateY(-2px)' })"
+            @mouseout="e => setElementStyle(e, { transform: 'translateY(0)' })"
           >
             <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
               <span class="tool-icon" style="
@@ -198,8 +204,8 @@ const quickStocks = [
                   text-decoration: none;
                   transition: all 0.15s ease;
                 "
-                @mouseover="e => { e.currentTarget.style.background = 'var(--accent)'; e.currentTarget.style.color = 'white'; }"
-                @mouseout="e => { e.currentTarget.style.background = 'color-mix(in srgb, var(--accent) 10%, white)'; e.currentTarget.style.color = 'var(--accent)'; }"
+                @mouseover="e => setElementStyle(e, { background: 'var(--accent)', color: 'white' })"
+                @mouseout="e => setElementStyle(e, { background: 'color-mix(in srgb, var(--accent) 10%, white)', color: 'var(--accent)' })"
               >
                 {{ s.name }}
               </router-link>
@@ -343,8 +349,8 @@ const quickStocks = [
             text-decoration: none;
             box-shadow: 0 14px 30px rgba(37, 99, 235, 0.24);
             transition: all 0.15s ease;
-          " @mouseover="e => e.currentTarget.style.transform = 'translateY(-2px)'"
-            @mouseout="e => e.currentTarget.style.transform = 'translateY(0)'">
+          " @mouseover="e => setElementStyle(e, { transform: 'translateY(-2px)' })"
+            @mouseout="e => setElementStyle(e, { transform: 'translateY(0)' })">
             从筛选开始
           </router-link>
         </div>
