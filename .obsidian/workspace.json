@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "refactor/04_design/01_current_backend_design.md",
+                "file": "outputs/reports/300274_阳光电源/value_300274_阳光电源_2607131003_addition_strategy.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "01_current_backend_design"
+              "title": "value_300274_阳光电源_2607131003_addition_strategy"
             }
           }
         ]
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "refactor/04_design/01_current_backend_design.md",
+                "file": "outputs/reports/300274_阳光电源/value_300274_阳光电源_2607131003_addition_strategy.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "01_current_backend_design 的大纲"
+              "title": "value_300274_阳光电源_2607131003_addition_strategy 的大纲"
             }
           }
         ],
@@ -183,9 +183,16 @@
       "bases:新建数据库": false
     }
   },
-  "active": "dacb1eeb276b2308",
+  "active": "11df3e959e141a58",
   "lastOpenFiles": [
-    "outputs/reports/300274_阳光电源/value_300274_阳光电源_2607131003_addition_strategy.md",
+    "refactor/04_design/02_refactor_upgrade_design.md",
+    "refactor/04_design/01_current_backend_design.md",
+    "outputs/reports/600703_三安光电/analysis_600703_三安光电_2607122318.md",
+    "outputs/reports/600703_三安光电",
+    "outputs/reports/02577_英诺赛科/analysis_02577_英诺赛科_2607122320.md",
+    "outputs/reports/02577_英诺赛科",
+    "outputs/reports/300274_阳光电源/fund_timing_300274_2607150929.md",
+    "outputs/reports/300274_阳光电源/fund_timing_300274_2607141504.md",
     "outputs/reports/002851_麦格米特/analysis_002851_麦格米特_2607131051.md",
     "outputs/reports/002851_麦格米特",
     "outputs/reports/300274_阳光电源/analysis_300274_阳光电源_2607030930.md",
@@ -211,16 +218,9 @@
     "outputs/reports/603583_捷昌驱动/r12_603583_捷昌驱动_2605130134.md",
     "outputs/reports/603583_捷昌驱动/analysis_603583_捷昌驱动_2605130135.md",
     "outputs/reports/603986_兆易创新/analysis_603986_兆易创新_2605130135.md",
-    "outputs/reports/603986_兆易创新/r12_603986_兆易创新_2605130134.md",
-    "outputs/reports/603986_兆易创新/value_603986_兆易创新_2605130135.md",
-    "outputs/reports/605499_东鹏饮料/analysis_605499_东鹏饮料_2605130135.md",
-    "outputs/reports/605499_东鹏饮料/r12_605499_东鹏饮料_2604181637.md",
-    "outputs/reports/605499_东鹏饮料/r12_605499_东鹏饮料_2605130134.md",
     "tests/__pycache__/test_sync_fina_indicator.cpython-313.pyc",
     "scripts/sync_daily_full.sh",
     "fe/dist/index.html",
-    "fe/dist/assets/index-DauWntHI.css",
-    "fe/dist/assets/index-DDbomqAf.js",
     "未命名.canvas",
     "outputs/reports/688017_绿的谐波/charts/chart_12.svg",
     "outputs/reports/688017_绿的谐波/charts/chart_11.svg",
