@@ -1,91 +1,57 @@
 # DeepMoat 升级进度
 
 > 自驱 agent 每轮必读必更新。状态值:`pending` / `in_progress` / `done` / `blocked`。
+>
+> **权威执行计划**：`05_impl_plan/01_reconciled_plan.md`（Track A-G）。本文件只跟踪状态，不再维护独立的 P0-P5 任务编号。
 
-最后更新:2026-06-18(主控提示词从 P1-P9 重构方案改为 P0-P5 升级方案)
-当前阶段:**P0 现状盘点**
-当前任务:**T0.1**
+最后更新:2026-07-16（对账真实代码状态，重写本文件）
+当前阶段:**提交基线 -> Track A 地基收尾**
+当前任务:**A-1 清理遗留**
 
-## 阶段进度
+## 真实进度对账（2026-07-16）
 
-| 阶段 | 状态 | 摘要 |
+详见 `05_impl_plan/01_reconciled_plan.md` 第 1 节。要点：
+- 工程轨 P0③ 配置加固 / P1① 在线解耦 Tushare / P3 docker+systemd 部署 已完成
+- P0①②④⑤ / P1②③ / P2 / P4 / P5 未做
+- 产品轨：skills 合并 done（1 个 deepmoat-research），其余未做
+
+## Track 进度
+
+| Track | 状态 | 摘要 |
 |------|------|------|
-| P0 现状盘点 | in_progress | 6 个清单文件,投资体系 v2 指针 |
-| P1 Skills 合并 + 投资体系工具化 | pending | 3 新 skill + 5 个 service + 换仓决策器 |
-| P2 云部署 + 自动化抓取 + UI 重构 | pending | 容器化 + 定时任务 + UI v2 |
-| P3 AI 报告生成 v1 | pending | 周/月/季报 + 推送 |
-| P4 Rust 切片(护城河引擎) | pending | 转岗故事核心,10-14 周 |
-| P5 AI Agent v2 | pending(按需) | 浏览器/MCP,看 P3 表现再决策 |
+| 基线提交 | in_progress | 13 个未提交 app/fe 文件 + Docker/deploy/tests |
+| A 地基收尾 | pending | A-1~A-5 见 reconciled_plan 第 4 节 |
+| B 护城河抽核 | pending | moat_engine 权威实现 + golden data |
+| C 投资体系工具化 | pending | 5 service + 换仓决策器（依赖 B） |
+| D async+仓储+缓存 | pending | 公网压测前做 |
+| E 公网加固 | pending | 鉴权/限流/真云/推送（Q-0002/Q-0004 待答） |
+| F UI 重构 | pending | 深色/tokens/IA/移动 |
+| G Rust 切片 | pending | 转岗故事（依赖 B） |
 
-## 任务进度
+### Track A 子任务
+- [ ] A-1 清理遗留（vercel/.vercel/stock.db/stock_shcemes 重命名/tsbuildinfo 忽略） - in_progress
+- [ ] A-2 config 启动校验 - pending
+- [ ] A-3 全局异常处理器 + 统一 ResponseOk - pending
+- [ ] A-4 事务边界（bulk_upsert 接收外部连接） - pending
+- [ ] A-5 Alembic baseline + 退役 init_db - pending
 
-### P0 现状盘点
-- [ ] T0.1 inventory_app.md — pending
-- [ ] T0.2 inventory_fe.md — pending
-- [ ] T0.3 data_model.md(ER 图) — pending
-- [ ] T0.4 routes.md — pending
-- [ ] T0.5 frontend_routes.md — pending
-- [ ] T0.6 skills_inventory.md — pending
-- [x] T0.7 投资体系 v2 指针(已建,投资体系 v2 已草拟) — done
+## 待人工决策
 
-### P1 Skills 合并 + 投资体系工具化
-- [ ] T1.1 3 个新 skill 边界设计 — pending
-- [ ] T1.2 skill 代码落地 — pending
-- [ ] T1.3 skills_design.md — pending
-- [ ] T1.4 5 个新 service(growth/moat/value_trap/switch/portfolio) — pending
-- [ ] T1.5 对应 v1 路由 + 更新 routes.md — pending
-- [ ] T1.6 换仓决策器前端页 — pending
-- [ ] T1.7 黄金数据集 5 只票测试 — pending
-- [ ] T1.8 investment_prompts.md(卖出/复盘 prompts) — pending
-- [ ] T1.9 prompt 接入巴芒 skill — pending
-
-### P2 云部署 + 自动化抓取 + UI 重构
-- [ ] T2.1 云服务器选型 ADR — blocked(等用户拍板)
-- [ ] T2.2 app 容器化 — pending
-- [ ] T2.3 fe 容器化 — pending
-- [ ] T2.4 部署脚本 + HTTPS — pending
-- [ ] T2.5 简单鉴权 — pending
-- [ ] T2.6 抓取定时化 — pending
-- [ ] T2.7 抓取失败告警 — pending
-- [ ] T2.8 fe PoC 复制 — pending
-- [ ] T2.9 tokens.css — pending
-- [ ] T2.10 UI 库选型 ADR — blocked(等用户拍板)
-- [ ] T2.11 信息架构重组 — pending
-- [ ] T2.12 深色模式 — pending
-- [ ] T2.13 ECharts 接入 — pending
-- [ ] T2.14 移动端适配 — pending
-
-### P3 AI 报告生成 v1
-- [ ] T3.1 报告模板设计 — pending
-- [ ] T3.2 report_service.py — pending
-- [ ] T3.3 推送通道 — blocked(等用户拍板)
-- [ ] T3.4 报告归档 — pending
-
-### P4 Rust 切片
-- [ ] T4.1 cargo workspace — pending
-- [ ] T4.2 axum 服务 + utoipa — pending
-- [ ] T4.3 sqlx 连 PG — pending
-- [ ] T4.4 护城河算法 PoC — pending
-- [ ] T4.5 /v1/moat/score 端点 — pending
-- [ ] T4.6 Python HTTP 集成 + fallback — pending
-- [ ] T4.7 perf_report.md — pending
-- [ ] T4.8 docker-compose 集成 — pending
-- [ ] T4.9 tracing + grafana(可选) — pending
-
-### P5 按需
-
-## 待人工决策(影响后续启动)
-
-写在 OPEN_QUESTIONS.md。当前未阻塞 P0 启动,P0 跑完之前用户可以慢慢答:
-- Q-0001 3 个新 skill 名字 / 边界
-- Q-0002 云服务器选型
-- Q-0003 UI 库选型
-- Q-0004 推送通道选型
+写在 OPEN_QUESTIONS.md。Q-0001（skills）/Q-0003（UI 库）已关闭（现实已答）。
+- Q-0002 云服务器选型 -> 影响 Track E
+- Q-0004 推送通道 -> 影响 Track E
 
 ## 本轮备注
 
-**2026-06-18(脚手架建立)**
-- 主控提示词 P1-P9 → P0-P5 重写,贴合用户实际目标(个人长期投资工具升级 + Rust 转岗故事)
-- 投资体系 v2 完成草稿(14 章 + 2 附录),落 `C:\codes\github\deepvalue\投资体系\投资体系_v2.md`
-- 新增 3 条 ADR(005-007)
-- 下一步:用户启动长跑,让 agent 跑 P0
+**2026-07-16（对账 + 重启）**
+- 盘点真实代码：发现 PROGRESS 旧版严重过期（声称 P0 未开始，实际 P0③/P1①/P3 部署已做）
+- 发现两套 P0-P5 编号冲突 -> ADR-0008 确认以工程文档为骨架，改用 Track A-G
+- 发现 `app/fe` 只读约束已被打破 -> ADR-0008 改为"每步保持可运行 + 增量可回滚"
+- 新增 `05_impl_plan/01_reconciled_plan.md` 作为单一事实源
+- 关闭 Q-0001/Q-0003
+- 下一步：提交基线，进入 Track A
+
+**2026-06-18（脚手架建立）**
+- 主控提示词 P1-P9 -> P0-P5 重写
+- 投资体系 v2 完成草稿
+- 新增 3 条 ADR（005-007）

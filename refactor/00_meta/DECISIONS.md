@@ -105,3 +105,22 @@
   - + 故事完整：架构决策（为什么切这块）+ 工程实现（完整后端栈）+ 性能数据（实测）
   - + 切片大小可控：核心算法不超过 1000 行 Rust 代码
   - − 需要保证 Rust 实现与 Python 实现行为一致（通过 golden_data 对照）
+
+## ADR-0008 确立合并执行计划为唯一权威 + 解除 app/fe 只读约束
+
+- **日期**：2026-07-16
+- **上下文**：2026-07-16 对账真实代码后发现三个问题
+  1. `MASTER_PROMPT.md`（产品视角 P0-P5）与 `04_design/02_refactor_upgrade_design.md`（工程视角 P0-P5）两套编号冲突，同一代号指不同的事
+  2. `PROGRESS.md` 严重过期（声称 P0 未开始，实际 P0③/P1①/P3 部署已完成）
+  3. `MASTER_PROMPT` 规定的"`app/`/`fe/` 只读、改动须走 OPEN_QUESTIONS"约束已被实际打破（已直接改 app/fe 13 个文件）
+- **决策**：
+  1. **以工程视角设计文档为骨架**，产品目标作为特性轨挂载；两套 P0-P5 编号都不再单独使用，统一改用 `05_impl_plan/01_reconciled_plan.md` 定义的 **Track A-G**
+  2. `05_impl_plan/01_reconciled_plan.md` 为重构推进的**唯一执行依据**（单一事实源）
+  3. `app/`/`fe/` 只读约束**正式解除**，替换为"**每步保持 app 可运行 + 增量可提交可回滚**"的工程约束
+  4. 关闭 Q-0001（skills 已合并为 1 个 `deepmoat-research`，非原计划 3 个）、Q-0003（UI 库已选 Element Plus，已是前端依赖）
+- **后果**：
+  - + 编号统一，不再有"两个 P0"的歧义
+  - + 可以直接在 app/fe 上增量重构，不必每个改动走 OPEN_QUESTIONS 流程
+  - + PROGRESS.md 反映真实状态，续跑 agent 不会被误导
+  - − `MASTER_PROMPT.md` 的阶段任务库与门禁不再作为执行依据，仅保留为历史/背景（如需自驱 agent，改读 `01_reconciled_plan.md` + 本 ADR）
+  - − 解除只读约束后，重构纪律依赖"每步可运行 + 可回滚"自觉执行，需配合 commit 粒度控制
