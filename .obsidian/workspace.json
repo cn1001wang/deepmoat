@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "refactor/04_design/01_current_backend_design.md",
+                "file": "outputs/reports/688012_中微公司/analysis_688012_中微公司_260718.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "01_current_backend_design"
+              "title": "analysis_688012_中微公司_260718"
             }
           }
         ]
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "refactor/04_design/01_current_backend_design.md",
+                "file": "outputs/reports/688012_中微公司/analysis_688012_中微公司_260718.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "01_current_backend_design 的大纲"
+              "title": "analysis_688012_中微公司_260718 的大纲"
             }
           }
         ],
@@ -185,6 +185,9 @@
   },
   "active": "dacb1eeb276b2308",
   "lastOpenFiles": [
+    "refactor/04_design/01_current_backend_design.md",
+    "outputs/reports/688012_中微公司/analysis_688012_中微公司_260718.md",
+    "outputs/reports/688012_中微公司",
     "app/service/ai/__pycache__/report.cpython-313.pyc",
     "app/service/ai/__pycache__/prompts.cpython-313.pyc",
     "app/service/ai/__pycache__/modes.cpython-313.pyc",
@@ -194,8 +197,6 @@
     "app/service/ai/__pycache__/__init__.cpython-313.pyc",
     "app/service/ai/__pycache__",
     "app/service/ai/__init__.py",
-    "app/service/ai/analyzer.py",
-    "app/service/ai/prompts.py",
     "refactor/05_impl_plan/01_reconciled_plan.md",
     "deploy/README.md",
     "outputs/reports/300274_阳光电源/fund_timing_300274_2607150929.md",
@@ -220,7 +221,6 @@
     "outputs/reports/603444_吉比特/r12_603444_吉比特_2605130134.md",
     "outputs/reports/603583_捷昌驱动/r12_603583_捷昌驱动_2605130134.md",
     "outputs/reports/603583_捷昌驱动/analysis_603583_捷昌驱动_2605130135.md",
-    "outputs/reports/603986_兆易创新/analysis_603986_兆易创新_2605130135.md",
     "未命名.canvas",
     "outputs/reports/688017_绿的谐波/charts/chart_12.svg",
     "outputs/reports/688017_绿的谐波/charts/chart_11.svg",
