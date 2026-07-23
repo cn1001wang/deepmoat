@@ -9,7 +9,7 @@ const baseSrc = fileURLToPath(new URL('./src', import.meta.url))
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [vue(), vueJsx(), vueDevTools(), Unocss()],
-  server: { port: 5100, host: true },
+  server: { port: 6000, host: true },
   resolve: {
     alias: [
       {
